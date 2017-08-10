@@ -311,6 +311,26 @@ $document.on( actionMngEvent, selector, function( event, data ) {
 	}
 } );
 
+wb.doc.on( "scroll.wb-actionmng.wb-actionmng", ".wb-actionmng", function( event, data ) {
+
+
+	// TODO: Check if we need to move the Focus also
+	if ( data.to ) {
+		document.getElementById( data.to ).scrollIntoView();
+
+		// // This event need to append in post action execution. It is actually conflicting with the default anchor functionality when used outside the timeout
+		// setTimeout( function() {
+		//	location.hash = "#" ;
+		//	location.hash = "#" + data.to;
+		//
+		//	//$( "#" + data.to ).scrollIntoView();
+		// }, 10 );
+
+		// location.hash( "#" );
+		// location.hash( "#" + data.to );
+	}
+} );
+
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selectorPreset, init );
 

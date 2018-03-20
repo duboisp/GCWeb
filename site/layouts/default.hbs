@@ -47,7 +47,9 @@
 	</div>
 </div>
 {{/if}}
-	{{>features}}
+{{#is page.armslength true}}
+	{{>armslength-footer}}
+{{/if}}
 {{#isnt footer "false"}}
 	{{>footer}}
 {{/isnt}}

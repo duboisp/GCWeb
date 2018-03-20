@@ -153,12 +153,23 @@ aside {
 	}
 }
 
+/* Deprecated */
 .gc-nttvs {
 	border-top: 1px solid #ccc;
+	
+	img {
+		float: left;
+		margin-right: 100%;
+	}
 }
 
-.gc-prtts,
-.gc-nttvs {
+/* 
+ * Feature
+ *
+ * Deprecated
+ * - style applied for: h2, h3, h4
+ */
+.gc-prtts {
 	a {
 		text-decoration: none;
 

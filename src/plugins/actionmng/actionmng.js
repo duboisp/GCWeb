@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  */
-( function( $, wb ) {
+( function( $, wb, document ) {
 "use strict";
 
 /*
@@ -24,6 +24,7 @@ var $document = wb.doc,
 	postponeActions = { },
 	groupPostAction = { },
 	actionMngEvent = [
+		"tocsv",
 		"patch",
 		"ajax",
 		"addClass",
@@ -177,6 +178,107 @@ var $document = wb.doc,
 		column = ( colInt === true ) ? colInt : column;
 		$datatable.column( column ).search( data.value, regex, smart, caseinsen ).draw();
 	},
+
+	// @source => jQuery selector to an HTML table
+	// @fname => Filename to save the csv
+	tblToCSV = function( source, fname ) {
+
+		var $table = $( source ),
+			table = $table.get( 0 ),
+			isDataTable = table.classList.contains( "wb-tables" ),
+			csvText = "",
+			fileName = fname || ( table.caption || "table" ) + ".csv",
+			rows = table.rows,
+			i, rows_len = rows.length,
+			j, columns_len = rows[ 0 ].cells.length,
+			$datatable;
+
+		// Is a table enhanced with the datatable plugin?
+		if ( isDataTable ) {
+			$datatable = $table.dataTable( { "retrieve": true } ).api();
+			rows_len = $datatable.rows()[ 0 ].length;
+
+			// Need to add the first row, because the header are not included in the list of rows returned by the datatable plugin.
+			for ( j = 0; j < columns_len; j = j + 1 ) {
+				cellCSVText = rows[ 0 ].cells[ j ].textContent;
+				cellCSVText = cellCSVText.replace( /\"/g, "\"\"" );
+				if ( j ) {
+					csvText = csvText + ",\"" + cellCSVText + "\"";
+				} else {
+					csvText = csvText + "\"" + cellCSVText + "\"";
+				}
+			}
+			csvText = csvText + "\n";
+		}
+
+		for ( i = 0; i < rows_len; i = i + 1 ) {
+
+			for ( j = 0; j < columns_len; j = j + 1 ) {
+				var cellCSVText;
+				if ( isDataTable ) {
+
+					// I would like to use ".node()" instead of ".data()" but it is not possible to get the referencied
+					// node because it don't exist if the table have multiple pages.
+					cellCSVText = $datatable.cell( i, j, { "page": "all" } ).data();
+
+					// If the content of the cell is HTML, the content will be parsed through a document fragment to extract
+					// it's textContent equivalent value
+					if ( cellCSVText.indexOf( "<" ) !== -1 ) {
+						var div = document.createElement( "div" );
+						div.innerHTML = cellCSVText;
+						cellCSVText = div.textContent;
+					}
+				} else {
+					cellCSVText = rows[ i ].cells[ j ].textContent;
+				}
+				cellCSVText = cellCSVText.replace( /\"/g, "\"\"" );
+				cellCSVText = cellCSVText + "\"";
+				if ( j ) {
+					csvText = csvText + ",\"" + cellCSVText;
+				} else {
+					csvText = csvText + "\"" + cellCSVText;
+				}
+			}
+
+			csvText = csvText + "\n";
+		}
+
+		download( new Blob( [ csvText ], { type: "text/plain;charset=utf-8" } ), fileName );
+
+	},
+
+	// Inspired by https://github.com/eligrey/FileSaver.js
+	download = function( blob, filename ) {
+
+		var objectURL = URL.createObjectURL( blob ),
+			result;
+
+		if ( !wb.ie11 ) {
+			setTimeout( function() {
+				var anchor = document.createElement( "a" );
+				anchor.href = objectURL;
+				anchor.download = filename || "unknown";
+				anchor.click(); // FYI - I tested if the focus move outside the button, and it didn't.
+			}, 1 );
+		} else {
+
+			// IE11 don't support the download attribute in anchor
+			result = window.open( objectURL, "_blank" );
+			if ( !result ) {
+				window.location.href = objectURL;
+			}
+		}
+
+		// Revoke the ojbect, A setTimeout is used because Blob API don't have a download complete event.
+		setTimeout( function() {
+			if ( typeof objectURL === "string" ) {
+				URL.revokeObjectURL( objectURL );
+			} else {
+				objectURL.remove();
+			}
+		}, 40000 ); // The revoking time is arbitrary
+
+	},
 	runAct = function( event, data ) {
 
 		var elm = event.target,
@@ -307,6 +409,9 @@ $document.on( actionMngEvent, selector, function( event, data ) {
 		case "patch":
 			patchAct( event, data );
 			break;
+		case "tocsv":
+			tblToCSV( data.source, data.filename );
+			break;
 		}
 	}
 } );
@@ -317,4 +422,4 @@ $document.on( "timerpoke.wb " + initEvent, selectorPreset, init );
 // Add the timer poke to initialize the plugin
 wb.add( selectorPreset );
 
-} )( jQuery, wb );
+} )( jQuery, wb, document );

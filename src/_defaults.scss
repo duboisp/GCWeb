@@ -18,7 +18,7 @@ html {
 }
 
 main {
-	font-size: 1.25em;
+	font-size: 20px;
 	line-height: 1.7em;
 
 	.pagedetails {
@@ -122,66 +122,68 @@ h1 {
 //Heading font-sizes
 h1,
 .h1 {
-	font-size: 38px;
+	font-size: 1.9em;
 }
 
 h2,
 .h2 {
-	font-size: 38px;
+	font-size: 1.85em;
 }
 
 h3,
 .h3 {
-	font-size: 26px;
+	font-size: 1.3em;
 }
 
 h4,
 .h4 {
-	font-size: 21px;
+	font-size: 1.05em;
 }
 
 h5,
 .h5 {
-	font-size: 19px;
+	font-size: 1em;
 }
 
 h6,
 .h6 {
-	font-size: 19px;
+	font-size: .95em;
 	font-weight: 400;
 }
 
-// Font-sizes for navigation page type (Home, Themes, Topic,...)
-.secondary, .page-type-nav {
+
+// Compact pages
+.page-compact {
 	main {
 		font-size: 17px;
-		line-height: 26px;
 	}
 
-	h1+p, h1+div p {
-		font-size: 20px;
-		line-height: 34px;
-	}
-
+	h1,
 	.h1 {
-		border-bottom: 1px solid $border-red;
-		font-size: 27px;
-		margin-bottom: .2em;
-		padding-bottom: .2em;
+		font-size: 2.24em;
 	}
 
 	h2,
 	.h2 {
-		font-size: 24px;
+		font-size: 1.65em;
+	}
+}
+
+
+// Font-sizes for navigation page type (Home, Themes, Topic,...)
+.page-type-nav {
+
+	// Use the following as a transition hack, unique to AEM
+	h1+p, h1+div p {
+		font-size: 1.2em;
 	}
 
+	// Use the following as a transition hack, unique to AEM. The right markup would be to define a "gc-doormat" web component
 	h3,
 	.h3,
 	h4,
-	.h4,
-	h5,
-	.h5 {
-		font-size: 20px;
+	.h4{
+		font-size: 1em;
 	}
 }
 

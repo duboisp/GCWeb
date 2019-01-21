@@ -14,7 +14,7 @@
 		background-color: #26374a;
 		border: 0;
 		border-bottom: #26374a solid 1px;
-		font-size: 0.85em; //17px
+		font-size: 17px;
 
 		&:hover,
 		&:focus,
@@ -56,15 +56,52 @@
 // Search template
 //
 .page-type-search {
-	//new styles from the update
-	h2 {
-		//should use the standard design update h3 formatting for search
+
+	.location {
+
+		color: #006621;
+		padding-left: 0px;
+
+		li {
+			display: inline-block;
+
+			+ li:before {
+				content: "> ";
+			}
+		}
+
+		cite {
+			font-style: normal;
+		}
 	}
+
+	.context-labels {
+		font-size: .8em;
+		list-style: none;
+		padding-left: 0px;
+
+		li {
+			background-color: #5e738b;
+			color:#fff;
+			display: inline-block;
+			font-weight: 600;
+			margin-bottom: 1px;
+			padding: 0 5px;
+		}
+	}
+
+
+	.results > section {
+		border-bottom: solid 1px #000;
+		margin-bottom: 1.5em;
+		padding-bottom: 1.5em;
+	}
+
 
 	.label li {
 		background-color: #5e738b;
 		color: white;
-		font-size: 0.8em; //16px
+		font-size: .8em; //16px
 		font-weight: bold;
 		margin-top: 5px;
 		padding-left: 5px;
@@ -74,21 +111,10 @@
 
 	.expand-collapse-buttons {
 		color: white;
-		font-size: 0.8em; //16px
+		font-size: .8em; //16px
 		font-weight: bold;
 		padding-left: 5px;
 		padding-right: 5px;
-	}
-
-	.breadcrumb li {
-		color: #006621;
-		display: inline-block;
-		font-size: 1em; //20px
-		margin-top: 10px;
-	}
-
-	.breadcrumb li:first-child::after {
-		content: ">";
 	}
 
 	cite a {
@@ -104,23 +130,4 @@
 		padding-top: 8px;
 	}
 
-	.search-result-date {
-		color: grey;
-	}
-
-	section {
-		border-bottom: solid 1px #ccc;
-		padding-bottom: 30px;
-	}
-
-	.results-count {
-		color: #615f5f;
-		font-family: "Noto sans", sans-serif;
-		font-size: 0.85em; //17px
-		line-height: 34px;
-	}
-
-	.gc-byline {
-		//standard p font
-	}
 }

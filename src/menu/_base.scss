@@ -30,6 +30,42 @@
  */
 
 .gcweb-menu {
+	[role=menu] li:focus-within > a {
+		background-color: #DBDBDB;
+		color: #000;
+	}
+
+	// When the menu item is focus and hover, no gray background.
+	[role=menu] li:focus-within > a[aria-expanded=true]:focus:hover {
+		background-color: #fff;
+		color: #000;
+	}
+
+	[role=menu] [role=menu] li:focus-within > a {
+		border-bottom: 1px solid #bbb !important;
+		border-radius: 4px !important;
+		border-top: 1px solid #bbb !important;
+	}
+
+	[role=menu] [role=menu] a {
+		border-bottom: 1px solid #fff !important;
+		border-top: 1px solid #fff !important;
+	}
+
+	[role=menu] [role=menu] a:focus {
+		background-color: #ffffcc !important;
+		border-bottom: 1px solid #bbb !important;
+		border-radius: 4px !important;
+		border-top: 1px solid #bbb !important;
+		color: #ad141f !important;
+	}
+
+	[role=menu] [role=menu] a:hover {
+		background-color: #ffffcc !important;
+		border-bottom: 1px solid #bbb !important;
+		border-radius: 4px !important;
+		border-top: 1px solid #bbb !important;
+	}
 
 	/*
 	 * Level 0 - button menu

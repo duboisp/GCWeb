@@ -18,6 +18,7 @@ var componentName = "gcweb-menu",
 	justOpened,
 	isMobileMode, // Mobile vs Desktop
 	isMediumView,
+	preventFocusIn,
 
 	/**
 	 * @method init
@@ -108,6 +109,7 @@ function CloseMenu( elm, force ) {
 // On hover, wait for the delay before to open the menu
 function OpenMenuWithDelay( elm ) {
 
+
 	if ( elm.dataset.keepExpanded === "md-min" ) {
 		return;
 	}
@@ -117,18 +119,6 @@ function OpenMenuWithDelay( elm ) {
 
 	globalTimeoutOn = setTimeout( function() {
 		OpenMenu( elm );
-	}, hoverDelay );
-}
-function CloseMenuWithDelay( elm ) {
-
-	if ( elm.dataset.keepExpanded === "md-min" ) {
-		return;
-	}
-
-	clearTimeout( globalTimeoutOff );
-
-	globalTimeoutOff = setTimeout( function() {
-		CloseMenu( elm );
 	}, hoverDelay );
 }
 
@@ -147,6 +137,7 @@ $document.on( "focusin", selector + " ul [aria-haspopup]", function( event ) {
 
 	// Don't open the submenu
 	if ( isMobileMode ) {
+		preventFocusIn = false;
 		return;
 	}
 
@@ -175,66 +166,23 @@ $document.on( "mouseenter focusin", selector + " [aria-haspopup] + [role=menu]",
 	clearTimeout( globalTimeoutOff );
 } );
 
-
-$document.on( "mouseleave", selector + " [aria-haspopup]", function( event ) {
-
-	// There is no "mouseenter" in mobile
-	if ( !isMobileMode ) {
-		clearTimeout( globalTimeoutOn );
-		CloseMenuWithDelay( event.currentTarget );
-	}
+// Ensure the menu don't switch when the user do a quick mouse over on other menu item.
+$document.on( "mouseleave", selector + " [aria-haspopup]", function( ) {
+	clearTimeout( globalTimeoutOn );
 } );
-
-$document.on( "focusout", selector + " [aria-haspopup]", function( event ) {
-
-	// Don't close the submenu
-	if ( isMobileMode ) {
-		return;
-	}
-
-	// Don't close it if the user go in the submenu
-	CloseMenuWithDelay( event.currentTarget );
-} );
-
-$document.on( "mouseleave focusout", selector + " [aria-haspopup] + [role=menu]", function( event ) {
-
-	// Collapse the menu
-	// Note: elm.id is already defined because of the mouseenter event
-
-	var elm = event.currentTarget.previousElementSibling;
-
-	if ( elm.dataset.keepExpanded === "md-min" ) {
-		return;
-	}
-
-	// There is no "mouseleave" in mobile
-	if ( isMobileMode ) {
-		return;
-	}
-
-	CloseMenuWithDelay( event.currentTarget );
-} );
-
-
-/* **** Do we need to handle the click??? that will be handled by the "focusin" and "focusout" if something */
-/*
-   Menu current state is...       | Action
-  --------------------------------+------------------
-    Open                          |  Close the menu
-  --------------------------------+------------------
-    Delay to be open              |  Open the menu right now
-  --------------------------------+------------------
-    Short delay after it was open |  Keep the menu open
-  --------------------------------+------------------
-    Close                         |  Open the menu
-  --------------------------------+------------------
-*/
 
 // Open right away the popup
 $document.on( "click", selector + " [aria-haspopup]", function( event ) {
 
 	var elm = event.currentTarget,
 		elmToGiveFocus;
+
+
+	// Don't open the submenu
+	if ( preventFocusIn ) {
+		preventFocusIn = false;
+		return;
+	}
 
 	// Only for mobile view or the menu button
 	if ( isMobileMode || elm.nodeName === "BUTTON" ) {
@@ -356,6 +304,19 @@ $document.on( "keydown", selector + " button, " + selector + " [role=menuitem]",
 		parent = currentFocusIsOn.parentElement,
 		grandParent = parent.parentElement,
 		isCurrentButtonMenu = ( currentFocusIsOn.nodeName === "BUTTON" );
+
+	// Close the menu
+	if ( key === "tab" ) {
+		CloseMenu( document.querySelector( selector + " button" ), true );
+		return;
+	}
+
+	// Generate a click it Enter
+	if ( isCurrentButtonMenu && key === "enter" && elm.getAttribute( "aria-expanded" ) === "true" ) {
+		preventFocusIn = true;
+		CloseMenu( elm, true );
+		return;
+	}
 
 	// FIRST CHILD POPOP
 	var firstChildPopup;
@@ -500,12 +461,14 @@ $document.on( "keydown", selector + " button, " + selector + " [role=menuitem]",
 		return;
 	}
 
-	if ( !isCurrentButtonMenu && ( key === "left" ||  key === "esc" ) ) {
+	if ( key === "left" ||  key === "esc" ) {
+
 
 		// Close the menu
-		if ( isMobileMode &&
-				elmToGiveFocus.getAttribute( "aria-expanded" ) === "true" ) {
+		if ( !isCurrentButtonMenu && isMobileMode && elmToGiveFocus.getAttribute( "aria-expanded" ) === "true" ) {
 			elmToGiveFocus.setAttribute( "aria-expanded", "false" );
+		} else if ( isCurrentButtonMenu ) {
+			elm.setAttribute( "aria-expanded", "false" );
 		}
 	}
 

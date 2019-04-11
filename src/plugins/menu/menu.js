@@ -19,6 +19,9 @@ var componentName = "gcweb-menu",
 	isMobileMode, // Mobile vs Desktop
 	isMediumView,
 	preventFocusIn,
+	i18nInstruction = {
+		en: "Press the SPACEBAR to expand or the escape key to collapse this menu. Use the up and Down arrow keys to choose a submenu item. Press the Enter or Right arrow key to expand it, or the Left arrow or Escape key to collapse it. Use the up and Down arrow keys to choose an item on that level and the Enter key to access it."
+	},
 
 	/**
 	 * @method init
@@ -33,11 +36,17 @@ var componentName = "gcweb-menu",
 			ajaxFetch;
 		if ( elm ) {
 
+			if ( i18nInstruction[ wb.lang ] ) {
+				i18nInstruction = i18nInstruction[ wb.lang ];
+			} else if ( i18nInstruction.en  ) {
+				i18nInstruction = i18nInstruction.en;
+			}
+
 			// If the menu item are ajaxed in, initialize after the ajax is completed
 			ajaxFetch = elm.querySelector( selectorAjaxed );
 
 			if ( !ajaxFetch ) {
-				onAjaxLoaded( elm.firstChild );
+				onAjaxLoaded( elm.querySelector( "[role=menu]" ) );
 			}
 
 
@@ -52,6 +61,9 @@ var componentName = "gcweb-menu",
 		if ( isMobileMode || isMediumView ) {
 			setMnu3LevelOrientationExpandState( false, isMediumView );
 		}
+
+		// Add menu navigation instruction
+		subElm.previousElementSibling.setAttribute( "aria-label", i18nInstruction );
 
 		// Identify that initialization has completed
 		wb.ready( $elm, componentName );

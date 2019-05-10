@@ -1,0 +1,14 @@
+/*
+  WET-BOEW
+  @title: Medium view and under (screen only)
+ */
+
+/*
+ * Well header responsive
+ */
+.well.header-rwd {
+	width: 75%;
+	.well-title, h1 {
+		width: 55%;
+	}
+}

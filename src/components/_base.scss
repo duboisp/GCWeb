@@ -35,17 +35,24 @@
 
 // colour
 .bg-dark {
-	background-color: #343a40 !important;
+	background-color: #343a40;
 }
 
-a.bg-dark: hover, a.bg-dark: focus {
-	color: #b3ffff !important;
+a.bg-dark:hover, a.bg-dark:focus {
+	color: #b3ffff;
 }
 
-button.bg-dark: hover, button.bg-dark: focus {
-	background-color: #1d2124 !important;
+button.bg-dark:hover, button.bg-dark:focus {
+	background-color: #1d2124;
 }
 
 .text-white {
-	color: #fff !important;
+	color: #fff;
+}
+
+/*
+ * Well header responsive
+ */
+.well.header-rwd {
+	width: 50%;
 }

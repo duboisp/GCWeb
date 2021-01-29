@@ -1,0 +1,104 @@
+/*
+ Site information
+*/
+
+#wb-info {
+	background: $wbGray;
+	position: relative;
+	z-index: 5;
+
+	a {
+		font-size: .875em;
+		text-decoration: none;
+
+		&.wb-navcurr {
+			font-weight: 800;
+		}
+	}
+
+	.brand {
+		background: #f8f8f8;
+		line-height: 30px;
+
+		object,
+		img {
+			height: 40px;
+			margin-bottom: 10px;
+			margin-top: 20px;
+			width: auto;
+		}
+	}
+
+	.ftr-urlt-lnk {
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			&:before {
+				content: "\2022";
+				margin-right: $footer-about-li-horizontal-spacing;
+			}
+		}
+	}
+
+	.landscape {
+		background: #26374a url(../assets/landscape.png) no-repeat right bottom;
+
+		a {
+			color: #fff;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.tofpg {
+		line-height: 90px;
+
+		a {
+			color: #000;
+
+			span {
+				margin-left: 25px;
+			}
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	nav {
+		padding-bottom: 2em;
+		padding-top: 2em;
+		position: relative;
+
+		li {
+			margin-bottom: .75em;
+		}
+	}
+}
+
+[dir=rtl] {
+	footer {
+		.brand {
+			.text-right {
+				text-align: left;
+			}
+		}
+
+		.tofpg {
+			float: right;
+
+			a {
+				span {
+					margin-left: 0;
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+}

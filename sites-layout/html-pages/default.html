@@ -3,6 +3,7 @@ layout: compress
 ---
 <!DOCTYPE html>
 <html class="no-js" lang="{{ page.lang | default: 'en' }}" dir="{{ page.i18n.tmpl-lang-dir[page.lang] }}">
+<!-- default -->
   <head>
     <meta charset="utf-8">
     {% include license.html %}
@@ -18,9 +19,9 @@ layout: compress
     {% endif %}
     {% include skiplinks.html %}
     {% include header.html %}
-    <!-- Static header ends -->
+<main class="container">
      {{ content }}
-    <!-- Static footer starts -->
+</main>
     {% include footer.html %}
     {% include footerresources.html %}
   </body>

@@ -59,22 +59,6 @@ button {
 // theme default color
 .bg-gctheme {
 	background-color: #355688;
-
-	&.well.header-rwd {
-		background-color: #26374a;
-	}
-}
-
-/*
- * Well header responsive
- */
-.well.header-rwd {
-	width: 100%;
-}
-.bg-darker {
-	&.well.header-rwd h1 {
-		border-bottom-color: #6f6f6f;
-	}
 }
 
 /* H1 short bold red underline */

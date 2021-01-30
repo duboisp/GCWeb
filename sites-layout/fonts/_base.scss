@@ -1,0 +1,98 @@
+@font-face {
+	font: {
+		family: "gcweb";
+		style: normal;
+		weight: normal;
+	}
+	src: url("../fonts/gcweb_0c4a4eb7974d0a7287c93c02965f9b3f.eot"),
+	url("../fonts/gcweb_0c4a4eb7974d0a7287c93c02965f9b3f.eot?#iefix") format("embedded-opentype"),
+	url("../fonts/gcweb_0c4a4eb7974d0a7287c93c02965f9b3f.woff") format("woff"),
+	url("../fonts/gcweb_0c4a4eb7974d0a7287c93c02965f9b3f.ttf") format("truetype"),
+	url("../fonts/gcweb_0c4a4eb7974d0a7287c93c02965f9b3f.svg#gcweb") format("svg");
+}
+
+%basic-font-format {
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke: 1px transparent;
+	display: block;
+	font: {
+		family: "gcweb";
+		style: normal;
+		variant: normal;
+		weight: normal;
+	}
+	line-height: 1;
+	text-decoration: none;
+	text-shadow: 0 0 1px rgba(0, 0, 0, .3);
+	text-transform: none;
+	transform: rotate(0);
+}
+
+header {
+	.brand {
+		padding-bottom: 0;
+
+		a {
+			position: relative;
+			text-decoration: none;
+		}
+	}
+}
+
+.icn-sig-en,
+.icn-sig-fr {
+	color: #fff;
+	display: inline-block;
+	font-size: 1.5em;
+	padding: .7em 0 .5em;
+
+	&:before {
+		@extend %basic-font-format;
+		position: relative;
+	}
+}
+
+:root .icn-sig-en,
+.icn-sig-fr {
+	&:before {
+		left: -10em;
+	}
+}
+
+.icn-sig-en {
+	&:before {
+		content: "\f102";
+	}
+}
+
+.icn-sig-fr {
+	&:before {
+		content: "\f103";
+	}
+}
+
+.cndwrdmrk {
+	font-size: 3.5em;
+	min-width: 100%;
+	position: relative;
+	text-decoration: none;
+
+	&:before,
+	&:after {
+		@extend %basic-font-format;
+		display: inline;
+		position: relative;
+	}
+
+	&:before {
+		color: #000;
+		content: "\f100";
+	}
+
+	&:after {
+		@extend %basic-font-format;
+		color: #f00;
+		content: "\f101";
+		left: -1em;
+	}
+}

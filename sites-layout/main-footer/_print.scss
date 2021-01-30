@@ -1,0 +1,12 @@
+/*
+ * Share/feedback-specific overrides (print view)
+ */
+.pagedetails {
+	details	{
+		@extend %gcweb-print-display-none-important;
+	}
+
+	.btn {
+		@extend %gcweb-print-display-none-important;
+	}
+}

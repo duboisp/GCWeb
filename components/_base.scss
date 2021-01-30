@@ -1,0 +1,245 @@
+/*
+* Template pages styles
+*/
+
+.whtwedo { //used on the topics template
+
+	p {
+		font-weight: 700;
+		margin-bottom: 30px;
+		margin-top: 15px;
+	}
+
+	ul {
+
+		>li {
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.lnkbx { //used on topics and theme for well in right column
+
+	>ul {
+
+		>li {
+			margin-bottom: 10px;
+		}
+	}
+
+	dl {
+
+		a {
+			overflow-wrap: break-word;
+			word-break: break-all;
+			word-wrap: break-word;
+		}
+
+		dt {
+			margin-top: 10px;
+		}
+
+		dd {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.gc-byline { // byline text for linking to institution pages
+	font-weight: 700;
+	margin-bottom: 30px;
+}
+
+/*
+ * Corporate information on Institution and Organization pages
+*/
+
+.gc-crprt {
+	ul {
+
+		&:nth-child(1) {
+			list-style: outside none none;
+			margin: 0;
+			padding: 0;
+
+			>li {
+				margin-bottom: 10px;
+			}
+		}
+	}
+
+	h3 {
+		margin-top: 0;
+	}
+
+	.col-md-8 {
+
+		.col-md-4 {
+			margin-bottom: 15px;
+		}
+	}
+}
+
+/*
+ * Institution pages
+ */
+
+.gc-instttn,
+.gc-orgnztn { // Class added to main
+
+	.gc-rms-lngth {
+
+		img {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+/*
+ * Theme template
+ */
+
+.gc-theme {
+
+	.profile {
+		margin-bottom: 25px;
+	}
+}
+
+/*
+ * Service template
+ */
+
+.gc-cntct-lst,
+.lnkbx { // Contact definition list
+
+	dl {
+
+		dt,
+		dd {
+			border: 0;
+		}
+	}
+}
+
+/*
+ * Advance Service template
+ */
+
+.gc-advnc-srvc {
+
+	.col-md-8 {
+		h2 {
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+}
+
+/*
+ * Archived template banner
+ */
+
+.gc-archv {
+	background-color: #ffd700 !important;
+	padding: 25px 50px;
+
+	h2 {
+		margin-top: 0;
+	}
+
+	.mfp-close.overlay-close {
+		color: #000;
+	}
+}
+
+/* Report a problem Thank you message */
+.gc-rprt-prblm-thnk {
+	padding-bottom: 25px;
+}
+
+/* Report a problem temporary fix for toggle : GH issue #1336 */
+.gc-rprt-prblm-frm {
+
+	&.gc-rprt-prblm-tggl {
+
+		&.show {
+			display: none !important;
+		}
+	}
+}
+
+/* Embedding a Fluid Survey */
+.gc-fld-srvy-container {
+	-webkit-overflow-scrolling: touch;
+	height: 0;
+	overflow: hidden;
+	overflow-y: scroll;
+	padding-bottom: 70%;
+	position: relative;
+}
+
+.gc-fld-srvy-mbd {
+	border: 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	zoom: 1;
+}
+
+/* Hide RAP textarea and Other : GH issue #1336 */
+.gc-rprt-prblm-frm {
+
+	.form-group {
+
+		display:none !important
+	}
+}
+
+.gc-rprt-prblm-frm {
+
+	label[for=problem6] {
+
+		display:none !important
+	}
+}
+
+/*
+ * Main content area
+ */
+main {
+
+	.subtitle {
+		color: #555;
+		font-size: 1em;
+		font-weight: 300;
+		margin-bottom: 1em;
+	}
+
+	.departments {
+		.learnmore {
+			padding: 3em 0;
+		}
+	}
+
+	.priorities {
+		padding-top: 2em;
+
+		.thumbnail {
+			margin-bottom: 1.5em;
+			padding: 1em;
+		}
+	}
+
+	.gc-rms-lngth {
+
+		img {
+			background-color: #fff;
+			border: solid 1px $wbGray;
+			padding: 18px;
+		}
+	}
+}

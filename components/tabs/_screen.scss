@@ -1,0 +1,71 @@
+/*
+ * Carousel-specific overrides
+ */
+.prm-flpr {
+	background-color: #eee;
+	margin-top: 1px;
+
+	.wb-tabs {
+		&.carousel-s2 {
+
+			[role="tablist"] {
+				li {
+					&.plypause {
+						font-size: 1.3em;
+
+						a {
+							margin-top: .15em;
+						}
+					}
+				}
+			}
+
+			figure {
+				figcaption {
+					font-size: 1.3em;
+
+					a {
+						text-decoration: none;
+
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+%carousel-nav-font-size {
+	font-size: 1.2em;
+}
+
+.wb-tabs {
+	&.carousel-s2 {
+		[role="tablist"] {
+			li {
+				&.tab-count {
+					.curr-count {
+						@extend %carousel-nav-font-size;
+					}
+				}
+
+				&.plypause {
+					a {
+						@extend %carousel-nav-font-size;
+					}
+				}
+
+				&.nxt,
+				&.prv {
+					a {
+						.glyphicon {
+							font-size: 1.65em;
+						}
+					}
+				}
+			}
+		}
+	}
+}

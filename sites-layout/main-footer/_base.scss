@@ -1,0 +1,25 @@
+/*
+ * Share/feedback-specific overrides
+ */
+%gcweb-share-text-decoration-none {
+	text-decoration: none;
+}
+
+a {
+	&.shr-opn {
+		@extend %gcweb-share-text-decoration-none;
+
+		&:hover {
+			@extend %gcweb-share-text-decoration-none;
+		}
+	}
+}
+
+// Feedback & Share button
+.pagedetails {
+	&.text-right {
+		.shr-pg {
+			text-align: left;
+		}
+	}
+}

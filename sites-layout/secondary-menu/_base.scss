@@ -1,0 +1,96 @@
+/*
+ Secondary Navigation
+*/
+
+%secmenu-canada-theme-menuitem-curr-hover-focus {
+	background-color: $active-blue;
+	color: #fff;
+}
+
+#wb-sec {
+	margin-top: 20px;
+	padding-bottom: 2em;
+
+	h3 {
+		border: 1px solid #ddd;
+		border-bottom: 5px solid $accent-blue;
+		font-size: 1.1em;
+		margin: 15px 0 1px;
+		padding: 15px;
+
+		a {
+			color: #333;
+			display: block;
+			margin: -15px;
+			padding: 15px;
+			text-decoration: none;
+
+			&:hover {
+				@extend %secmenu-canada-theme-menuitem-curr-hover-focus;
+			}
+		}
+	}
+
+	.list-group {
+		margin-bottom: 0;
+		margin-left: 10px;
+
+		a {
+			&.list-group-item {
+				background-color: $menu-background;
+				border-radius: 0;
+				color: $menu-colour;
+				margin-top: -1px;
+				text-decoration: none;
+
+				&.wb-navcurr {
+					@extend %secmenu-canada-theme-menuitem-curr-hover-focus;
+					cursor: text;
+
+					&[href]:hover {
+						background-color: $accent-blue;
+					}
+				}
+
+				&[href] {
+					&:hover,
+					&:focus {
+						@extend %secmenu-canada-theme-menuitem-curr-hover-focus;
+					}
+				}
+			}
+		}
+
+		.list-group {
+			.list-group-item {
+				background-color: darken($menu-background, 10%);
+				color: darken($menu-colour, 50%);
+				padding-left: 1.8em;
+			}
+
+			.list-group {
+				.list-group-item {
+					background-color: $menu-background;
+
+					&.wb-navcurr {
+						@extend %secmenu-canada-theme-menuitem-curr-hover-focus;
+						cursor: text;
+					}
+				}
+			}
+		}
+	}
+}
+
+[dir=rtl] {
+	#wb-sec {
+		.list-group {
+			.list-group {
+				.list-group-item {
+					padding-left: 15px;
+					padding-right: 1.8em;
+				}
+			}
+		}
+	}
+}

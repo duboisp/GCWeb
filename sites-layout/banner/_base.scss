@@ -1,0 +1,158 @@
+/*
+ Banner
+ */
+
+header {
+	position: relative;
+
+	.brand {
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+		padding-top: 10px;
+
+		a {
+			display: block;
+			height: auto;
+			padding-bottom: 0;
+			position: relative;
+			width: auto;
+
+			&:after {
+				bottom: 0;
+				content: "";
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+
+		// Needed for backwards compatibility with GCWeb 4.0.27 and below's HTML markup.
+		// Remove object references from all of this theme's logo selectors in GCWeb 4.1+.
+		img,
+		object {
+			height: auto;
+			max-height: 40px;
+		}
+
+		img {
+			margin-bottom: .375em;
+		}
+	}
+}
+
+/*
+ * Mobile Chevron
+ */
+#wb-glb-mn {
+	margin-top: 20px;
+
+	ul {
+		min-width: 150px;
+
+		&.chvrn {
+			background: $accent-blue;
+			display: inline-block;
+			float: right;
+			height: 2.75em;
+
+			li {
+				display: block;
+				padding-right: 0;
+
+				a {
+					color: #fff;
+					display: block;
+					font-size: 1.9em;
+					padding: 5px 20px 0 0;
+				}
+			}
+
+			span {
+				.glyphicon-th-list {
+					padding-left: 12px;
+					top: 0;
+				}
+			}
+
+			&:before {
+				border-bottom: 1.375em solid transparent;
+				border-left: .6875em solid #f8f8f8;
+				border-top: 1.375em solid transparent;
+				content: " ";
+				display: block;
+				float: left;
+				height: 0;
+				position: relative;
+				width: 0;
+			}
+		}
+	}
+}
+
+/* IE Tweaks */
+.lt-ie9 {
+	header {
+		.brand {
+			a {
+				margin-top: 0;
+			}
+
+			img {
+				height: 40px;
+			}
+		}
+	}
+}
+
+[dir=rtl] {
+	header {
+		.brand {
+			float: right;
+		}
+	}
+
+	#wb-glb-mn {
+		ul {
+			&.chvrn {
+				padding-left: 1.5em;
+				padding-right: 0;
+				text-align: left;
+
+				span {
+					.glyphicon-th-list {
+						padding-left: 0;
+						padding-right: 10px;
+					}
+				}
+
+				&:before {
+					border-left: 0;
+					border-right: 11px solid #f8f8f8;
+					float: right;
+				}
+			}
+		}
+	}
+}
+
+/* Home page banner */
+#hme-banner {
+	background-image:url(../assets/your-gov2.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: auto;
+	padding-top:1.25%;
+	width: 100%;
+}
+#hme-banner-bg {
+	background-color: #002b92;
+	color:#fff;
+	margin-left: 5%;
+	min-height: 150px;
+	padding:8px;
+	width: 225px;
+}
+h2.hme-banner-bg {
+	border: none;
+}

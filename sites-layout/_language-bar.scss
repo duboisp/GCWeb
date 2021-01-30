@@ -1,0 +1,16 @@
+#wb-lng {
+	padding-top: 10px;
+	li {
+		padding-right: 0;
+	}
+}
+
+[dir=rtl] {
+	#wb-lng {
+		text-align: left;
+
+		ul {
+			padding-right: 0;
+		}
+	}
+}

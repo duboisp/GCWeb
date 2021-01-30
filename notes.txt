@@ -21,3 +21,95 @@ Create a function to convert .hbs into .md
 // 1. copy defaults layout into _layout
 
 Keep the website file at the same place, instead generate the jekyll template and the asset around it.
+
+
++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
+
+Core folder
+
+
+* components: Content area, aka main
+* site: Scope whole site and baseline template
+* template: Component arrangment and/or special style for specialized content
+
+
+
+Reserved keyword
+
+If folder name -> All subs items is about this item
+If filename extension -> That current item is this item
+
+If none -> That is product name or a category
+
+
+Name must be uniques across the whole repos for that type of file.
+
+Folder | name
+
+* **/layout | *-layout.html: Jekyll template HTML file which would be copied over "_layouts" folder. 
+* **/scss | *.scss: SASS file
+	
+	* base.scss -> General include
+	* print.scss - > Print CSS
+	* screen -> Screen media query
+	* min-max...scss -> View port
+
+* **/css | &.css: CSS file
+* **/data | *-data.csv | *-data.json | *-data.json-ld :Data file to be copied over "data"
+
+* **/demos | -demo.hbs | demo.html | *.md
+	* **/demos/*.js | **/*-demos.js"js" are demos js file in demos folder are excluded from "concatenating" 
+* **/docs | -docs.hbs | {lang}-docs.hbs
+
+* **/includes | *-include.html : File to copy over "include folder"
+
+* **/tests : Folder containing test case
+	* **/tests/**/*.js -> JS test
+	* **/tests/**/*.html -> HTML test file, example - bug-1234.html
+
+* **/reports : Not a demos but work similar and it is for reporting.
+
+* assets : Supporting files, file inside are keep as is.
+
+* helpers: Component that is render at the ends
+* baseline: Start to include this first -> Usually this are override or about core HTML element
+* utilities: Tools or common CSS/JS to support the development of the component. To be render after baseline.
+
+
+Sequencing of overwritting
+- baseline - Overwrite of pre-existing component, like wet-boew
+- utilities - Not overrides, but required for good standing of components.
+- Any folder name - Components in this theme
+	- Component can have dependencies, that will dictate the order, and then it's the file name
+- helpers - Set of tools/JS/CSS to help to fix components if issues
+
+
+
+
+A component can have a state like
+- config.json-ld | config.yml
+
+	- state: obselete | provisional | undefined (means stable)
+	- type: stateless | interative
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

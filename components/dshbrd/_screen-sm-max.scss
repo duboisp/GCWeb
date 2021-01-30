@@ -1,0 +1,22 @@
+/*
+ Details Summary Styling (small view and under)
+*/
+.dshbrd {
+	details {
+		display: block;
+
+		summary {
+			background: $accent-blue;
+			color: #fff;
+			font-size: 1em;
+			margin-top: 5px;
+			max-height: 999px;
+			padding: 1em;
+		}
+
+		.cntnt {
+			border: 1px solid $accent-blue;
+			padding: 15px;
+		}
+	}
+}

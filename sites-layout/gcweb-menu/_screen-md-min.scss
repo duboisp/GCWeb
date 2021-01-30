@@ -1,0 +1,40 @@
+/*
+  WET-BOEW
+  @title: Medium view and over (screen only)
+ */
+
+.gcweb-menu {
+
+	/* SubSubMenu (MostRequested) keep it black
+	 *
+	 * Todo: check to use this CSS selector: [data-keep-expanded=md-min][role=menuitem][aria-haspopup=true]
+	 */
+	[role=menu] [role=menu] [role=menuitem][aria-haspopup=true],
+	[role=menu] [role=menu] [role=menuitem][aria-haspopup=true]:hover {
+		color: #000;
+		font-size: 20px;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+}
+
+// Open by default in basic HTML mode into 3 column
+.wb-disable .gcweb-menu [role=menu] > li {
+	float: left;
+	padding-right: 5px;
+	width: 30%;
+
+	&:nth-child(3n+3) {
+		clear:right;
+	}
+	&:nth-child(3n+4) {
+		clear:left;
+	}
+	&:nth-child(2n+2) {
+		clear:none;
+	}
+	&:nth-child(2n+3) {
+		clear:none;
+	}
+}

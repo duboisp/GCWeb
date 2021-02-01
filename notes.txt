@@ -63,7 +63,8 @@ Folder | name
 	* **/demos/*.js | **/*-demos.js"js" are demos js file in demos folder are excluded from "concatenating" 
 * **/docs | -docs.hbs | {lang}-docs.hbs
 
-* **/includes | *-include.html : File to copy over "include folder"
+* **/includes/*.html | **/*-include.html : File to copy over "include folder"
+* **/inc/*.html | **/*-inc/*.html | *-inc.html : File to copy over "include folder"
 
 * **/tests : Folder containing test case
 	* **/tests/**/*.js -> JS test
@@ -80,7 +81,7 @@ Folder | name
 
 Sequencing of overwritting
 - baseline - Overwrite of pre-existing component, like wet-boew
-- utilities - Not overrides, but required for good standing of components.
+- utilities - Not overrides, but required for good standing of components. (Was named "default" before)
 - Any folder name - Components in this theme
 	- Component can have dependencies, that will dictate the order, and then it's the file name
 - helpers - Set of tools/JS/CSS to help to fix components if issues
@@ -97,9 +98,31 @@ A component can have a state like
 
 
 
+	1 - layout
+	2 - include
+	3 - scss
 
+SCSS / JS - Priority order
+ 1  - sites - baseline
+ 2  - components - baseline
+ 3  - template - baseline
+ 4  - sites - utilities
+ 5  - sites - {{any}}
+ 6  - components - utilities
+ 7  - components - {{any}}
+ 8  - components - helpers
+ 9  - template - utilities
+ 10 - template - {{any}}
+ 11 - template - helpers
+ 12 - sites - helpers
 
-
+ 
+// Create a Grunt task that would override those CSS include
+// Separate site with component priorities
+ 
+ 
+- layout
+- -inc
 
 
 

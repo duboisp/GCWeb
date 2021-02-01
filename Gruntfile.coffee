@@ -99,13 +99,13 @@ module.exports = (grunt) ->
 			newlayout:
 				expand: true
 				flatten: true
-				cwd: "sites-layout/html-pages"
+				cwd: "sites/html-pages"
 				src: "*.html"
 				dest: "_layouts"
 			newsiteinclude:
 				expand: true
 				flatten: true
-				cwd: "sites-layout"
+				cwd: "sites"
 				src: [ 
 					"footers/*.html"
 					"headers/*.html"
@@ -115,7 +115,7 @@ module.exports = (grunt) ->
 			sitedata:
 				expand: true
 				flatten: true
-				cwd: "sites-layout/data"
+				cwd: "sites/data"
 				src: [ "*.json", "*.json-ld" ]
 				dest: "_data"
 				rename: (dest, src) -> 
@@ -134,7 +134,7 @@ module.exports = (grunt) ->
 			all:
 				expand: true
 				src: [
-						"sites-layout/**/*.scss"
+						"sites/**/*.scss"
 						"!node_modules/**/*.scss"
 					]
 
@@ -183,11 +183,11 @@ module.exports = (grunt) ->
 				includePaths: [
 					"./node_modules"
 					"./node_modules/wet-boew/node_modules"
-					if grunt.file.exists( "src/variant/_variant-default.scss" ) then "src/variant" else "src/variant-default"
+					if grunt.file.exists( "misc/variant/_variant-default.scss" ) then "src/variant" else "src/variant-default"
 				]
 			all:
 				expand: true
-				cwd: "sites-layout"
+				cwd: "sites"
 				src: "*.scss"
 				dest: "<%= themeDist %>/css"
 				ext: ".css"

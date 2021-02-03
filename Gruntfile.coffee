@@ -19,8 +19,8 @@ module.exports = (grunt) ->
 		"Initial build setup"
 		[
 			"clean:jekyll"
-			"copy:newlayout"
-			"copy:newsiteinclude"
+			"copy:layouts"
+			"copy:includes"
 			"copy:sitedata"
 		]
 	)
@@ -96,30 +96,56 @@ module.exports = (grunt) ->
 				dest: "<%= themeDist %>/js/theme.js"
 
 		copy:
-			newlayout:
+			layouts:
 				expand: true
 				flatten: true
-				cwd: "sites/html-pages"
-				src: "*.html"
+				src: [
+					"{sites,components,templates}/**/layouts/**.html"
+					"{sites,components,templates}/**/*-layouts/**.html"
+					"{sites,components,templates}/**/*-layout.html"
+				]
 				dest: "_layouts"
-			newsiteinclude:
+			includes:
 				expand: true
 				flatten: true
-				cwd: "sites"
-				src: [ 
-					"footers/*.html"
-					"headers/*.html"
-					"html-head/*.html"
+				src: [
+					"{sites,components,templates}/**/includes/**.html"
+					"{sites,components,templates}/**/*-includes/**.html"
+					"{sites,components,templates}/**/*-{include,inc}.html"
 				]
 				dest: "_includes"
 			sitedata:
-				expand: true
-				flatten: true
-				cwd: "sites/data"
-				src: [ "*.json", "*.json-ld" ]
-				dest: "_data"
-				rename: (dest, src) -> 
-					dest + "/" + src.replace( '.json-ld', '.json' )
+				files: [
+					cwd: "sites"
+					src: [
+						"**/{*-data,data}/**.*"
+						"**/*-data.{csv,json,json-ld}"
+					]
+					dest: "_data/"
+					rename: (dest, src) ->
+						dest + src.replace( '-data', '' ).replace( 'data', '' ).replace( '//', '/' )
+					expand: true
+				,
+					cwd: "components"
+					src: [
+						"**/{*-data,data}/**.*"
+						"**/*-data.{csv,json,json-ld}"
+					]
+					dest: "_data/"
+					rename: (dest, src) ->
+						dest + src.replace( '-data', '' ).replace( 'data', '' ).replace( '//', '/' )
+					expand: true
+				,
+					cwd: "templates"
+					src: [
+						"**/{*-data,data}/**.*"
+						"**/*-data.{csv,json,json-ld}"
+					]
+					dest: "_data/"
+					rename: (dest, src) ->
+						dest + src.replace( '-data', '' ).replace( 'data', '' ).replace( '//', '/' )
+					expand: true
+				]
 			wetboew:
 				expand: true
 				cwd: "node_modules/wet-boew/dist"
@@ -134,8 +160,10 @@ module.exports = (grunt) ->
 			all:
 				expand: true
 				src: [
-						"sites/**/*.scss"
-						"!node_modules/**/*.scss"
+						"*.scss"
+						"!*-jekyll.scss"
+						"!node_modules"
+						"!.**"
 					]
 
 		lintspaces:
@@ -188,7 +216,10 @@ module.exports = (grunt) ->
 			all:
 				expand: true
 				cwd: "sites"
-				src: "*.scss"
+				src: [
+					"*.scss"
+					"!*-jekyll.scss"
+				]
 				dest: "<%= themeDist %>/css"
 				ext: ".css"
 

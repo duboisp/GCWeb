@@ -43,3 +43,5 @@ csslint.out.xml
 #_layouts/
 #_includes/
 #_data/
+
+temporary/

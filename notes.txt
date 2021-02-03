@@ -127,12 +127,12 @@ SCSS / JS - Priority order
 
 
 
+Jekyll SASS
+
+- Probably only use it to create the independant CSS file for the mélimélo.
+- Using this feature for theme.css require to include bootstrap scss files and wet-boew scss files from node_modules
 
 
+Multilingual,
 
-
-
-
-
-
-
+The issue is the _data folder in the remote theme and the _config.yml is not available to website using a jekyll remote theme. The _data folder and _config.yml are used at the discretion of the immediate website.

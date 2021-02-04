@@ -1,0 +1,20 @@
+{%- comment -%}
+
+++++++++++++++++++++++++++++++++++
++ i18 Text utilities
++
++ Utilities variable that support i18n text across this theme  
+++++++++++++++++++++++++++++++++++
+
+{%- endcomment -%}
+{%- capture i18nText-lang -%}
+	{%- if page.lang -%}
+		{{ page.lang }}
+	{%- elsif site.lang -%}
+		{{ site.lang }}
+	{%- else -%}
+		fr
+	{%- endif -%}
+{%- endcapture -%}
+{%- include settings.html -%}
+{%- include i18n.html -%}

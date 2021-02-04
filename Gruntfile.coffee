@@ -21,7 +21,6 @@ module.exports = (grunt) ->
 			"clean:jekyll"
 			"copy:layouts"
 			"copy:includes"
-			"copy:sitedata"
 		]
 	)
 
@@ -102,6 +101,7 @@ module.exports = (grunt) ->
 					src: [
 						"{sites,components,templates}/**/*-layouts/**.html"
 						"{sites,components,templates}/**/layout-*.html"
+						"!{sites,components,templates}/**/layouts/**.*"
 					]
 					dest: "_layouts"
 					rename: (dest, src) ->
@@ -112,7 +112,7 @@ module.exports = (grunt) ->
 				,
 					expand: true
 					src: [
-						"{sites,components,templates}/**/layouts/**.html"
+						"{sites,components,templates}/**/layouts/**.*"
 					]
 					dest: "_layouts"
 					rename: (dest, src) ->
@@ -124,6 +124,7 @@ module.exports = (grunt) ->
 					src: [
 						"{sites,components,templates}/**/*-{includes,inc}/**.html"
 						"{sites,components,templates}/**/{include,inc}-*.html"
+						"!{sites,components,templates}/**/includes/**.*"
 					]
 					dest: "_includes"
 					rename: (dest, src) ->
@@ -134,7 +135,7 @@ module.exports = (grunt) ->
 				,
 					expand: true
 					src: [
-						"{sites,components,templates}/**/includes/**.html"
+						"{sites,components,templates}/**/includes/**.*"
 					]
 					dest: "_includes"
 					rename: (dest, src) ->

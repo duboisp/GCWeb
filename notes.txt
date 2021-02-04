@@ -149,4 +149,12 @@ The issue is the _data folder in the remote theme and the _config.yml is not ava
 * _include/headers-includes/header.html
 
 
++++++
 
+Les sites web qui implementera ce theme devra soumettre un empty commit afin de re-builder le jeckyll theme.
+
+Either:
+* stackoverflow.com -> 24098792 contains a github action that Trigger GitHub pages rebuild
+* git commit --allow-empty -m "Force rebuild of site"
+* curl -u yourname:yourtoken -X POST https://api.github.com/repos/yourname/yourrepo/pages/builds
+* curl -u githubUserName:0000000000000000 -X POST https://api.github.com/repos/duboisp/jekyll-website/pages/builds

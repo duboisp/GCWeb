@@ -1,9 +1,8 @@
-<link href="{{ site.assets }}/{{ site.theme-name }}/assets/favicon.ico" rel="icon" type="image/x-icon" />
-<link rel="stylesheet" href="{{ site.assets }}/{{ site.theme-name }}/css/theme.css" />
-{% if site.stylesheets %}{% for sheet in site.stylesheets %}<link rel="stylesheet" {% for entry in sheet %}{% if entry[0] == 'href' %}{{ entry[0] }}="{{ entry[1] | relative_url }}" {% else %}{{ entry[0] }}="{{ entry[1] }}" {% endif %}{% endfor %}/>{% endfor %}{% endif %}
+<link href="{{ setting-resourcesBasePath }}/assets/favicon.ico" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="{{ setting-resourcesBasePath }}/css/theme.css" />
 {% if page.stylesheets %}{% for sheet in page.stylesheets %}<link rel="stylesheet" {% for entry in sheet %}{% if entry[0] == 'href' %}{{ entry[0] }}="{{ entry[1] | relative_url }}" {% else %}{{ entry[0] }}="{{ entry[1] }}" {% endif %}{% endfor %}/>{% endfor %}{% endif %}
 
-<noscript><link rel="stylesheet" href="{{ site.assets }}/{{ site.theme-name }}/wet-boew/css/noscript.css" /></noscript>
+<noscript><link rel="stylesheet" href="{{ setting-resourcesBasePath }}/wet-boew/css/noscript.css" /></noscript>
 
 <!-- Jekyll SCSS -->
 <link rel="stylesheet" href="{{ '/sites/theme-jekyll.css' | relative_url }}" />

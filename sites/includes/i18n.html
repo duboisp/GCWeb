@@ -7,15 +7,6 @@
 ++++++++++++++++++++++++++++++++++
 
 {%- endcomment -%}
-{%- capture i18nText-lang -%}
-	{%- if page.lang -%}
-		{{ page.lang }}
-	{%- elsif site.lang -%}
-		{{ site.lang }}
-	{%- else -%}
-		fr
-	{%- endif -%}
-{%- endcapture -%}
 {%- if i18nText-lang == "fr" -%}
 
 	{% assign i18nText-altLang = "en" %}

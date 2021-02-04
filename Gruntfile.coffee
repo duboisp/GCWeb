@@ -106,14 +106,25 @@ module.exports = (grunt) ->
 				]
 				dest: "_layouts"
 			includes:
-				expand: true
-				flatten: true
-				src: [
-					"{sites,components,templates}/**/includes/**.html"
-					"{sites,components,templates}/**/*-includes/**.html"
-					"{sites,components,templates}/**/*-{include,inc}.html"
+				files: [
+					expand: true
+					flatten: true
+					src: [
+						"{sites,components,templates}/**/includes/**.html"
+						"{sites,components,templates}/**/*-includes/**.html"
+						"{sites,components,templates}/**/{include,inc}-*.html"
+					]
+					dest: "_includes"
+	#			,
+	#				expand: true
+	#				flatten: true
+	#				src: [
+	#					"{sites,components,templates}/**/includes/**.html"
+	#					"{sites,components,templates}/**/*-includes/**.html"
+	#					"{sites,components,templates}/**/*-{include,inc}.html"
+	#				]
+	#				dest: "_includes"
 				]
-				dest: "_includes"
 			sitedata:
 				files: [
 					cwd: "sites"

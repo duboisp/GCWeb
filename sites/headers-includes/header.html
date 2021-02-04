@@ -1,21 +1,19 @@
 
-	<header>
-		<div id="wb-bnr" class="container">
-			<div class="row">
-				{% if page.langtoggle %}{% include languagetoggle.html %}{% endif %}
-				{% include brand.html %}
-				{% if page.sitesearch %}{% include sitesearch.html %}{% endif %}
-			</div>
+<header>
+	<div id="wb-bnr" class="container">
+		<div class="row">
+			{% if page.langtoggle %}{% include inc-languagetoggle.html %}{% endif %}
+			{% include brand.html %}
+			{% if page.sitesearch %}{% include sitesearch.html %}{% endif %}
 		</div>
-	{% if page.sitemenu %}
-	{% include sitemenu.html %}
-	{% else %}
-		<span data-trgt="mb-pnl" class="wb-menu hide"></span>
-	{% endif %}
-	{% if page.breadcrumbs %}
-	{% include breadcrumbs.html %}
-	{% endif %}
-	{% if page.signed %}
-	{% include sign-on-off.html %}
-	{% endif %}
-	</header>
+	</div>
+{% if page.sitemenu %}
+{% include sitemenu.html %}
+{% else %}
+	<span data-trgt="mb-pnl" class="wb-menu hide"></span>
+{% endif %}
+{% include inc-breadcrumbs.html %}
+{% if page.signed %}
+{% include sign-on-off.html %}
+{% endif %}
+</header>

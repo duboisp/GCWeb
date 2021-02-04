@@ -1,13 +1,31 @@
-# Site configuration
-# 1. Files excluded from Jekyll builds
-# 2. Installed Gems
-# 3. Gem settings
-# 4. Jekyll settings
-# 5. Collections
-# 6. Jekyll collections settings
-# 7. Site settings
+#
+# Local site settings
+theme-name: GCWeb
+title: "gcweb-jekyll" # Site name or title
+website: "https://duboisp.github.io/duboisp/gcweb-jekyll/" # URL of your public facing website
+site:
+  lang: fr
 
-# 1. Files excluded from Jekyll builds
+#
+# Page front matter defaults
+defaults:
+  layout: default.html
+
+#
+# Jekyll settings
+timezone: America/Toronto # Timezone for blog posts and alike
+#verbose: true
+#quiet: false
+sass:
+  sass_dir: "sites"
+#  load_paths: [
+#    "node_modules" # we might only need bootstrap scss
+#  ,
+#    "node_modules/wet-boew/node_modules" # todo: find a way to include it.
+#  ]
+
+#
+# Files excluded from Jekyll builds
 exclude:
 - README.md
 - CODE_OF_CONDUCT.md
@@ -25,73 +43,3 @@ exclude:
 - vendor/cache/
 - vendor/gems/
 - vendor/ruby/
-
-# 2. Installed Gems
-
-# 3. Gem settings
-
-# 4. Jekyll settings
-compress_html:
-  clippings: all
-  comments:
-  ignore:
-    envs: []
-  blanklines: true
-  profile: false
-quiet: false
-timezone: America/Toronto # Timezone for blog posts and alike
-themeJS: true
-verbose: false
-sass:
-  sass_dir: "sites"
-#  load_paths: [
-#    "node_modules" # we might only need bootstrap scss
-#  ,
-#    "node_modules/wet-boew/node_modules" # todo: find a way to include it.
-#  ]
-
-# 5. Collections
-
-# 6. Jekyll collections settings
-collections:
-  pages:
-    output: true
-    permalink: /:path
-  layout:
-    name: home
-    values:
-      altLangPrefix: home
-      layout: page
-      pageclass: home
-
-# 7. Site settings
-assets: "https://wet-boew.github.io/themes-dist"
-baseurl: ""
-description:
-  en: "Jekyll variant for GCWeb theme" # English site description and default description
-  fr: "Adaption Jekyll du theme GCWeb" # French site description and default description
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: pages
-    values:
-      footer: true
-      layout: "default"
-      javascripts:
-      lang: "en"
-      langtoggle: true
-      noMainContainer: false
-      noContentTitle: false
-      share: true
-      sitemenu: true
-      sitesearch: true
-      stylesheets:
-stylesheets:
-  - href: "https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity: "sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin: "anonymous"
-theme-name: GCWeb
-title: "gcweb-jekyll" # Site name or title
-wetSiteRoot: "https://wet-boew.github.io/wet-boew"

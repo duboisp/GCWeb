@@ -7,6 +7,7 @@
 ++++++++++++++++++++++++++++++++++
 
 {%- endcomment -%}
+{%- include settings.liquid -%}
 {%- capture i18nText-lang -%}
 	{%- if page.lang -%}
 		{{ page.lang }}
@@ -16,5 +17,15 @@
 		fr
 	{%- endif -%}
 {%- endcapture -%}
-{%- include settings.html -%}
-{%- include i18n.html -%}
+{%- capture setting-website -%}
+	{%- if site.website and site.website.en and i18nText-lang == "en" -%}
+		{{ site.website.en }}
+	{%- elsif site.website and site.website.fr and i18nText-lang == "fr" -%}
+		{{ site.website.fr }}
+	{%- elsif site.website -%}
+		{{ site.website }}
+	{%- else -%}
+		#
+	{%- endif -%}
+{%- endcapture -%}
+{%- include i18n.liquid -%}

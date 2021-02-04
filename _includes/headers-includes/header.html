@@ -1,9 +1,9 @@
 <header>
 	<div id="wb-bnr" class="container">
 		<div class="row">
-			{% if page.langtoggle %}{% include language/inc-languagetoggle.html %}{% endif %}
+			{% if page.altLangPage %}{% include language/inc-languagetoggle.html %}{% endif %}
 			{% include headers-includes/brand.html %}
-			{% if page.sitesearch %}{% include headers-includes/sitesearch.html %}{% endif %}
+			{% unless page.nositesearch %}{% include headers-includes/sitesearch.html %}{% endunless %}
 		</div>
 	</div>
 {%- unless page.nomenu -%}

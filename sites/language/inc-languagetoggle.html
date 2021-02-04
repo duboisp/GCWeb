@@ -1,18 +1,11 @@
 <section id="wb-lng" class="col-xs-3 col-sm-12 text-right">
 	<h2 class="wb-inv">{{ i18nText-language }}</h2>
-	<ul class="list-inline mrgn-bttm-0">{% if page.lang == "en" %}
+	<ul class="list-inline mrgn-bttm-0">
 		<li>
-			<a lang="{{ i18nText-altLang }}" hreflang="{{ i18nText-altLang }}" href="/fr/{{ page.altLangPrefix }}.html">
+			<a lang="{{ i18nText-altLang }}" hreflang="{{ i18nText-altLang }}" href="/{{ page.altLangPage }}">
 				<span class="hidden-xs">{{ i18nText-altLanguage }}</span>
 				<abbr title="{{ i18nText-altLanguage }}" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">{{ i18nText-altLang }}</abbr>
 			</a>
-		</li>{% endif %}
-		{% if page.lang == "fr" %}
-		<li>
-			<a lang="{{ i18nText-altLang }}" hreflang="{{ i18nText-altLang }}" href="/en/{{ page.altLangPrefix }}.html">
-				<span class="hidden-xs">{{ i18nText-altLanguage }}</span>
-				<abbr title="{{ i18nText-altLanguage }}" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">{{ i18nText-altLang }}</abbr>
-			</a>
-		</li>{% endif %}
+		</li>
 	</ul>
 </section>

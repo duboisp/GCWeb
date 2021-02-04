@@ -1,5 +1,5 @@
 <footer id="wb-info">
-	{% if page.footer %}
+{% unless page.nofooter %}
 	<div class="landscape">
 		<nav class="container wb-navcurr">
 			<h2 class="wb-inv">{{ i18nText-footerAbout }}</h2>
@@ -28,7 +28,7 @@
 			</ul>
 		</nav>
 	</div>
-	{% endif %}
+{% endunless %}
 	<div class="brand">
 	<div class="container">
 		<div class="row ">
@@ -54,7 +54,7 @@
 				<a href="#wb-cont">{{ i18nText-top }} <span class="glyphicon glyphicon-chevron-up"></span></a>
 			</div>
 			<div class="col-xs-6 col-md-3 col-lg-2 text-right">
-				<img src="{{ site.assets }}/{{ site.theme-name }}/assets/wmms-blk.svg" alt="{{ i18nText-gcWmm }}" />
+				<img src="{{ setting-resourcesBasePath }}/assets/wmms-blk.svg" alt="{{ i18nText-gcWmms }}" />
 			</div>
 		</div>
 	</div>

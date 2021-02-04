@@ -9,8 +9,19 @@
 {%- endcomment -%}
 {%- if i18nText-lang == "fr" -%}
 
+	{% assign i18nText-skipCont = "Passer au contenu principal" %}
+	{% assign i18nText-skipAbout = "Passer à «&#160;À propos de ce site&#160;»" %}
+	{% assign i18nText-skipSection = "Passer au menu de la section" %}
+
+	{% assign i18nText-sigBlk = "/assets/sig-blk-fr.svg" %}
+	{% assign i18nText-goc = "Gouvernement du Canada" %}
+	{% assign i18nText-gocAltLang = '<span lang="en">Government of Canada</span>' %}
+
 	{% assign i18nText-altLang = "en" %}
 	{% assign i18nText-altLanguage = "English" %}
+
+	{% assign i18nText-search = "Recherce" %}
+	{% assign i18nText-searchSite = "Rechercher dans Canada.ca" %}
 
 	{% assign i18nText-home = "Canada.ca - Accueil" %}
 	{% assign i18nText-breadcrumb = "Vous êtes ici :" %}
@@ -35,8 +46,19 @@
 
 {%- elsif i18nText-lang == "en" -%}
 
+	{% assign i18nText-skipCont = "Skip to main content" %}
+	{% assign i18nText-skipAbout = "Skip to About this site" %}
+	{% assign i18nText-skipSection = "Skip to section menu" %}
+
+	{% assign i18nText-sigBlk = "/assets/sig-blk-en.svg" %}
+	{% assign i18nText-goc = "Government of Canada" %}
+	{% assign i18nText-gocAltLang = '<span lang="en">Government of Canada</span>' %}
+
 	{% assign i18nText-altLang = "fr" %}
 	{% assign i18nText-altLanguage = "Français" %}
+
+	{% assign i18nText-search = "Search" %}
+	{% assign i18nText-searchSite = "Search Canada.ca" %}
 
 	{% assign i18nText-home = "Canada.ca - Home" %}
 	{% assign i18nText-breadcrumb = "You are here:" %}

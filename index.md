@@ -1,5 +1,5 @@
 ---
-altLangPrefix: index
+altLangPage: index.html
 authorName: Service Canada
 authorUrl:
 contentTitle: Canada.ca Jekyll theme

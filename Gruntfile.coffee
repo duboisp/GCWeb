@@ -80,7 +80,7 @@ module.exports = (grunt) ->
 		clean:
 			dist: [ "dist"]
 			deps: ["<%= themeDist %>/theme-js-deps"]
-			jekyll: [ "_layouts", "_includes", "_data" ]
+			jekyll: [ "_layouts", "_includes" ]
 
 		concat:
 			plugins:
@@ -139,38 +139,6 @@ module.exports = (grunt) ->
 					dest: "_includes"
 					rename: (dest, src) ->
 						dest + src.substring( src.indexOf('/') ).replace( '/includes/', '/' )
-				]
-			sitedata:
-				files: [
-					cwd: "sites"
-					src: [
-						"**/{*-data,data}/**.*"
-						"**/*-data.{csv,json,json-ld}"
-					]
-					dest: "_data/"
-					rename: (dest, src) ->
-						dest + src.replace( '-data', '' ).replace( 'data', '' ).replace( '//', '/' )
-					expand: true
-				,
-					cwd: "components"
-					src: [
-						"**/{*-data,data}/**.*"
-						"**/*-data.{csv,json,json-ld}"
-					]
-					dest: "_data/"
-					rename: (dest, src) ->
-						dest + src.replace( '-data', '' ).replace( 'data', '' ).replace( '//', '/' )
-					expand: true
-				,
-					cwd: "templates"
-					src: [
-						"**/{*-data,data}/**.*"
-						"**/*-data.{csv,json,json-ld}"
-					]
-					dest: "_data/"
-					rename: (dest, src) ->
-						dest + src.replace( '-data', '' ).replace( 'data', '' ).replace( '//', '/' )
-					expand: true
 				]
 			wetboew:
 				expand: true

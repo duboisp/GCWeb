@@ -40,8 +40,10 @@ csslint.out.xml
 *.log
 
 # Jekyll generated files
+# --------
+# Uncomment when we are able to deploy the jekyll template
+# --------
 #_layouts/
 #_includes/
-#_data/
 
 temporary/

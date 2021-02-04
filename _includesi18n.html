@@ -1,0 +1,29 @@
+{%- comment -%}
+
+++++++++++++++++++++++++++++++++++
++ i18 Text 
++
++ Global text used by the GCWeb core template, specific i18n text are localised with that component. 
+++++++++++++++++++++++++++++++++++
+
+{%- endcomment -%}
+{%- if i18nText-lang == "fr" -%}
+
+	{% assign i18nText-altLang = "en" %}
+	{% assign i18nText-altLanguage = "English" %}
+
+	{% assign i18nText-home = "Canada.ca - Accueil" %}
+	{% assign i18nText-breadcrumb = "Vous êtes ici :" %}
+	{% assign i18nText-language = "Sélection de la langue" %}
+
+
+{%- elsif i18nText-lang == "en" -%}
+
+	{% assign i18nText-altLang = "fr" %}
+	{% assign i18nText-altLanguage = "Français" %}
+
+	{% assign i18nText-home = "Canada.ca - Home" %}
+	{% assign i18nText-breadcrumb = "You are here:" %}
+	{% assign i18nText-language = "Language selection" %}
+
+{%- endif -%}

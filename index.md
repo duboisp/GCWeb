@@ -13,7 +13,8 @@ subject:
   en: [GV Government and Politics, Government services]
   fr: [GV Gouvernement et vie politique, Services gouvernementaux]
 title: Test page - Canada.ca
-lang: fr
+lang: en
+signing: yes
 ---
 {::nomarkdown}
 <h1 id="wb-cont">{{ page.contentTitle }}</h1>

@@ -48,7 +48,7 @@ Name must be uniques across the whole repos for that type of file.
 
 Folder | name
 
-* **/layout | *-layout.html: Jekyll template HTML file which would be copied over "_layouts" folder. 
+* **/layout | layout-*.html: Jekyll template HTML file which would be copied over "_layouts" folder. 
 * **/scss | *.scss: SASS file
 	
 	* base.scss -> General include
@@ -63,8 +63,8 @@ Folder | name
 	* **/demos/*.js | **/*-demos.js"js" are demos js file in demos folder are excluded from "concatenating" 
 * **/docs | -docs.hbs | {lang}-docs.hbs
 
-* **/includes/*.html | **/*-include.html : File to copy over "include folder"
-* **/inc/*.html | **/*-inc/*.html | *-inc.html : File to copy over "include folder"
+* **/includes/*.html | **/include-*.html : File to copy over "include folder"
+* **/inc/*.html | **/*-inc/*.html | inc-*.html : File to copy over "include folder"
 
 * **/tests : Folder containing test case
 	* **/tests/**/*.js -> JS test
@@ -136,3 +136,17 @@ Jekyll SASS
 Multilingual,
 
 The issue is the _data folder in the remote theme and the _config.yml is not available to website using a jekyll remote theme. The _data folder and _config.yml are used at the discretion of the immediate website.
+
+
+
+* /sites/includes/i18n.html
+* _include/i18n.html
+
+* /sites/breadcrumbs/inc-breadcrumbs.html
+* _include/breadcrumbs/inc-breadcrumbs.html
+
+* /sites/headers-includes/header.html
+* _include/headers-includes/header.html
+
+
+

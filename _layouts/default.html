@@ -12,22 +12,19 @@ layout: compress
     <title>{{ page.title }}</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     {% include metadata.html %}
-    {% include headresources.html %}
+    {% include resources-inc/head.html %}
   </head>
   <!-- <body {% if pageclass %} class="{{ pageclass }}" {% endif %}vocab="http://schema.org/" typeof="WebPage"> -->
   <body {% if page.layout != "page" or "default" %} class="{{ page.layout }}" {% endif %}vocab="http://schema.org/" typeof="WebPage">
     {% if page.pageType == "archived" %}
-    {% include archive.html %}
+    {% include headers-includes/archive.html %}
     {% endif %}
-    {% include skiplinks.html %}
-    {% include header.html %}
+    {% include sites/inc-skiplinks.html %}
+    {% include headers-includes/header.html %}
 <main class="container">
-	
-	<h2>{{ site.data.i18n.gnl-close.en }}</h2>
-	
      {{ content }}
 </main>
-    {% include footer.html %}
-    {% include footerresources.html %}
+    {% include footers/footer.html %}
+    {% include resources-inc/footer.html %}
   </body>
 </html>

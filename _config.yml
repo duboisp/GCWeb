@@ -44,11 +44,11 @@ themeJS: true
 verbose: false
 sass:
   sass_dir: "sites"
-  load_paths: [
-    "node_modules" # we might only need bootstrap scss
-  ,
-    "node_modules/wet-boew/node_modules" # todo: find a way to include it.
-  ]
+#  load_paths: [
+#    "node_modules" # we might only need bootstrap scss
+#  ,
+#    "node_modules/wet-boew/node_modules" # todo: find a way to include it.
+#  ]
 
 # 5. Collections
 

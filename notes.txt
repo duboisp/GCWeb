@@ -158,3 +158,10 @@ Either:
 * git commit --allow-empty -m "Force rebuild of site"
 * curl -u yourname:yourtoken -X POST https://api.github.com/repos/yourname/yourrepo/pages/builds
 * curl -u githubUserName:0000000000000000 -X POST https://api.github.com/repos/duboisp/jekyll-website/pages/builds
+
+
+
+
+https://github.com/jekyll/jekyll/issues/244
+
+

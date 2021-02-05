@@ -2,7 +2,6 @@
 altLangPage: index.html
 authorName: Service Canada
 authorUrl:
-contentTitle: Canada.ca Jekyll theme
 dateModified: 2020-01-10
 description:
   en: "Get quick, easy access to all Government of Canada services and information."
@@ -12,12 +11,12 @@ pageclass: wb-prettify all-pre
 subject:
   en: [GV Government and Politics, Government services]
   fr: [GV Gouvernement et vie politique, Services gouvernementaux]
-title: Test page - Canada.ca
+title: Test page
 lang: en
 signing: yes
 ---
 {::nomarkdown}
-<h1 id="wb-cont">{{ page.contentTitle }}</h1>
+<h1 id="wb-cont">{{ page.title }}</h1>
 {:/}
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.

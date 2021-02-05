@@ -96,28 +96,14 @@ module.exports = (grunt) ->
 
 		copy:
 			layouts:
-				files: [
-					expand: true
-					src: [
-						"{sites,components,templates}/**/*-layouts/**.html"
-						"{sites,components,templates}/**/layout-*.html"
-						"!{sites,components,templates}/**/layouts/**.*"
-					]
-					dest: "_layouts"
-					rename: (dest, src) ->
-						if src.indexOf('/') isnt src.lastIndexOf('/')
-							return dest + src.substring( src.indexOf('/') )
-						else
-							return dest + "/" + src
-				,
-					expand: true
-					src: [
-						"{sites,components,templates}/**/layouts/**.*"
-					]
-					dest: "_layouts"
-					rename: (dest, src) ->
-						dest + src.substring( src.indexOf('/') ).replace( '/layouts/', '/' )
+				expand: true
+				flatten: true
+				src: [
+					"{sites,components,templates}/**/*-layouts/**.html"
+					"{sites,components,templates}/**/layout-*.html"
+					"{sites,components,templates}/**/layouts/**.*"
 				]
+				dest: "_layouts"
 			includes:
 				files: [
 					expand: true

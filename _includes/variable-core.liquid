@@ -11,6 +11,8 @@
 {%- capture i18nText-lang -%}
 	{%- if page.lang -%}
 		{{ page.lang }}
+	{%- elsif page.language -%}
+		{{ page.language }}
 	{%- elsif site.lang -%}
 		{{ site.lang }}
 	{%- else -%}

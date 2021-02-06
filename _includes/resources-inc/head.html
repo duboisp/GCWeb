@@ -1,5 +1,5 @@
-<link href="{{ setting-resourcesBasePath }}/assets/favicon.ico" rel="icon" type="image/x-icon" />
-<link rel="stylesheet" href="{{ setting-resourcesBasePath }}/css/theme.css" />
+<link href="{{ setting-resourcesBasePath }}/{{ setting-packageName }}/assets/favicon.ico" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="{{ setting-resourcesBasePath }}/{{ setting-packageName }}/css/theme.css" />
 {% if page.stylesheets %}{% for sheet in page.stylesheets %}<link rel="stylesheet" {% for entry in sheet %}{% if entry[0] == 'href' %}{{ entry[0] }}="{{ entry[1] | relative_url }}" {% else %}{{ entry[0] }}="{{ entry[1] }}" {% endif %}{% endfor %}/>{% endfor %}{% endif %}
 
 <noscript><link rel="stylesheet" href="{{ setting-resourcesBasePath }}/wet-boew/css/noscript.css" /></noscript>

@@ -10,17 +10,38 @@ module.exports = (grunt) ->
 		"Default task, that runs the production build"
 		[
 			"jekyll"
-			"dist"
 		]
 	)
 
 	@registerTask(
 		"jekyll"
-		"Initial build setup"
+		"Build and run the theme locally"
+		[
+			"jekyll-site"
+			"usebanner:runLocaly"
+			"build-theme"
+		]
+	)
+
+	@registerTask(
+		"jekyll-site"
+		"Build the jekyll theme site only"
 		[
 			"clean:jekyll"
 			"copy:layouts"
 			"copy:includes"
+			"usebanner:definePckName"
+		]
+	)
+
+	@registerTask(
+		"build-theme"
+		"Build theme files"
+		[
+			"clean:dist"
+			"sass:all"
+			"copy:assets"
+			"copy:wetboew"
 		]
 	)
 
@@ -30,7 +51,7 @@ module.exports = (grunt) ->
 		"Initial build setup"
 		[
 			"clean:dist"
-			"sass"
+			"sass:all"
 		]
 	)
 
@@ -46,7 +67,8 @@ module.exports = (grunt) ->
 
 		# Metadata.
 		pkg: @file.readJSON "package.json"
-		themeDist: "dist/<%= pkg.name %>"
+		distFolder: "dist"
+		themeDist: "<%= distFolder %>/<%= pkg.name %>"
 		jqueryVersion: grunt.file.readJSON(
 			path.join require.resolve( "jquery" ), "../../package.json"
 		).version
@@ -93,7 +115,23 @@ module.exports = (grunt) ->
 					"!src/plugins/**/demo/*.js"
 				]
 				dest: "<%= themeDist %>/js/theme.js"
-
+		usebanner:
+			css:
+				options:
+					banner: "@charset \"utf-8\";\n<%= banner %>"
+					position: "replace"
+					replace: "@charset \"UTF-8\";"
+				files:
+					src: "<%= themeDist %>/css/*.*"
+			definePckName:
+				options:
+					banner: """{%- assign setting-packageName = "<%= pkg.name %>" -%}"""
+				src: "_includes/settings.liquid"
+			runLocaly:
+				options:
+					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}"""
+					position: "bottom"
+				src: "_includes/settings.liquid"
 		copy:
 			layouts:
 				expand: true
@@ -127,6 +165,12 @@ module.exports = (grunt) ->
 					rename: (dest, src) ->
 						dest + src.substring( src.indexOf('/') ).replace( '/includes/', '/' )
 				]
+			assets:
+				expand: true
+				src: "{sites,components,templates}/**/assets/**.*"
+				dest: "<%= themeDist %>/assets"
+				rename: (dest, src) ->
+					dest + src.substring( src.indexOf('/') ).replace( '/assets/', '/' )
 			wetboew:
 				expand: true
 				cwd: "node_modules/wet-boew/dist"
@@ -224,16 +268,6 @@ module.exports = (grunt) ->
 				]
 				dest: "<%= themeDist %>/css"
 				expand: true
-
-		usebanner:
-			css:
-				options:
-					banner: "@charset \"utf-8\";\n<%= banner %>"
-					position: "replace"
-					replace: "@charset \"UTF-8\";"
-				files:
-					src: "<%= themeDist %>/css/*.*"
-
 		cssmin:
 			theme:
 				expand: true

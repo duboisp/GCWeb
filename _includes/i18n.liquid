@@ -8,9 +8,10 @@
 
 {%- endcomment -%}
 {%- assign i18nText-siteTitle = "Canada.ca" -%}
+{%- assign i18nText-wmmsImg = "/GCWeb/assets/wmms-blk.svg" -%}
 {%- if i18nText-lang == "fr" -%}
 
-	{% assign i18nText-sigBlk = "/assets/sig-blk-fr.svg" %}
+	{% assign i18nText-sigBlk = "/GCWeb/assets/sig-blk-fr.svg" %}
 	{% assign i18nText-goc = "Gouvernement du Canada" %}
 	{% assign i18nText-gocAltLang = '<span lang="en">Government of Canada</span>' %}
 
@@ -23,12 +24,12 @@
 	{% assign i18nText-feedback = "Signaler un problème sur cette page" %}
 	
 	{% assign i18nText-footerAbout = "Au sujet du gouvernement" %}
-	{% assign i18nText-gcWmms = "Symbole du gouvernement du Canada" %}
+	{% assign i18nText-wmms = "Symbole du gouvernement du Canada" %}
 	
 
 {%- elsif i18nText-lang == "en" -%}
 
-	{% assign i18nText-sigBlk = "/assets/sig-blk-en.svg" %}
+	{% assign i18nText-sigBlk = "/GCWeb/assets/sig-blk-en.svg" %}
 	{% assign i18nText-goc = "Government of Canada" %}
 	{% assign i18nText-gocAltLang = '<span lang="en">Government of Canada</span>' %}
 
@@ -41,7 +42,7 @@
 	{% assign i18nText-feedback = "Report a problem on this page" %}
 
 	{% assign i18nText-footerAbout = "About government" %}
-	{% assign i18nText-gcWmms = "Symbol of the Government of Canada" %}
+	{% assign i18nText-wmms = "Symbol of the Government of Canada" %}
 
 
 {%- endif -%}

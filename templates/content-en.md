@@ -1,6 +1,7 @@
 ---
 title: "Content page"
 language: en
+category: templates
 altLangPrefix: content
 altLangPage: content-fr.html
 breadcrumb:

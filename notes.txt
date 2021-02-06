@@ -165,3 +165,9 @@ Either:
 https://github.com/jekyll/jekyll/issues/244
 
 
+Near to the end, we will need to generate the jekyll theme in it's own folder and deploy that.
+Keep the "_include" for the local site includes
+Create a build script that combine both and update the .gitignore (may be local to _include folder) to ensure it's dont' include those build files
+For example, the {% include alert-provisional.html siteroot="../" %} will be moved in that _include folder, instead of being in the sites/includes folders
+
+

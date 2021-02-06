@@ -5,13 +5,6 @@ altLangPage: index-en.html
 dateModified: 2021-02-05
 ---
 
-
-Try to filter by URL.
-
-
-- {{ site.data.components[ "dct:title" ].en }}
-- {{ site.data.components.dct:title.en }}
-
 {::nomarkdown}
 
 <h2>Examples</h2>

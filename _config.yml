@@ -9,7 +9,10 @@ site:
 #
 # Page front matter defaults
 defaults:
-  layout: default.html
+  - scope:
+      path: "" # Ensure it's applied to all pages
+    values:
+      layout: default
 
 #
 # Jekyll settings

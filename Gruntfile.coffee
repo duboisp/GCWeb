@@ -138,7 +138,7 @@ module.exports = (grunt) ->
 				src: "_includes/settings.liquid"
 			runLocaly:
 				options:
-					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}"""
+					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
 					position: "bottom"
 				src: "_includes/settings.liquid"
 		copy:

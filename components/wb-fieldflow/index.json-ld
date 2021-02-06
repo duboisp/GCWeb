@@ -43,5 +43,17 @@
 			"language": "fr",
 			"path": "advanced-fr.html"
 		}
+	],
+	"documentations": [
+		{
+			"title": "Fieldflow",
+			"language": "en",
+			"path": "fieldflow-doc-en.html"
+		},
+		{
+			"title": "Déroulement de champs",
+			"language": "fr",
+			"path": "fieldflow-doc-fr.html"
+		}
 	]
 }

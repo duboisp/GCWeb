@@ -48,6 +48,13 @@ module.exports = (grunt) ->
 		]
 	)
 
+	@registerTask(
+		"build-méli-mélo"
+		"Build méli-mélo files"
+		[
+			"concat:mélimélo"
+		]
+	)
 
 	@registerTask(
 		"dist"
@@ -78,7 +85,9 @@ module.exports = (grunt) ->
 		jqueryOldIEVersion: "1.12.4"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
-
+		
+		mélimélo: @file.readJSON "_data/méli-mélo.json"
+		
 		# Commit Messages
 		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
 		distDeployMessage: ((
@@ -124,6 +133,15 @@ module.exports = (grunt) ->
 					separator: ","
 				src: "components/**/index.json-ld"
 				dest: "_data/components.json"
+			mélimélo:
+				options:
+					stripBanners: false
+				src: [
+					"méli-mélo/{<% _.forEach(mélimélo.libs, function(lib) { %><%- lib %>,<% }); %>}/*.js"
+					"!méli-mélo/**/demo/"
+					"!méli-mélo/*.js"
+				]
+				dest: "méli-mélo/test.js"
 		usebanner:
 			css:
 				options:

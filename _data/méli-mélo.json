@@ -1,0 +1,15 @@
+{
+	"title": "Liste des produit méli-mélo fusionné",
+	"packages": [
+		{
+			"nom": "méli-mélo-2021-1",
+			"libs": [
+				"@sample"
+			]
+		}
+	],
+	"libs": [
+		"@sample",
+		"2021-1-product-name"
+	]
+}

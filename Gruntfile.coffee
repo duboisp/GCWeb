@@ -31,6 +31,7 @@ module.exports = (grunt) ->
 			"copy:layouts"
 			"copy:includes"
 			"usebanner:definePckName"
+			"concat:components"
 		]
 	)
 
@@ -40,8 +41,10 @@ module.exports = (grunt) ->
 		[
 			"clean:dist"
 			"sass:all"
+			"concat:plugins"
 			"copy:assets"
 			"copy:wetboew"
+			"uglify:dist"
 		]
 	)
 
@@ -108,13 +111,19 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
-					"src/plugins/**/*.js"
-					"src/theme.js"
-					"!src/plugins/**/test.js"
-					"!src/plugins/**/assets/*.js"
-					"!src/plugins/**/demo/*.js"
+					"{sites,components,templates}/**/*.js"
+					"!{sites,components,templates}/**/test.js"
+					"!{sites,components,templates}/**/assets"
+					"!{sites,components,templates}/**/demo"
 				]
 				dest: "<%= themeDist %>/js/theme.js"
+			components:
+				options:
+					banner: "["
+					footer: "]"
+					separator: ","
+				src: "components/**/index.json-ld"
+				dest: "_data/components.json"
 		usebanner:
 			css:
 				options:
@@ -286,7 +295,6 @@ module.exports = (grunt) ->
 				src: "**/ie8*.min.css"
 				dest: "<%= themeDist %>/css"
 
-		# Minify
 		uglify:
 			options:
 				preserveComments: (uglify,comment) ->

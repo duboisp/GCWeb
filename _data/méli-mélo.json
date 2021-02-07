@@ -6,6 +6,21 @@
 			"libs": [
 				"@sample"
 			]
+		},
+		{
+			"nom": "méli-mélo-2021-2",
+			"libs": [
+				"@sample",
+				"@sample",
+				"@sample"
+			]
+		},
+		{
+			"nom": "méli-mélo-2021-3",
+			"libs": [
+				"@sample",
+				"2021-1-product-name"
+			]
 		}
 	],
 	"libs": [

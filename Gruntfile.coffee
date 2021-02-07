@@ -72,6 +72,32 @@ module.exports = (grunt) ->
 			"sasslint"
 		]
 	)
+	
+	@registerMultiTask(
+		"méli-mélo"
+		"Try to dynamically compile mélimelo",
+		() ->
+			yepMeli = this.data
+			iterator = 0
+			for pack in yepMeli.packages
+				console.log( "Creating... " + pack.nom )
+			
+				# The iterator is used to ensure that all task are ran
+				iterator++
+				
+				# create global for task specific
+				grunt.config( "curMéliPack" + iterator, pack.nom )
+				grunt.config( "curMéliLibs" + iterator, pack.libs )
+				
+				# create a custom task config
+				mélimélo = clone( grunt.config.getRaw( "concat.mélimélo" ) );
+				mélimélo.src[0] = mélimélo.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				mélimélo.dest = mélimélo.dest.replace( "curMéliPack", "curMéliPack" + iterator );
+				
+				# Save the config and run the task
+				grunt.config( "concat.mélimélo-" + iterator, mélimélo )
+				grunt.task.run( "concat:mélimélo-" + iterator )
+	)
 
 	@initConfig
 
@@ -86,7 +112,9 @@ module.exports = (grunt) ->
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		
-		mélimélo: @file.readJSON "_data/méli-mélo.json"
+		# Placeholder modal for multimélo task
+		curMéliPack: "mélimélo.js"
+		curMéliLibs: [ ]
 		
 		# Commit Messages
 		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
@@ -114,6 +142,9 @@ module.exports = (grunt) ->
 			dist: [ "dist"]
 			deps: ["<%= themeDist %>/theme-js-deps"]
 			jekyll: [ "_layouts", "_includes" ]
+			
+		"méli-mélo":
+			run: @file.readJSON "_data/méli-mélo.json"
 
 		concat:
 			plugins:
@@ -133,15 +164,17 @@ module.exports = (grunt) ->
 					separator: ","
 				src: "components/**/index.json-ld"
 				dest: "_data/components.json"
+
+			# Placeholder modal for multimélo task
 			mélimélo:
 				options:
 					stripBanners: false
 				src: [
-					"méli-mélo/{<% _.forEach(mélimélo.libs, function(lib) { %><%- lib %>,<% }); %>}/*.js"
+					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.js"
 					"!méli-mélo/**/demo/"
 					"!méli-mélo/*.js"
 				]
-				dest: "méli-mélo/test.js"
+				dest: "méli-mélo/<%= curMéliPack %>"
 		usebanner:
 			css:
 				options:
@@ -549,3 +582,26 @@ module.exports = (grunt) ->
 
 	require( "time-grunt" )( grunt )
 	@
+
+clone = (obj) ->
+  if not obj? or typeof obj isnt 'object'
+    return obj
+
+  if obj instanceof Date
+    return new Date(obj.getTime()) 
+
+  if obj instanceof RegExp
+    flags = ''
+    flags += 'g' if obj.global?
+    flags += 'i' if obj.ignoreCase?
+    flags += 'm' if obj.multiline?
+    flags += 'y' if obj.sticky?
+    return new RegExp(obj.source, flags) 
+
+  newInstance = new obj.constructor()
+
+  for key of obj
+    newInstance[key] = clone obj[key]
+
+  return newInstance
+ 

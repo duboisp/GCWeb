@@ -1,6 +1,7 @@
 #global module:false
 path = require("path")
 sass = require("node-sass")
+yaml = require("js-yaml")
 
 module.exports = (grunt) ->
 
@@ -90,13 +91,27 @@ module.exports = (grunt) ->
 				grunt.config( "curMéliLibs" + iterator, pack.libs )
 				
 				# create a custom task config
-				mélimélo = clone( grunt.config.getRaw( "concat.mélimélo" ) );
+				# mélimélo = clone( grunt.config.getRaw( "concat.mélimélo" ) );
+				mélimélo = grunt.util._.clone( grunt.config.getRaw( "concat.mélimélo" ) );
 				mélimélo.src[0] = mélimélo.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
 				mélimélo.dest = mélimélo.dest.replace( "curMéliPack", "curMéliPack" + iterator );
 				
 				# Save the config and run the task
 				grunt.config( "concat.mélimélo-" + iterator, mélimélo )
 				grunt.task.run( "concat:mélimélo-" + iterator )
+				
+				
+				# Copy the demos file, into the méli-mélo compiled folder
+				# Remove .js and .scss and .css files
+				# Replace the font-matter property src and css by the compiled ones
+				
+				# Find the "End of the font-matter"
+				# Find the "script" and ensure it is not after the end of "front-matter"
+				# Replace it.
+				
+				
+				# Those demos would be ready for publishing in its own repository
+				
 	)
 
 	@initConfig
@@ -192,6 +207,22 @@ module.exports = (grunt) ->
 					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
 					position: "bottom"
 				src: "_includes/settings.liquid"
+			replaceProps:
+				options:
+					banner: "script: \"\""
+					props: 
+						script: ""
+						css: ""
+					position: "replace"
+					replace: (fileContents, newBanner, insertPositionMarker, src, options) ->
+						# Rewrite the front matter by the desired variable value
+						patternFrontMatter = /^(---)([\s|\S]*?)(---)/
+						frontmatter = yaml.load(fileContents.match( patternFrontMatter )[2] )
+						for prop, val of options.props
+							frontmatter[ prop ] = val
+						options.banner = yaml.dump(frontmatter);
+						return fileContents.replace( patternFrontMatter, "---\n" + insertPositionMarker + "---" )
+				src: "méli-mélo/index-fr.md"
 		copy:
 			layouts:
 				expand: true

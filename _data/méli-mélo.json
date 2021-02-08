@@ -2,13 +2,13 @@
 	"title": "Liste des produit méli-mélo fusionné",
 	"packages": [
 		{
-			"nom": "méli-mélo-2021-1",
+			"nom": "méli-mélo-2021-1.js",
 			"libs": [
 				"@sample"
 			]
 		},
 		{
-			"nom": "méli-mélo-2021-2",
+			"nom": "méli-mélo-2021-2.js",
 			"libs": [
 				"@sample",
 				"@sample",
@@ -16,7 +16,7 @@
 			]
 		},
 		{
-			"nom": "méli-mélo-2021-3",
+			"nom": "méli-mélo-2021-3.js",
 			"libs": [
 				"@sample",
 				"2021-1-product-name"

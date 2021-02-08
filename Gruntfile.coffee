@@ -50,10 +50,12 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"build-méli-mélo"
+		"méli-mélo"
 		"Build méli-mélo files"
 		[
-			"concat:mélimélo"
+			"clean:mélimélo"
+			"méli-mélo-build:run"
+			"copy:méliméloGelé"
 		]
 	)
 
@@ -75,7 +77,7 @@ module.exports = (grunt) ->
 	)
 	
 	@registerMultiTask(
-		"méli-mélo"
+		"méli-mélo-build"
 		"Try to dynamically compile mélimelo",
 		() ->
 			yepMeli = this.data
@@ -83,34 +85,114 @@ module.exports = (grunt) ->
 			for pack in yepMeli.packages
 				console.log( "Creating... " + pack.nom )
 			
+				#
 				# The iterator is used to ensure that all task are ran
 				iterator++
 				
+				#
 				# create global for task specific
 				grunt.config( "curMéliPack" + iterator, pack.nom )
 				grunt.config( "curMéliLibs" + iterator, pack.libs )
 				
-				# create a custom task config
-				# mélimélo = clone( grunt.config.getRaw( "concat.mélimélo" ) );
-				mélimélo = grunt.util._.clone( grunt.config.getRaw( "concat.mélimélo" ) );
-				mélimélo.src[0] = mélimélo.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
-				mélimélo.dest = mélimélo.dest.replace( "curMéliPack", "curMéliPack" + iterator );
+				#
+				# Clean the méli-mélo package folder
+				#
+				#méliméloClean = clone( grunt.config.getRaw( "clean.méliméloPack" ) );
+				#méliméloClean[0] = méliméloClean[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
+				#grunt.config( "clean.méliméloPack-" + iterator, méliméloClean )
 				
-				# Save the config and run the task
-				grunt.config( "concat.mélimélo-" + iterator, mélimélo )
-				grunt.task.run( "concat:mélimélo-" + iterator )
+				#
+				# Concat the js
+				# fyi - grunt.util._.clone() !== clone();
+				méliméloJs = clone( grunt.config.getRaw( "concat.mélimélo" ) );
+				méliméloJs.src[0] = méliméloJs.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				méliméloJs.src[1] = méliméloJs.src[1].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				méliméloJs.dest = méliméloJs.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "concat.mélimélo-" + iterator, méliméloJs )
 				
+				#
+				# Create the CSS compiled file
+				#
+				# - Need to copy scss file in a temporary directory
+				# - Remove the front matter
+				# - Compile with sass
+				# - Concat all CSS file
+				# - Delete temporary directory
+				#
+				# méliméloScss
+				# - copy scss file in a temporary directory
+				méliméloScssCopy = clone( grunt.config.getRaw( "copy.méliméloScss" ) );
+				méliméloScssCopy.src[0] = méliméloScssCopy.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				méliméloScssCopy.dest = méliméloScssCopy.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "copy.méliméloScss-" + iterator, méliméloScssCopy )
+				# - Remove the front matter
+				méliméloScssFM = clone( grunt.config.getRaw( "usebanner.méliméloScss" ) );
+				méliméloScssFM.src = méliméloScssFM.src.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "usebanner.méliméloScss-" + iterator, méliméloScssFM )
+				# - compile Scss into Css
+				méliméloSassRaw = grunt.config.getRaw( "sass.mélimélo" );
+				méliméloSass =
+					options: méliméloSassRaw.options # Workaround because unable to clone the options
+					expand: clone( méliméloSassRaw.expand )
+					src: clone( méliméloSassRaw.src )
+					dest: clone( méliméloSassRaw.dest )
+					ext: clone( méliméloSassRaw.ext )
+				méliméloSass.src[0] = méliméloSass.src[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "sass.mélimélo-" + iterator, méliméloSass )
+				# - Concat all CSS file
+				méliméloSassCss = clone( grunt.config.getRaw( "concat.méliméloCss" ) );
+				méliméloSassCss.src[0] = méliméloSassCss.src[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
+				méliméloSassCss.dest = méliméloSassCss.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "concat.méliméloCss-" + iterator, méliméloSassCss )
+				# - Delete temporary directory
+				méliméloSassClean = clone( grunt.config.getRaw( "clean.méliméloWorkdir" ) );
+				méliméloSassClean[0] = méliméloSassClean[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "clean.méliméloWorkdir-" + iterator, méliméloSassClean )
 				
+				#
 				# Copy the demos file, into the méli-mélo compiled folder
-				# Remove .js and .scss and .css files
-				# Replace the font-matter property src and css by the compiled ones
+				méliméloDemo = clone( grunt.config.getRaw( "copy.mélimélo" ) );
+				méliméloDemo.src[0] = méliméloDemo.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				méliméloDemo.dest = méliméloDemo.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "copy.mélimélo-" + iterator, méliméloDemo )
 				
-				# Find the "End of the font-matter"
-				# Find the "script" and ensure it is not after the end of "front-matter"
-				# Replace it.
+				#
+				# Replace the font-matter property script and css by the compiled ones in the demos files
+				méliméloFM = clone( grunt.config.getRaw( "usebanner.mélimélo" ) );
+				méliméloFM.src = méliméloFM.src.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				méliméloFM.options.props.script = méliméloFM.options.props.script.replace( /curMéliPack/g, pack.nom );
+				méliméloFM.options.props.css = méliméloFM.options.props.css.replace( /curMéliPack/g, pack.nom );
+				grunt.config( "usebanner.mélimélo-" + iterator, méliméloFM )
 				
+				#
+				# Copy the assets
+				méliméloAssets = clone( grunt.config.getRaw( "copy.méliméloAssets" ) );
+				méliméloAssets.src[0] = méliméloAssets.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				méliméloAssets.src[1] = méliméloAssets.src[1].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				méliméloAssets.src[2] = méliméloAssets.src[2].replace( "curMéliLibs", "curMéliLibs" + iterator );
+				méliméloAssets.dest = méliméloAssets.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "copy.méliméloAssets-" + iterator, méliméloAssets )
 				
-				# Those demos would be ready for publishing in its own repository
+				#
+				# Copy distributions files
+				méliméloDist = clone( grunt.config.getRaw( "copy.méliméloDist" ) );
+				méliméloDist.src[0] = méliméloDist.src[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
+				grunt.config( "copy.méliméloDist-" + iterator, méliméloDist )
+				
+				# Run all the task sequential
+				grunt.task.run( [
+					#"clean:mélimélo-" + iterator,
+					"concat:mélimélo-" + iterator,
+					"copy:méliméloScss-" + iterator,
+					"usebanner:méliméloScss-" + iterator,
+					"sass:mélimélo-" + iterator,
+					"concat:méliméloCss-" + iterator,
+					"clean:méliméloWorkdir-" + iterator,
+					"copy:mélimélo-" + iterator,
+					"usebanner:mélimélo-" + iterator,
+					"copy:méliméloAssets-" + iterator,
+					"copy:méliméloDist-" + iterator
+				] )
 				
 	)
 
@@ -157,8 +239,11 @@ module.exports = (grunt) ->
 			dist: [ "dist"]
 			deps: ["<%= themeDist %>/theme-js-deps"]
 			jekyll: [ "_layouts", "_includes" ]
+			mélimélo: [ "méli-mélo/demos" ]
+			méliméloPack: [ "méli-mélo/demos/<%= curMéliPack %>" ]
+			méliméloWorkdir: [ "méli-mélo/demos/<%= curMéliPack %>/workdir" ]
 			
-		"méli-mélo":
+		"méli-mélo-build":
 			run: @file.readJSON "_data/méli-mélo.json"
 
 		concat:
@@ -186,10 +271,18 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.js"
+					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/js/*.js"
 					"!méli-mélo/**/demo/"
 					"!méli-mélo/*.js"
 				]
-				dest: "méli-mélo/<%= curMéliPack %>"
+				dest: "méli-mélo/demos/<%= curMéliPack %>/<%= curMéliPack %>.js"
+			méliméloCss:
+				options:
+					stripBanners: false
+				src: [
+					"méli-mélo/demos/<%= curMéliPack %>/workdir/**/*.css"
+				]
+				dest: "méli-mélo/demos/<%= curMéliPack %>/<%= curMéliPack %>.css"
 		usebanner:
 			css:
 				options:
@@ -207,12 +300,12 @@ module.exports = (grunt) ->
 					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
 					position: "bottom"
 				src: "_includes/settings.liquid"
-			replaceProps:
+			mélimélo:
 				options:
-					banner: "script: \"\""
+					banner: ""
 					props: 
-						script: ""
-						css: ""
+						script: "../curMéliPack.js"
+						css: "../curMéliPack.css"
 					position: "replace"
 					replace: (fileContents, newBanner, insertPositionMarker, src, options) ->
 						# Rewrite the front matter by the desired variable value
@@ -222,7 +315,14 @@ module.exports = (grunt) ->
 							frontmatter[ prop ] = val
 						options.banner = yaml.dump(frontmatter);
 						return fileContents.replace( patternFrontMatter, "---\n" + insertPositionMarker + "---" )
-				src: "méli-mélo/index-fr.md"
+				src: "méli-mélo/demos/<%= curMéliPack %>/*/*.{md,html}"
+			méliméloScss:
+				options:
+					banner: ""
+					position: "replace"
+					replace:/^---[\s|\S]*?---/
+				src: "méli-mélo/demos/<%= curMéliPack %>/workdir/**/*.scss"
+				
 		copy:
 			layouts:
 				expand: true
@@ -270,6 +370,50 @@ module.exports = (grunt) ->
 				]
 				dest: "dist"
 
+			# méli-mélo tasks
+			mélimélo:
+				expand: true
+				src: [
+					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.{md,html}",
+					"!méli-mélo/*.{md,html}"
+				]
+				dest: "méli-mélo/demos/<%= curMéliPack %>"
+				rename: (dest, src) ->
+					return dest + src.substring( src.indexOf('/') )
+			méliméloScss:
+				expand: true
+				src: [
+					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.{scss,css}",
+					"!méli-mélo/*.{md,html}"
+				]
+				dest: "méli-mélo/demos/<%= curMéliPack %>/workdir"
+				rename: (dest, src) ->
+					return dest + src.substring( src.indexOf('/') )
+			méliméloAssets:
+				expand: true
+				src: [
+					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/{assets,docs,demos,img,ajax,data,tests,reports}/*.*",
+					"!méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/{js,css}/*.*",
+					"!méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.{md,html,js}",
+					"!méli-mélo/**/*.{scss,css}"
+				]
+				dest: "méli-mélo/demos/<%= curMéliPack %>"
+				rename: (dest, src) ->
+					return dest + src.substring( src.indexOf('/') )
+			méliméloDist:
+				expand: true
+				flatten: true
+				src: [
+					"méli-mélo/demos/<%= curMéliPack %>/<%= curMéliPack %>.{css,js}"
+				]
+				dest: "<%= themeDist %>/méli-mélo/"
+			méliméloGelé:
+				expand: true
+				flatten: true
+				src: [
+					"méli-mélo/compilation-gelé/*.{css,js}"
+				]
+				dest: "<%= themeDist %>/méli-mélo/"
 		sasslint:
 			options:
 				configFile: ".sass-lint.yml"
@@ -322,14 +466,14 @@ module.exports = (grunt) ->
 					showCodes: true
 
 		sass:
-			options:
-				implementation: sass,
-				includePaths: [
-					"./node_modules"
-					"./node_modules/wet-boew/node_modules"
-					if grunt.file.exists( "misc/variant/_variant-default.scss" ) then "src/variant" else "src/variant-default"
-				]
 			all:
+				options:
+					implementation: sass,
+					includePaths: [
+						"./node_modules"
+						"./node_modules/wet-boew/node_modules"
+						if grunt.file.exists( "misc/variant/_variant-default.scss" ) then "src/variant" else "src/variant-default"
+					]
 				expand: true
 				cwd: "sites"
 				src: [
@@ -338,7 +482,23 @@ module.exports = (grunt) ->
 				]
 				dest: "<%= themeDist %>/css"
 				ext: ".css"
-
+			mélimélo:
+				options:
+					implementation: sass
+				expand: true
+				src: [
+					"méli-mélo/demos/<%= curMéliPack %>/workdir/**/*.scss"
+#					"méli-mélo/demos/méli-mélo-2021-1/workdir/**/*.scss"
+#					"méli-mélo/demos/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/**/*.scss"
+				]
+				dest: ""
+#				dest: "méli-mélo/méli-mélo-2021-1/css"
+#				dest: "méli-mélo/<%= curMéliPack %>/<%= curMéliPack %>.css"
+				ext: ".css"
+#				rename: (dest, src) ->
+#					console.log( src )
+#					console.log( dest )
+#					return dest
 		postcss:
 			options:
 				processors: [

@@ -4,7 +4,9 @@ lang: fr
 altLangPage: index-en.html
 dateModified: 2021-02-06
 script: wb-bonjour.js
-css: wb-bonjour.css
+css:
+ - wb-bonjour.css
+ - mycss.css
 ---
 
 Ceci est un example afin de démontrer la structure nécessaire pour procéder à la création de composant méli-mélo.
@@ -15,6 +17,7 @@ Les exigences minimal c'est:
 
 * Une démostration existe pour chaques fonctionalité afin de mettre à l'essaie  inclus dans ce méli-mélo.
 * Il ne doit pas interférer, ni remplacer n'importe lequel partie des libraries de la BOEW, du thème de Canada.ca ni avec les méli-mélo dans son ensemble.
+	- Par example, le code javascript est encapsulé avec une "closure" et l'instruction "use stric" dont l'ensemble des variable global sont géré. 
 * Une revision préalable qui sera brève et partielle sera fait afin de repérer des erreurs d'accessibilité majeur et flagrant.
 * Le propriétaire de contenu duquel le méli-mélo sera utilisé en production prendra toutes les mesures nécessaire pour une conformance et assumera l'entièreté des risques.
 * Toutes fonctionalité méli-mélo est asujeti à l'approbation et au droit de vétaux des administrateurs de la BOEW.

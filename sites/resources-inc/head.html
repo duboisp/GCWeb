@@ -1,5 +1,6 @@
 <link href="{{ setting-resourcesBasePath }}/{{ setting-packageName }}/assets/favicon.ico" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" href="{{ setting-resourcesBasePath }}/{{ setting-packageName }}/css/theme.css" />
+<noscript><link rel="stylesheet" href="{{ setting-resourcesBasePath }}/wet-boew/css/noscript.css" /></noscript>
 {%- if page.css.first -%}
 	{%- for sheet in page.css -%}
 		<link rel="stylesheet" rel="stylesheet" href="{{ sheet }}" />
@@ -7,8 +8,3 @@
 {%- else -%}
 	<link rel="stylesheet" href="{{ page.css }}" />
 {%- endif -%}
-<noscript><link rel="stylesheet" href="{{ setting-resourcesBasePath }}/wet-boew/css/noscript.css" /></noscript>
-
-<!-- Jekyll SCSS -->
-<link rel="stylesheet" href="{{ '/sites/theme-jekyll.css' | relative_url }}" />
-

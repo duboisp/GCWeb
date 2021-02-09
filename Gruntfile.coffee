@@ -45,6 +45,7 @@ module.exports = (grunt) ->
 			"concat:plugins"
 			"copy:assets"
 			"copy:wetboew"
+			"méli-mélo"
 			"uglify:dist"
 		]
 	)
@@ -355,10 +356,19 @@ module.exports = (grunt) ->
 					dest: "_includes"
 					rename: (dest, src) ->
 						dest + src.substring( src.indexOf('/') ).replace( '/includes/', '/' )
+				,
+					expand: true
+					src: "{sites,components,templates}/*/include.html"
+					dest: "_includes"
+					rename: (dest, src) ->
+						dest + "/" + src.replace( '/include.html', '.html' )
 				]
 			assets:
 				expand: true
-				src: "{sites,components,templates}/**/assets/**.*"
+				src: [
+					"{sites,components,templates}/**/assets/**.*"
+					"{sites,components,templates}/**/assets/**/*.*"
+				]
 				dest: "<%= themeDist %>/assets"
 				rename: (dest, src) ->
 					dest + src.substring( src.indexOf('/') ).replace( '/assets/', '/' )

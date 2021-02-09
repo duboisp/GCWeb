@@ -42,7 +42,7 @@
 @import "secondary-menu/base";
 @import "main-footer/base";
 @import "gcweb-menu/base";
-@import "../components/social-media-icons/base";
+@import "../components/gc-follow-us/base";
 @import "../components/fd-wdgt";
 @import "../templates/blog";
 @import "../components/pagination/base";
@@ -213,7 +213,7 @@
 	@import "search/print";
 	@import "secondary-menu/print";
 	@import "main-footer/print";
-	@import "../components/social-media-icons/print";
+	@import "../components/gc-follow-us/print";
 	@import "../templates/campaign/print";
 	@import "../misc/variant-default/variant-print";
 }

@@ -1,17 +1,17 @@
+ï»¿---
+title: "Compilation gelÃ©"
 ---
-title: "Compilation gelé"
----
 
-Ce répertoire contien la list des compilation méli-mélo qui sont dites gelé. Ceci veux dire qu'aucune modification ou ajout de fonctionalité ne sera autorisé à moins qu'il apporte un correctif relié à l'accessibilité.
+Ce rÃ©pertoire contien la list des compilation mÃ©li-mÃ©lo qui sont dites gelÃ©. Ceci veux dire qu'aucune modification ou ajout de fonctionalitÃ© ne sera autorisÃ© Ã  moins qu'il apporte un correctif reliÃ© Ã  l'accessibilitÃ©.
 
-Ces compilations sont et doivent être considéré désuette et leur utilisation est fortement déconseillé.
+Ces compilations sont et doivent Ãªtre considÃ©rÃ© dÃ©suette et leur utilisation est fortement dÃ©conseillÃ©.
 
-Si vous nécessité un fonctionalité d'un de ces compilations gelé, veuillez contacté l'équipe de la BOEW via les github issue pour initier la discussion.
+Si vous nÃ©cessitÃ© un fonctionalitÃ© d'un de ces compilations gelÃ©, veuillez contactÃ© l'Ã©quipe de la BOEW via les github issue pour initier la discussion.
 
-L'autre étape serait de faire re-vive le méli-mélo gelé dans une nouvelle compilation de méli-mélo et d'initier les travaux nécessaire afin que la fonctionalité soit intégré à GCWeb et accepter par DTO, le sécrétariat du conseil du trésors
+L'autre Ã©tape serait de faire re-vive le mÃ©li-mÃ©lo gelÃ© dans une nouvelle compilation de mÃ©li-mÃ©lo et d'initier les travaux nÃ©cessaire afin que la fonctionalitÃ© soit intÃ©grÃ© Ã  GCWeb et accepter par DTO, le sÃ©crÃ©tariat du conseil du trÃ©sors
 
 
-## Template pour la liste de compilation gelé
+## Template pour la liste de compilation gelÃ©
 
-* DATE (YYYY-MM-DD) - [nom de l'ensemble méli-mélo]
-	- Nom du produit méli-mélo inclus - Hash du dernier commit Github connue avant que le code soit retiré ou ce code soit gelé.
+* DATE (YYYY-MM-DD) - [nom de l'ensemble mÃ©li-mÃ©lo]
+	- Nom du produit mÃ©li-mÃ©lo inclus - Hash du dernier commit Github connue avant que le code soit retirÃ© ou ce code soit gelÃ©.

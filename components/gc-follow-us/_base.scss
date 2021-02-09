@@ -131,27 +131,27 @@ $provisional-social-media-icons-size: 38px;
 
 		.facebook:before {
 			@extend %provisional-social-media-icons-followus-logo-properties;
-			background-image: url("../assets/social-media-icons/facebook.svg");
+			background-image: url("../assets/gc-follow-us/facebook.svg");
 		}
 
 		.twitter:before {
 			@extend %provisional-social-media-icons-followus-logo-properties;
-			background-image: url("../assets/social-media-icons/twitter.svg");
+			background-image: url("../assets/gc-follow-us/twitter.svg");
 		}
 
 		.youtube:before {
 			@extend %provisional-social-media-icons-followus-logo-properties;
-			background-image: url("../assets/social-media-icons/youtube.svg");
+			background-image: url("../assets/gc-follow-us/youtube.svg");
 		}
 
 		.instagram:before {
 			@extend %provisional-social-media-icons-followus-logo-properties;
-			background-image: url("../assets/social-media-icons/instagram.svg");
+			background-image: url("../assets/gc-follow-us/instagram.svg");
 		}
 
 		.linkedin:before {
 			@extend %provisional-social-media-icons-followus-logo-properties;
-			background-image: url("../assets/social-media-icons/linkedin.png");
+			background-image: url("../assets/gc-follow-us/linkedin.png");
 		}
 	}
 }

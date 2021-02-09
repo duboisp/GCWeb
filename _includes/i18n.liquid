@@ -1,4 +1,23 @@
 {%- comment -%}
+@=================================================@--------------
+|                                                 |--------------
+|      THIS FILE IS CREATED BY A BUILD SCRIPT     |--------------
+|       any modification would be dismiss         |--------------
+|                                                 |--------------
+|                                                 |--------------
+| You will find the master copy into the folder:  |--------------
+|                                                 |--------------
+|   * components                                  |--------------
+|   * sites                                       |--------------
+|   * templates                                   |--------------
+|                                                 |--------------
+|                                                 |--------------
+| Generated at: 2021-02-09                        |--------------
+@=================================================@--------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+{%- endcomment -%}
+{%- comment -%}
 
 ++++++++++++++++++++++++++++++++++
 + i18 Text 
@@ -25,13 +44,14 @@
 	
 	{% assign i18nText-footerAbout = "Au sujet du gouvernement" %}
 	{% assign i18nText-wmms = "Symbole du gouvernement du Canada" %}
+	{% assign i18nText-wmmsAltLang = "<span lang="en">Symbol of the Government of Canada</span>" %}
 	
 
 {%- elsif i18nText-lang == "en" -%}
 
 	{% assign i18nText-sigBlk = "/GCWeb/assets/sig-blk-en.svg" %}
 	{% assign i18nText-goc = "Government of Canada" %}
-	{% assign i18nText-gocAltLang = '<span lang="en">Government of Canada</span>' %}
+	{% assign i18nText-gocAltLang = '<span lang="fr">Gouvernement du Canada</span>' %}
 
 	{% assign i18nText-searchSite = "Search Canada.ca" %}
 
@@ -43,6 +63,7 @@
 
 	{% assign i18nText-footerAbout = "About government" %}
 	{% assign i18nText-wmms = "Symbol of the Government of Canada" %}
+	{% assign i18nText-wmmsAltLang = "<span lang="fr">Symbole du gouvernement du Canada</span>" %}
 
 
 {%- endif -%}

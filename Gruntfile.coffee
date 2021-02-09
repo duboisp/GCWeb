@@ -32,7 +32,19 @@ module.exports = (grunt) ->
 			"copy:layouts"
 			"copy:includes"
 			"usebanner:definePckName"
+			"usebanner:includes"
 			"concat:components"
+			"copy:jekyllDist"
+		]
+	)
+	
+	@registerTask(
+		"formytest"
+		"Build the jekyll theme site only"
+		[
+			"copy:includes"
+			"usebanner:includes"
+			"copy:jekyllDist"
 		]
 	)
 
@@ -44,9 +56,13 @@ module.exports = (grunt) ->
 			"sass:all"
 			"concat:plugins"
 			"copy:assets"
+			"copy:fonts"
 			"copy:wetboew"
 			"méli-mélo"
 			"uglify:dist"
+			"postcss"
+			"usebanner:css"
+			"cssmin"
 		]
 	)
 
@@ -203,6 +219,7 @@ module.exports = (grunt) ->
 		pkg: @file.readJSON "package.json"
 		distFolder: "dist"
 		themeDist: "<%= distFolder %>/<%= pkg.name %>"
+		jekyllDist: "~jekyll-dist"
 		jqueryVersion: grunt.file.readJSON(
 			path.join require.resolve( "jquery" ), "../../package.json"
 		).version
@@ -213,6 +230,7 @@ module.exports = (grunt) ->
 		# Placeholder modal for multimélo task
 		curMéliPack: "mélimélo.js"
 		curMéliLibs: [ ]
+		_includesPaths: [ ]
 		
 		# Commit Messages
 		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
@@ -239,7 +257,7 @@ module.exports = (grunt) ->
 		clean:
 			dist: [ "dist"]
 			deps: ["<%= themeDist %>/theme-js-deps"]
-			jekyll: [ "_layouts", "_includes" ]
+			jekyll: [ "_layouts", "~jekyll-dist" ]
 			mélimélo: [ "méli-mélo/demos" ]
 			méliméloPack: [ "méli-mélo/demos/<%= curMéliPack %>" ]
 			méliméloWorkdir: [ "méli-mélo/demos/<%= curMéliPack %>/workdir" ]
@@ -296,6 +314,32 @@ module.exports = (grunt) ->
 				options:
 					banner: """{%- assign setting-packageName = "<%= pkg.name %>" -%}"""
 				src: "_includes/settings.liquid"
+			includes:
+				options:
+					banner: """
+							{%- comment -%}
+							@=================================================@--------------
+							|                                                 |--------------
+							|      THIS FILE IS CREATED BY A BUILD SCRIPT     |--------------
+							|       any modification would be dismiss         |--------------
+							|                                                 |--------------
+							|                                                 |--------------
+							| You will find the master copy into the folder:  |--------------
+							|                                                 |--------------
+							|   * components                                  |--------------
+							|   * sites                                       |--------------
+							|   * templates                                   |--------------
+							|                                                 |--------------
+							|                                                 |--------------
+							| Generated at: <%= grunt.template.today('yyyy-mm-dd') %>                        |--------------
+							@=================================================@--------------
+							-----------------------------------------------------------------
+							-----------------------------------------------------------------
+							{%- endcomment -%}
+							"""
+					position: "top"
+				files:
+					src: "{<% _.forEach(_includesPaths, function(src) { %><%- src %>,<% }); %>}"
 			runLocaly:
 				options:
 					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
@@ -344,10 +388,11 @@ module.exports = (grunt) ->
 					]
 					dest: "_includes"
 					rename: (dest, src) ->
+						ret = dest + "/" + src
 						if src.indexOf('/') isnt src.lastIndexOf('/')
-							return dest + src.substring( src.indexOf('/') )
-						else
-							return dest + "/" + src
+							ret = dest + src.substring( src.indexOf('/') )
+						grunt.config.getRaw( "_includesPaths" ).push( ret )
+						return ret
 				,
 					expand: true
 					src: [
@@ -355,14 +400,33 @@ module.exports = (grunt) ->
 					]
 					dest: "_includes"
 					rename: (dest, src) ->
-						dest + src.substring( src.indexOf('/') ).replace( '/includes/', '/' )
+						ret = dest + src.substring( src.indexOf('/') ).replace( '/includes/', '/' )
+						grunt.config.getRaw( "_includesPaths" ).push( ret )
+						return ret
 				,
 					expand: true
 					src: "{sites,components,templates}/*/include.html"
 					dest: "_includes"
 					rename: (dest, src) ->
-						dest + "/" + src.replace( '/include.html', '.html' )
+						ret = dest + "/" + src.replace( '/include.html', '.html' )
+						grunt.config.getRaw( "_includesPaths" ).push( ret )
+						return ret
 				]
+			jekyllDist:
+				src: [
+					"{<% _.forEach(_includesPaths, function(src) { %><%- src %>,<% }); %>}",
+					"_layouts/**.*"
+				]
+				dest: "<%= jekyllDist %>/"
+				
+			fonts:
+				expand: true
+				flatten: true
+				src: [
+					"{sites,components,templates}/**/fonts/**.*"
+					"!**/*.scss"
+				]
+				dest: "<%= themeDist %>/fonts"
 			assets:
 				expand: true
 				src: [
@@ -512,14 +576,7 @@ module.exports = (grunt) ->
 		postcss:
 			options:
 				processors: [
-					require("autoprefixer")(
-						browsers: [
-							"last 2 versions"
-							"bb >= 10"
-							"Firefox ESR"
-							"ie > 10"
-						]
-					)
+					require("autoprefixer")()
 				]
 			modern:
 				cwd: "<%= themeDist %>/css"

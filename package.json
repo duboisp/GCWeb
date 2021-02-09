@@ -12,6 +12,11 @@
     "jsonpointer.js": "^0.4.0",
     "wet-boew": "github:wet-boew/wet-boew#v4.0.40"
   },
+  "browserslist": [
+	"last 2 versions",
+	"Firefox ESR",
+	"ie > 10"
+  ],
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.0.0",
     "assemble-contrib-i18n": "0.1.*",

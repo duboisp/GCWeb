@@ -12,7 +12,7 @@ dateModified: 2021-02-05
 share: true
 ---
 {% include components/inc-byline.html %}
-{% include components/inc-placeholdercontent-fr.html %}
+{% include web-contents/placeholdercontent-fr.html %}
 <h2 id="cnt-wdth-lmtd">Section avec une largeur de contenu limitée</h2>
 <p>Ajouter la classe CSS <code>.cnt-wdth-lmtd</code> à l'élément de section <code>&lt;section class="cnt-wdth-lmtd"&gt;...&lt;section&gt;</code> à l'intérieur du contenu principal de votre page. De plus amples renseignements sont disponibles dans la spécification du contenu et de l'architecture de l'information pour Canada.ca.</p>
 <section class="cnt-wdth-lmtd">

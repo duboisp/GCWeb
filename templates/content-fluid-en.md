@@ -12,7 +12,7 @@ dateModified: 2021-02-05
 share: true
 ---
 {% include components/inc-byline.html %}
-{% include components/inc-placeholdercontent-en.html %}
+{% include web-contents/placeholdercontent-en.html %}
 <h2 id="cnt-wdth-lmtd">Section with limited width content</h2>
 <p>Add the CSS class name <code>.cnt-wdth-lmtd</code> to a sectioning element <code>&lt;section class="cnt-wdth-lmtd"&gt;...&lt;section&gt;</code> inside the main content of your page. More guidance are provided in the Content and IA specification.</p>
 <section class="cnt-wdth-lmtd">

@@ -62,6 +62,15 @@ module.exports = (grunt) ->
 			"uglify:dist"
 			"postcss"
 			"usebanner:css"
+		]
+	)
+
+	@registerTask(
+		"dist-theme"
+		"Build and produce a valid dist"
+		[
+			"eslint"
+			"build-theme"
 			"cssmin"
 		]
 	)
@@ -759,7 +768,7 @@ module.exports = (grunt) ->
 				quiet: true
 			all:
 				src: [
-					"src/**/*.js"
+					"{sites,components,templates}/**/*.js"
 				]
 
 		connect:

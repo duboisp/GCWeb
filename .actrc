@@ -1,0 +1,3 @@
+# run the Medium Docker Image runner
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+--secret-file .secrets

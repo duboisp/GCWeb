@@ -49,3 +49,5 @@ csslint.out.xml
 temporary/
 méli-mélo/demos/
 ~jekyll-dist/
+
+.secrets

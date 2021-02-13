@@ -1,0 +1,99 @@
+---
+{
+	"title": "Components page",
+	"language": "en",
+	"altLangPrefix": "components",
+	"pageclass": "cnt-wdth-lmtd",
+	"breadcrumb": [
+		{ "title": "Canada.ca", "link": "https://www.canada.ca/en.html" }
+	],
+	"secondlevel": false,
+	"dateModified": "2020-12-09",
+	"share": "true"
+}
+---
+<p>Generic destination pages share many characteristics. For example, they are often long-form documents requiring structure to facilitate usability and readability. In many cases, they include images, charts, graphs or tables. Following are patterns aimed at increasing the usability and consistency of destination pages of various types.</p>
+<nav role="navigation" class="gc-toc">
+	<h2>Table of contents</h2>
+	<ul>
+		<li><a href="#download">Download link</a></li>
+		<li><a href="#toc">In-page table of contents</a></li>
+		<li><a href="#min-port">Portfolio ministers</a></li>
+	</ul>
+</nav>
+<section>
+	<h2 id="download">Download link</h2>
+	<p>Download links are used for referencing and linking to non-HTML files on Canada.ca web pages.</p>
+	<div class="row">
+		<div class="col-sm-4">
+			{{>comp-download}}
+		</div>
+	</div>
+</section>
+<section class="gc-toc">
+	<h2 id="toc">In-page table of contents</h2>
+	<p>The In-Page Table of Contents Pattern is a list of links that lead to subsections of the same page. This pattern is intended for long documents that exist as a single page.</p>
+	<nav role="navigation" class="gc-toc">
+		<h3>On this page</h3>
+		<ul>
+			<li><a href="#section1">First section heading</a></li>
+			<li><a href="#section2">Second section heading</a></li>
+			<li><a href="#section3">Third section heading</a></li>
+		</ul>
+	</nav>
+	<section>
+		<h3 id="section1">[First section heading]</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam delectus iusto repellat assumenda nobis, modi accusamus, rerum praesentium ad dignissimos ipsam? Facilis repellat, quibusdam qui? Et dolore ipsa ut repellendus.</p>
+	</section>
+	<section>
+		<h3 id="section2">[Second section heading]</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam delectus iusto repellat assumenda nobis, modi accusamus, rerum praesentium ad dignissimos ipsam? Facilis repellat, quibusdam qui? Et dolore ipsa ut repellendus.</p>
+	</section>
+	<section>
+		<h3 id="section3">[Third section heading]</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam delectus iusto repellat assumenda nobis, modi accusamus, rerum praesentium ad dignissimos ipsam? Facilis repellat, quibusdam qui? Et dolore ipsa ut repellendus.</p>
+	</section>
+</section>
+<div id="min-port">
+{{>minister-port}}
+</div>
+
+<section>
+<h2 id="alert">Alert designs</h2>
+<section class="alert alert-danger">
+	<h3>Danger alert</h3>
+	<p>Optional alert details.</p>
+</section>
+<section class="alert alert-warning">
+	<h3>Warning alert</h3>
+	<p>Optional alert details.</p>
+</section>
+<section class="alert alert-success">
+	<h3>Success alert</h3>
+	<p>Optional alert details.</p>
+</section>
+<section class="alert alert-info">
+	<h3>Info alert</h3>
+	<p>Optional alert details.</p>
+</section>
+<h3>Code</h3>
+<pre><code>&lt;section class="alert alert-danger"&gt;
+	&lt;h3&gt;Danger alert&lt;/h3&gt;
+	&lt;p&gt;Optional alert details.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section class="alert alert-warning"&gt;
+	&lt;h3&gt;Warning alert&lt;/h3&gt;
+	&lt;p&gt;Optional alert details.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section class="alert alert-success"&gt;
+	&lt;h3&gt;Success alert&lt;/h3&gt;
+	&lt;p&gt;Optional alert details.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section class="alert alert-info"&gt;
+	&lt;h3&gt;Info alert&lt;/h3&gt;
+	&lt;p&gt;Optional alert details.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+</section>

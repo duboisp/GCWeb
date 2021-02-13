@@ -1,0 +1,19 @@
+# Groupe de pages
+page_group:
+  en:
+    examples: Examples
+    docs: Documentations
+    related: Related documents
+  fr:
+    examples: Exemples
+    docs: Documentations
+    related: Documents relié
+
+# Status de component
+component_status:
+  en:
+    provisional: Provisional
+    stable: Stable
+  fr:
+    provisional: Provisionel
+    stable: Stable

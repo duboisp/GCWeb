@@ -8,28 +8,68 @@ lang: fr
 {::nomarkdown}
 <h2>Components</h2>
 
+{% assign page_group = site.data.i18n.page_group[ page.lang ] %}
+{% assign comp_status = site.data.i18n.component_status[ page.lang ] %}
+
 <ul>
 {% for item in site.data.components %}
-
-	{% assign list-example = item.examples | where: "language", "en" %}
-
-	<li>{{ item.title.en }}<ul>
-
-	{% for example in list-example %}
-		<li><a href="components/{{ item.componentName }}/{{ example.path }}">{{ example.title}}</a></li>
+	{% assign list-pages = item.pages %}
+	<li>{{ item.title.fr }} (État: {{ comp_status[ item.status ] | default: "Non définie" }})
+	<ul>
+	{% for pgGroup in list-pages %}
+		{% assign grpkey = pgGroup[0] %}
+		<li>{{ page_group[ grpkey ] | default: "Groupe inconnu" }}
+			<ul>
+			{% for example in pgGroup[1] %}
+			  {% if example.path %}
+				<li><a href="components/
+							{%- if item.componentName -%}
+								{{ item.componentName }}/
+							{%- endif -%}
+						{{ example.path }}" lang="{{ example.language }}" hreflang="{{ example.language }}">{{ example.title }}</a></li>
+			  {% elsif example.url %}
+					<li><a href="{{ example.url }}" lang="{{ example.language }}" hreflang="{{ example.language }}">{{ example.title }}</a></li>
+			  {% else %}
+					<li>{{ example.title }}</li>
+			  {% endif %}
+			{% endfor %}
+			</ul>
+		</li>
 	{% endfor %}
-	
 	</ul></li>
 {% endfor %}
 </ul>
 
+
 <h2>Templates</h2>
 <ul>
-{% for templatePg in site.data.templates.pages %}
-	<li><a href="templates/{{ templatePg.url }}">{{ templatePg.title }}</a></li>
+{% for item in site.data.templates %}
+	{% assign list-pages = item.pages %}
+	<li>{{ item.title.fr }} (État: {{ comp_status[ item.status ] | default: "Non définie" }})
+	<ul>
+	{% for pgGroup in list-pages %}
+		{% assign grpkey = pgGroup[0] %}
+		<li>{{ page_group[ grpkey ] | default: "Groupe inconnu" }}
+			<ul>
+			{% for example in pgGroup[1] %}
+			  {% if example.path %}
+				<li><a href="templates/
+							{%- if item.componentName -%}
+								{{ item.componentName }}/
+							{%- endif -%}
+						{{ example.path }}" lang="{{ example.language }}" hreflang="{{ example.language }}">{{ example.title }}</a></li>
+			  {% elsif example.url %}
+					<li><a href="{{ example.url }}" lang="{{ example.language }}" hreflang="{{ example.language }}">{{ example.title }}</a></li>
+			  {% else %}
+					<li>{{ example.title }}</li>
+			  {% endif %}
+			{% endfor %}
+			</ul>
+		</li>
+	{% endfor %}
+	</ul></li>
 {% endfor %}
 </ul>
-
 
 <h2>Provisional feature</h2>
 

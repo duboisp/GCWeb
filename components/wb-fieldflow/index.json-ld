@@ -12,48 +12,51 @@
 	},
 	"modified": "2021-02-05",
 	"componentName": "wb-fieldflow",
-	"examples": [
-		{
-			"title": "Fieldflow",
-			"language": "en",
-			"path": "fieldflow-en.html"
-		},
-		{
-			"title": "Déroulement de champs",
-			"language": "fr",
-			"path": "fieldflow-fr.html"
-		},
-		{
-			"title": "Basic",
-			"language": "en",
-			"path": "basic-en.html"
-		},
-		{
-			"title": "Configurations de base",
-			"language": "fr",
-			"path": "basic-fr.html"
-		},
-		{
-			"title": "Advanced",
-			"language": "en",
-			"path": "advanced-en.html"
-		},
-		{
-			"title": "Avancé",
-			"language": "fr",
-			"path": "advanced-fr.html"
-		}
-	],
-	"documentations": [
-		{
-			"title": "Fieldflow",
-			"language": "en",
-			"path": "fieldflow-doc-en.html"
-		},
-		{
-			"title": "Déroulement de champs",
-			"language": "fr",
-			"path": "fieldflow-doc-fr.html"
-		}
-	]
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "Fieldflow",
+				"language": "en",
+				"path": "fieldflow-en.html"
+			},
+			{
+				"title": "Déroulement de champs",
+				"language": "fr",
+				"path": "fieldflow-fr.html"
+			},
+			{
+				"title": "Basic",
+				"language": "en",
+				"path": "basic-en.html"
+			},
+			{
+				"title": "Configurations de base",
+				"language": "fr",
+				"path": "basic-fr.html"
+			},
+			{
+				"title": "Advanced",
+				"language": "en",
+				"path": "advanced-en.html"
+			},
+			{
+				"title": "Avancé",
+				"language": "fr",
+				"path": "advanced-fr.html"
+			}
+		],
+		"docs": [
+			{
+				"title": "Fieldflow",
+				"language": "en",
+				"path": "fieldflow-doc-en.html"
+			},
+			{
+				"title": "Déroulement de champs",
+				"language": "fr",
+				"path": "fieldflow-doc-fr.html"
+			}
+		]
+	}
 }

@@ -34,6 +34,8 @@ module.exports = (grunt) ->
 			"usebanner:definePckName"
 			"usebanner:includes"
 			"concat:components"
+			"concat:templates"
+			"concat:sites"
 			"copy:jekyllDist"
 		]
 	)
@@ -58,8 +60,12 @@ module.exports = (grunt) ->
 			"copy:assets"
 			"copy:fonts"
 			"copy:wetboew"
+			"copy:js_lib"
+			"copy:deps_custom"
 			"méli-mélo"
 			"uglify:dist"
+			"copy:deps"
+			"clean:deps"
 			"postcss"
 			"usebanner:css"
 		]
@@ -265,7 +271,7 @@ module.exports = (grunt) ->
 
 		clean:
 			dist: [ "dist"]
-			deps: ["<%= themeDist %>/theme-js-deps"]
+			deps: ["<%= themeDist %>/deps-js"]
 			jekyll: [ "_layouts", "~jekyll-dist" ]
 			mélimélo: [ "méli-mélo/demos" ]
 			méliméloPack: [ "méli-mélo/demos/<%= curMéliPack %>" ]
@@ -292,6 +298,20 @@ module.exports = (grunt) ->
 					separator: ","
 				src: "components/**/index.json-ld"
 				dest: "_data/components.json"
+			templates:
+				options:
+					banner: "["
+					footer: "]"
+					separator: ","
+				src: "templates/**/index.json-ld"
+				dest: "_data/templates.json"
+			sites:
+				options:
+					banner: "["
+					footer: "]"
+					separator: ","
+				src: "sites/**/index.json-ld"
+				dest: "_data/sites.json"
 
 			# Placeholder modal for multimélo task
 			mélimélo:
@@ -452,6 +472,26 @@ module.exports = (grunt) ->
 					"wet-boew/**/*.*"
 				]
 				dest: "dist"
+			js_lib:
+				expand: true
+				flatten: true
+				cwd: "node_modules"
+				src: [
+					"jsonpointer.js/src/jsonpointer.js",
+					"fast-json-patch/src/json-patch.js"
+				]
+				dest: "<%= themeDist %>/deps-js"
+			deps_custom:
+				expand: true
+				flatten: true
+				src: "{sites,components,templates}/deps/**.js"
+				dest: "<%= themeDist %>/deps-js"
+			deps:
+				expand: true
+				flatten: true
+				cwd: "<%= themeDist %>/deps-js"
+				src: "**/*.*"
+				dest: "dist/wet-boew/js/deps"
 
 			# méli-mélo tasks
 			mélimélo:

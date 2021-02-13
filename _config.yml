@@ -15,6 +15,13 @@ defaults:
       layout: default
 
 #
+# Collections
+collections:
+  wetboew-demos:
+    output: true
+#    permalink: /wet-boew-demos/:name
+
+#
 # Jekyll settings
 timezone: America/Toronto # Timezone for blog posts and alike
 #verbose: true

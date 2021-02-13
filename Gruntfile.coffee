@@ -39,7 +39,7 @@ module.exports = (grunt) ->
 			"copy:jekyllDist"
 		]
 	)
-	
+
 	@registerTask(
 		"formytest"
 		"Build the jekyll theme site only"
@@ -68,6 +68,9 @@ module.exports = (grunt) ->
 			"clean:deps"
 			"postcss"
 			"usebanner:css"
+			"clean:wetboew_demos"
+			"copy:wetboew_demos"
+#			"usebanner:generatedFiles"
 		]
 	)
 
@@ -107,7 +110,7 @@ module.exports = (grunt) ->
 			"sasslint"
 		]
 	)
-	
+
 	@registerMultiTask(
 		"méli-mélo-build"
 		"Try to dynamically compile mélimelo",
@@ -116,23 +119,23 @@ module.exports = (grunt) ->
 			iterator = 0
 			for pack in yepMeli.packages
 				console.log( "Creating... " + pack.nom )
-			
+
 				#
 				# The iterator is used to ensure that all task are ran
 				iterator++
-				
+
 				#
 				# create global for task specific
 				grunt.config( "curMéliPack" + iterator, pack.nom )
 				grunt.config( "curMéliLibs" + iterator, pack.libs )
-				
+
 				#
 				# Clean the méli-mélo package folder
 				#
 				#méliméloClean = clone( grunt.config.getRaw( "clean.méliméloPack" ) );
 				#méliméloClean[0] = méliméloClean[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
 				#grunt.config( "clean.méliméloPack-" + iterator, méliméloClean )
-				
+
 				#
 				# Concat the js
 				# fyi - grunt.util._.clone() !== clone();
@@ -141,7 +144,7 @@ module.exports = (grunt) ->
 				méliméloJs.src[1] = méliméloJs.src[1].replace( "curMéliLibs", "curMéliLibs" + iterator );
 				méliméloJs.dest = méliméloJs.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
 				grunt.config( "concat.mélimélo-" + iterator, méliméloJs )
-				
+
 				#
 				# Create the CSS compiled file
 				#
@@ -180,14 +183,14 @@ module.exports = (grunt) ->
 				méliméloSassClean = clone( grunt.config.getRaw( "clean.méliméloWorkdir" ) );
 				méliméloSassClean[0] = méliméloSassClean[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
 				grunt.config( "clean.méliméloWorkdir-" + iterator, méliméloSassClean )
-				
+
 				#
 				# Copy the demos file, into the méli-mélo compiled folder
 				méliméloDemo = clone( grunt.config.getRaw( "copy.mélimélo" ) );
 				méliméloDemo.src[0] = méliméloDemo.src[0].replace( "curMéliLibs", "curMéliLibs" + iterator );
 				méliméloDemo.dest = méliméloDemo.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
 				grunt.config( "copy.mélimélo-" + iterator, méliméloDemo )
-				
+
 				#
 				# Replace the font-matter property script and css by the compiled ones in the demos files
 				méliméloFM = clone( grunt.config.getRaw( "usebanner.mélimélo" ) );
@@ -195,7 +198,7 @@ module.exports = (grunt) ->
 				méliméloFM.options.props.script = méliméloFM.options.props.script.replace( /curMéliPack/g, pack.nom );
 				méliméloFM.options.props.css = méliméloFM.options.props.css.replace( /curMéliPack/g, pack.nom );
 				grunt.config( "usebanner.mélimélo-" + iterator, méliméloFM )
-				
+
 				#
 				# Copy the assets
 				méliméloAssets = clone( grunt.config.getRaw( "copy.méliméloAssets" ) );
@@ -204,13 +207,13 @@ module.exports = (grunt) ->
 				méliméloAssets.src[2] = méliméloAssets.src[2].replace( "curMéliLibs", "curMéliLibs" + iterator );
 				méliméloAssets.dest = méliméloAssets.dest.replace( /curMéliPack/g, "curMéliPack" + iterator );
 				grunt.config( "copy.méliméloAssets-" + iterator, méliméloAssets )
-				
+
 				#
 				# Copy distributions files
 				méliméloDist = clone( grunt.config.getRaw( "copy.méliméloDist" ) );
 				méliméloDist.src[0] = méliméloDist.src[0].replace( /curMéliPack/g, "curMéliPack" + iterator );
 				grunt.config( "copy.méliméloDist-" + iterator, méliméloDist )
-				
+
 				# Run all the task sequential
 				grunt.task.run( [
 					#"clean:mélimélo-" + iterator,
@@ -225,7 +228,7 @@ module.exports = (grunt) ->
 					"copy:méliméloAssets-" + iterator,
 					"copy:méliméloDist-" + iterator
 				] )
-				
+
 	)
 
 	@initConfig
@@ -241,12 +244,13 @@ module.exports = (grunt) ->
 		jqueryOldIEVersion: "1.12.4"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
-		
+
 		# Placeholder modal for multimélo task
 		curMéliPack: "mélimélo.js"
 		curMéliLibs: [ ]
 		_includesPaths: [ ]
-		
+		_generatedFiles: [ ]
+
 		# Commit Messages
 		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
 		distDeployMessage: ((
@@ -273,10 +277,11 @@ module.exports = (grunt) ->
 			dist: [ "dist"]
 			deps: ["<%= themeDist %>/deps-js"]
 			jekyll: [ "_layouts", "~jekyll-dist" ]
+			wetboew_demos: [ "_wetboew-demos" ]
 			mélimélo: [ "méli-mélo/demos" ]
 			méliméloPack: [ "méli-mélo/demos/<%= curMéliPack %>" ]
 			méliméloWorkdir: [ "méli-mélo/demos/<%= curMéliPack %>/workdir" ]
-			
+
 		"méli-mélo-build":
 			run: @file.readJSON "_data/méli-mélo.json"
 
@@ -374,10 +379,41 @@ module.exports = (grunt) ->
 					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
 					position: "bottom"
 				src: "_includes/settings.liquid"
+			generatedFiles:
+				options:
+					banner: """
+							{%- comment -%}
+							@=================================================@--------------
+							|                                                 |--------------
+							|      THIS FILE IS CREATED BY A BUILD SCRIPT     |--------------
+							|       any modification would be dismiss         |--------------
+							|                                                 |--------------
+							|                                                 |--------------
+							| You will find the master copy into the          |--------------
+							| wet-boew github project                         |--------------
+							| into the path: /src/plugins                     |--------------
+							|                                                 |--------------
+							|                                                 |--------------
+							|                                                 |--------------
+							|                                                 |--------------
+							| Generated at: <%= grunt.template.today('yyyy-mm-dd') %>                        |--------------
+							@=================================================@--------------
+							-----------------------------------------------------------------
+							-----------------------------------------------------------------
+							{%- endcomment -%}
+							"""
+					position: "top"
+				files:
+					src: "{<% _.forEach(_generatedFiles, function(src) { %><%- src %>,<% }); %>}"
+			runLocaly:
+				options:
+					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
+					position: "bottom"
+				src: "_includes/settings.liquid"
 			mélimélo:
 				options:
 					banner: ""
-					props: 
+					props:
 						script: "../curMéliPack.js"
 						css: "../curMéliPack.css"
 					position: "replace"
@@ -396,7 +432,7 @@ module.exports = (grunt) ->
 					position: "replace"
 					replace:/^---[\s|\S]*?---/
 				src: "méli-mélo/demos/<%= curMéliPack %>/workdir/**/*.scss"
-				
+
 		copy:
 			layouts:
 				expand: true
@@ -447,7 +483,7 @@ module.exports = (grunt) ->
 					"_layouts/**.*"
 				]
 				dest: "<%= jekyllDist %>/"
-				
+
 			fonts:
 				expand: true
 				flatten: true
@@ -492,6 +528,19 @@ module.exports = (grunt) ->
 				cwd: "<%= themeDist %>/deps-js"
 				src: "**/*.*"
 				dest: "dist/wet-boew/js/deps"
+
+			wetboew_demos:
+				expand: true
+				src: [
+					"node_modules/wet-boew/src/plugins/**/*.*",
+					"!node_modules/wet-boew/src/plugins/**/*.js",
+					"!node_modules/wet-boew/src/plugins/**/*.scss"
+				]
+				dest: "_wetboew-demos"
+				rename: (dest, src) ->
+					ret = dest + "/" + src.replace( 'node_modules/wet-boew/src/plugins/', '' ).replace( ".hbs", ".html" )
+					grunt.config.getRaw( "_generatedFiles" ).push( ret )
+					return ret
 
 			# méli-mélo tasks
 			mélimélo:
@@ -895,7 +944,7 @@ clone = (obj) ->
     return obj
 
   if obj instanceof Date
-    return new Date(obj.getTime()) 
+    return new Date(obj.getTime())
 
   if obj instanceof RegExp
     flags = ''
@@ -903,7 +952,7 @@ clone = (obj) ->
     flags += 'i' if obj.ignoreCase?
     flags += 'm' if obj.multiline?
     flags += 'y' if obj.sticky?
-    return new RegExp(obj.source, flags) 
+    return new RegExp(obj.source, flags)
 
   newInstance = new obj.constructor()
 
@@ -911,4 +960,3 @@ clone = (obj) ->
     newInstance[key] = clone obj[key]
 
   return newInstance
- 

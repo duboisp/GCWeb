@@ -7,6 +7,7 @@ lang: fr
 ---
 {::nomarkdown}
 
+
 <p lang="en"><a hreflang="en" href="#english"><em>(Go to English content)</em></a></p>
 
 <div class="row">
@@ -247,6 +248,14 @@ The following status was not transposed yet with the repository structure reorg
 		</li>
 	{% endfor %}
 	</ul></li>
+{% endfor %}
+</ul>
+
+
+<h2>WET-BOEW demos styled with Canada.ca theme</h2>
+<ul>
+{% for demoPage in site.wetboew-demos %}
+  <li><a href="{{ demoPage.url }}" lang="{{ demoPage.language }}" hreflang="{{ demoPage.language }}">{{ demoPage.title }}</a></li>
 {% endfor %}
 </ul>
 

@@ -1,0 +1,340 @@
+---
+{
+	"title": "v5.1 - Notes de version",
+	"description": "v5.1 - Notes de version - Historique des versions - Thème de Canada.ca (GCWeb)",
+	"language": "fr",
+	"altLangPrefix": "v5.1",
+	"breadcrumb": [
+		{ "title": "Accueil de GCWeb", "link": "../../index-fr.html" },
+		{ "title": "Thème de GCWeb", "link": "../index-fr.html" }
+	],
+	"secondlevel": false,
+	"dateModified": "2019-09-16",
+	"share": "true"
+}
+---
+
+<div class="row">
+	<div class="col-md-7 col-lg-8">
+		<p>Version 5.1</p>
+		<ul>
+			<li><strong>Date de lancement&#160;:</strong> <time>2019-06-20</time></li>
+			<li><strong>Compiler avec:</strong> <a href="https://wet-boew.github.io/wet-boew/docs/versions/v4.0/v4.0.31-fr.html">WET-BOEW v4.0.31</a></li>
+		</ul>
+	</div>
+	<div class="col-xs-12 col-md-auto pull-right">
+		<p><a href="https://github.com/wet-boew/GCWeb/archive/v5.1.zip" class="btn btn-primary">Télécharger le thème <strong>GCWeb v5.1</strong></a><br />
+			<small>(<a href="https://github.com/wet-boew/GCWeb/archive/v5.1.zip">Code source</a>)</small></p>
+	</div>
+</div>
+
+<section>
+<h2>Quoi de neuf?</h2>
+<ul>
+	<li>Gabarit
+		<ul>
+			<li>Mineur - <a href="../../search/" hreflang="en">Gabarit de recherche</a> - Nouveau gabarit pour les pages ayant des résultats de recherche.</li>
+			<li>Mineur - Élément de navigation - Un élément <code>&lt;nav&gt;</code> a été ajouté au lien «&nbsp;sauter la navigation&nbsp;», <a href="#nav-ex">tel que montré ici</a>.</li>
+			<li>Mineur - Font Awesome - Une référence à la police Awesome 5.8.1 a été ajoutée dans la balise <code>&lt;head&gt;</code> (<a href="#fa-ex">voir le code</a>).</li>
+			<li>Mineur - Amélioration en matière de RDFa + schema.org au mot-symbole Canada - Le balisage RDFa a été modifié (ajout d’une nouvelle propriété) pour améliorer l’optimisation pour les moteurs de recherche et la façon dont les moteurs de recherche interprètent certaines informations comprises dans notre gabarit (<a href="#rdfa-ex">plus de renseignements</a>).</li>
+			<li>Correctif - Balisage RDFa pour l’élément principal - Résolution du problème avec le balisage RDFa sur l’élément principal en ajoutant l’attribut <code>typeof="WebPageElement"</code> à l’élément <code>&lt;main&gt;</code> element, <a href="#rdfa2-ex">tel que montré ici</a>.</li>
+		</ul>
+	</li>
+	<li>Styles et plugiciels
+		<ul>
+			<li>Mineur - Variante CSS personnalisée - Nouveau concept qui permet l’intégration de feuilles CSS pour la variante de mise en œuvre de GCWeb en inscrivant des styles dans les nouveaux fichiers SASS qui sont compris dans la version aux fins de collecte (<a href="#variant-ex">plus de renseignements</a>).</li>
+			<li>Mineur - Couleur de fond - Établissement d’un fond foncé sur un élément (p. ex. boîte grise) avec la classe <code>.bg-dark</code> ou d’un fond entièrement noir avec la classe <code>.bg-darker</code>.</li>
+			<li>Mineur - Couleur de texte - établissement du texte en blanc avec la classe CSS appelée <code>text-white</code>. Cette couleur est conjointement applicable aux fonds foncés.</li>
+			<li>Mineur - Texte caviardé - Changement des caractères de texte caviardé à un bloc complet lorsqu’on utilise <code>.redacted</code>.</li>
+			<li>Mineur - Boîte grise - Fournir une boîte grise adaptable qui prend toute la largeur de sa page parent en y ajoutant la classe <code>.header-rwd</code>.</li>
+			<li>Mineur - Gestionnaire des URL et géocarte - Ajout de la possibilité de remplir préalablement les configurations de la géocarte auprès de la gestion par l’action, <a href="#url-ex">telle que montrée ici</a>.</li>
+			<li>Correctif - Image de fond du pied de page - Le drapeau canadien a été ajouté au haut du parlement sur l’image du paysage.</li>
+			<li>Correctif - Carrousel - Le dépassement du soulignement du lien a été enlevé sur le carrousel.</li>
+			<li>Correctif - Lecteur multimédia - Le dépassement de la marge supérieure a été enlevé du lecteur multimédia.</li>
+			<li>Correctif - Menu - Correction du menu de navigation sur de différents navigateurs lorsqu’on utilise le lecteur d’écran en réalisant des essais d’opérabilité rigoureux avec JAWS et NVDA.</li>
+		</ul>
+	</li>
+	<li><a href="https://wet-boew.github.io/themes-dist/GCWeb/experimental-fr.html">Expérimental</a> (NOUVEAU)
+		<ul>
+			<li>Espaceurs Bootstrap 4 - Ajout des classes CSS pour le remplissage et l’espacement des marges, p. ex. <code>.p-0</code> pour aucun remplissage et <code>.mb-sm-5</code> pour la marge inférieure très large pour les petits appareils et plus.</li>
+			<li>Taille de l’image de fond - Ajout de la classe CSS pour une image de fond afin de couvrir la taille des cases avec <code>.bg-cover</code>.</li>
+			<li>URL de l’image de fond - Nouveau plugiciel permettant d’établir une image de fond à partir d’un attribut de données appelé <code>data-bgimg</code>. Il a été introduit aux spécifications, mais il n’est pas compatible avec des navigateurs.</li>
+			<li>Couleurs de thème - Capacité de modifier les couleurs de thème de rose à une couleur foncée.</li>
+		</ul>
+	</li>
+	<li>Entretien
+		<ul>
+			<li>Script de compilation - Ajout de l’exception HTMLlint pour interdire l’attribut d’intégrité dans les étiquettes des liens jusqu’à ce qu’il soit adopté par les spécifications HTML.</li>
+			<li>Installation de GCWeb à partir d’un autre répertoire - Inclure un élément package.lock dans le répertoire «&nbsp;themes-cdn_GCWeb&nbsp;» afin d’être capable d’y se référer en tant que dépendance dans un projet node.js.</li>
+		</ul>
+	</li>
+</ul>
+<p>WET-BOEW v4.0.31 (<a href="https://wet-boew.github.io/wet-boew/docs/versions/v4.0/v4.0.31-fr.html">voir les notes de version</a>) <span class="label label-info">Clarifiées le&nbsp;: 2019-09-16</span></p>
+<ul>
+	<li>Gabarit
+		<ul>
+			<li>Liens de contournement</li>
+		</ul>
+	</li>
+	<li>Superposition des styles et des plugiciels
+		<ul>
+			<li>Contenu superposé</li>
+			<li>Gadget de partage</li>
+			<li>Géocarte</li>
+			<li>Coeur</li>
+			<li>Tableaux</li>
+			<li>Lecteur multimédia</li>
+			<li>Flux</li>
+			<li>Basculer</li>
+		</ul>
+	</li>
+	<li>Entretien
+		<ul>
+			<li>Script de compilation</li>
+		</ul>
+	</li>
+</ul>
+<section>
+	<h3 id="implementation">Fichiers modifiés pour implémentation</h3>
+	<ul>
+		<li>Image de pied de page&nbsp;: GCWeb/assets/landscape.png</li>
+		<li>JavaScript primaire&nbsp;:
+			<ul>
+				<li>GCWeb/js/theme.js</li>
+				<li>GCWeb/js/theme.min.js</li>
+			</ul>
+		</li>
+		<li>CSS primaire&nbsp;:
+			<ul>
+				<li>GCWeb/css/theme.css</li>
+				<li>GCWeb/css/theme.min.css</li>
+			</ul>
+		</li>
+		<li><ins>Image pour les logos de réseaux sociaux (gadget de partage)&nbsp;: wet-boew/assets/sprites_share.png</ins> <span class="label label-info">Clarifié le&nbsp;: 2019-09-16</span></li>
+		<li>Dépendance de la Géocarte&nbsp;:
+			<ul>
+				<li>wet-boew/js/geomap-lib.js</li>
+				<li>wet-boew/js/geomap-lib.min.js</li>
+			</ul>
+		</li>
+		<li>i18n, Langue zh-Hans&nbsp;:
+			<ul>
+				<li>wet-boew/js/i18n/zh-Hans.js</li>
+				<li>wet-boew/js/i18n/zh-Hans.min.js</li>
+			</ul>
+		</li>
+	</ul>
+</section>
+<section>
+	<h3>Fureteurs supportés</h3>
+	<p>Tel que défini par la <a href="https://wet-boew.github.io/wet-boew-documentation/decision/2.html" hreflang="en">Décision de conception 2&nbsp;: Fureteur supporté</a> (en anglais)</p>
+	<ul>
+		<li>Chrome 75</li>
+		<li>Chrome 74</li>
+		<li>Safari 12.1.1</li>
+		<li>Firefox 67.0.3</li>
+		<li>Firefox 66.0.5</li>
+		<li>Firefox ESR - 60.7.1</li>
+		<li>IE 11</li>
+		<li>Edge 44</li>
+	</ul>
+</section>
+</section>
+
+<section>
+	<h2 id="details">Détails</h2>
+	<p><strong>Nombre de contributions&nbsp;:</strong> 119</p>
+	<ul>
+		<li><a href="https://github.com/duboisp">Pierre Dubois (@duboisp)</a>&nbsp;: 19 contributions</li>
+		<li><a href="https://github.com/patlaj">Patrick Lajeunesse (@patlaj)</a>&nbsp;: 5 contributions</li>
+		<li><a href="https://github.com/thangle2013">Thang Le (@thangle2013)</a>&nbsp;: 4 contributions</li>
+		<li><a href="https://github.com/EricDunsworth">Eric Dunsworth (@EricDunsworth)</a>&nbsp;: 3 contributions</li>
+		<li><a href="https://github.com/GormFrank">Francis Gorman (@GormFrank)</a>&nbsp;: 2 contributions</li>
+		<li><a href="https://github.com/xiayitan">Xiayitan (@xiayitan)</a>&nbsp;: 2 contributions</li>
+		<li><a href="https://github.com/ipaksc">Ilya Pak (@ipaksc)</a>&nbsp;: 1 contribution</li>
+		<li><a href="https://github.com/shawnthompson">Shawn Thompson (@shawnthompson)</a>&nbsp;: 1 contribution</li>
+		<li><a href="https://github.com/shawnthompson">Jun Sola (@junsola)</a>&nbsp;: 1 contribution</li>
+		<li><a href="https://github.com/Borges-Porteous">Miguel Borges-Porteous (@Borges-Porteous)</a>&nbsp;: 1 contribution</li>
+		<li><a href="https://github.com/StdGit">Stephane Ducharme (@StdGit)</a>&nbsp;: 1 contribution</li>
+		<li><a href="https://github.com/quidampepin">David Pepin (@quidampepin)</a>&nbsp;: 1 contribution</li>
+	</ul>
+	<h3>Liste des contributions</h3>
+	<ul>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/32ee0dd">Update build version to v5.1.0-development</a> - Pierre Dubois, 2019-02-11</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/5b7e511">Broken link fix and added SRI hash</a> - Pierre Dubois, 2019-02-11</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/a614df1">Broken link fix</a> - Pierre Dubois, 2019-02-12</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/0ab7972">add nav element to skip navigation closes #1500 related wet-boew/wet-boew#8570</a> - Shawn Thompson, 2019-02-13</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/825f07f">Menu fix when navigating with a screen reader</a> - Pierre Dubois, 2019-02-20</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/9839169">v5.0.x release notes page content update</a> - ipaksc, 2019-02-21</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/d44826a">Report - Menu - Test result with screen reader</a> - Pierre Dubois, 2019-02-22</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/07ebad8">v5.0.1 Release notes</a> - Pierre Dubois, 2019-02-23</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/f62779a">Search template - Documentation and working example</a> - Borges-Porteous co-authored by Pierre Dubois, 2019-03-01</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/2a4ce84">Add FontAwesome to page heads</a> - Patrick Lajeunesse, 2019-03-18</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/3275d11">Added details about Font Awesome</a> - Patrick Lajeunesse, 2019-03-18</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/7c511d2">Tag close and position of link line from @EricDunsworth</a> - EricDunsworth co-authored by Patrick Lajeunesse, 2019-03-22</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/72dfe05">Action mng - Add geomap filtering</a> - Pierre Dubois, 2019-03-22</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/5b592af">Build script - add HTMLlint exception for integrity attribute in link element</a> - Pierre Dubois, 2019-03-22</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/ba001c8">Move before theme.css, use 5.8.1 of fontawesome</a> - Patrick Lajeunesse, 2019-03-24</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/3fedb8e">Redacted text - Changed the recommended redacted character</a> - Pierre Dubois, 2019-03-26</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/c243efd">Carousel: Removed link underline overrides.</a> - Eric Dunsworth, 2019-04-02</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/44d7638">Carousel: Removed media player top's margin.</a> - Eric Dunsworth, 2019-04-04</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/6df6962">Correct hash for vers 5.8.1</a> - Patrick Lajeunesse, 2019-04-09</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/6688aa2">Content - Add reference for GCWeb menu CDN link</a> - Pierre Dubois, 2019-04-12</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/f735bfd">update-megamenu-20190411</a> - Thang Le, 2019-04-12</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/d8010d9">Fixing links to specs</a> - quidampepin, 2019-04-16</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/b0f5982">megamenu-changes-v5</a> - Thang Le, 2019-04-18</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/5df5e5e">Add color - Background dark and text white</a> - xiayitan, 2019-05-10</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/c9b857b">Well header responsive + Experimental features</a> - Pierre Dubois, 2019-05-10</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/3e00183">WET-BOEW dependance - Bump to v4.0.31-development+2019-05-08 build</a> - Pierre Dubois, 2019-05-13</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/7753b9f"> Add experimental margin bottom xl small device and up</a> - xiayitan, 2019-05-14</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/2c1fdab">Experimental - rename .px-sm for .px-sm-3 and improved the .mb-sm-5  working example</a> - Pierre Dubois, 2019-05-14</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/e5aaff6">Allow to install from themes-cdn_GCWeb</a> - Stephane Ducharme, 2019-05-15</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/1f5e20b">Menu - Prevent menu closing for touch screen and basic instruction menu (#1539)</a> - Pierre Dubois co-authored by Francis Gorman, 2019-05-16</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/39b071e">Experimental - Add pink day and dark color theme</a> - Pierre Dubois, 2019-05-17</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/a7dda6c">Build for GCWeb variant - Allow the integration of custom CSS with GCWeb</a> - Pierre Dubois, 2019-05-22</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/c887a0f">WET-BOEW dependance - Bump to 2019-05-22 build</a> - Francis Gorman, 2019-05-23</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/bfe3185">Template - Replace landscape image in footer</a> - Pierre Dubois, 2019-05-27</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/f0528ea">Structure Data - Set publisher to Government of Canada</a> - Pierre Dubois, 2019-05-29</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/f02bca0">update - French-mega-menu</a> - Thang Le, 2019-05-31</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/826f664">Experimental: Add a background to a heading.</a> - junsola, 2019-06-04</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/c24e239">Default image path fix</a> - Francis Gorman, 2019-06-05</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/446ec55">Pre-release notes: Updates to the developer build notes</a> - gormanfrank, 2019-06-06</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/d56fbba">update-megamenu-BSD-9189</a> - Thang Le, 2019-06-07</li>
+		<li><a href="https://github.com/wet-boew/GCWeb/commit/6d5d479">Experimental features: Add link to Design decision on documentation page</a> - GormFrank, 2019-06-10</li>
+	</ul>
+</section>
+
+<section>
+	<h2 id="sri">Intégrité des sous-ressource (SRI)</h2>
+	<p>Le <a href="https://www.w3.org/TR/SRI/">SRI</a> (en anglais) est une méthode qui permet de protéger le transfère des resources d'un site web. Ci-dessous vous avez les condensés numériques pour les ressource clef de la BOEW et de GCWeb.</p>
+	<section>
+		<h3>v5.1</h3>
+		<dl>
+			<dt><code>GCWeb/js/theme.min.js</code></dt>
+			<dd>sha256-OiyJQtupiMx0gDQGSlt55mOp82hu4XsItRN3fQV2BxY= sha512-6N1hTW9Wcl8pDykcln31N2ACd41L8VCiav+pz70ws4QgfmeMux5MRzEq0lQEeKJtJlo2MgQnSDFOefERH9i2eg==</dd>
+		</dl>
+		<p>Obtenez tous les condensés numériques (en format JSON)&nbsp;:</p>
+		<ul>
+			<li><a href="https://github.com/wet-boew/themes-dist/blob/v5.1-gcweb/GCWeb/payload.json">Thème GCWeb</a></li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Plus de détails et exemples</h2>
+
+	<h3>Relatifs au gabarit</h3>
+
+	<h4 id="nav-ex">Élément de navigation</h4>
+	<div class="row">
+		<div class="col-md-6">
+			<h5>Maintenant</h5>
+			<pre><code><strong>&lt;nav&gt;</strong>
+		&lt;ul id="wb-tphp"&gt;
+			[...]
+		&lt;/ul&gt;
+	<strong>&lt;/nav&gt;</strong></code></pre>
+		</div>
+		<div class="col-md-6">
+			<h5>Était</h5>
+			<pre><code>&lt;ul id="wb-tphp"&gt;
+		[...]
+	&lt;/ul&gt;</code></pre>
+		</div>
+	</div>
+
+	<h4 id="fa-ex">Font awesome</h4>
+	<p>Le code suivant doit être inséré en haut ou sous l’appel au lien de la feuille de style&nbsp;:</p>
+	<pre><code>&lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" /&gt;</code></pre>
+
+	<h4 id="rdfa-ex">Amélioration en matière de RDFa + schema.org au mot-symbole Canada</h4>
+	<ul>
+		<li>Établissement de la propriété «&nbsp;Éditeur&nbsp;» de la «&nbsp;page Web&nbsp;» pour qu’elle soit un «&nbsp;Organisme du gouvernement&nbsp;»</li>
+		<li>Définition des propriétés suivantes pour l’organisme du gouvernement&nbsp;:
+			<dl class="dl-horizontal">
+				<dt><code>url</code></dt>
+				<dd>lien à la page d’accueil</dd>
+				<dt><code>logo</code></dt>
+				<dd>logo de l’image supérieure à gauche</dd>
+				<dt><code>name</code></dt>
+				<dd>gouvernement du Canada</dd>
+				<dt><code>areaServed</code></dt>
+				<dd>fixée en fonction du pays, « Canada »</dd>
+				<dt><code>logo</code></dt>
+				<dd>lien représentant le logo inférieur à droite</dd>
+			</dl>
+		</li>
+	</ul>
+	<p>Remarque&nbsp;: le balisage suivant a été limité à la portée RDFa 1.1 lite et c’est la raison pour laquelle un lien, le même du logo inférieur, a été ajouté.</p>
+
+	<h5>Anglais</h5>
+	<div class="row">
+		<div class="col-md-6">
+			<h6>Maintenant</h6>
+			<pre><code>&lt;div class="brand col-xs-5 col-md-4" <strong>property="publisher" typeof="GovernmentOrganization"</strong>&gt;
+		&lt;a href="https://www.canada.ca/en.html" <strong>property="url"</strong>&gt;&lt;img src="./../GCWeb/assets/sig-blk-en.svg" alt="" <strong>property="logo"</strong> /&gt;&lt;span class="wb-inv" <strong>property="name"</strong>&gt; Government of Canada / &lt;span lang="fr"&gt;Gouvernement du Canada&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+		<strong>&lt;meta property="areaServed" typeOf="Country" content="Canada" /&gt;
+		&lt;link property="logo" href="./../GCWeb/assets/wmms-blk.svg" /&gt;</strong>
+	&lt;/div&gt;</code></pre>
+		</div>
+		<div class="col-md-6">
+			<h6>Était</h6>
+			<pre><code>&lt;div class="brand col-xs-5 col-md-4"&gt;
+		&lt;a href="https://www.canada.ca/en.html"&gt;&lt;img src="./../GCWeb/assets/sig-blk-en.svg" alt="" /&gt;&lt;span class="wb-inv"&gt; Government of Canada / &lt;span lang="fr"&gt;Gouvernement du Canada&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+	&lt;/div&gt;</code></pre>
+		</div>
+	</div>
+
+	<h5>Français</h5>
+	<div class="row">
+		<div class="col-md-6">
+			<h6>Maintenant</h6>
+			<pre><code>&lt;div class="brand col-xs-5 col-md-4" <strong>property="publisher" typeof="GovernmentOrganization"</strong>&gt;
+		&lt;a href="https://www.canada.ca/fr.html" <strong>property="url"</strong>&gt;&lt;img src="./../GCWeb/assets/sig-blk-fr.svg" alt="" <strong>property="logo"</strong> /&gt;&lt;span class="wb-inv" <strong>property="name"</strong>&gt; Gouvernement du Canada / &lt;span lang="en"&gt;Government of Canada&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+		<strong>&lt;meta property="areaServed" typeOf="Country" content="Canada" /&gt;
+		&lt;link property="logo" href="./../GCWeb/assets/wmms-blk.svg" /&gt;</strong>
+	&lt;/div&gt;</code></pre>
+		</div>
+		<div class="col-md-6">
+			<h6>Était</h6>
+			<pre><code>&lt;div class="brand col-xs-5 col-md-4"&gt;
+		&lt;a href="https://www.canada.ca/fr.html"&gt;&lt;img src="./../GCWeb/assets/sig-blk-fr.svg" alt="" /&gt;&lt;span class="wb-inv"&gt; Gouvernement du Canada / &lt;span lang="en"&gt;Government of Canada&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+	&lt;/div&gt;</code></pre>
+		</div>
+	</div>
+
+	<h4 id="rdfa2-ex">Balisage RDFa pour l’élément principal</h4>
+	<div class="row">
+		<div class="col-md-6">
+			<h6>Maintenant</h6>
+			<pre><code>&lt;main property="mainContentOfPage" <strong>typeof="WebPageElement"</strong> class="container"&gt;
+	&lt;h1 property="name" id="wb-cont"&gt;[...]&lt;/h1&gt;
+	&lt;/main&gt;</code></pre>
+		</div>
+		<div class="col-md-6">
+			<h6>Était</h6>
+			<pre><code>&lt;main property="mainContentOfPage" class="container"&gt;
+	&lt;h1 property="name" id="wb-cont"&gt;[...]&lt;/h1&gt;
+	&lt;/main&gt;</code></pre>
+		</div>
+	</div>
+
+	<h3>Relatifs aux styles et aux plugiciels</h3>
+
+	<h4 id="variant-ex">Variante CSS personnalisée</h4>
+	<p>Si vous vouliez utiliser votre propre variante GCWeb pour faciliter la mise en œuvre, donc renommez le dossier suivant afin de faire qu’il soit capté par le script de compilation&nbsp;:</p>
+	<div class="row">
+		<div class="col-md-6">
+			<h5>Après</h5>
+			<p class="well">"src/variant"</p>
+		</div>
+		<div class="col-md-6">
+			<h5>Avant</h5>
+			<p class="well">"src/variant-default"</p>
+		</div>
+	</div>
+	<p>Remarque&nbsp;: «&nbsp;variant-default.scss&nbsp;» est le fichier SASS à modifier pour des styles personnalisés, mais d’autres dans le dossier sont également disponibles pour de diverses clôtures.</p>
+
+	<h4 id="url-ex">Gestionnaire par l’action et géocarte</h4>
+	<p>En tant qu’exemple, les paramètres <code>?aoi=qc&amp;layout=pt</code> suivants feraient zoom sur Québec et activeraient la couche Points après le lancement du gestionnaire d’URL. Consultez les documents sur la <a href="https://wet-boew.github.io/themes-dist/GCWeb/demos/urlmapping/geomap-fr.html">mise en correspondance des URL</a> pour plus de renseignements.</p>
+</section>

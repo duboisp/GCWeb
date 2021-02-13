@@ -21,6 +21,7 @@
 			{
 				"title": "Content page",
 				"language": "en",
+				"type": "general",
 				"path": "content-en.html"
 			},
 			{
@@ -38,6 +39,28 @@
 				"title": "Page de contenu fluide",
 				"language": "fr",
 				"path": "content-fluid-fr.html"
+			},
+
+			{
+				"title": "Content page - Limited width content",
+				"language": "en",
+				"path": "content-limit-en.html"
+			},
+			{
+				"title": "Page de contenu - Largeur de contenu limitée",
+				"language": "fr",
+				"path": "content-limit-fr.html"
+			},
+
+			{
+				"title": "Content page - GCWeb 4.0.29 font stylee",
+				"language": "en",
+				"path": "content-gcweb-4-0-29-font-style-en.html"
+			},
+			{
+				"title": "Page de contenu - Police de caractère de GCWeb 4.0.29",
+				"language": "fr",
+				"path": "content-gcweb-4-0-29-font-style-fr.html"
 			},
 
 			{
@@ -62,6 +85,8 @@
 				"path": "content-signedon-fr.html"
 			},
 
+
+
 			{
 				"title": "Stay connected",
 				"language": "en",
@@ -76,6 +101,7 @@
 			{
 				"title": "[Theme title]",
 				"language": "en",
+				"type": "content-type",
 				"path": "theme-en.html"
 			},
 			{
@@ -118,80 +144,60 @@
 			},
 
 			{
-				"title": "titretitre",
+				"title": "Departments and agencies",
 				"language": "en",
-				"path": "xxxxxxxx-en.html"
+				"type": "site-wide",
+				"path": "dept-en.html"
 			},
 			{
-				"title": "titretitre",
+				"title": "Ministères et organismes",
 				"language": "fr",
-				"path": "xxxxxxxx-fr.html"
+				"path": "dept-fr.html"
 			},
 
 			{
-				"title": "titretitre",
+				"title": "Promotional events page (Campaign?)",
 				"language": "en",
-				"path": "xxxxxxxx-en.html"
+				"path": "event-en.html"
 			},
 			{
-				"title": "titretitre",
+				"title": "Activité promotionel (Campagne?)",
 				"language": "fr",
-				"path": "xxxxxxxx-fr.html"
+				"path": "event-fr.html"
 			},
 
 			{
-				"title": "titretitre",
+				"title": "Feedback form",
+				"type": "specialized",
 				"language": "en",
-				"path": "xxxxxxxx-en.html"
+				"path": "feedback-en.html"
 			},
 			{
-				"title": "titretitre",
+				"title": "Formulaire de rétroaction",
 				"language": "fr",
-				"path": "xxxxxxxx-fr.html"
+				"path": "feedback-fr.html"
 			},
 
 			{
-				"title": "titretitre",
+				"title": "[Audience name]",
 				"language": "en",
-				"path": "xxxxxxxx-en.html"
+				"path": "gc-audience-en.html"
 			},
 			{
-				"title": "titretitre",
+				"title": "[Public cible]",
 				"language": "fr",
-				"path": "xxxxxxxx-fr.html"
+				"path": "gc-audience-fr.html"
 			},
 
 			{
-				"title": "titretitre",
+				"title": "Service initiation - Might deprecated",
 				"language": "en",
-				"path": "xxxxxxxx-en.html"
+				"path": "service-en.html"
 			},
 			{
-				"title": "titretitre",
+				"title": "Initiation de service - Probablement désuet",
 				"language": "fr",
-				"path": "xxxxxxxx-fr.html"
-			},
-
-			{
-				"title": "titretitre",
-				"language": "en",
-				"path": "xxxxxxxx-en.html"
-			},
-			{
-				"title": "titretitre",
-				"language": "fr",
-				"path": "xxxxxxxx-fr.html"
-			},
-
-			{
-				"title": "titretitre",
-				"language": "en",
-				"path": "xxxxxxxx-en.html"
-			},
-			{
-				"title": "titretitre",
-				"language": "fr",
-				"path": "xxxxxxxx-fr.html"
+				"path": "service-fr.html"
 			}
 		]
 	}

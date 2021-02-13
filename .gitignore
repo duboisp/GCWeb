@@ -51,3 +51,4 @@ méli-mélo/demos/
 ~jekyll-dist/
 
 .secrets
+.env

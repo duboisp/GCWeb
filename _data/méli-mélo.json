@@ -2,24 +2,19 @@
 	"title": "Liste des produit méli-mélo fusionné",
 	"packages": [
 		{
-			"nom": "2021-a",
+			"nom": "2021-03-trial",
 			"libs": [
 				"@sample"
 			]
 		},
 		{
-			"nom": "2021-b",
+			"nom": "2021-8-automne",
 			"libs": [
-				"@sample",
-				"@sample",
-				"@sample"
 			]
 		},
 		{
-			"nom": "2021-c",
+			"nom": "2022-12-hiver",
 			"libs": [
-				"@sample",
-				"2021-1-product-name"
 			]
 		}
 	],

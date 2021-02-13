@@ -1,0 +1,444 @@
+---
+{
+	"title": "v7.0.x - release notes",
+	"description": "v7.0.x - release notes - Version history - Canada.ca theme (GCWeb)",
+	"language": "en",
+	"altLangPrefix": "v7.0",
+	"breadcrumb": [
+		{ "title": "GCWeb home", "link": "../../index-en.html" },
+		{ "title": "GCWeb theme", "link": "../index-en.html" }
+	],
+	"secondlevel": false,
+	"dateModified": "2020-04-29",
+	"share": "true"
+}
+---
+
+<div class="row">
+	<div class="col-md-7 col-lg-8">
+		<p>Version 7.0.1 (STR)</p>
+		<ul>
+			<li><strong>Launching date:</strong>
+				<time>2020-04-29</time>
+			</li>
+			<li><strong>Compile with:</strong> <a href="https://wet-boew.github.io/wet-boew/docs/versions/v4.0/v4.0.35-en.html">WET-BOEW v4.0.35</a></li>
+		</ul>
+		<p>Version 7.0 (STR)</p>
+		<ul>
+			<li><strong>Launching date:</strong>
+				<time>2020-04-16</time>
+			</li>
+			<li><strong>Compile with:</strong> <a href="https://wet-boew.github.io/wet-boew/docs/versions/v4.0/v4.0.35-en.html">WET-BOEW v4.0.35</a></li>
+		</ul>
+	</div>
+	<div class="col-xs-12 col-md-auto pull-right">
+		<p><a href="https://github.com/wet-boew/GCWeb/releases/download/v7.0.1/themes-dist-7.0.1-gcweb.zip" class="btn btn-primary">Download theme <strong>GCWeb v7.0.1</strong></a><br />
+			<small>(<a href="https://github.com/wet-boew/GCWeb/archive/v7.0.1.zip">Source code</a>)</small></p>
+	</div>
+</div>
+
+<section>
+	<h2>What's new?</h2>
+
+	<h3 id="v7.0.1">Version 7.0.1 (STR)</h3>
+	<ul>
+		<li>Provisional
+			<ul>
+				<li>Edit - Plugin - Chatwizard update to open with external button instead of bubble and addition of reset button</li>
+			</ul>
+		</li>
+		<li>Maintenance
+			<ul>
+				<li>Fixed styling issue with static header with experimental Bootstrap 4</li>
+				<li>Updated build script potential breaker</li>
+				<li>General documentation updates</li>
+			</ul>
+		</li>
+	</ul>
+	<h4 id="implementation">Modified files for implementation</h4>
+	<ul>
+		<li>Main JavaScript:
+			<ul>
+				<li>GCWeb/js/theme.js</li>
+				<li>GCWeb/js/theme.min.js</li>
+			</ul>
+		</li>
+		<li>Main CSS:
+			<ul>
+				<li>GCWeb/css/theme.css</li>
+				<li>GCWeb/css/theme.min.css</li>
+			</ul>
+		</li>
+	</ul>
+
+	<h3 id="v7.0">Version 7.0 (STR)</h3>
+	<ul>
+		<li>Template
+			<ul>
+				<li>Major - Breadcrumb - First item "home" renamed to "canada.ca". (<a href="#bc-update">See changes</a>)</li>
+				<li>Major - Report a problem - Align the template as per the one currently on Canada.ca (<a href="#rap-update">See changes</a>)</li>
+			</ul>
+		</li>
+		<li>Documentation
+			<ul>
+				<li>Fieldflow - Fixed spelling and grammar on English page</li>
+			</ul>
+		</li>
+		<li>Provisional (was Experimental)
+			<ul>
+				<li>Renamed the main page and changed the wording and plugin to use "provisional"</li>
+				<li>Add - Alert component redesign</li>
+				<li>Add - Color for warning icon</li>
+				<li>Add - Plugin - Chatwizard (<code>wb-chtwzrd</code>)</li>
+				<li>Template for "Was this page helpful" in future replacement of report a problem</li>
+			</ul>
+		</li>
+		<li>Maintenance
+			<ul>
+				<li>Updated various build script dependencies</li>
+			</ul>
+		</li>
+	</ul>
+	<h4>WET-BOEW v4.0.35 (<a href="https://wet-boew.github.io/wet-boew/docs/versions/v4.0/v4.0.35-en.html">see release notes</a>)</h4>
+	<ul>
+		<li>Core
+			<ul>
+				<li>Minor - Add helper function (<code>wb.shuffleDOM</code>)</li>
+				<li>Minor - Add helper function (<code>wb.pickElements</code>)</li>
+			</ul>
+		</li>
+		<li><a href="https://wet-boew.github.io/wet-boew/docs/ref/provisional-en.html">Provisional</a>
+			<ul>
+				<li>Add - Steps forms plugin (<code>wb-steps</code>)</li>
+				<li>Add - Randomize plugin (<code>wb-randomize</code>)</li>
+				<li>Add - Postback form plugin (<code>wb-postback</code>)</li>
+			</ul>
+		</li>
+	</ul>
+	<h4 id="implementation">Modified files for implementation</h4>
+	<ul>
+		<li>Main JavaScript:
+			<ul>
+				<li>wet-boew/js/wet-boew.js</li>
+				<li>wet-boew/js/wet-boew.min.js</li>
+				<li>GCWeb/js/theme.js</li>
+				<li>GCWeb/js/theme.min.js</li>
+			</ul>
+		</li>
+		<li>Main CSS:
+			<ul>
+				<li>GCWeb/css/theme.css</li>
+				<li>GCWeb/css/theme.min.css</li>
+			</ul>
+		</li>
+		<li>Image:
+			<ul>
+				<li>GCWeb/assets/default-avatar.png</li>
+			</ul>
+		</li>
+	</ul>
+</section>
+
+<section>
+	<h2 id="details">Details</h2>
+
+	<h3>Version 7.0.1 (STR)</h3>
+	<p><strong>Number of commits:</strong> 7</p>
+	<ul>
+		<li><a href="https://github.com/GormFrank">@GormFrank</a>: 3 commits</li>
+		<li><a href="https://github.com/duboisp">@duboisp</a>: 2 commits</li>
+		<li><a href="https://github.com/namjohn920">@namjohn920</a>: 1 commits</li>
+		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>: 1 commit</li>
+	</ul>
+	<h4>List of commits</h4>
+	<ul>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/bd152f85">Contenu - Ajout de la documentation des changement majeur et SRI pour v7.0</a> - Pierre Dubois, 2020-04-17 00:37:00 -0400</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/cbbf83ef">Changed the breadcrumb in the bootsrap 3 template sample</a> - Pierre Dubois, 2020-04-17 14:16:03 -0400</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/200e9509">Release notes typo fix</a> - Francis Gorman, 2020-04-20 07:55:33 -0400</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/b3052d88">Theme: Use sentence case in English i18n strings</a> - Eric Dunsworth, 2020-04-22 15:56:26 -0400</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/9e6c4ada">Fix potential build breaker in hbs markup</a> - Francis Gorman, 2020-04-24 15:08:57 -0400</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/46bf5c1f">chat wizard new featues</a> - namjohn920, 2020-04-29 12:22:03 -0400</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/b140182c">Bootstrap 4 static header & footer assets fix</a> - Francis Gorman, 2020-04-29 16:56:27 -0400</li>
+	</ul>
+
+	<h3>Version 7.0 (STR)</h3>
+	<p><strong>Number of commits:</strong> 16</p>
+	<ul>
+		<li><a href="https://github.com/duboisp">@duboisp</a>: 4 commits</li>
+		<li><a href="https://github.com/namjohn920">@namjohn920</a>: 3 commits</li>
+		<li><a href="https://github.com/dependabot">@dependabot</a>: 2 commits</li>
+		<li><a href="https://github.com/GormFrank">@GormFrank</a>: 2 commits</li>
+		<li><a href="https://github.com/delisma">@delisma</a>: 1 commit</li>
+		<li><a href="https://github.com/wonggra">@wonggra</a>: 1 commit</li>
+		<li><a href="https://github.com/RobJohnston">@RobJohnston</a>: 1 commit</li>
+		<li><a href="https://github.com/Borges-Porteous">@Borges-Porteous</a>: 1 commit</li>
+		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>: 1 commit</li>
+	</ul>
+	<h4>List of commits</h4>
+	<ul>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/4dead14581a9b4be0c04b8829d8cb90056969cb4">refactor: Report a problem alignment with AEM</a> - delisma, 2019-11-20</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/e1c346abaabf8db14a54b612648afa03ee051e5f">Experimental changed to Provisional</a> - namjohn920, 2020-01-14</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/caf73f72ee72fca7580da4a752eabd61868c6c76">Provisional feature - Alert component redesign</a> - Borges-Porteous; EricDunsworth, 2020-02-12</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/53143d04c7b52b3f7cd2500e99ca6bb3e11cd36b">Correct spelling and grammar on English page</a> - RobJohnston, 2020-02-20</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/41b620636dad45db6b0c7e5674d6c8a3efa63ed1">Bump rake from 10.4.2 to 12.3.3</a> - dependabot, 2020-02-29</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/056a64c18c61e0c5c4466c7afe7107289916c914">Add Reddit Icon for Social Media</a> - wonggra, 2020-03-03</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/6afc0478303d138e3ba5a02d54b9cc3553328b45">Bump nokogiri from 1.10.5 to 1.10.9</a> - dependabot, 2020-03-11</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/c128260de7100b357ead279e41cc32a7864d77ed">color for warning icon added</a> - namjohn920, 2020-03-03</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/7035b11de6147287620bf1fd02b387205d6429cd">GCWeb v7.0 release note</a> - namjohn920, 2020-04-15</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/3248f3c47a3d7955043e3b23256e37a456472284">Report a problem - polishing markup</a> - duboisp, 2020-04-16</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/0f08a10c1ebe4ed80360cdc86f8db54c6cc6cac9">Change breadcrumb "Home" for Canada.ca</a> - duboisp, 2020-04-16</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/99bb1a641e9ea5654b7e8a72832088a691e00bb0">Postback provisional update with wet bump</a> - GormFrank, 2020-04-16</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/731f78fb96ba08260f44327e9c1363a2b6c914ed">Bump wet-boew version to 4.0.35</a> - duboisp, 2020-04-16</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/9cb166e3ce4935c32a1b5ac9bd977de10c52979d">Chat wizard provisional plugin</a> - GormFrank, 2020-04-16</li>
+		<li><a href="https://github.com/wet-boew/gcweb/commit/f4dd6ac47645e5a046cfcaa50ac456ba33ec76db">Chat wizard - Make it provisional and add working example</a> - duboisp, 2020-04-16</li>
+	</ul>
+</section>
+
+<section>
+	<h2 id="sri">Subresource integrity (<a href="https://www.w3.org/TR/SRI/">SRI</a>)</h2>
+
+	<h3>v7.0.1 (STR)</h3>
+	<dl>
+		<dt><code>GCWeb/js/theme.min.js</code></dt>
+		<dd>sha256-CSgSLSRpEglu/YwQ1HpfVK5/BxNe5VmnQxX14dOsuJI= sha512-Bp72/HjNQ9vjQqGKt6dbwYAqSiZSV6yGHGmbphPWeFF139qHQumCu+aPst6j18/zmrPspvXmK7YORtnz7J17Ow==</dd>
+	</dl>
+	<p>Get all hash (JSON format):</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/themes-dist/blob/v7.0.1-gcweb/GCWeb/payload.json">GCWeb theme</a></li>
+	</ul>
+
+	<h3>v7.0 (STR)</h3>
+	<dl>
+		<dt><code>GCWeb/js/theme.min.js</code></dt>
+		<dd>sha256-Ww4l/v4hh8zT3+mD2W61lhGBfoD7u8OyADln6w5hh4M= sha512-7MEdTZH7SCT0VXWd3ym7WOqkJDs7saaXeESuvF+U1UhgoHtbxnP1HYqcwAe9p9UB7WOcq/KV/VlHB34dNUvfzA==</dd>
+	</dl>
+	<p>Get all hash (JSON format):</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/themes-dist/blob/v7.0-gcweb/GCWeb/payload.json">GCWeb theme</a></li>
+	</ul>
+</section>
+
+<section>
+<h2>Major changes documentation</h2>
+
+<span class="wb-prettify all-pre"></span>
+
+<h3 id="bc-update">Breadcrumb - Major change</h3>
+<p>The first breadcrumb item need to be updated</p>
+<h4>French</h4>
+<div class="row">
+<div class="col-md-6">
+	<h5>Before</h5>
+	<pre><code>&lt;li&gt;&lt;a href=&quot;https://www.canada.ca/fr.html&quot;&gt;Accueil&lt;/a&gt;&lt;/li&gt;</code></pre>
+</div>
+<div class="col-md-6">
+	<h5>After</h5>
+	<pre><code>&lt;li&gt;&lt;a href=&quot;https://www.canada.ca/fr.html&quot;&gt;Canada.ca&lt;/a&gt;&lt;/li&gt;</code></pre>
+</div>
+</div>
+
+<h4>English</h4>
+<div class="row">
+<div class="col-md-6">
+	<h5>Before</h5>
+	<pre><code>&lt;li&gt;&lt;a href=&quot;https://www.canada.ca/en.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</code></pre>
+</div>
+<div class="col-md-6">
+	<h5>After</h5>
+	<pre><code>&lt;li&gt;&lt;a href=&quot;https://www.canada.ca/en.html&quot;&gt;Canada.ca&lt;/a&gt;&lt;/li&gt;</code></pre>
+</div>
+</div>
+
+<h3 id="rap-update">Report a problem - Major change</h3>
+
+<p>Change the whole makup under the <code>fieldset</code> element according to the "After" section.</p>
+
+<h4>French</h4>
+<div class="row">
+<div class="col-md-6">
+	<h5>Before</h5>
+	<pre><code>&lt;fieldset&gt;
+	&lt;legend&gt;&lt;span class=&quot;field-name&quot;&gt;Veuillez cocher toutes les réponses pertinentes&amp;nbsp;:&lt;/span&gt;&lt;/legend&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem1&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#broken&quot; name=&quot;problem&quot; value=&quot;Something is broken&quot; id=&quot;problem1&quot; /&gt;Quelque chose ne fonctionne pas&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;broken&quot;&gt;
+		&lt;label for=&quot;problem1-detail&quot;&gt;Fournissez plus des détails (optionnel)&amp;nbsp;:&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem1-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem2&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#spelling&quot; name=&quot;problem&quot; value=&quot;It has spelling or grammar mistakes&quot; id=&quot;problem2&quot; /&gt;Il y a des erreurs d’orthographe ou de grammaire&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;spelling&quot;&gt;
+		&lt;label for=&quot;problem2-detail&quot;&gt;Fournissez plus des détails (optionnel)&amp;nbsp;:&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem2-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem3&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#wrong&quot; name=&quot;problem&quot; value=&quot;The information is wrong&quot; id=&quot;problem3&quot; /&gt;L’information est erronée&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;wrong&quot;&gt;
+		&lt;label for=&quot;problem3-detail&quot;&gt;Fournissez plus des détails (optionnel)&amp;nbsp;:&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem3-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem4&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#outdated&quot; name=&quot;problem&quot; value=&quot;The information is outdated&quot; id=&quot;problem4&quot; /&gt;L’information n’est plus à jour&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;outdated&quot;&gt;
+		&lt;label for=&quot;problem4-detail&quot;&gt;Fournissez plus des détails (optionnel)&amp;nbsp;:&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem4-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem5&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#find&quot; name=&quot;problem&quot; value=&quot;I can’t find what I’m looking for&quot; id=&quot;problem5&quot; /&gt;Je ne trouve pas ce que je cherche&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;find&quot;&gt;
+		&lt;label for=&quot;problem5-detail&quot;&gt;Décrivez ce que vous cherchez (optionnel)&amp;nbsp;:&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem5-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem6&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#confusing&quot; name=&quot;problem&quot; value=&quot;It’s confusing&quot; id=&quot;problem6&quot; /&gt;Autre&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;confusing&quot;&gt;
+		&lt;label for=&quot;problem6-detail&quot;&gt;Fournissez plus des détails (optionnel)&amp;nbsp;:&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem6-detail&quot;&gt;
+	&lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+</div>
+<div class="col-md-6">
+	<h5>After</h5>
+	<pre><code>&lt;fieldset&gt;
+	&lt;legend&gt;&lt;span class=&quot;field-name&quot;&gt;Veuillez cocher toutes les réponses pertinentes&amp;nbsp;:&lt;/span&gt;&lt;/legend&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f1&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem1&quot; value=&quot;Oui&quot; id=&quot;gc-rprt-prblm-f1&quot; /&gt;Un lien, un bouton ou une vidéo ne fonctionne pas
+		&lt;/label&gt;
+		&lt;input name=&quot;problem1&quot; type=&quot;hidden&quot; value=&quot;Non&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f2&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem2&quot; value=&quot;Oui&quot; id=&quot;gc-rprt-prblm-f2&quot; /&gt;Il y a une erreur d'orthographe ou de grammaire
+		&lt;/label&gt;
+		&lt;input name=&quot;problem2&quot; type=&quot;hidden&quot; value=&quot;Non&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f3&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem3&quot; value=&quot;Oui&quot; id=&quot;gc-rprt-prblm-f3&quot; /&gt;Les renseignements sont incomplets
+		&lt;/label&gt;
+		&lt;input name=&quot;problem3&quot; type=&quot;hidden&quot; value=&quot;Non&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f4&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem4&quot; value=&quot;Oui&quot; id=&quot;gc-rprt-prblm-f4&quot; /&gt;L'information n'est plus à jour ou est erronée
+		&lt;/label&gt;
+		&lt;input name=&quot;problem4&quot; type=&quot;hidden&quot; value=&quot;Non&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f5&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem5&quot; value=&quot;Oui&quot; id=&quot;gc-rprt-prblm-f5&quot; /&gt;Je n'arrive pas à trouver ce que je cherche
+		&lt;/label&gt;
+		&lt;input name=&quot;problem5&quot; type=&quot;hidden&quot; value=&quot;Non&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f6&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem6&quot; value=&quot;Oui&quot; id=&quot;gc-rprt-prblm-f6&quot; /&gt;Autre problème qui ne figure pas sur cette liste
+		&lt;/label&gt;
+		&lt;input name=&quot;problem6&quot; type=&quot;hidden&quot; value=&quot;Non&quot; /&gt;
+	&lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+</div>
+</div>
+
+<h4>English</h4>
+<div class="row">
+<div class="col-md-6">
+	<h5>Before</h5>
+	<pre><code>&lt;fieldset&gt;
+	&lt;legend&gt;&lt;span class=&quot;field-name&quot;&gt;Please select all that apply: &lt;/span&gt;&lt;/legend&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem1&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#broken&quot; name=&quot;problem&quot; value=&quot;Something is broken&quot; id=&quot;problem1&quot; /&gt;Something is broken&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;broken&quot;&gt;
+		&lt;label for=&quot;problem1-detail&quot;&gt;Provide more details (optional):&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem1-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem2&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#spelling&quot; name=&quot;problem&quot; value=&quot;It has spelling or grammar mistakes&quot; id=&quot;problem2&quot; /&gt;The page has spelling or grammar mistakes&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;spelling&quot;&gt;
+		&lt;label for=&quot;problem2-detail&quot;&gt;Provide more details (optional):&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem2-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem3&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#wrong&quot; name=&quot;problem&quot; value=&quot;The information is wrong&quot; id=&quot;problem3&quot; /&gt;The information is wrong&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;wrong&quot;&gt;
+		&lt;label for=&quot;problem3-detail&quot;&gt;Provide more details (optional):&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem3-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem4&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#outdated&quot; name=&quot;problem&quot; value=&quot;The information is outdated&quot; id=&quot;problem4&quot; /&gt;The information is outdated&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;outdated&quot;&gt;
+		&lt;label for=&quot;problem4-detail&quot;&gt;Provide more details (optional):&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem4-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem5&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#find&quot; name=&quot;problem&quot; value=&quot;I can’t find what I’m looking for&quot; id=&quot;problem5&quot; /&gt;I can’t find what I’m looking for&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;find&quot;&gt;
+		&lt;label for=&quot;problem5-detail&quot;&gt;Describe what you’re looking for (optional):&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem5-detail&quot;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;problem6&quot;&gt;&lt;input type=&quot;checkbox&quot; data-reveal=&quot;#confusing&quot; name=&quot;problem&quot; value=&quot;It’s confusing&quot; id=&quot;problem6&quot; /&gt;Other&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;form-group hide&quot; id=&quot;confusing&quot;&gt;
+		&lt;label for=&quot;problem6-detail&quot;&gt;Provide more details (optional):&lt;/label&gt;
+		&lt;input type=&quot;text&quot; class=&quot;form-control full-width&quot; id=&quot;problem6-detail&quot;&gt;
+	&lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+</div>
+<div class="col-md-6">
+	<h5>After</h5>
+	<pre><code>&lt;fieldset&gt;
+	&lt;legend&gt;&lt;span class=&quot;field-name&quot;&gt;Please select all that apply: &lt;/span&gt;&lt;/legend&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f1&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem1&quot; value=&quot;Yes&quot; id=&quot;gc-rprt-prblm-f1&quot; /&gt;A link, button or video is not working
+		&lt;/label&gt;
+		&lt;input name=&quot;problem1&quot; type=&quot;hidden&quot; value=&quot;No&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f2&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem2&quot; value=&quot;Yes&quot; id=&quot;gc-rprt-prblm-f2&quot; /&gt;It has a spelling mistake
+		&lt;/label&gt;
+		&lt;input name=&quot;problem2&quot; type=&quot;hidden&quot; value=&quot;No&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f3&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem3&quot; value=&quot;Yes&quot; id=&quot;gc-rprt-prblm-f3&quot; /&gt;Information is missing
+		&lt;/label&gt;
+		&lt;input name=&quot;problem3&quot; type=&quot;hidden&quot; value=&quot;No&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f4&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem4&quot; value=&quot;Yes&quot; id=&quot;gc-rprt-prblm-f4&quot; /&gt;Information is outdated or wrong
+		&lt;/label&gt;
+		&lt;input name=&quot;problem4&quot; type=&quot;hidden&quot; value=&quot;No&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f5&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem5&quot; value=&quot;Yes&quot; id=&quot;gc-rprt-prblm-f5&quot; /&gt;I can't find what I'm looking for
+		&lt;/label&gt;
+		&lt;input name=&quot;problem5&quot; type=&quot;hidden&quot; value=&quot;No&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;checkbox&quot;&gt;
+		&lt;label for=&quot;gc-rprt-prblm-f6&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; name=&quot;problem6&quot; value=&quot;Yes&quot; id=&quot;gc-rprt-prblm-f6&quot; /&gt;Other issue not in this list
+		&lt;/label&gt;
+		&lt;input name=&quot;problem6&quot; type=&quot;hidden&quot; value=&quot;No&quot; /&gt;
+	&lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+</div>
+</div>
+</section>

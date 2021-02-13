@@ -7,6 +7,199 @@
 		"modified": "dct:modified"
 	},
 	"title": {
+		"en": "Checkboxes and radio buttons",
+		"fr": "Cases à cocher et boutons radio"
+	},
+	"description": {
+		"en": "Checkboxes and radio buttons designed based on user experience testing",
+		"fr": "Cases à cocher et boutons radio conçu d'après des recherches d'expérience utilisateur"
+	},
+	"modified": "2018-07-12",
+	"componentName": "gc-chckbxrdio",
+	"status": "provisional",
+	"todos": [
+		"Move CSS from generic provisional to locally here"
+	],
+	"pages": {
+		"docs": [
+			{
+				"title": "Checkboxes and radio buttons",
+				"language": "en",
+				"path": "gc-chckbxrdio-en.html"
+			},
+			{
+				"title": "Cases à cocher et boutons radio",
+				"language": "fr",
+				"path": "gc-chckbxrdio-fr.html"
+			}
+		]
+	}
+},{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Context-specific features",
+		"fr": "Promotions contextuelles"
+	},
+	"description": {
+		"en": "Context-specific features",
+		"fr": "Promotions contextuelles"
+	},
+	"modified": "2018-07-12",
+	"componentName": "gc-features",
+	"status": "stable",
+	"pages": {
+		"docs": [
+			{
+				"title": "Context-specific features - Canada.ca design pattern",
+				"language": "en",
+				"path": "gc-features-en.html"
+			},
+			{
+				"title": "Promotions contextuelles - Configuration de conception de Canada.ca",
+				"language": "fr",
+				"path": "gc-features-fr.html"
+			}
+		]
+	}
+},{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Context-specific features",
+		"fr": "Promotions contextuelles"
+	},
+	"description": {
+		"en": "Context-specific features",
+		"fr": "Promotions contextuelles"
+	},
+	"modified": "2019-01-16",
+	"componentName": "gc-servinfo",
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "Services and information",
+				"language": "en",
+				"path": "gc-servinfo-examples.html"
+			}
+		],
+		"docs": [
+			{
+				"title": "Services and information",
+				"language": "en",
+				"path": "gc-servinfo.html"
+			}
+		]
+	}
+},{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Subway map menu",
+		"fr": "Menu par carte de métro"
+	},
+	"description": {
+		"en": "GC Subway map menu",
+		"fr": "GC menu par carte de métro"
+	},
+	"modified": "2020-12-07",
+	"componentName": "gc-subway",
+	"status": "provisional",
+	"todos": [
+		"Publish accessibility related research and tested here"
+	],
+	"pages": {
+		"docs": [
+			{
+				"title": "Subway map menu",
+				"language": "en",
+				"path": "gc-subway-en.html"
+			},
+			{
+				"title": "Menu par carte de métro",
+				"language": "fr",
+				"path": "gc-subway-fr.html"
+			},
+			{
+				"title": "GC Subway Index page",
+				"language": "en",
+				"path": "index-en.html"
+			},
+			{
+				"title": "Page d'introduction de navigation par carte de métro",
+				"language": "fr",
+				"path": "index-fr.html"
+			},
+			{
+				"title": "[Page 2] - GC Subway map menu",
+				"language": "en",
+				"path": "page2-en.html"
+			},
+			{
+				"title": "[Page 2] - GC menu par carte de métro",
+				"language": "fr",
+				"path": "page2-fr.html"
+			}
+		]
+	}
+},{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Well header responsive",
+		"fr": "Entête well responsive"
+	},
+	"description": {
+		"en": "Context-specific features",
+		"fr": "Liste - Style additionel"
+	},
+	"modified": "2019-05-09",
+	"componentName": "header-rwd",
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "Well header responsive",
+				"language": "en",
+				"path": "well-header-rwd-en.html"
+			},
+			{
+				"title": "Entête well responsive",
+				"language": "fr",
+				"path": "well-header-rwd-fr.html"
+			}
+		]
+	}
+},{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
 		"en": "Other components",
 		"fr": "Autre composant"
 	},
@@ -82,6 +275,39 @@
 				"title": "Exemple de vidéo",
 				"language": "fr",
 				"path": "video-fr.html"
+			}
+		]
+	}
+},{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Context-specific features",
+		"fr": "Liste - Style additionel"
+	},
+	"description": {
+		"en": "Context-specific features",
+		"fr": "Liste - Style additionel"
+	},
+	"modified": "2018-11-07",
+	"componentName": "list",
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "List - Additional style",
+				"language": "en",
+				"path": "list-en.html"
+			},
+			{
+				"title": "Liste - Style additionel",
+				"language": "fr",
+				"path": "list-fr.html"
 			}
 		]
 	}

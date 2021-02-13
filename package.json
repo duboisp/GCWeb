@@ -4,7 +4,7 @@
   "description": "Web Experience Toolkit (WET): Canada.ca Theme Reorg",
   "main": "index.html",
   "scripts": {
-    "prepare": "grunt"
+    "post": "grunt"
   },
   "license": "MIT",
   "dependencies": {
@@ -13,9 +13,9 @@
     "wet-boew": "github:wet-boew/wet-boew#v4.0.40"
   },
   "browserslist": [
-	"last 2 versions",
-	"Firefox ESR",
-	"ie > 10"
+    "last 2 versions",
+    "Firefox ESR",
+    "ie > 10"
   ],
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.0.0",

@@ -40,6 +40,13 @@
 				"language": "fr",
 				"path": "campaign2-fr.html"
 			}
+		],
+		"docs": [
+			{
+				"title": "API documentations",
+				"language": "en",
+				"path": "api.html"
+			}
 		]
 	}
 }

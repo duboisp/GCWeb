@@ -1,8 +1,8 @@
 #
 # Local site settings
 theme-name: GCWeb
-title: "gcweb-jekyll" # Site name or title
-website: "https://duboisp.github.io/duboisp/gcweb-jekyll/" # URL of your public facing website
+title: "GCWeb, the Canada.ca official theme" # Site name or title
+website: "https://wet-boew.github.io/gcweb/" # URL of your public facing website
 site:
   lang: fr
 
@@ -35,6 +35,7 @@ exclude:
 - CONTRIBUTING.md
 - LICENSE*
 - SECURITY.md
+- Gruntfile.coffee
 - CNAME
 - "*.tmp"
 - Gemfile

@@ -48,9 +48,9 @@ Name must be uniques across the whole repos for that type of file.
 
 Folder | name
 
-* **/layout | layout-*.html: Jekyll template HTML file which would be copied over "_layouts" folder. 
+* **/layout | layout-*.html: Jekyll template HTML file which would be copied over "_layouts" folder.
 * **/scss | *.scss: SASS file
-	
+
 	* base.scss -> General include
 	* print.scss - > Print CSS
 	* screen -> Screen media query
@@ -60,7 +60,7 @@ Folder | name
 * **/data | *-data.csv | *-data.json | *-data.json-ld :Data file to be copied over "data"
 
 * **/demos | -demo.hbs | demo.html | *.md
-	* **/demos/*.js | **/*-demos.js"js" are demos js file in demos folder are excluded from "concatenating" 
+	* **/demos/*.js | **/*-demos.js"js" are demos js file in demos folder are excluded from "concatenating"
 * **/docs | -docs.hbs | {lang}-docs.hbs
 
 * **/includes/*.html | **/include-*.html : File to copy over "include folder"
@@ -116,11 +116,11 @@ SCSS / JS - Priority order
  11 - template - helpers
  12 - sites - helpers
 
- 
+
 // Create a Grunt task that would override those CSS include
 // Separate site with component priorities
- 
- 
+
+
 - layout
 - -inc
 
@@ -171,3 +171,90 @@ Create a build script that combine both and update the .gitignore (may be local 
 For example, the {% include alert-provisional.html siteroot="../" %} will be moved in that _include folder, instead of being in the sites/includes folders
 
 
++++++++++++++++++++
+
+
+Packages....
+
+- Build a production ready files - grunt dist
+- Build quickly a dev env files - grunt OR grunt debug
+- Run test -> grunt debug + grunt test
+
+Special build: Use remote files but in debug -> grunt remote ||| But this is the default, Use local file (grunt local => Will change path for local)
+
+
+Production/Test
+
+- Jekyll template (Remote JS and CSS files)
+- Dist minified + validated (GCWeb bin + wetboew bin + mélimélo bin)
+- GCWeb website
+- Méli-mélo compiled website
+	- Those pages need to use the remotes/compiled JS and CSS. in other word, the dist previously minified
+- Self-Update local GCWeb Jekyll + local wet-boew Demos files + compiled _data files
+	- Like when we know that WET has been updated
+
+Local/Developpement
+
+- Jekyll template (Remote JS and CSS files)
+- Jekyll template (Local JS and CSS files)
+- Dist minified + validated
+- DEBUG Dist un-minified took as is (Just concat of JS + SASS to CSS)
+	- May be just copy the unmified file and change the suffix for "min.js". That way to URL to change
+- Méli-mélo compiled file + local website
+- Update wet-boew demos
+- Update compiled _data files
+
+
+Deployment (Merge commit -> To master branch; Tag created -> To master branch + new tag
+	Trigger: Merged in GCWeb master OR Tag created in GCWeb
+
+- Jekyll template site - On wet-boew/gcweb-jekyll
+	- Only _include + _layout
+	- commit and push
+- Distribution file - On wet-boew/theme-dist -> GCWeb branch
+	- Folder "Dist" only
+	- Clone also in wet-boew/theme-cdn
+- Méli-mélo compiled website - On wet-boew/gcweb-demos-mélimélo
+	- Those pages need to use the remotes/compiled JS and CSS
+
+Deployment - Jekyll template change
+- Regenerate and update local Jekyll template
+- Need to run only when include or layout was modified
+
+Deployment - WET-BOEW demos
+- Regenerate and updated local wet-boew demos sub webiste
+- Need to run only when wet-boew upstream version has been changed. Dependency has changed
+
+
+
+
+Web content to update == Modify wet-boew/theme-dist repos where:
+* index-{en,fr}.html is redirected to GCWeb pages
+* index.html is redirected to GCWeb pages
+* provisional.html is redirected to corresponding GCWeb pages
+* fieldflow{en-fr}.html main page is redirected to corresponding GCWeb pages
+
+++++++++++++
+
+
+Keep compiled web content in it's own repository, but runable locally
+* for: wet-boew-demos
+* for: méli-mélo compiled demos
+- Those use the remote gcweb-jekyll theme
+
+Website + jekyll source code
+- GCWeb
+
+Jekyll website
+- ~jekyll-dist
+
+GCWeb dist
+- theme-dist:gcweb
+
+Trying: Use multiple include folder with config.yml
+But it won't work for _layout
+May be, copy all into ~jekyll compiled folder, and then copy the root _includes and root _layout into those folder. Then configure the local server to use a modified version of the config.yml where we add link to our own custom Folder???
+- This solution, I need to compile a variant version of the config.yml
+
+docker build -t jekyll-with-env-options .
+docker run -it --rm -v "$PWD":/usr/src/app -p "4000:4000" --env JEKYLL_OPTIONS="--includes_dir ~jekyll-dist/_includes --layouts_dir ~jekyll-dist/_layouts"

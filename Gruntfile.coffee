@@ -483,6 +483,8 @@ module.exports = (grunt) ->
 					"_layouts/**.*"
 				]
 				dest: "<%= jekyllDist %>/"
+	### Need to Copy files existing into the _include AND _layout back into those jekyllDist special folder
+
 
 			fonts:
 				expand: true

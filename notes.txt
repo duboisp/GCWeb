@@ -258,3 +258,59 @@ May be, copy all into ~jekyll compiled folder, and then copy the root _includes 
 
 docker build -t jekyll-with-env-options .
 docker run -it --rm -v "$PWD":/usr/src/app -p "4000:4000" --env JEKYLL_OPTIONS="--includes_dir ~jekyll-dist/_includes --layouts_dir ~jekyll-dist/_layouts"
+
+docker run -it --rm -v ./:/usr/src/app -p "4000:4000" --env JEKYLL_OPTIONS='\--includes_dir ~jekyll-dist/_includes \--layouts_dir ~jekyll-dist/_layouts' jekyll-with-env-options
+
+docker run -it --rm -v "$PWD":/usr/src/app -p "4000:4000" --env JEKYLL_OPTIONS='\--includes_dir ~jekyll-dist/_includes \--layouts_dir ~jekyll-dist/_layouts' jekyll-with-env-options
+
+
+docker run -it --rm -v "$PWD":/usr/src/app -p "4000:4000" --env JEKYLL_OPTIONS='--config _config.yml,_localJekyll.yml' jekyll-with-env-options
+
+++++++++++++++++++++++++
+++++++++++++++++++++++++
+++++++++++++++++++++++++
+
+tmp-core-dist-DEBUG
+tmp-core-dist-PROD
+
+grunt dist
+-> Build Production ready files (min)
+
+* Core files - dist
+	+ GCWeb (js + css)
+	+ wet-bew (js + css)
+	+ méli-mélo (js + css)
+
+* Jekyll theme - ~jekyll-dist
+	+ _includes
+	+ _layouts
+
+* Content files
+	+ _wetboew-demos
+	+ méli-mélo-demos
+	+ _data/méli-mélo.json
+
+-> Uglify + Post CSS
+
+
+grunt || grunt debug
+-> Build development files (unmin)
+
+* Core files
+* Jekyll theme
+	- Override settings
+* Content files
+
+++++++
+
+Task
+
+grunt || grunt debug
+-> It build a fully functional local version of GCWeb
+
+grunt dist
+-> Produce the production files that use remote URL, not local
+
+grunt méli-mélo
+-> Build méli-mélo package locally for local testing.
+

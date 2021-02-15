@@ -2,7 +2,7 @@
 node_modules/
 lib/
 site/data/i18n/
-dist/*
+dist/
 ?sprite*.*css
 sprite*.png
 
@@ -47,7 +47,8 @@ csslint.out.xml
 #_includes/
 
 temporary/
-méli-mélo/demos/
+méli-mélo-demos/
+_wetboew-demos/
 ~jekyll-dist/
 
 .secrets

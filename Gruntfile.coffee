@@ -10,17 +10,7 @@ module.exports = (grunt) ->
 		"default"
 		"Default task, that runs the production build"
 		[
-			"jekyll"
-		]
-	)
-
-	@registerTask(
-		"jekyll"
-		"Build and run the theme locally"
-		[
-			"jekyll-site"
-			"usebanner:runLocaly"
-			"build-theme"
+			"debug"
 		]
 	)
 
@@ -31,12 +21,8 @@ module.exports = (grunt) ->
 			"clean:jekyll"
 			"copy:layouts"
 			"copy:includes"
-			"usebanner:definePckName"
-			"usebanner:includes"
-			"concat:components"
-			"concat:templates"
-			"concat:sites"
-			"copy:jekyllDist"
+
+			"copy:jekyllRunLocal"
 		]
 	)
 
@@ -46,7 +32,7 @@ module.exports = (grunt) ->
 		[
 			"copy:includes"
 			"usebanner:includes"
-			"copy:jekyllDist"
+#			"copy:jekyllDist"
 		]
 	)
 
@@ -61,16 +47,15 @@ module.exports = (grunt) ->
 			"copy:fonts"
 			"copy:wetboew"
 			"copy:js_lib"
-			"copy:deps_custom"
+			"copy:depsJS_custom"
 			"méli-mélo"
 			"uglify:dist"
-			"copy:deps"
-			"clean:deps"
+			"copy:depsJS"
+			"clean:depsJS"
 			"postcss"
 			"usebanner:css"
 			"clean:wetboew_demos"
 			"copy:wetboew_demos"
-#			"usebanner:generatedFiles"
 		]
 	)
 
@@ -84,8 +69,61 @@ module.exports = (grunt) ->
 		]
 	)
 
+
+
+
+
+
+
+	@registerTask(
+		"dist"
+		"Build distribution files ready for production"
+		[
+			"jekyll-theme"
+			"tmp-core-dist-PROD"
+			"site-contents"
+		]
+	)
+
+	@registerTask(
+		"debug"
+		"Build a local working copy"
+		[
+			"jekyll-theme"
+			"jekyll-theme-runLocal"
+			"tmp-core-dist-DEBUG"
+			"site-contents"
+		]
+	)
+
 	@registerTask(
 		"méli-mélo"
+		"Build méli-mélo files and run it in-place"
+		[
+			"jekyll-theme"
+			"jekyll-theme-runLocal"
+			"clean:mélimélo"
+			"méli-mélo-build:inplace"
+			"copy:méliméloGelé"
+		]
+	)
+
+
+	@registerTask(
+		"site-contents"
+		"Build méli-mélo files"
+		[
+			"concat:components"
+			"concat:templates"
+			"concat:sites"
+			"clean:wetboew_demos"
+			"copy:wetboew_demos"
+		]
+	)
+
+
+	@registerTask(
+		"méli-mélo-remote"
 		"Build méli-mélo files"
 		[
 			"clean:mélimélo"
@@ -95,13 +133,83 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"dist"
-		"Initial build setup"
+		"méli-mélo-runLocal"
+		"Build méli-mélo files"
+		[
+			"clean:mélimélo"
+			"méli-mélo-build:runLocal"
+			"copy:méliméloGelé"
+		]
+	)
+
+	@registerTask(
+		"jekyll-theme"
+		"PROD - Build Jekyll theme"
+		[
+			"clean:jekyll"
+			"copy:layouts"
+			"copy:includes"
+		]
+	)
+	@registerTask(
+		"jekyll-theme-runLocal"
+		"DEBUG - Jekyll theme but with the run local variant"
+		[
+			"usebanner:jekyllRunLocal"
+			"copy:jekyllRunLocal"
+		]
+	)
+
+
+	@registerTask(
+		"tmp-core-dist-DEBUG"
+		"Compile core GCWeb files"
+		[
+			"core-dist"
+			"méli-mélo-runLocal"
+			"core-dist-POST"
+		]
+	)
+	@registerTask(
+		"tmp-core-dist-PROD"
+		"Compile core GCWeb files"
+		[
+			"core-dist"
+			"méli-mélo-remote"
+			"uglify:dist"
+			"postcss"
+			"cssmin:theme"
+			"cssmin:mélimélo"
+			"core-dist-POST"
+		]
+	)
+
+
+	@registerTask(
+		"core-dist"
+		"Compile core GCWeb files"
 		[
 			"clean:dist"
 			"sass:all"
+			"concat:plugins"
+			"copy:assets"
+			"copy:fonts"
+			"copy:wetboew"
+			"copy:js_lib"
+			"copy:depsJS_custom"
 		]
 	)
+	@registerTask(
+		"core-dist-POST"
+		"Post task to complete the compilation of core GCWeb files"
+		[
+			"usebanner:css"
+			"copy:depsJS"
+			"clean:depsJS"
+		]
+	)
+
+
 
 	@registerTask(
 		"linting"
@@ -116,8 +224,14 @@ module.exports = (grunt) ->
 		"Try to dynamically compile mélimelo",
 		() ->
 			yepMeli = this.data
+			runType = yepMeli.runType
+			packages = []
+			if runType
+				packages = yepMeli.config.packages
+			else
+				packages = yepMeli.packages
 			iterator = 0
-			for pack in yepMeli.packages
+			for pack in packages
 				console.log( "Creating... " + pack.nom )
 
 				#
@@ -193,11 +307,24 @@ module.exports = (grunt) ->
 
 				#
 				# Replace the font-matter property script and css by the compiled ones in the demos files
-				méliméloFM = clone( grunt.config.getRaw( "usebanner.mélimélo" ) );
-				méliméloFM.src = méliméloFM.src.replace( /curMéliPack/g, "curMéliPack" + iterator );
-				méliméloFM.options.props.script = méliméloFM.options.props.script.replace( /curMéliPack/g, pack.nom );
-				méliméloFM.options.props.css = méliméloFM.options.props.css.replace( /curMéliPack/g, pack.nom );
-				grunt.config( "usebanner.mélimélo-" + iterator, méliméloFM )
+				# runLocal
+				méliméloFMlocal = clone( grunt.config.getRaw( "usebanner.méliméloRunLocal" ) );
+				méliméloFMlocal.src = méliméloFMlocal.src.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				méliméloFMlocal.options.props.script = méliméloFMlocal.options.props.script.replace( /curMéliPack/g, pack.nom );
+				méliméloFMlocal.options.props.css = méliméloFMlocal.options.props.css.replace( /curMéliPack/g, pack.nom );
+				grunt.config( "usebanner.méliméloRunLocal-" + iterator, méliméloFMlocal )
+				# in place
+				méliméloFMinplace = clone( grunt.config.getRaw( "usebanner.méliméloInplace" ) );
+				méliméloFMinplace.src = méliméloFMinplace.src.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				méliméloFMinplace.options.props.script = méliméloFMinplace.options.props.script.replace( /curMéliPack/g, pack.nom );
+				méliméloFMinplace.options.props.css = méliméloFMinplace.options.props.css.replace( /curMéliPack/g, pack.nom );
+				grunt.config( "usebanner.méliméloInplace-" + iterator, méliméloFMinplace )
+				# remote
+				méliméloFMremote = clone( grunt.config.getRaw( "usebanner.méliméloRemote" ) );
+				méliméloFMremote.src = méliméloFMremote.src.replace( /curMéliPack/g, "curMéliPack" + iterator );
+				méliméloFMremote.options.props.script = méliméloFMremote.options.props.script.replace( /curMéliPack/g, pack.nom );
+				méliméloFMremote.options.props.css = méliméloFMremote.options.props.css.replace( /curMéliPack/g, pack.nom );
+				grunt.config( "usebanner.méliméloRemote-" + iterator, méliméloFMremote )
 
 				#
 				# Copy the assets
@@ -215,19 +342,48 @@ module.exports = (grunt) ->
 				grunt.config( "copy.méliméloDist-" + iterator, méliméloDist )
 
 				# Run all the task sequential
-				grunt.task.run( [
-					#"clean:mélimélo-" + iterator,
-					"concat:mélimélo-" + iterator,
-					"copy:méliméloScss-" + iterator,
-					"usebanner:méliméloScss-" + iterator,
-					"sass:mélimélo-" + iterator,
-					"concat:méliméloCss-" + iterator,
-					"clean:méliméloWorkdir-" + iterator,
-					"copy:mélimélo-" + iterator,
-					"usebanner:mélimélo-" + iterator,
-					"copy:méliméloAssets-" + iterator,
-					"copy:méliméloDist-" + iterator
-				] )
+				if runType == "local"
+					grunt.task.run( [
+						#"clean:mélimélo-" + iterator,
+						"concat:mélimélo-" + iterator,
+						"copy:méliméloScss-" + iterator,
+						"usebanner:méliméloScss-" + iterator,
+						"sass:mélimélo-" + iterator,
+						"concat:méliméloCss-" + iterator,
+						"clean:méliméloWorkdir-" + iterator,
+						"copy:mélimélo-" + iterator,
+						"usebanner:méliméloRunLocal-" + iterator,
+						"copy:méliméloAssets-" + iterator,
+						"copy:méliméloDist-" + iterator
+					] )
+				else if runType == "inplace"
+					grunt.task.run( [
+						#"clean:mélimélo-" + iterator,
+						"concat:mélimélo-" + iterator,
+						"copy:méliméloScss-" + iterator,
+						"usebanner:méliméloScss-" + iterator,
+						"sass:mélimélo-" + iterator,
+						"concat:méliméloCss-" + iterator,
+						"clean:méliméloWorkdir-" + iterator,
+						"copy:mélimélo-" + iterator,
+						"usebanner:méliméloInplace-" + iterator,
+						"copy:méliméloAssets-" + iterator,
+						"copy:méliméloDist-" + iterator
+					] )
+				else
+					grunt.task.run( [
+						#"clean:mélimélo-" + iterator,
+						"concat:mélimélo-" + iterator,
+						"copy:méliméloScss-" + iterator,
+						"usebanner:méliméloScss-" + iterator,
+						"sass:mélimélo-" + iterator,
+						"concat:méliméloCss-" + iterator,
+						"clean:méliméloWorkdir-" + iterator,
+						"copy:mélimélo-" + iterator,
+						"usebanner:méliméloRemote-" + iterator,
+						"copy:méliméloAssets-" + iterator,
+						"copy:méliméloDist-" + iterator
+					] )	
 
 	)
 
@@ -246,10 +402,9 @@ module.exports = (grunt) ->
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 
 		# Placeholder modal for multimélo task
+		méliméloFolder: "méli-mélo-demos"
 		curMéliPack: "mélimélo.js"
 		curMéliLibs: [ ]
-		_includesPaths: [ ]
-		_generatedFiles: [ ]
 
 		# Commit Messages
 		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
@@ -275,15 +430,21 @@ module.exports = (grunt) ->
 
 		clean:
 			dist: [ "dist"]
-			deps: ["<%= themeDist %>/deps-js"]
-			jekyll: [ "_layouts", "~jekyll-dist" ]
+			depsJS: ["<%= themeDist %>/deps-js"]
+			jekyll: [ "<%= jekyllDist %>" ]
 			wetboew_demos: [ "_wetboew-demos" ]
-			mélimélo: [ "méli-mélo/demos" ]
-			méliméloPack: [ "méli-mélo/demos/<%= curMéliPack %>" ]
-			méliméloWorkdir: [ "méli-mélo/demos/<%= curMéliPack %>/workdir" ]
+			mélimélo: [ "<%= méliméloFolder %>" ]
+			méliméloPack: [ "<%= méliméloFolder %>/<%= curMéliPack %>" ]
+			méliméloWorkdir: [ "<%= méliméloFolder %>/<%= curMéliPack %>/workdir" ]
 
 		"méli-mélo-build":
 			run: @file.readJSON "_data/méli-mélo.json"
+			runLocal:
+				runType: "local"
+				config: @file.readJSON "_data/méli-mélo.json"
+			inplace:
+				runType: "inplace"
+				config: @file.readJSON "_data/méli-mélo.json"
 
 		concat:
 			plugins:
@@ -294,6 +455,7 @@ module.exports = (grunt) ->
 					"!{sites,components,templates}/**/test.js"
 					"!{sites,components,templates}/**/assets"
 					"!{sites,components,templates}/**/demo"
+					"!{sites,components,templates}/**/demos"
 				]
 				dest: "<%= themeDist %>/js/theme.js"
 			components:
@@ -328,14 +490,14 @@ module.exports = (grunt) ->
 					"!méli-mélo/**/demo/"
 					"!méli-mélo/*.js"
 				]
-				dest: "méli-mélo/demos/<%= curMéliPack %>/<%= curMéliPack %>.js"
+				dest: "<%= méliméloFolder %>/<%= curMéliPack %>/<%= curMéliPack %>.js"
 			méliméloCss:
 				options:
 					stripBanners: false
 				src: [
-					"méli-mélo/demos/<%= curMéliPack %>/workdir/**/*.css"
+					"<%= méliméloFolder %>/<%= curMéliPack %>/workdir/**/*.css"
 				]
-				dest: "méli-mélo/demos/<%= curMéliPack %>/<%= curMéliPack %>.css"
+				dest: "<%= méliméloFolder %>/<%= curMéliPack %>/<%= curMéliPack %>.css"
 		usebanner:
 			css:
 				options:
@@ -343,74 +505,56 @@ module.exports = (grunt) ->
 					position: "replace"
 					replace: "@charset \"UTF-8\";"
 				files:
-					src: "<%= themeDist %>/css/*.*"
-			definePckName:
-				options:
-					banner: """{%- assign setting-packageName = "<%= pkg.name %>" -%}"""
-				src: "_includes/settings.liquid"
-			includes:
-				options:
-					banner: """
-							{%- comment -%}
-							@=================================================@--------------
-							|                                                 |--------------
-							|      THIS FILE IS CREATED BY A BUILD SCRIPT     |--------------
-							|       any modification would be dismiss         |--------------
-							|                                                 |--------------
-							|                                                 |--------------
-							| You will find the master copy into the folder:  |--------------
-							|                                                 |--------------
-							|   * components                                  |--------------
-							|   * sites                                       |--------------
-							|   * templates                                   |--------------
-							|                                                 |--------------
-							|                                                 |--------------
-							| Generated at: <%= grunt.template.today('yyyy-mm-dd') %>                        |--------------
-							@=================================================@--------------
-							-----------------------------------------------------------------
-							-----------------------------------------------------------------
-							{%- endcomment -%}
-							"""
-					position: "top"
-				files:
-					src: "{<% _.forEach(_includesPaths, function(src) { %><%- src %>,<% }); %>}"
-			runLocaly:
+					src: [
+						"<%= themeDist %>/css/*.*",
+						"<%= themeDist %>/méli-mélo/*.css"
+					]
+			#
+			# Use the name in the package.json as packageName in the theme
+			# used to build the URL and to ease the reuse of this build script for derivated theme
+			# 
+			#definePckName:
+			#	options:
+			#		banner: """{%- assign setting-packageName = "<%= pkg.name %>" -%}"""
+			#	src: "_includes/settings.liquid"
+			jekyllRunLocal:
 				options:
 					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
 					position: "bottom"
-				src: "_includes/settings.liquid"
-			generatedFiles:
+				src: "<%= jekyllDist %>/_includes/settings.liquid"
+			méliméloRunLocal:
 				options:
-					banner: """
-							{%- comment -%}
-							@=================================================@--------------
-							|                                                 |--------------
-							|      THIS FILE IS CREATED BY A BUILD SCRIPT     |--------------
-							|       any modification would be dismiss         |--------------
-							|                                                 |--------------
-							|                                                 |--------------
-							| You will find the master copy into the          |--------------
-							| wet-boew github project                         |--------------
-							| into the path: /src/plugins                     |--------------
-							|                                                 |--------------
-							|                                                 |--------------
-							|                                                 |--------------
-							|                                                 |--------------
-							| Generated at: <%= grunt.template.today('yyyy-mm-dd') %>                        |--------------
-							@=================================================@--------------
-							-----------------------------------------------------------------
-							-----------------------------------------------------------------
-							{%- endcomment -%}
-							"""
-					position: "top"
-				files:
-					src: "{<% _.forEach(_generatedFiles, function(src) { %><%- src %>,<% }); %>}"
-			runLocaly:
+					banner: ""
+					props:
+						script: "../../../<%= themeDist %>/méli-mélo/curMéliPack.js"
+						css: "../../../<%= themeDist %>/méli-mélo/curMéliPack.css"
+					position: "replace"
+					replace: (fileContents, newBanner, insertPositionMarker, src, options) ->
+						# Rewrite the front matter by the desired variable value
+						patternFrontMatter = /^(---)([\s|\S]*?)(---)/
+						frontmatter = yaml.load(fileContents.match( patternFrontMatter )[2] )
+						for prop, val of options.props
+							frontmatter[ prop ] = val
+						options.banner = yaml.dump(frontmatter);
+						return fileContents.replace( patternFrontMatter, "---\n" + insertPositionMarker + "---" )
+				src: "<%= méliméloFolder %>/<%= curMéliPack %>/*/*.{md,html}"
+			méliméloRemote:
 				options:
-					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
-					position: "bottom"
-				src: "_includes/settings.liquid"
-			mélimélo:
+					banner: ""
+					props:
+						script: "https://wet-boew.github.io/themes-dist/GCWeb/méli-mélo/curMéliPack.js"
+						css: "https://wet-boew.github.io/themes-dist/GCWeb/méli-mélo/curMéliPack.css"
+					position: "replace"
+					replace: (fileContents, newBanner, insertPositionMarker, src, options) ->
+						# Rewrite the front matter by the desired variable value
+						patternFrontMatter = /^(---)([\s|\S]*?)(---)/
+						frontmatter = yaml.load(fileContents.match( patternFrontMatter )[2] )
+						for prop, val of options.props
+							frontmatter[ prop ] = val
+						options.banner = yaml.dump(frontmatter);
+						return fileContents.replace( patternFrontMatter, "---\n" + insertPositionMarker + "---" )
+				src: "<%= méliméloFolder %>/<%= curMéliPack %>/*/*.{md,html}"
+			méliméloInplace:
 				options:
 					banner: ""
 					props:
@@ -425,13 +569,13 @@ module.exports = (grunt) ->
 							frontmatter[ prop ] = val
 						options.banner = yaml.dump(frontmatter);
 						return fileContents.replace( patternFrontMatter, "---\n" + insertPositionMarker + "---" )
-				src: "méli-mélo/demos/<%= curMéliPack %>/*/*.{md,html}"
+				src: "<%= méliméloFolder %>/<%= curMéliPack %>/*/*.{md,html}"
 			méliméloScss:
 				options:
 					banner: ""
 					position: "replace"
 					replace:/^---[\s|\S]*?---/
-				src: "méli-mélo/demos/<%= curMéliPack %>/workdir/**/*.scss"
+				src: "<%= méliméloFolder %>/<%= curMéliPack %>/workdir/**/*.scss"
 
 		copy:
 			layouts:
@@ -442,7 +586,7 @@ module.exports = (grunt) ->
 					"{sites,components,templates}/**/layout-*.html"
 					"{sites,components,templates}/**/layouts/**.*"
 				]
-				dest: "_layouts"
+				dest: "<%= jekyllDist %>/_layouts"
 			includes:
 				files: [
 					expand: true
@@ -451,40 +595,35 @@ module.exports = (grunt) ->
 						"{sites,components,templates}/**/{include,inc}-*.html"
 						"!{sites,components,templates}/**/includes/**.*"
 					]
-					dest: "_includes"
+					dest: "<%= jekyllDist %>/_includes"
 					rename: (dest, src) ->
 						ret = dest + "/" + src
 						if src.indexOf('/') isnt src.lastIndexOf('/')
 							ret = dest + src.substring( src.indexOf('/') )
-						grunt.config.getRaw( "_includesPaths" ).push( ret )
 						return ret
 				,
 					expand: true
 					src: [
 						"{sites,components,templates}/**/includes/**.*"
 					]
-					dest: "_includes"
+					dest: "<%= jekyllDist %>/_includes"
 					rename: (dest, src) ->
-						ret = dest + src.substring( src.indexOf('/') ).replace( '/includes/', '/' )
-						grunt.config.getRaw( "_includesPaths" ).push( ret )
-						return ret
+						dest + src.substring( src.indexOf('/') ).replace( '/includes/', '/' )
 				,
 					expand: true
 					src: "{sites,components,templates}/*/include.html"
-					dest: "_includes"
+					dest: "<%= jekyllDist %>/_includes"
 					rename: (dest, src) ->
-						ret = dest + "/" + src.replace( '/include.html', '.html' )
-						grunt.config.getRaw( "_includesPaths" ).push( ret )
-						return ret
+						dest + "/" + src.replace( '/include.html', '.html' )
 				]
-			jekyllDist:
+
+			jekyllRunLocal:
 				src: [
-					"{<% _.forEach(_includesPaths, function(src) { %><%- src %>,<% }); %>}",
+					"_includes/**.*",
+					"_includes/**/*.*",
 					"_layouts/**.*"
 				]
 				dest: "<%= jekyllDist %>/"
-	### Need to Copy files existing into the _include AND _layout back into those jekyllDist special folder
-
 
 			fonts:
 				expand: true
@@ -519,12 +658,12 @@ module.exports = (grunt) ->
 					"fast-json-patch/src/json-patch.js"
 				]
 				dest: "<%= themeDist %>/deps-js"
-			deps_custom:
+			depsJS_custom:
 				expand: true
 				flatten: true
 				src: "{sites,components,templates}/deps/**.js"
 				dest: "<%= themeDist %>/deps-js"
-			deps:
+			depsJS:
 				expand: true
 				flatten: true
 				cwd: "<%= themeDist %>/deps-js"
@@ -540,9 +679,7 @@ module.exports = (grunt) ->
 				]
 				dest: "_wetboew-demos"
 				rename: (dest, src) ->
-					ret = dest + "/" + src.replace( 'node_modules/wet-boew/src/plugins/', '' ).replace( ".hbs", ".html" )
-					grunt.config.getRaw( "_generatedFiles" ).push( ret )
-					return ret
+					return dest + "/" + src.replace( 'node_modules/wet-boew/src/plugins/', '' ).replace( ".hbs", ".html" )
 
 			# méli-mélo tasks
 			mélimélo:
@@ -551,7 +688,7 @@ module.exports = (grunt) ->
 					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.{md,html}",
 					"!méli-mélo/*.{md,html}"
 				]
-				dest: "méli-mélo/demos/<%= curMéliPack %>"
+				dest: "<%= méliméloFolder %>/<%= curMéliPack %>"
 				rename: (dest, src) ->
 					return dest + src.substring( src.indexOf('/') )
 			méliméloScss:
@@ -560,7 +697,7 @@ module.exports = (grunt) ->
 					"méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.{scss,css}",
 					"!méli-mélo/*.{md,html}"
 				]
-				dest: "méli-mélo/demos/<%= curMéliPack %>/workdir"
+				dest: "<%= méliméloFolder %>/<%= curMéliPack %>/workdir"
 				rename: (dest, src) ->
 					return dest + src.substring( src.indexOf('/') )
 			méliméloAssets:
@@ -571,14 +708,14 @@ module.exports = (grunt) ->
 					"!méli-mélo/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/*.{md,html,js}",
 					"!méli-mélo/**/*.{scss,css}"
 				]
-				dest: "méli-mélo/demos/<%= curMéliPack %>"
+				dest: "<%= méliméloFolder %>/<%= curMéliPack %>"
 				rename: (dest, src) ->
 					return dest + src.substring( src.indexOf('/') )
 			méliméloDist:
 				expand: true
 				flatten: true
 				src: [
-					"méli-mélo/demos/<%= curMéliPack %>/<%= curMéliPack %>.{css,js}"
+					"<%= méliméloFolder %>/<%= curMéliPack %>/<%= curMéliPack %>.{css,js}"
 				]
 				dest: "<%= themeDist %>/méli-mélo/"
 			méliméloGelé:
@@ -661,9 +798,9 @@ module.exports = (grunt) ->
 					implementation: sass
 				expand: true
 				src: [
-					"méli-mélo/demos/<%= curMéliPack %>/workdir/**/*.scss"
-#					"méli-mélo/demos/méli-mélo-2021-1/workdir/**/*.scss"
-#					"méli-mélo/demos/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/**/*.scss"
+					"<%= méliméloFolder %>/<%= curMéliPack %>/workdir/**/*.scss"
+#					"<%= méliméloFolder %>/méli-mélo-2021-1/workdir/**/*.scss"
+#					"<%= méliméloFolder %>/{<% _.forEach(curMéliLibs, function(lib) { %><%- lib %>,<% }); %>}/**/*.scss"
 				]
 				dest: ""
 #				dest: "méli-mélo/méli-mélo-2021-1/css"
@@ -696,13 +833,15 @@ module.exports = (grunt) ->
 				]
 				ext: ".min.css"
 				dest: "<%= themeDist %>/css"
-
-		cssmin_ie8_clean:
-			min:
+			mélimélo:
 				expand: true
-				cwd: "<%= themeDist %>/css"
-				src: "**/ie8*.min.css"
-				dest: "<%= themeDist %>/css"
+				cwd: "<%= themeDist %>/méli-mélo"
+				src: [
+					"*.css"
+					"!*.min.css"
+				]
+				ext: ".min.css"
+				dest: "<%= themeDist %>/méli-mélo"
 
 		uglify:
 			options:
@@ -716,23 +855,9 @@ module.exports = (grunt) ->
 				src: [
 					"**/*.js"
 					"!**/*.min.js"
-					"!<%= themeDist %>/theme-js-deps"
 				]
 				dest: "<%= themeDist %>"
 				ext: ".min.js"
-
-			deps:
-				options:
-					preserveComments: "some"
-				expand: true
-				cwd: "<%= themeDist %>/theme-js-deps"
-				src: [
-					"*.js"
-					"!*.min.js"
-				]
-				dest: "<%= themeDist %>/theme-js-deps"
-				ext: ".min.js"
-				extDot: "last"
 
 		htmlmin:
 			options:

@@ -49,8 +49,8 @@ jobs:
       - name: Checkout wet-boew latest build
         run: |
           git clone --depth 1 https://github.com/wet-boew/wet-boew-cdn.git --branch v4.0-dist ~wet-boew-cdn
-          mkdir -p node_modules/wet-boew/dist
-          mv ~wet-boew-cdn/* node_modules/wet-boew/dist
+          mkdir -p node_modules/wet-boew/dist/wet-boew
+          mv ~wet-boew-cdn/* node_modules/wet-boew/dist/wet-boew
 
       - name: Build GCWeb
         run: grunt dist
@@ -141,18 +141,23 @@ jobs:
           branch: GCWeb
           github_token: ${{ secrets.my_token }}
 
-#      - name: Dist - Update submodule
-#        run: |
-#          git clone --depth 1 https://github.com/${{ secrets.repo_dist }}.git --branch gh-pages ~gcweb-dist-submodule
-#          cd ~gcweb-dist-submodule
-#          git submodule update --single-branch --remote --init --depth 1 --branch GCWeb
-#          git add .
-#          git commit -m "CD: Update GCWeb dist files" --allow-empty
-#
-#      - name: Dist - Deploy submodule updated
-#        uses: ad-m/github-push-action@master
-#        with:
-#          repository: ${{ secrets.repo_dist }}
-#          directory: ~gcweb-dist-submodule
-#          branch: gh-pages
-#          github_token: ${{ secrets.my_token }}
+      - name: Dist - Update submodule
+        run: |
+          git clone --depth 1 https://github.com/${{ secrets.repo_dist }}.git --branch gh-pages ~gcweb-dist-submodule
+          cd ~gcweb-dist-submodule
+          git submodule update --init --depth 1 GCWeb
+          cd GCWeb
+          git remote add neworigin https://github.com/${{ secrets.repo_dist }}.git
+          git fetch --depth 1 neworigin GCWeb
+          git reset --hard neworigin/GCWeb
+          cd ..
+          git add .
+          git commit -m "CD: Update GCWeb dist files" --allow-empty
+
+      - name: Dist - Deploy submodule updated
+        uses: ad-m/github-push-action@master
+        with:
+          repository: ${{ secrets.repo_dist }}
+          directory: ~gcweb-dist-submodule
+          branch: gh-pages
+          github_token: ${{ secrets.my_token }}

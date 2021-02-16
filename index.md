@@ -342,3 +342,14 @@ Where:
 * `<GITHUB USERNAME>`: Your name, like "John Doe"
 * `<GITHUB HANDLE>`: Your github id
 * `<XXXXXXXXXXXXXX>`: Your personal access token with access to public repository
+
+### Refresh gh-pages with the latest theme changes
+
+```
+curl -u <GITHUB HANDLE>:<XXXXXXXXXXXXXX> -X POST https://api.github.com/repos/<GITHUB HANDLE>/<GITHUB REPOSITORY>/pages/builds
+```
+
+Where:
+* `<GITHUB HANDLE>`: Your github id
+* `<XXXXXXXXXXXXXX>`: Your personal access token with access to public repository
+* `<GITHUB REPOSITORY>`: Your web site github repository, like "jekyll-website"

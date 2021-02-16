@@ -314,6 +314,8 @@ docker run -it --rm -v "$PWD":/usr/src/app -p "4000:4000" --env JEKYLL_OPTIONS='
 
 #### alternative with docker-compose
 
+This version leverage the remote theme wet-beoew/gcweb-jekyll. This equivalent if you run with gh-pages through your own GCWeb repository.
+
 ```
 docker-compose up
 ```

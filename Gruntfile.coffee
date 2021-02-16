@@ -80,7 +80,7 @@ module.exports = (grunt) ->
 		"Build distribution files ready for production"
 		[
 			"jekyll-theme"
-			"tmp-core-dist-PROD"
+			"core-dist-PROD"
 			"site-contents"
 		]
 	)
@@ -91,7 +91,7 @@ module.exports = (grunt) ->
 		[
 			"jekyll-theme"
 			"jekyll-theme-runLocal"
-			"tmp-core-dist-DEBUG"
+			"core-dist-DEBUG"
 			"site-contents"
 		]
 	)
@@ -162,7 +162,7 @@ module.exports = (grunt) ->
 
 
 	@registerTask(
-		"tmp-core-dist-DEBUG"
+		"core-dist-DEBUG"
 		"Compile core GCWeb files"
 		[
 			"core-dist"
@@ -171,7 +171,7 @@ module.exports = (grunt) ->
 		]
 	)
 	@registerTask(
-		"tmp-core-dist-PROD"
+		"core-dist-PROD"
 		"Compile core GCWeb files"
 		[
 			"core-dist"
@@ -181,6 +181,7 @@ module.exports = (grunt) ->
 			"cssmin:theme"
 			"cssmin:mélimélo"
 			"core-dist-POST"
+			"sri:theme"
 		]
 	)
 
@@ -383,7 +384,7 @@ module.exports = (grunt) ->
 						"usebanner:méliméloRemote-" + iterator,
 						"copy:méliméloAssets-" + iterator,
 						"copy:méliméloDist-" + iterator
-					] )	
+					] )
 
 	)
 
@@ -512,7 +513,7 @@ module.exports = (grunt) ->
 			#
 			# Use the name in the package.json as packageName in the theme
 			# used to build the URL and to ease the reuse of this build script for derivated theme
-			# 
+			#
 			#definePckName:
 			#	options:
 			#		banner: """{%- assign setting-packageName = "<%= pkg.name %>" -%}"""
@@ -987,68 +988,6 @@ module.exports = (grunt) ->
 					"{sites,components,templates}/**/*.js"
 				]
 
-		connect:
-			options:
-				port: 8000
-
-			server:
-				options:
-					base: "dist"
-					middleware: (connect, options, middlewares) ->
-						middlewares.unshift(connect.compress(
-							filter: (req, res) ->
-								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
-						))
-						middlewares
-
-		"gh-pages":
-			options:
-				clone: "themes-dist"
-				base: "dist"
-
-			travis:
-				options:
-					repo: process.env.DIST_REPO
-					branch: "<%= deployBranch %>"
-					message: "<%= distDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG + "-" + "<%= pkg.name.toLowerCase() %>" else false
-					))
-				src: [
-					"**/*.*"
-					"!package.json"
-				]
-
-			travis_cdn:
-				options:
-					repo: process.env.CDN_REPO
-					branch: "<%= deployBranch %>"
-					clone: "themes-cdn"
-					base: "<%= themeDist %>"
-					message: "<%= cdnDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG + "-" + "<%= pkg.name.toLowerCase() %>" else false
-					))
-				src: [
-					"**/*.*"
-				]
-
-			local:
-				src: [
-					"**/*.*"
-				]
-
-		"wb-update-examples":
-			travis:
-				options:
-					repo: process.env.DEMOS_REPO
-					branch: process.env.DEMOS_BRANCH
-					message: "<%= distDeployMessage %>"
-				src: [
-					"**/*.*"
-					"!package.json"
-				]
-
 		sri:
 			options:
 				pretty: true
@@ -1057,7 +996,7 @@ module.exports = (grunt) ->
 					dest: "<%= themeDist %>/payload.json"
 				cwd: "<%= themeDist %>"
 				src: [
-					"{js,css}/*.{js,css}"
+					"{js,css,méli-mélo}/*.{js,css}"
 				]
 				expand: true
 

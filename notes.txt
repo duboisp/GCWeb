@@ -314,3 +314,23 @@ grunt dist
 grunt méli-mélo
 -> Build méli-mélo package locally for local testing.
 
+++++++++++++++++++++
+
+Deployment variable
+
+ENV github username
+ENV github email
+ENV commit message - Jekyll Theme
+ENV github repository - Jekyll Theme
+SECRETS github token
+
+++++++
+
+Theme dist are missing the following 4 files
+* License fr
+* License en
+* payload.json
+
+* package.json
+Create TAG when tag is deployed.
+

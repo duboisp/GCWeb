@@ -47,6 +47,7 @@ jobs:
           mv _sprites_share.scss node_modules/wet-boew/src/plugins/share/sprites/_sprites_share.scss
 
       - name: Checkout wet-boew latest build
+        if: ${{ env.ACT }}
         run: |
           git clone --depth 1 https://github.com/wet-boew/wet-boew-cdn.git --branch v4.0-dist ~wet-boew-cdn
           mkdir -p node_modules/wet-boew/dist/wet-boew

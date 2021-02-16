@@ -1,12 +1,14 @@
 name: CD
 
 on:
- # push:
+  push:
 
-#jobs:
+jobs:
   deploy-jekyll:
 
     runs-on: ubuntu-latest
+
+    environment: continuous_deploy
 
     strategy:
       matrix:
@@ -18,60 +20,43 @@ on:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i -g bower grunt-cli
-      - run: npm ci
+
+      - name: Install dependencies
+        run: |
+          npm i -g bower grunt-cli
+          npm ci
 
       - name: Copy the missing _sprite_share.scss file - related to GCWeb#1737 about wet-boew#cc340a6 commit
-        run: curl https://gist.githubusercontent.com/duboisp/d69787b300eb1f4d40f937508e10d013/raw/12cd8472baf6070d9868bdce3d961c3fb6320c83/_sprites_share.scss >> _sprites_share.scss
-      - run: mv _sprites_share.scss node_modules/wet-boew/src/plugins/share/sprites/_sprites_share.scss
+        run: |
+          curl https://gist.githubusercontent.com/duboisp/d69787b300eb1f4d40f937508e10d013/raw/12cd8472baf6070d9868bdce3d961c3fb6320c83/_sprites_share.scss >> _sprites_share.scss
+          mv _sprites_share.scss node_modules/wet-boew/src/plugins/share/sprites/_sprites_share.scss
 
       - name: Build GCWeb
-        run: grunt
+        run: grunt dist
 
-#      - name: Checkout GCWeb-Jekyll
-#        uses: actions/checkout@v2
-#        with:
-##          repository: duboisp/gcweb-jekyll
-#          repository: duboisp/jekyll-website
-#          path: ~gcweb-jekyll
-#          token: ${{ secrets.github_token }}
-#      - name: Copy GCWeb-Jekyll builded files
-#        run: cp -a ~jekyll-dist/. ~gcweb-jekyll/
-#
-#      - name: Create report file
-#        run: date +%s > report.txt
-#          git clone https://github.com/duboisp/jekyll-website.git ~gcweb-jekyll
-#          date +%s > report.txt
-      - name: Clone and copy
+      - name: Jekyll theme - Applying changes
         run: |
-          git clone --depth 1 https://github.com/duboisp/gcweb-jekyll.git ~gcweb-jekyll
-      - run: rm -r ~gcweb-jekyll/_includes
-      - run: rm -r ~gcweb-jekyll/_layouts
-      - run: mv ~jekyll-dist/_includes ~gcweb-jekyll/_includes
-      - run: mv ~jekyll-dist/_layouts ~gcweb-jekyll/_layouts
-#          yes | cp -rf ~jekyll-dist/_includes/. ~gcweb-jekyll/_includes
-#          yes | cp -rf ~jekyll-dist/_layouts/. ~gcweb-jekyll/_layouts
+          git clone --depth 1 ${{ secrets.jekyll_repo }} ~gcweb-jekyll
+          rm -r ~gcweb-jekyll/_includes
+          rm -r ~gcweb-jekyll/_layouts
+          mv ~jekyll-dist/_includes ~gcweb-jekyll/_includes
+          mv ~jekyll-dist/_layouts ~gcweb-jekyll/_layouts
 
-#          git status
-      - name: Commits and push
+      - name: Jekyll theme - Preparing deployment
         run: |
           cd ~gcweb-jekyll
-          git config --local user.name "Pierre Dubois"
-          git config --local user.email "duboisp@users.noreply.github.com"
-          git add *
-          git commit -m "CD - Update GCWeb templates files" --allow-empty
+          git config --local user.name "${{ secrets.my_username }}"
+          git config --local user.email "${{ secrets.my_email }}"
+          git add .
+          git commit -m "CD: Update GCWeb jekyll theme files" --allow-empty
 
-      - name: Push changes
+      - name: Jekyll theme - Deploy
         uses: ad-m/github-push-action@master
-#          git status
         with:
           repository: duboisp/gcweb-jekyll
-#          repository: duboisp/jekyll-website
           directory: ~gcweb-jekyll
           branch: master
-          github_token: ${{ secrets.github_token }}
-#      - run: git status
-#      - uses: actions/checkout@v2
-#      - name: Switch to SSH
-#        run: git remote set-url origin ${{ secrets.ssh }}
+          github_token: ${{ secrets.my_token }}
+
+
 

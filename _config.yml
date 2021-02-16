@@ -1,6 +1,6 @@
 #
 # Local site settings
-theme-name: GCWeb
+remote_theme: wet-boew/gcweb-jekyll
 title: "GCWeb, the Canada.ca official theme" # Site name or title
 website: "https://wet-boew.github.io/gcweb/" # URL of your public facing website
 site:

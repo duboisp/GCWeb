@@ -284,9 +284,9 @@ var componentName = "wb-fieldflow",
 			if ( trigger ) {
 				$( updtElm )
 					.find( wb.allSelectors )
-						.addClass( "wb-init" )
-						.filter( ":not(#" + updtElm.id + " .wb-init .wb-init)" )
-							.trigger( "timerpoke.wb" );
+					.addClass( "wb-init" )
+					.filter( ":not(#" + updtElm.id + " .wb-init .wb-init)" )
+					.trigger( "timerpoke.wb" );
 				updtElm.removeAttribute( "data-trigger-wet" );
 			}
 		} );

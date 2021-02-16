@@ -32,9 +32,7 @@
 				"language": "fr",
 				"path": "index-fr.html"
 			},
-			
-			
-			
+
 			{
 				"title": "Task 1",
 				"language": "en",
@@ -45,7 +43,7 @@
 				"language": "fr",
 				"path": "task1/index-fr.html"
 			},
-			
+
 			{
 				"title": "Sub task 1",
 				"language": "en",
@@ -116,9 +114,7 @@
 				"language": "fr",
 				"path": "task1/task7/index-fr.html"
 			},
-			
-			
-			
+
 			{
 				"title": "Task 2",
 				"language": "en",
@@ -129,9 +125,7 @@
 				"language": "fr",
 				"path": "task2/index-fr.html"
 			},
-			
-			
-			
+
 			{
 				"title": "Task 3",
 				"language": "en",
@@ -142,7 +136,7 @@
 				"language": "fr",
 				"path": "task3/index-fr.html"
 			},
-			
+
 			{
 				"title": "Sub task 1",
 				"language": "en",
@@ -163,26 +157,26 @@
 				"language": "fr",
 				"path": "task3/task2/index-fr.html"
 			},
-				{
-					"title": "Sub sub task 1",
-					"language": "en",
-					"path": "task3/task2/task1/index-en.html"
-				},
-				{
-					"title": "Sub sub Tache 1",
-					"language": "fr",
-					"path": "task3/task2/task1/index-fr.html"
-				},
-				{
-					"title": "Sub sub task 2",
-					"language": "en",
-					"path": "task3/task2/task2/index-en.html"
-				},
-				{
-					"title": "Sub sub Tache 2",
-					"language": "fr",
-					"path": "task3/task2/task2/index-fr.html"
-				},
+			{
+				"title": "Sub sub task 1",
+				"language": "en",
+				"path": "task3/task2/task1/index-en.html"
+			},
+			{
+				"title": "Sub sub Tache 1",
+				"language": "fr",
+				"path": "task3/task2/task1/index-fr.html"
+			},
+			{
+				"title": "Sub sub task 2",
+				"language": "en",
+				"path": "task3/task2/task2/index-en.html"
+			},
+			{
+				"title": "Sub sub Tache 2",
+				"language": "fr",
+				"path": "task3/task2/task2/index-fr.html"
+			},
 			{
 				"title": "Sub task 3",
 				"language": "en",
@@ -193,8 +187,7 @@
 				"language": "fr",
 				"path": "task3/task3/index-fr.html"
 			},
-			
-			
+
 			{
 				"title": "Task 4",
 				"language": "en",
@@ -205,7 +198,6 @@
 				"language": "fr",
 				"path": "task4/index-fr.html"
 			}
-			
 		]
 	}
 }

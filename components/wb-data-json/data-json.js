@@ -169,9 +169,9 @@ var componentName = "wb-data-json",
 				if ( itmSettings.trigger ) {
 					$elm
 						.find( wb.allSelectors )
-							.addClass( "wb-init" )
-							.filter( ":not(#" + elm.id + " .wb-init .wb-init)" )
-								.trigger( "timerpoke.wb" );
+						.addClass( "wb-init" )
+						.filter( ":not(#" + elm.id + " .wb-init .wb-init)" )
+						.trigger( "timerpoke.wb" );
 				}
 			} else if ( jsonType === "replace" ) {
 				$elm.html( content );

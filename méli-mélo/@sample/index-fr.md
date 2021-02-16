@@ -56,3 +56,14 @@ Un CSS personalisé a été compilé par le thème jekyll. La grosseur de la pol
 
 * [Fichier CSS générer par Jekyll](wb-bonjour.css)
 * [Fichier JS](wb-bonjour.js)
+
+----
+
+## Passage en provisional
+
+* Contacter l'éditeur principal et/ou DTO et/ou participé au code sprint hebdomadaire
+* Refactorisation du méli-mélo vers une solution entreprise entièrement réutilisable
+* Prioritization des technologies dans cet ordre
+	- Seulement du HTML
+	- Seulement du HTML avec une combinaison de CSS. Le contenu responsive devrais être idéalement résolu à l'aide de CSS
+	- Utilisation du JS pour les interrations.

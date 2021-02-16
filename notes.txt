@@ -330,7 +330,7 @@ Theme dist are missing the following 4 files
 * License fr
 * License en
 * payload.json
-
 * package.json
+
 Create TAG when tag is deployed.
 

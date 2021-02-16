@@ -15,73 +15,24 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"jekyll-site"
-		"Build the jekyll theme site only"
+		"test"
+		"Run code quality test"
 		[
-			"clean:jekyll"
-			"copy:layouts"
-			"copy:includes"
-
-			"copy:jekyllRunLocal"
+			"eslint:all"
+			"sasslint:all"
+			"lintspaces:all"
 		]
 	)
-
-	@registerTask(
-		"formytest"
-		"Build the jekyll theme site only"
-		[
-			"copy:includes"
-			"usebanner:includes"
-#			"copy:jekyllDist"
-		]
-	)
-
-	@registerTask(
-		"build-theme"
-		"Build theme files"
-		[
-			"clean:dist"
-			"sass:all"
-			"concat:plugins"
-			"copy:assets"
-			"copy:fonts"
-			"copy:wetboew"
-			"copy:js_lib"
-			"copy:depsJS_custom"
-			"méli-mélo"
-			"uglify:dist"
-			"copy:depsJS"
-			"clean:depsJS"
-			"postcss"
-			"usebanner:css"
-			"clean:wetboew_demos"
-			"copy:wetboew_demos"
-		]
-	)
-
-	@registerTask(
-		"dist-theme"
-		"Build and produce a valid dist"
-		[
-			"eslint"
-			"build-theme"
-			"cssmin"
-		]
-	)
-
-
-
-
-
-
 
 	@registerTask(
 		"dist"
 		"Build distribution files ready for production"
 		[
+			"test"
 			"jekyll-theme"
 			"core-dist-PROD"
 			"site-contents"
+			"deploy-packagejson"
 		]
 	)
 
@@ -160,7 +111,6 @@ module.exports = (grunt) ->
 		]
 	)
 
-
 	@registerTask(
 		"core-dist-DEBUG"
 		"Compile core GCWeb files"
@@ -168,6 +118,7 @@ module.exports = (grunt) ->
 			"core-dist"
 			"méli-mélo-runLocal"
 			"core-dist-POST"
+			"usebanner:jekyllRunUnminified"
 		]
 	)
 	@registerTask(
@@ -184,7 +135,6 @@ module.exports = (grunt) ->
 			"sri:theme"
 		]
 	)
-
 
 	@registerTask(
 		"core-dist"
@@ -210,6 +160,31 @@ module.exports = (grunt) ->
 		]
 	)
 
+
+	@registerTask(
+		"deploy-packagejson"
+		"Generate a package.json file in the dist folder"
+		->
+			pkgOriginal = grunt.file.readJSON("package.json");
+			addToRepo = "themes-cdn";
+			writeTo = "dist/GCWeb/package.json";
+			pkg = {
+				name: "gcweb-compiled",
+				version: pkgOriginal.version,
+				description: pkgOriginal.name.toLowerCase() + " theme compiled"
+				repository: {
+					type: "git",
+					url: "git+https://github.com/wet-boew/" + addToRepo + ".git"
+				},
+				author: "wet-boew-bot",
+				license: "MIT",
+				bugs: {
+					url: "https://github.com/wet-boew/" + pkgOriginal.name.toLowerCase() + "/issues"
+				},
+				homepage: "https://github.com/wet-boew/" + addToRepo + "#readme"
+			};
+			grunt.file.write(writeTo, JSON.stringify(pkg, null, 2));
+	)
 
 
 	@registerTask(
@@ -407,23 +382,6 @@ module.exports = (grunt) ->
 		curMéliPack: "mélimélo.js"
 		curMéliLibs: [ ]
 
-		# Commit Messages
-		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
-		distDeployMessage: ((
-			if process.env.TRAVIS_TAG
-				"Production files for the " + process.env.TRAVIS_TAG + " release."
-			else
-				"<%= travisBuildMessage %>"
-		))
-		cdnDeployMessage: ((
-			if process.env.TRAVIS_TAG
-				"CDN files for the " + process.env.TRAVIS_TAG + " release."
-			else
-				"<%= travisBuildMessage %>"
-		))
-
-		deployBranch: "<%= pkg.name %>"
-
 		checkDependencies:
 			all:
 				options:
@@ -521,6 +479,11 @@ module.exports = (grunt) ->
 			jekyllRunLocal:
 				options:
 					banner: """{%- assign setting-resourcesBasePath = "/<%= distFolder %>" -%}{%- assign setting-resourcesBasePathWetboew = "/<%= distFolder %>" -%}"""
+					position: "bottom"
+				src: "<%= jekyllDist %>/_includes/settings.liquid"
+			jekyllRunUnminified:
+				options:
+					banner: """{%- assign setting-minifiedSuffix = "" -%}"""
 					position: "bottom"
 				src: "<%= jekyllDist %>/_includes/settings.liquid"
 			méliméloRunLocal:
@@ -726,56 +689,6 @@ module.exports = (grunt) ->
 					"méli-mélo/compilation-gelé/*.{css,js}"
 				]
 				dest: "<%= themeDist %>/méli-mélo/"
-		sasslint:
-			options:
-				configFile: ".sass-lint.yml"
-			all:
-				expand: true
-				src: [
-						"*.scss"
-						"!*-jekyll.scss"
-						"!node_modules"
-						"!.**"
-					]
-
-		lintspaces:
-			all:
-				src: [
-						# Root files
-						".editorconfig"
-						".git*"
-						".*rc"
-						".*.yml"
-						"Gemfile*"
-						"Gruntfile.coffee"
-						"Licen?e-*.txt"
-						"*.{json,md}"
-						"Rakefile"
-
-						# Folders
-						"script/**"
-						"site/**"
-						"src/**"
-
-						# Exemptions...
-
-						# Images
-						"!site/img/**/*.{jpg,png}"
-						"!src/assets/*.{ico,jpg,png}"
-
-						# External fonts
-						"!src/fonts/*.{eot,svg,ttf,woff}"
-
-						# Docker environment file
-						# File that gets created/populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
-						"!script/docker/env"
-					],
-				options:
-					editorconfig: ".editorconfig",
-					ignores: [
-						"js-comments"
-					],
-					showCodes: true
 
 		sass:
 			all:
@@ -859,19 +772,6 @@ module.exports = (grunt) ->
 				]
 				dest: "<%= themeDist %>"
 				ext: ".min.js"
-
-		htmlmin:
-			options:
-				collapseWhitespace: true
-				preserveLineBreaks: true
-				preventAttributesEscaping: true
-			all:
-				cwd: "dist/unmin"
-				src: [
-					"**/*.html"
-				]
-				dest: "dist"
-				expand: true
 
 		htmllint:
 			ajax:
@@ -987,6 +887,60 @@ module.exports = (grunt) ->
 				src: [
 					"{sites,components,templates}/**/*.js"
 				]
+		sasslint:
+			options:
+				configFile: ".sass-lint.yml"
+			all:
+				expand: true
+				src: [
+						"{sites,components,templates}/**/*.scss"
+						"!*-jekyll.scss"
+						"!node_modules"
+					]
+		lintspaces:
+			all:
+				src: [
+						# Root files
+						".editorconfig"
+						".git*"
+						".*rc"
+						".*.yml"
+						"Gemfile*"
+						"Gruntfile.coffee"
+						"Licen?e-*.txt"
+						"*.json"
+						"Rakefile"
+
+						# Folders
+						"{sites,components,templates}/**"
+
+						#
+						# Exemptions...
+						#
+
+						# Generated files
+						"!Gemfile.lock"
+
+						# Web contents
+						"!{sites,components,templates}/**/*.md"
+
+						# Images
+						"!{sites,components,templates}/**/*.{jpg,png,ico}"
+						"!{sites,components,templates}/*.{ico,jpg,png}"
+
+						# External fonts
+						"!{sites,components,templates}/**/*.{eot,svg,ttf,woff}"
+
+						# Docker environment file
+						# File that gets created/populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
+						"!script/docker/env"
+					],
+				options:
+					editorconfig: ".editorconfig",
+					ignores: [
+						"js-comments"
+					],
+					showCodes: true
 
 		sri:
 			options:
@@ -1006,23 +960,23 @@ module.exports = (grunt) ->
 	@
 
 clone = (obj) ->
-  if not obj? or typeof obj isnt 'object'
-    return obj
+	if not obj? or typeof obj isnt 'object'
+		return obj
 
-  if obj instanceof Date
-    return new Date(obj.getTime())
+	if obj instanceof Date
+		return new Date(obj.getTime())
 
-  if obj instanceof RegExp
-    flags = ''
-    flags += 'g' if obj.global?
-    flags += 'i' if obj.ignoreCase?
-    flags += 'm' if obj.multiline?
-    flags += 'y' if obj.sticky?
-    return new RegExp(obj.source, flags)
+	if obj instanceof RegExp
+		flags = ''
+		flags += 'g' if obj.global?
+		flags += 'i' if obj.ignoreCase?
+		flags += 'm' if obj.multiline?
+		flags += 'y' if obj.sticky?
+		return new RegExp(obj.source, flags)
 
-  newInstance = new obj.constructor()
+	newInstance = new obj.constructor()
 
-  for key of obj
-    newInstance[key] = clone obj[key]
+	for key of obj
+		newInstance[key] = clone obj[key]
 
-  return newInstance
+	return newInstance

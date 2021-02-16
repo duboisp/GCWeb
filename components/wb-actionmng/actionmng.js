@@ -148,9 +148,9 @@ var $document = wb.doc,
 			if ( trigger ) {
 				$( updtElm )
 					.find( wb.allSelectors )
-						.addClass( "wb-init" )
-						.filter( ":not(#" + updtElm.id + " .wb-init .wb-init)" )
-							.trigger( "timerpoke.wb" );
+					.addClass( "wb-init" )
+					.filter( ":not(#" + updtElm.id + " .wb-init .wb-init)" )
+					.trigger( "timerpoke.wb" );
 				updtElm.removeAttribute( "data-trigger-wet" );
 			}
 		} );
@@ -310,7 +310,7 @@ var $document = wb.doc,
 			dontTriggerWET = data.dntwb, // do not trigger WET
 			elm = event.target;
 
-// Test is actions is an array, in false this action must be rejected. The docs should contains that info too.
+		// Test is actions is an array, in false this action must be rejected. The docs should contains that info too.
 
 		executePreRenderAction( elm.id, cValue, settingQuery.actions, dontTriggerWET );
 

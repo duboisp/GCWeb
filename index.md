@@ -275,3 +275,68 @@ Evaluations and reports
 
 * [1 - Accessibility assessment as 2018-11-14](docs/evaluation-report/1-accessibility.html)
 * [2 - Regression user acceptance testing as 2018-11-16](docs/evaluation-report/2-wetplugin-gcweb2.html)
+
+## Developping for GCWeb
+
+Install NodeJS
+
+### Building GCweb
+
+* Build a local development version: `grunt` or `grunt debug`
+* Run code quality check: `grunt test`
+* Build production files: `grunt dist`
+* Compile and assemble méli-mélo:
+	* Run local: `grunt méli-mélo`
+	* Run from compiled dist: `grunt méli-mélo-runLocal`
+	* Run from wet-boew sites : `grunt méli-mélo-remote`
+* Regenerate site web content: `grunt site-contents`
+	* `_data/components.json`
+	* `_data/sites.json`
+	* `_data/templates.json`
+	* `_wetboew-demos/**`
+
+### Run GCWeb wetsite locally
+
+Ensure that you have builded GCWeb first
+
+After your are running docking container or the docker composer you will be able to access your local website at: `http://localhost:4000`
+
+Build Dockerfile locally
+
+```
+docker build -t jekyll-with-env-options .
+```
+
+Run your image
+```
+docker run -it --rm -v "$PWD":/usr/src/app -p "4000:4000" --env JEKYLL_OPTIONS='--config _config.yml,_localJekyll.yml' jekyll-with-env-options
+```
+
+#### alternative with docker-compose
+
+```
+docker-compose up
+```
+
+### Run the CI/CD script locally
+
+Install ACT - [https://github.com/nektos/act](https://github.com/nektos/act)
+
+Github fork needed:
+
+* [wet-boew/gcweb](https://github.com/wet-boew/gcweb)
+* [wet-boew/gcweb-jekyll](https://github.com/wet-boew/gcweb-jekyll)
+* [wet-boew/gcweb-compiled-demos](https://github.com/wet-boew/gcweb-compiled-demos)
+* [wet-boew/themes-dist](https://github.com/wet-boew/themes-dist)
+* [wet-boew/themes-cdn](https://github.com/wet-boew/themes-cdn)
+
+Run
+
+```
+act -f deploy-jekyll -s my_token=<XXXXXXXXXXXXXX> -s my_username="<GITHUB USERNAME>" - my_email="<GITHUB HANDLE>@users.noreply.github.com" -s repo_jekyll="<GITHUB HANDLE>/gcweb-jekyll" -s repo_compiled_demos="<GITHUB HANDLE>/gcweb-compiled-demos" -s repo_dist="<GITHUB HANDLE>/themes-dist" -s repo_dist_cdn="<GITHUB HANDLE>/themes-cdn" -a <GITHUB HANDLE>
+```
+
+Where:
+* `<GITHUB USERNAME>`: Your name, like "John Doe"
+* `<GITHUB HANDLE>`: Your github id
+* `<XXXXXXXXXXXXXX>`: Your personal access token with access to public repository

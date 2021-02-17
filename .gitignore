@@ -1,7 +1,6 @@
 # Artifacts
 node_modules/
 lib/
-site/data/i18n/
 dist/
 ?sprite*.*css
 sprite*.png
@@ -46,10 +45,17 @@ csslint.out.xml
 #_layouts/
 #_includes/
 
-temporary/
 méli-mélo-demos/
 _wetboew-demos/
 ~jekyll-dist/
 
 .secrets
 .env
+
+~gcweb-cdn/
+~wet-boew-cdn/
+~gcweb-jekyll/
+~gcweb-compiled-demos/
+~gcweb-dist/
+~gcweb-cdn/
+~gcweb-dist-submodule/

@@ -17,6 +17,31 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Extract tag or branch name
+        id: ref_name
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.my_token }}
+          # act use "\" and githbu use "/"
+          script: |
+            return context.ref.replace(/\/refs\/heads\//, '').replace(/\\refs\\heads\\/, '').replace(/\/refs\/tags\//, '').replace(/\\refs\\tags\\/, '')
+      - name: Check if it a tag
+        id: ref_tags
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.my_token }}
+          # act use "\" and githbu use "/"
+          script: |
+            console.log( context.ref );
+            return context.ref.startsWith("\\refs\\tags\\") || context.ref.startsWith("/refs\/tags\/") || ''
+      - name: Tag or branch info
+        env:
+           ref_name: ${{ steps.ref_name.outputs.result }}
+           is_tags: ${{ steps.ref_tags.outputs.result }}
+        run: |
+          echo Ref name: ${{ env.ref_name }}
+          echo Is tag: ${{ env.is_tags }}
+
 #      - name: Cache node modules
 #        uses: actions/cache@v2
 #        if: ${{ !env.ACT }}
@@ -61,6 +86,11 @@ jobs:
           git config --global user.name "${{ secrets.my_username }}"
           git config --global user.email "${{ secrets.my_email }}"
 
+      - name: Get Branch or tag name
+        run: |
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+
       - name: Jekyll theme - Applying changes
         run: |
           git clone --depth 1 https://github.com/${{ secrets.repo_jekyll }}.git ~gcweb-jekyll
@@ -72,12 +102,22 @@ jobs:
           git add .
           git commit -m "CD ${{ github.run_id }}: Update GCWeb jekyll theme files" --allow-empty
 
+      - name: Jekyll theme - Create a version
+        env:
+          ref_name: ${{ steps.ref_name.outputs.result }}
+          is_tags: ${{ steps.ref_tags.outputs.result }}
+        if: ${{ env.is_tags != '' }}
+        run: |
+          cd ~gcweb-jekyll
+          git tag ${{ env.ref_name }}
+
       - name: Jekyll theme - Deploy
         uses: ad-m/github-push-action@master
         with:
           repository: ${{ secrets.repo_jekyll }}
           directory: ~gcweb-jekyll
           branch: master
+          tags: true
           github_token: ${{ secrets.my_token }}
 
 
@@ -95,12 +135,22 @@ jobs:
           git add .
           git commit -m "CD ${{ github.run_id }}: Update GCWeb compiled demos files" --allow-empty
 
+      - name: Compiled demos - Create a version
+        env:
+          ref_name: ${{ steps.ref_name.outputs.result }}
+          is_tags: ${{ steps.ref_tags.outputs.result }}
+        if: ${{ env.is_tags != '' }}
+        run: |
+          cd ~gcweb-compiled-demos
+          git tag ${{ env.ref_name }}
+
       - name: Compiled demos - Deploy
         uses: ad-m/github-push-action@master
         with:
           repository: ${{ secrets.repo_compiled_demos }}
           directory: ~gcweb-compiled-demos
           branch: master
+          tags: true
           github_token: ${{ secrets.my_token }}
 
 
@@ -117,12 +167,22 @@ jobs:
           git add .
           git commit -m "CD ${{ github.run_id }}: Update GCWeb dist files" --allow-empty
 
+      - name: Dist - Create a version
+        env:
+          ref_name: ${{ steps.ref_name.outputs.result }}
+          is_tags: ${{ steps.ref_tags.outputs.result }}
+        if: ${{ env.is_tags != '' }}
+        run: |
+          cd ~gcweb-dist
+          git tag ${{ env.ref_name }}
+
       - name: Dist - Deploy in GCWeb branch
         uses: ad-m/github-push-action@master
         with:
           repository: ${{ secrets.repo_dist }}
           directory: ~gcweb-dist
           branch: GCWeb
+          tags: true
           github_token: ${{ secrets.my_token }}
 
       - name: Dist CDN - Applying changes
@@ -134,12 +194,22 @@ jobs:
           git add .
           git commit -m "CD ${{ github.run_id }}: Update GCWeb dist cdn files" --allow-empty
 
+      - name: Dist - Create a version
+        env:
+          ref_name: ${{ steps.ref_name.outputs.result }}
+          is_tags: ${{ steps.ref_tags.outputs.result }}
+        if: ${{ env.is_tags != '' }}
+        run: |
+          cd ~gcweb-cdn
+          git tag ${{ env.ref_name }}
+
       - name: Dist CDN - Deploy in GCWeb branch
         uses: ad-m/github-push-action@master
         with:
           repository: ${{ secrets.repo_dist_cdn }}
           directory: ~gcweb-cdn
           branch: GCWeb
+          tags: true
           github_token: ${{ secrets.my_token }}
 
       - name: Dist - Update submodule

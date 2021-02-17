@@ -94,6 +94,17 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
+		"dist-act"
+		"Build distribution files ready for production"
+		[
+			"jekyll-theme"
+			"core-dist-PROD"
+			"site-contents"
+			"deploy-packagejson"
+		]
+	)
+
+	@registerTask(
 		"jekyll-theme"
 		"PROD - Build Jekyll theme"
 		[

@@ -1,4 +1,4 @@
-name: CD
+name: Continous deployment
 
 on:
   push:
@@ -170,7 +170,7 @@ jobs:
           branch: master
           github_token: ${{ secrets.my_token }}
 
-      - name: Compiled demos - Create a release tag only
+      - name: Compiled demos - Create release
         if: ${{ env.is_tags != '' }}
         uses: actions/github-script@v3
         env:
@@ -184,7 +184,8 @@ jobs:
             github.repos.createRelease({
               owner: context.actor,
               repo: process.env.repo,
-              tag_name: 'refs/tags/' + process.env.ref_name,
+              tag_name: process.env.ref_name,
+              name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
               target_commitish: process.env.commitish
             });
 
@@ -212,7 +213,7 @@ jobs:
           branch: GCWeb
           github_token: ${{ secrets.my_token }}
 
-      - name: Dist - Create a release tag only
+      - name: Dist - Create release
         if: ${{ env.is_tags != '' }}
         uses: actions/github-script@v3
         env:
@@ -226,7 +227,8 @@ jobs:
             github.repos.createRelease({
               owner: context.actor,
               repo: process.env.repo,
-              tag_name: 'refs/tags/' + process.env.ref_name,
+              tag_name: process.env.ref_name,
+              name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
               target_commitish: process.env.commitish
             });
 
@@ -271,7 +273,7 @@ jobs:
           branch: GCWeb
           github_token: ${{ secrets.my_token }}
 
-      - name: Dist CDN - Create a release tag only
+      - name: Dist CDN - Create release
         uses: actions/github-script@v3
         env:
           commitish: GCWeb
@@ -285,6 +287,7 @@ jobs:
             github.repos.createRelease({
               owner: context.actor,
               repo: process.env.repo,
-              tag_name: 'refs/tags/' + process.env.ref_name,
+              tag_name: process.env.ref_name,
+              name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
               target_commitish: process.env.commitish
             });

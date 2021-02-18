@@ -1,4 +1,4 @@
-name: CI
+name: Continous integration
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    environment: continuous_integration
+    environment: github-cid
 
     strategy:
       matrix:

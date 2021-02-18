@@ -915,11 +915,12 @@ module.exports = (grunt) ->
 						".editorconfig"
 						".git*"
 						".*rc"
-						".*.yml"
+						"*.yml"
 						"Gemfile*"
 						"Gruntfile.coffee"
 						"Licen?e-*.txt"
 						"*.json"
+						# "*.json-ld"
 						"Rakefile"
 
 						# Folders
@@ -934,6 +935,9 @@ module.exports = (grunt) ->
 
 						# Web contents
 						"!{sites,components,templates}/**/*.md"
+						# "{sites,components,templates}/*/*.{md,html}"
+						# "{sites,components,templates}/*.{md, html}"
+						# "!{sites,components,templates}/*/**/*.{md,html}"
 
 						# Images
 						"!{sites,components,templates}/**/*.{jpg,png,ico}"

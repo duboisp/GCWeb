@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    environment: continuous_deploy
+    environment: github-cid
 
     strategy:
       matrix:

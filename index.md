@@ -196,13 +196,13 @@ The following status was not transposed yet with the repository structure reorg
 <h2 id="méli-mélo">Méli-mélo</h2>
 
 <p>Vous permet d'utiliser du style et du javascript perdonnalisé en vous partageant une dettes commune selon la date de gel de la compilation.
-
 <ul>
 {% for item in site.data[ "mli-mlo" ].packages %}
 	<li>{{ item.nom }}
 		<ul>
 		{% for pack in item.libs %}
-			<li><a href="méli-mélo/demos/{{ item.nom }}/{{ pack }}/">{{ pack }}</a></li>
+			{% assign indexPage = site.data[ "mli-mlo" ].subProjects | where: "nom", pack | first %}
+			<li><a href="/gcweb-compiled-demos/méli-mélo-demos/{{ item.nom }}/{{ pack }}/{{ indexPage.mainpage }}">{{ pack }}</a></li>
 		{% endfor %}
 		</ul>
 	</li>
@@ -252,12 +252,9 @@ The following status was not transposed yet with the repository structure reorg
 </ul>
 
 
-<h2>WET-BOEW demos styled with Canada.ca theme</h2>
-<ul>
-{% for demoPage in site.wetboew-demos %}
-  <li><a href="{{ demoPage.url }}" lang="{{ demoPage.language }}" hreflang="{{ demoPage.language }}">{{ demoPage.title }}</a></li>
-{% endfor %}
-</ul>
+<h2>Aperçu des fonctionalité wet-boew avec le thème de Canada.ca - <span lang="en">WET-BOEW feature demos styled with Canada.ca theme</span></h2>
+<p><a href="/gcweb-compiled-demos/index.html#wet-boew">Aperçu des fonctionalité wet-boew</a></p>
+
 
 ## GCWeb project documentation
 
@@ -320,7 +317,7 @@ This version leverage the remote theme wet-beoew/gcweb-jekyll. This equivalent i
 docker-compose up
 ```
 
-### Run the CI/CD script locally
+### Run the continous integration and deployment script locally
 
 Install ACT - [https://github.com/nektos/act](https://github.com/nektos/act)
 
@@ -332,10 +329,10 @@ Github fork needed:
 * [wet-boew/themes-dist](https://github.com/wet-boew/themes-dist)
 * [wet-boew/themes-cdn](https://github.com/wet-boew/themes-cdn)
 
-Run
+Run the continuous deployment script
 
 ```
-act -f deploy-jekyll -s my_token=<XXXXXXXXXXXXXX> -s my_username="<GITHUB USERNAME>" - my_email="<GITHUB HANDLE>@users.noreply.github.com" -s repo_jekyll="<GITHUB HANDLE>/gcweb-jekyll" -s repo_compiled_demos="<GITHUB HANDLE>/gcweb-compiled-demos" -s repo_dist="<GITHUB HANDLE>/themes-dist" -s repo_dist_cdn="<GITHUB HANDLE>/themes-cdn" -a <GITHUB HANDLE>
+act -f deploy-gcweb -s my_token=<XXXXXXXXXXXXXX> -s my_username="<GITHUB USERNAME>" - my_email="<GITHUB HANDLE>@users.noreply.github.com" -s repo_jekyll="<GITHUB HANDLE>/gcweb-jekyll" -s repo_compiled_demos="<GITHUB HANDLE>/gcweb-compiled-demos" -s repo_dist="<GITHUB HANDLE>/themes-dist" -s repo_dist_cdn="<GITHUB HANDLE>/themes-cdn" -a <GITHUB HANDLE>
 ```
 
 Where:
@@ -343,7 +340,9 @@ Where:
 * `<GITHUB HANDLE>`: Your github id
 * `<XXXXXXXXXXXXXX>`: Your personal access token with access to public repository
 
-### Refresh gh-pages with the latest theme changes
+### Refresh your github pages with the latest theme changes
+
+You can make a commit to your site and it will get regenerated with the latest version of the jekyll theme. Alternatively, the following curl command will told github to regenerate your site.
 
 ```
 curl -u <GITHUB HANDLE>:<XXXXXXXXXXXXXX> -X POST https://api.github.com/repos/<GITHUB HANDLE>/<GITHUB REPOSITORY>/pages/builds
@@ -353,3 +352,5 @@ Where:
 * `<GITHUB HANDLE>`: Your github id
 * `<XXXXXXXXXXXXXX>`: Your personal access token with access to public repository
 * `<GITHUB REPOSITORY>`: Your web site github repository, like "jekyll-website"
+
+Note: A manual update is required if you have specified a version for your jekyll remote theme in your `config.yml` file.

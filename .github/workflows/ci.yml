@@ -16,32 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Extract tag or branch name
-        id: ref_name
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{ secrets.my_token }}
-          result-encoding: string
-          # act use "\" and githbu use "/"
-          script: |
-            return context.ref.replace(/\/refs\/heads\//, '').replace(/\\refs\\heads\\/, '').replace(/\/refs\/tags\//, '').replace(/\\refs\\tags\\/, '')
-      - name: Check if it a tag
-        id: ref_tags
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{ secrets.my_token }}
-          # act use "\" and githbu use "/"
-          script: |
-            console.log( context.ref );
-            return context.ref.startsWith("\\refs\\tags\\") || context.ref.startsWith("/refs\/tags\/") || ''
-      - name: Tag or branch info
-        env:
-           ref_name: ${{ steps.ref_name.outputs.result }}
-           is_tags: ${{ steps.ref_tags.outputs.result }}
-        run: |
-          echo Ref name: ${{ env.ref_name }}
-          echo Is tag: ${{ env.is_tags }}
-
 #      - name: Cache node modules
 #        uses: actions/cache@v2
 #        if: ${{ !env.ACT }}

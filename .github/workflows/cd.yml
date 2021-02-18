@@ -34,16 +34,17 @@ jobs:
           result-encoding: string
           # act use "\" and githbu use "/"
           script: |
-            return context.ref.replace(/\/refs\/heads\//, '').replace(/\\refs\\heads\\/, '').replace(/\/refs\/tags\//, '').replace(/\\refs\\tags\\/, '')
+            return context.ref.replace(/\/?refs\/heads\//, '').replace(/\\?refs\\heads\\/, '').replace(/\/?refs\/tags\//, '').replace(/\\?refs\\tags\\/, '')
       - name: Check if it a tag
         id: ref_tags
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.my_token }}
+          result-encoding: string
           # act use "\" and githbu use "/"
           script: |
             console.log( context.ref );
-            return context.ref.startsWith("\\refs\\tags\\") || context.ref.startsWith("/refs\/tags\/") || ''
+            return context.ref.startsWith("\\refs\\tags\\") || context.ref.startsWith("/refs/tags/") || context.ref.startsWith("refs/tags/") || context.ref.startsWith("refs\\tags\\") || ''
       - name: Tag or branch info
         env:
            ref_name: ${{ steps.ref_name.outputs.result }}
@@ -140,6 +141,7 @@ jobs:
               owner: context.actor,
               repo: process.env.repo,
               tag_name: process.env.ref_name,
+              name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
               target_commitish: process.env.commitish
             });
 
@@ -168,7 +170,7 @@ jobs:
           branch: master
           github_token: ${{ secrets.my_token }}
 
-      - name: Compiled demos - Create Release
+      - name: Compiled demos - Create a release tag only
         if: ${{ env.is_tags != '' }}
         uses: actions/github-script@v3
         env:
@@ -182,7 +184,7 @@ jobs:
             github.repos.createRelease({
               owner: context.actor,
               repo: process.env.repo,
-              tag_name: process.env.ref_name,
+              tag_name: 'refs/tags/' + process.env.ref_name,
               target_commitish: process.env.commitish
             });
 
@@ -210,7 +212,7 @@ jobs:
           branch: GCWeb
           github_token: ${{ secrets.my_token }}
 
-      - name: Dist - Create Release
+      - name: Dist - Create a release tag only
         if: ${{ env.is_tags != '' }}
         uses: actions/github-script@v3
         env:
@@ -224,7 +226,7 @@ jobs:
             github.repos.createRelease({
               owner: context.actor,
               repo: process.env.repo,
-              tag_name: process.env.ref_name,
+              tag_name: 'refs/tags/' + process.env.ref_name,
               target_commitish: process.env.commitish
             });
 
@@ -269,7 +271,7 @@ jobs:
           branch: GCWeb
           github_token: ${{ secrets.my_token }}
 
-      - name: Dist CDN - Create Release
+      - name: Dist CDN - Create a release tag only
         uses: actions/github-script@v3
         env:
           commitish: GCWeb
@@ -283,6 +285,6 @@ jobs:
             github.repos.createRelease({
               owner: context.actor,
               repo: process.env.repo,
-              tag_name: process.env.ref_name,
+              tag_name: 'refs/tags/' + process.env.ref_name,
               target_commitish: process.env.commitish
             });

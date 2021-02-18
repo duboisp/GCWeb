@@ -3,8 +3,8 @@ name: CD
 on:
   push:
     branches:
-	  - master
-	  - reorg
+      - master
+      - reorg
     tags:
       - 'v*'
 

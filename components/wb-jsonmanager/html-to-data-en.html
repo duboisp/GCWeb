@@ -1,0 +1,70 @@
+---
+{
+	"title": "HTML to data",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Manage dataset and apply JSON Patch",
+	"tag": "jsonmanager",
+	"parentdir": "jsonmanager",
+	"altLangPrefix": "jsonmanager",
+	"dateModified": "2017-02-02"
+}
+---
+
+<p id="ref">abc123</p>
+
+<div id="example2" data-wb-jsonmanager='{
+		"name": "example2",
+		"wait": true
+	}'>
+
+</div>
+
+<div class="wb-frmvld">
+	<form action="#" method="get" id="validation-example">
+		<div class="form-group">
+			<label for="fname1" class="required"><span class="field-name">First name</span> <strong class="required">(required)</strong></label>
+			<input id="fname1" type="text" class="form-control" data-wb-json='{ "url": "#[example2]/title", "type": "val" }' />
+		</div>
+
+		<div class="form-group">
+			<label for="fref" class="required"><span class="field-name">Reference</span> <strong class="required">(required)</strong></label>
+			<input id="fref" type="text" class="form-control" data-wb-json='{ "url": "#[example2]/reference", "type": "val" }' />
+		</div>
+	</form>
+</div>
+
+
+<div data-wb-urlmapping='{
+		"ajxload=1":
+			{
+				"action": "htmlExtract",
+				"source": "#example2",
+				"map": {
+					"h1": "/title",
+					"#ref": "/reference"
+				}
+			}
+		}'></div>
+
+<button class="btn btn-default" type="button" data-wb-doaction='{
+	"action": "patch",
+	"source": "#example2",
+	"patches":
+		{
+			"op": "add",
+			"path": "/title",
+			"value": "a test"
+		}
+	}'>Set value to: <code>a test</code></button>
+
+<script>
+
+// jQuerySelector : Path
+/*
+{
+	"h1": "/title",
+	"#ref": "/reference"
+}
+*/
+</script>

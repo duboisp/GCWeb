@@ -33,6 +33,7 @@ var $document = wb.doc,
 		"removeClass",
 		"tblfilter",
 		"withInput",
+		"htmlExtract",
 		"run"
 	].join( "." + actionEvent + " " ) + "." + actionEvent,
 
@@ -317,6 +318,38 @@ var $document = wb.doc,
 
 	},
 
+	// Extract information from the HTML and apply a "add" patch to a JSON manager
+	htmlExtract = function( event, data ) {
+
+		// Prepare patches operation for execution by the json-manager
+		var source = data.source,
+			map = data.map,
+			ops = [],
+			key;
+
+		if ( !map ) {
+			return;
+		}
+
+		for ( key in map ) {
+			ops.push( {
+				"op": "add",
+				"path": map[ key ],
+				"value": $( key ).text()
+			} );
+		}
+
+		$( source ).trigger( {
+			type: "patches.wb-jsonmanager",
+			patches: ops,
+			fpath: data.fpath,
+			filter: data.filter || [],
+			filternot: data.filternot || [],
+			cumulative: data.isCumulative // Ensure the patches would remain as any other future update.
+		} );
+
+	},
+
 	executePreRenderAction = function( elmID, cValue, actions, dontTriggerWET ) {
 
 		var i, i_len, i_cache, cache_action,
@@ -584,6 +617,9 @@ $document.on( actionMngEvent, selector, function( event, data ) {
 			break;
 		case "withInput":
 			withInput( event, data );
+			break;
+		case "htmlExtract":
+			htmlExtract( event, data );
 			break;
 		}
 	}

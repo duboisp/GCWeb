@@ -7,11 +7,39 @@
  *
  */
 
-@import "variables";
+/*
+ * Importing bootstrap 3.x as the baseline CSS framework (Instead of doing it through wet-boew)
+ *
+ * The following files has been redistributed here:
+ * - https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/_bootstrap.scss
+ * - https://github.com/wet-boew/wet-boew/blob/master/src/base/_bootstrap.scss
+ *
+ */
 
-@import "wet-boew/src/base/bootstrap";
+
+// Core variables and mixins
+@import "variables";
+$icon-font-path: "#{$wb-core-path}/fonts/"; // Override Bootstrap's expected font path. This is a path relative to the final CSS destination and not the current file
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+// Reset and dependencies
+@import "bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/print";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+
+// Core CSS
+@import "bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+
 
 /* WET Core */
+@import "wet-boew/src/base/bootstrap-overrides/base";
 @import "wet-boew/src/base/wet-boew";
 
 /*
@@ -20,52 +48,81 @@
 @import "defaults";
 @import "../components/baseline/wet-boew-overrides";
 
-@import "archived/archived";
 
-@import "../components/redacted";
+/*
+ * Components
+ */
+
+
+// Sites components
+@import "archived/archived";
 @import "banner/base";
 @import "baseline/buttons";
 @import "breadcrumbs/breadcrumb";
-@import "../components/equalheight/base";
-@import "../components/dshbrd/base";
 @import "fonts/base";
 @import "footers/base";
 @import "helpers/base";
-@import "../components/triangle-up";
 @import "language/language-bar";
 @import "baseline/main";
-@import "../components/base2";
-@import "../components/baseline/overlay";
-@import "../templates/pagebrand/base";
 @import "search/base";
-@import "../templates/search";
 @import "secondary-menu/base";
 @import "main-footer/base";
 @import "gcweb-menu/base";
+
+// Bootstrap components
+@import "bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pager";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/badges";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/media";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/wells";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/close";
+
+// Bootstrap Components w/ JavaScript
+// TODO: Check it usage, it's probably not needed
+@import "bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/popovers";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+
+// GCWeb components
+@import "../components/redacted";
+@import "../components/equalheight/base";
+@import "../components/dshbrd/base";
+@import "../components/triangle-up";
+@import "../components/base2";
+@import "../components/baseline/overlay";
 @import "../components/gc-follow-us/base";
 @import "../components/fd-wdgt";
-@import "../templates/blog";
 @import "../components/pagination/base";
 @import "../components/baseline/badges";
 @import "../components/toc/base";
 @import "../components/tabs/carousel";
-@import "../templates/social-media-centre/base";
-@import "../templates/mobile-centre/base";
 @import "../components/utilities/glyphicon-error";
-@import "../templates/campaign/base";
 @import "../components/baseline/base";
 @import "../components/base";
 @import "../components/wb5-click-postback/base";
 @import "../components/header-rwd/header-rwd";
-@import "../templates/news/base";
 @import "../components/tbl-floatcolumn";
 @import "../components/wb-fieldflow/base";
 @import "../components/gc-chckbxrdio/base";
 @import "../components/gc-features/base";
 
-/*
- * Provisional feature
- */
+// GCWeb provisional
 @import "../components/provisional";
 @import "../components/wb-chtwzrd/base"; // Provisional CSS for the chat wizard
 @import "../components/gc-subway/base"; // Provisional CSS for GC subway map menu
@@ -75,13 +132,30 @@
 @import "../components/well-bold/base"; // Provisional CSS that bold every text element in a well component
 @import "../components/gc-feeds/base"; // Provisional CSS for feeds plugin GC override
 
+
+
 /*
- * GCWeb custom iumplementation
+ * Template
+ */
+@import "../templates/pagebrand/base";
+@import "../templates/search";
+@import "../templates/blog";
+@import "../templates/campaign/base";
+@import "../templates/social-media-centre/base";
+@import "../templates/mobile-centre/base";
+@import "../templates/news/base";
+
+
+
+
+/*
+ * GCWeb override implementation
  *
  * Copy and rename the folder "variant-default" to "variant".
  * - the "variant" folder should not GIT conflict with your custom implementation when updating to the latest gcweb
  */
 @import "../misc/variant-default/variant-default";
+
 
 /*
  Views
@@ -228,3 +302,11 @@
 	@import "../templates/campaign/print";
 	@import "../misc/variant-default/variant-print";
 }
+
+
+
+// Utility classes
+@import "bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+
+@import "wet-boew/src/base/bootstrap-4";

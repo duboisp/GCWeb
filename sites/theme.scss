@@ -32,6 +32,7 @@
 @import "baseline/scaffolding";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/type";
 @import "wet-boew/src/base/bootstrap-overrides/core-heading";
+@import "baseline/heading";
 @import "wet-boew/src/base/lists/base";
 @import "baseline/lists";
 @import "wet-boew/src/base/bootstrap-overrides/core";
@@ -41,6 +42,7 @@
 @import "bootstrap-sass/assets/stylesheets/bootstrap/code";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/grid";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "wet-boew/src/base/bootstrap-overrides/core-tables";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/forms";
 @import "wet-boew/src/base/bootstrap-overrides/core-forms";
 @import "wet-boew/src/base/forms/base";
@@ -217,8 +219,12 @@
  */
 /* All screen views */
 @media screen {
+	@import "wet-boew/src/base/views/screen";
 	@import "../misc/views/screen";
 
+
+	@import "wet-boew/src/plugins/prettify/screen";
+	@import "wet-boew/src/plugins/tabs/screen";
 	@import "../components/tabs/screen";
 	@import "../components/gc-features/screen"; /* Deprecated as v4.0.28 */
 
@@ -227,6 +233,7 @@
 
 /* Extra-small view and under */
 @media screen and (max-width: $screen-xs-max) {
+	@import "wet-boew/src/base/views/screen-xs-max";
 	@import "../misc/views/screen-xs-max";
 
 	@import "banner/screen-xs-max";
@@ -244,7 +251,9 @@
 
 /* Small view and under */
 @media screen and (max-width: $screen-sm-max) {
+	@import "wet-boew/src/base/views/screen-sm-max";
 	@import "../misc/views/screen-sm-max";
+
 
 	@import "banner/screen-sm-max";
 	@import "footers/screen-sm-max";
@@ -252,14 +261,17 @@
 
 	@import "../components/dshbrd/screen-sm-max";
 	@import "../components/gc-subway/screen-sm-max";
+	@import "wet-boew/src/plugins/tables/screen-sm-max";
 	@import "../components/gc-table/screen-sm-max"; // Provisional CSS for GC table
 	@import "../components/gc-chckbxrdio/screen-sm-max";
+	@import "wet-boew/src/plugins/tabs/screen-sm-max";
 
 	@import "../misc/variant-default/variant-screen-sm-max";
 }
 
 /* Medium view and under */
 @media screen and (max-width: $screen-md-max) {
+	@import "wet-boew/src/base/views/screen-md-max";
 	@import "../misc/views/screen-md-max";
 
 	@import "gcweb-menu/screen-md-max";
@@ -271,60 +283,86 @@
 
 /* Large view and under */
 @media screen and (max-width: $screen-lg-max) {
+	@import "wet-boew/src/base/views/screen-lg-max";
 	@import "../misc/views/screen-lg-max";
 	@import "../misc/variant-default/variant-screen-lg-max";
 }
 
 /* Extra-small view and over */
 @media screen and (min-width: $screen-xs-min) {
+	@import "wet-boew/src/base/views/screen-xs-min";
 	@import "../misc/views/screen-xs-min";
+
+	@import "wet-boew/src/plugins/menu/screen-xs-min";
+	@import "wet-boew/src/plugins/tables/screen-xs-min";
+
+	@import "wet-boew/src/base/proximity/screen-xs-min";
+
 	@import "../misc/variant-default/variant-screen-xs-min";
 }
 
 /* Small view and over */
 @media screen and (min-width: $screen-sm-min) {
+	@import "wet-boew/src/base/views/screen-sm-min";
 	@import "../misc/views/screen-sm-min";
 
+	@import "wet-boew/src/plugins/filter/screen-sm-min";
 	@import "../components/header-rwd/screen-sm-min";
 	@import "../components/gc-chckbxrdio/screen-sm-min";
 
 	@import "../templates/news/screen-sm-min";
 	@import "../templates/campaign/screen-sm-min";
 
+	@import "wet-boew/src/base/proximity/screen-sm-min";
+	@import "wet-boew/src/base/views/_bootstrap-4-screen-sm-min";
+
 	@import "../misc/variant-default/variant-screen-sm-min";
 }
 
 /* Medium view and over */
 @media screen and (min-width: $screen-md-min) {
+	@import "wet-boew/src/base/views/screen-md-min";
 	@import "../misc/views/screen-md-min";
 
 	@import "footers/screen-md-min";
 	@import "gcweb-menu/screen-md-min";
 
+	@import "wet-boew/src/plugins/feeds/screen-md-min";
+	@import "wet-boew/src/plugins/tabs/screen-md-min";
 	@import "../components/social-media-icons/screen-md-min";
 	@import "../components/gc-subway/screen-md-min";
+
+	@import "wet-boew/src/base/proximity/screen-md-min";
 
 	@import "../misc/variant-default/variant-screen-md-min";
 }
 
 /* Large view and over */
 @media screen and (min-width: $screen-lg-min) {
+	@import "wet-boew/src/base/views/screen-lg-min";
 	@import "../misc/views/screen-lg-min";
 
+	@import "wet-boew/src/plugins/filter/screen-lg-min";
 	@import "../components/header-rwd/screen-lg-min";
 	@import "../components/equalheight/screen-lg-min";
+
+	@import "wet-boew/src/base/proximity/screen-lg-min";
 
 	@import "../misc/variant-default/variant-screen-lg-min";
 }
 
 /* Extra-extra-small view */
 @media screen and (max-width: $screen-xxs-max) {
+	@import "wet-boew/src/base/views/screen-xxs-max";
 	@import "../misc/views/screen-xxs-max";
 
 	@import "banner/screen-xxs-max";
 	@import "footers/screen-xxs-max";
 
+	@import "wet-boew/src/plugins/menu/screen-xxs-max";
+	@import "wet-boew/src/plugins/tables/screen-xxs-max";
 	@import "../components/header-rwd/screen-xxs-max";
+	@import "wet-boew/src/plugins/tabs/screen-xxs-max";
 	@import "../components/tabs/screen-xxs-max";
 
 	@import "../misc/variant-default/variant-screen-xxs-max";
@@ -332,6 +370,7 @@
 
 /* Extra-small view */
 @media screen and (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+	@import "wet-boew/src/base/views/screen-xs-min-to-screen-xs-max";
 	@import "../misc/views/screen-xs-min-to-screen-xs-max";
 
 	@import "../components/header-rwd/screen-xs-min-to-screen-xs-max";
@@ -341,6 +380,7 @@
 
 /* Small view */
 @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+	@import "wet-boew/src/base/views/screen-sm-min-to-screen-sm-max";
 	@import "../misc/views/screen-sm-min-to-screen-sm-max";
 
 	@import "search/screen-sm-min-to-screen-sm-max";
@@ -352,6 +392,7 @@
 
 /* Medium view */
 @media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+	@import "wet-boew/src/base/views/screen-md-min-to-screen-md-max";
 	@import "../misc/views/screen-md-min-to-screen-md-max";
 
 	@import "gcweb-menu/screen-md-min-to-screen-md-max";
@@ -364,26 +405,40 @@
 
 /* Large view */
 @media screen and (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+	@import "wet-boew/src/base/views/screen-lg-min-to-screen-lg-max";
 	@import "../misc/views/screen-lg-min-to-screen-lg-max";
 	@import "../misc/variant-default/variant-screen-lg-min-to-screen-lg-max";
 }
 
 /* Extra-large view */
 @media screen and (min-width: $screen-xl-min) {
+	@import "wet-boew/src/base/views/screen-xl-min";
 	@import "../misc/views/screen-xl-min";
+
+	@import "wet-boew/src/base/proximity/screen-xl-min";
+
 	@import "../misc/variant-default/variant-screen-xl-min";
 }
 
 /* Print view */
 @media print {
+	@import "wet-boew/src/base/views/print";
 	@import "../misc/views/print";
 
+	@import "wet-boew/src/base/breadcrumb/print";
 	@import "footers/print";
 	@import "gcweb-menu/print";
 	@import "search/print";
 	@import "secondary-menu/print";
 	@import "main-footer/print";
 
+	@import "wet-boew/src/plugins/footnotes/print";
+	@import "wet-boew/src/plugins/geomap/print";
+	@import "wet-boew/src/plugins/lightbox/print";
+	@import "wet-boew/src/plugins/multimedia/print";
+	@import "wet-boew/src/plugins/overlay/print";
+	@import "wet-boew/src/plugins/prettify/print";
+	@import "wet-boew/src/plugins/tabs/print";
 	@import "../components/gc-features/print"; /* Deprecated as v4.0.28 */
 	@import "../components/gc-follow-us/print";
 

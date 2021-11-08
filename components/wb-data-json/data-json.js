@@ -113,20 +113,7 @@ var componentName = "wb-data-json",
 				nocache: nocache,
 				nocachekey: nocachekey
 			},
-			settings = window[ componentName ],
-			urlParts;
-
-		// Detect CORS requests
-		if ( settings && ( url.substr( 0, 4 ) === "http" || url.substr( 0, 2 ) === "//" ) ) {
-			urlParts = wb.getUrlParts( url );
-			if ( ( wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host ) && ( !Modernizr.cors || settings.forceCorsFallback ) ) {
-				if ( typeof settings.corsFallback === "function" ) {
-					fetchObj.dataType = "jsonp";
-					fetchObj.jsonp = "callback";
-					fetchObj = settings.corsFallback( fetchObj );
-				}
-			}
-		}
+			settings = window[ componentName ];
 
 		$elm.trigger( {
 			type: "json-fetch.wb",

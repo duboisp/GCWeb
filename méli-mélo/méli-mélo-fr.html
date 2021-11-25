@@ -81,11 +81,11 @@ dateModified": 2021-06-22
 
 <h3 id="mli-mlo-liste">Liste des compilations méli-mélo actives</h3>
 <ul>
-{% for item in site.data[ "mli-mlo" ].packages %}
+{% for item in site.data[ "méli-mélo" ].packages %}
 	<li>{{ item.nom }}
 		<ul>
 		{% for pack in item.libs %}
-			{% assign indexPage = site.data[ "mli-mlo" ].subProjects | where: "nom", pack | first %}
+			{% assign indexPage = site.data[ "méli-mélo" ].subProjects | where: "nom", pack | first %}
 			<li><a href="/gcweb-compiled-demos/méli-mélo-demos/{{ item.nom }}/{{ pack }}/{{ indexPage.mainpage }}">{{ pack }}</a></li>
 		{% endfor %}
 		</ul>

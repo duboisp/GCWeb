@@ -1,15 +1,30 @@
+
+const fs = require('fs');
+const ncp = require('ncp').ncp;
+
 module.exports = function(eleventyConfig) {
 
-	eleventyConfig.addPassthroughCopy({ "./dist/GCWeb" : "GCWeb" });
-	eleventyConfig.addPassthroughCopy({ "./dist/wet-boew" : "wet-boew" });
+	  eleventyConfig.on('beforeBuild', () => {
+
+		// GCWeb + WET-BOEW binary
+		eleventyConfig.addPassthroughCopy({ "./dist/GCWeb" : "GCWeb" });
+		eleventyConfig.addPassthroughCopy({ "./dist/wet-boew" : "wet-boew" });
+
+		// Copy layout + include in the same folder
+		async fs.rm( "./~11ty", { recursive: true } );
+		ncp( "~jekyll-dist/_includes", "./~11ty/_includes" );
+		ncp( "_includes", "./~11ty/_includes" );
+		ncp( "~jekyll-dist/_layouts", "./~11ty/_layouts" );
+		ncp( "_layouts", "./~11ty/_layouts" );
+	});
 
 	// Map local layout with alias.
 
 	return {
 			dir: {
 				output : "_site",
-				includes: "~jekyll-dist/_includes",
-				layouts: "~jekyll-dist/_layouts"
+				includes: "./~11ty/_includes",
+				layouts: "./~11ty/_layouts"
 			},
 			dataTemplateEngine: "liquid",
 			templateFormats : ["html", "md", "liquid", "css"],

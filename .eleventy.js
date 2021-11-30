@@ -1,5 +1,5 @@
 
-const fs = require('fs');
+var fs = require('fs');
 const ncp = require('ncp').ncp;
 
 module.exports = function(eleventyConfig) {
@@ -11,7 +11,7 @@ module.exports = function(eleventyConfig) {
 		eleventyConfig.addPassthroughCopy({ "./dist/wet-boew" : "wet-boew" });
 
 		// Copy layout + include in the same folder
-		async fs.rm( "./~11ty", { recursive: true } );
+		fs.rm( "./~11ty", { recursive: true } );
 		ncp( "~jekyll-dist/_includes", "./~11ty/_includes" );
 		ncp( "_includes", "./~11ty/_includes" );
 		ncp( "~jekyll-dist/_layouts", "./~11ty/_layouts" );

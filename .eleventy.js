@@ -11,11 +11,13 @@ module.exports = function(eleventyConfig) {
 		eleventyConfig.addPassthroughCopy({ "./dist/wet-boew" : "wet-boew" });
 
 		// Copy layout + include in the same folder
-		fs.rm( "./~11ty", { recursive: true } );
-		ncp( "~jekyll-dist/_includes", "./~11ty/_includes" );
-		ncp( "_includes", "./~11ty/_includes" );
-		ncp( "~jekyll-dist/_layouts", "./~11ty/_layouts" );
-		ncp( "_layouts", "./~11ty/_layouts" );
+		//fs.rm( "~11ty", { recursive: true } );
+		//fs.mkdir( "~11ty" );
+		ncp( "~jekyll-dist/_includes", "~11ty/_includes" );
+		console.log( "YEPPP" );
+		ncp( "_includes", "~11ty/_includes" );
+		ncp( "~jekyll-dist/_layouts", "~11ty/_layouts" );
+		ncp( "_layouts", "~11ty/_layouts" );
 	});
 
 	// Map local layout with alias.

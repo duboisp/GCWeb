@@ -5,10 +5,12 @@ dateModified: 2022-03-03
 description: "Page d'accueil décrivant l'ensemble des composants du thème de Canada.ca, nommé GCWeb."
 layout: no-container
 language: fr
+css:
+- href: https://use.fontawesome.com/releases/v5.8.1/css/all.css
+  integrity: sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf
 ---
 
 {::nomarkdown}
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
 <div class="container">
 	<h1 id="wb-cont" property="name">GCWeb, le thème WET-BOEW de Canada.ca</h1>
 	<div class="row">
@@ -100,7 +102,7 @@ language: fr
 		{% assign list-pages = component.pages %}
 		<li class="col-md-6 mrgn-tp-md mrgn-bttm-md">
 			<div class="brdr-tp brdr-rght brdr-bttm brdr-lft hght-inhrt">
-				<h3 class="mrgn-tp-md mrgn-rght-md mrgn-bttm-md mrgn-lft-md">{{ component.title[ page.language ] }} 
+				<h3 class="mrgn-tp-md mrgn-rght-md mrgn-bttm-md mrgn-lft-md">{{ component.title[ page.language ] }}
 				{% if component.status == "stable" %}
 				<span class="label label-success mrgn-lft-sm"><span class="wb-inv">État: </span>{{ comp_status[ component.status ] }}</span>
 				{% elsif component.status == "provisional" %}
@@ -117,7 +119,7 @@ language: fr
 					<ul class="list-unstyled mrgn-bttm-lg mrgn-lft-md">
 					{% assign docs = list-pages.docs | where: "language", page.language %}
 					{% for doc in docs %}
-						<li><a href="components/{{ component.componentName }}/{{ doc.path }}"><span class="fas fa-info-circle small mrgn-rght-sm" aria-hodden="true"></span>Documentation</a></li>
+						<li><a href="components/{{ component.componentName }}/{{ doc.path }}"><span class="fas fa-info-circle small mrgn-rght-sm" aria-hidden="true"></span>Documentation</a></li>
 					{% endfor %}
 					</ul>
 					{% endif %}
@@ -153,7 +155,7 @@ language: fr
 		{% assign list-pages = template.pages %}
 		<li class="col-md-6 mrgn-tp-md mrgn-bttm-md">
 			<div class="brdr-tp brdr-rght brdr-bttm brdr-lft hght-inhrt">
-				<h3 class="mrgn-tp-md mrgn-rght-md mrgn-bttm-md mrgn-lft-md">{{ template.title[ page.language ] }} 
+				<h3 class="mrgn-tp-md mrgn-rght-md mrgn-bttm-md mrgn-lft-md">{{ template.title[ page.language ] }}
 				{% if template.status == "stable" %}
 				<span class="label label-success mrgn-lft-sm"><span class="wb-inv">État: </span>{{ comp_status[ template.status ] }}</span>
 				{% elsif template.status == "provisional" %}
@@ -170,7 +172,7 @@ language: fr
 					<ul class="list-unstyled mrgn-bttm-lg mrgn-lft-md">
 					{% assign docs = list-pages.docs | where: "language", page.language %}
 					{% for doc in docs %}
-						<li><a href="templates/{{ template.componentName }}/{{ doc.path }}"><span class="fas fa-info-circle small mrgn-rght-sm" aria-hodden="true"></span>Documentation</a></li>
+						<li><a href="templates/{{ template.componentName }}/{{ doc.path }}"><span class="fas fa-info-circle small mrgn-rght-sm" aria-hidden="true"></span>Documentation</a></li>
 					{% endfor %}
 					</ul>
 					{% endif %}

@@ -1,0 +1,30 @@
+---
+{
+	"title": "Détails de la page sans le bouton 'Signaler un problème'",
+	"language": "fr",
+	"altLangPage": "page-details-without-report-btn-en.html",
+	"breadcrumb": [
+		{ "title": "Canada.ca", "link": "https://www.canada.ca/en.html" }
+	],
+	"secondlevel": false,
+	"dateModified": "2022-04-14",
+	"share": true,
+	"noReportProblem": true
+}
+---
+<p>Pour afficher seulement le bouton "Partager cette page" sans le bouton "Signaler un problème sur cette page", créez une <code>&lt;div&gt;</code> avec l'attribut de données suivant :<code>data-wb-share='{"lnkClass": "btn btn-default btn-block"}'</code > et la classe CSS suivante <code>class="wb-share"</code></p>
+<p>Pour plus d'informations sur le plugin Partager cette page, veuillez visiter <a href="https://wet-boew.github.io/wet-boew/docs/ref/share/share-fr.html">la page du Gadget de partage</a></p>
+<h2>Code HTML</h2>
+<p>Ce code html générera la même section de détails de page que celle illustrée ci-dessous </p>
+<pre>
+	<code>
+		&lt;footer class="pagedetails"&gt;
+			&lt;h2 class="wb-inv"&gt;Détails de la page&lt;/h2&gt;
+			&lt;div class="wb-share col-sm-offset-9" data-wb-share='{&quot;lnkClass&quot;: &quot;btn btn-default btn-block&quot;}'&gt;&lt;/div&gt;
+			&lt;dl id="wb-dtmd"&gt;
+				&lt;dt&gt;Date de modification&nbsp;:&lt;/dt&gt;
+				&lt;dd&gt;&lt;time property="dateModified"&gt;2022-04-14&lt;/time&gt;&lt;/dd&gt;
+			&lt;/dl&gt;
+		&lt;/footer&gt;
+	</code>
+</pre>

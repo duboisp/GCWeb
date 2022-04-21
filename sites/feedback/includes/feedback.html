@@ -1,0 +1,9 @@
+{%- if page.feedbackPath -%}
+	<div data-ajax-replace= "{{page.feedbackPath}}">
+		<a class="btn btn-default btn-block" href="{{ i18nText-feedbackLink }}">{{ i18nText-feedback }}</a>
+	</div>
+{%- else -%}
+	<div>
+		<a class="btn btn-default btn-block" href="{{ i18nText-feedbackLink }}">{{ i18nText-feedback }}</a>
+	</div>
+{%- endif -%}

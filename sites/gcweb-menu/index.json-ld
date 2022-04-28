@@ -1,0 +1,44 @@
+{
+	"@context": {
+		"@version": 2.0,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "GCWeb Menu",
+		"fr": "Menu GCWeb"
+	},
+	"description": {
+		"en": "Documentation on how to use the GCWeb menu.",
+		"fr": "Documentation sur l'utilisation du menu GCWeb."
+	},
+	"modified": "2022-05-16",
+	"componentName": "gcweb-menu",
+	"status": "stable",
+	"pages": {
+		"docs": [
+			{
+				"title": "GCWeb Menu",
+				"language": "en",
+				"path": "gcweb-menu-en.html"
+			},
+			{
+				"title": "Menu GCWeb",
+				"language": "fr",
+				"path": "gcweb-menu-fr.html"
+			},
+			{
+				"title": "No Menu with Authentication Section",
+				"language": "en",
+				"path": "../authentication/contextual-signin-nomenu-en.html"
+			},
+			{
+				"title": "Sans menu mais avec la section d'authentification",
+				"language": "fr",
+				"path": "../authentication/contextual-signin-nomenu-fr.html"
+			}
+		]
+	}
+}

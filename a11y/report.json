@@ -1,0 +1,519 @@
+
+Convert date into ISO
+
+
+title === dcterms:title
+url === schema.org/url
+description === dcterms:description
+
+date === dcterms:created
+
+label === rdfs:label
+
+{
+	"@context":{
+		
+		"dcterms":"http://purl.org/dc/terms/",
+		"rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+		"foaf":"http://xmlns.com/foaf/spec/#",
+		"gh": "http://github.com/",
+		"earl":"http://www.w3.org/ns/earl#",
+		"WCAG21":"http://www.w3.org/TR/WCAG21/#",
+		"WCAG22":"http://www.w3.org/TR/WCAG22/#",
+		
+		"WCAG21:orientation": { "@type": "earl:TestRequirement" },
+		"WCAG21:identify-input-purpose": { "@type": "earl:TestRequirement" },
+		"WCAG21:reflow": { "@type": "earl:TestRequirement" },
+		"WCAG21:non-text-contrast": { "@type": "earl:TestRequirement" },
+		"WCAG21:text-spacing": { "@type": "earl:TestRequirement" },
+		"WCAG21:content-on-hover-or-focus": { "@type": "earl:TestRequirement" },
+		"WCAG21:character-key-shortcuts": { "@type": "earl:TestRequirement" },
+		"WCAG21:pointer-gestures": { "@type": "earl:TestRequirement" },
+		"WCAG21:pointer-cancellation": { "@type": "earl:TestRequirement" },
+		"WCAG21:label-in-name": { "@type": "earl:TestRequirement" },
+		"WCAG21:motion-actuation": { "@type": "earl:TestRequirement" },
+		"WCAG21:status-messages": { "@type": "earl:TestRequirement" },
+		"WCAG22:accessible-authentication": { "@type": "earl:TestRequirement" },
+		"WCAG22:dragging-movements": { "@type": "earl:TestRequirement" },
+		"WCAG22:consistent-help": { "@type": "earl:TestRequirement" },
+		"WCAG22:page-break-navigation": { "@type": "earl:TestRequirement" },
+		"WCAG22:focus-appearance-minimum": { "@type": "earl:TestRequirement" },
+		"WCAG22:visible-controls": { "@type": "earl:TestRequirement" },
+		"WCAG22:target-size-minimum": { "@type": "earl:TestRequirement" },
+		"WCAG22:redundant-entry": { "@type": "earl:TestRequirement" },
+
+		"WCAG21:identify-purpose": { "@type": "earl:TestRequirement" },
+		"WCAG21:timeouts": { "@type": "earl:TestRequirement" },
+		"WCAG21:animation-from-interactions": { "@type": "earl:TestRequirement" },
+		"WCAG21:target-size": { "@type": "earl:TestRequirement" },
+		"WCAG21:concurrent-input-mechanisms": { "@type": "earl:TestRequirement" },
+		"WCAG22:accessible-authentication-no-exception": { "@type": "earl:TestRequirement" },
+		"WCAG22:focus-appearance-enhanced": { "@type": "earl:TestRequirement" },
+		
+		"WCAG21Tech":"https://www.w3.org/WAI/WCAG21/Techniques/",
+		"WCAG22Tech":"https://www.w3.org/WAI/WCAG22/Techniques/",
+		
+		"WCAG21Tech:html/H98": { "@type": "earl:TestCase" },
+		"WCAG22Tech:html/H99": { "@type": "earl:TestCase" },
+		
+		"WCAG21Tech:css/C8": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C21": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C28": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C31": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C32": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C33": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C35": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C34": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C36": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C37": { "@type": "earl:TestCase" },
+		"WCAG21Tech:css/C38": { "@type": "earl:TestCase" },
+		"WCAG22Tech:css/C40": { "@type": "earl:TestCase" },
+		"WCAG22Tech:css/C41": { "@type": "earl:TestCase" },
+		"WCAG22Tech:css/C42": { "@type": "earl:TestCase" },
+		
+		"WCAG21Tech:general/G83": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G84": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G85": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G162": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G174": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G177": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G193": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G194": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G195": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G199": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G206": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G207": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G208": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G209": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G210": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G211": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G212": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G213": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G214": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G215": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G216": { "@type": "earl:TestCase" },
+		"WCAG21Tech:general/G217": { "@type": "earl:TestCase" },
+		"WCAG22Tech:general/G218": { "@type": "earl:TestCase" },
+		"WCAG22Tech:general/G219": { "@type": "earl:TestCase" },
+		"WCAG22Tech:general/G220": { "@type": "earl:TestCase" },
+		"WCAG22Tech:general/G221": { "@type": "earl:TestCase" },
+		"WCAG22Tech:general/G222": { "@type": "earl:TestCase" },
+		
+		"WCAG21Tech:aria/ARIA18": { "@type": "earl:TestCase" },
+		"WCAG21Tech:aria/ARIA19": { "@type": "earl:TestCase" },
+		"WCAG21Tech:aria/ARIA22": { "@type": "earl:TestCase" },
+		"WCAG21Tech:aria/ARIA23": { "@type": "earl:TestCase" },
+		
+		"WCAG21Tech:client-side-script/SCR14": { "@type": "earl:TestCase" },
+		"WCAG21Tech:client-side-script/SCR34": { "@type": "earl:TestCase" },
+		"WCAG21Tech:client-side-script/SCR39": { "@type": "earl:TestCase" },
+		
+		"WCAG21Tech:failures/F78": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F95": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F96": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F97": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F99": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F100": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F101": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F102": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F103": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F104": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F106": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F107": { "@type": "earl:TestCase" },
+		"WCAG21Tech:failures/F105": { "@type": "earl:TestCase" },
+		"WCAG22Tech:failures/F108": { "@type": "earl:TestCase" },
+		
+		
+		"assertedBy": { "@id": "earl:assertedBy", "@type": "@id" },
+		"mode": { "@id": "earl:mode", "@type": "@id" },
+		"results": {
+			"@id": "earl:result",
+			"@type": "earl:TestResult"
+		},
+		"subject": { "@id": "earl:subject", "@type": "@id" },
+		"test": { "@id": "earl:test", "@type": "@id" },
+		"techniques": {
+			"@id": "earl:test",
+			"@type": "@id"
+		},
+		"outcome": { "@id": "earl:outcome", "@type": "@id" },
+		"url": "http://schema.org/url",
+		"assertions": {
+			"@id": "earl:Assertion"
+		},
+		
+		"resultsWCAG": {
+			"@id": "earl:result",
+			"@container": "@index"
+		}
+		
+	},
+
+	"@id": "https://wet-boew.github.io/wet-boew/wet-boew/src/plugins/wb-mytest/test/a11y-1.json",
+	"id": "1",
+	"@type": "earl:Assertion",
+	"test": [ "WCAG21", "WCAG22" ],
+	
+	"assertedBy": "Pierre Dubois (Github: @duboisp)",
+	"date": "2022-04-19",
+	
+	"subject": {
+
+		"url": "https://wet-boew.github.io/themes-dist/GCWeb/content-en.html",
+		"title": "Evaluate the accessibility conformity of the new GCWeb look version 2.",
+		"description": "It was assumed that GCWeb, released with v4.0.29, was already meeting WCAG 2.0 Level AA. So a brief evaluation was done for those succes criteria. The following evaluation are mainly focus on the new GCWeb look (V5) area of changes."
+	},
+	
+	"score": "97%",
+	
+	"results": [
+	
+		{
+			"label": "SC 1.3.4 (Level AA)",
+			"outcome": "Untested",
+			"notes": "",
+			"test": "WCAG21:orientation",
+			"techniques": [
+				"WCAG21Tech:general/G214",
+				"WCAG21Tech:failures/F97",
+				"WCAG21Tech:failures/F100"
+			],
+			"earl:mode": "earl:manual",
+			"earl:outcome": "earl:untested",
+			"@type": [ "earl:TestResult", "earl:Assertion" ]
+			
+		},
+		
+		
+		
+		
+		{
+			"rdfs:label": "SC 1.3.4 (Level AA)",
+			"test": "WCAG21:orientation",
+			"testcases": [
+				"WCAG21Tech:general/G214",
+				"WCAG21Tech:failures/F97",
+				"WCAG21Tech:failures/F100"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 1.3.5 (Level AA)",
+			"test": "WCAG21:identify-input-purpose",
+			"testcases": [
+				"WCAG21Tech:html/H98",
+				"WCAG21Tech:failures/F107"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 1.4.10 (Level AA)",
+			"test": "WCAG21:reflow",
+			"testcases": [
+				"WCAG21Tech:css/C32",
+				"WCAG21Tech:css/C31",
+				"WCAG21Tech:css/C33",
+				"WCAG21Tech:css/C38",
+				"WCAG21Tech:client-side-script/SCR34",
+				"WCAG21Tech:general/G206",
+					"WCAG21Tech:css/C34",
+					"WCAG21Tech:css/C37",
+				"WCAG21Tech:failures/F102"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 1.4.11 (Level AA)",
+			"test": "WCAG21:non-text-contrast",
+			"testcases": [
+				"WCAG21Tech:general/G195",
+				"WCAG21Tech:general/G174",
+				
+				"WCAG21Tech:general/G207",
+				"WCAG21Tech:general/G209",
+				
+				"WCAG21Tech:failures/F78"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 1.4.12 (Level AA)",
+			"test": "WCAG21:text-spacing",
+			"testcases": [
+				"WCAG21Tech:css/C36",
+				"WCAG21Tech:css/C35",
+					"WCAG21Tech:css/C8",
+					"WCAG21Tech:css/C21",
+					"WCAG21Tech:css/C28",
+				"WCAG21Tech:failures/F104"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 1.4.13 (Level AA)",
+			"test": "WCAG21:content-on-hover-or-focus",
+			"testcases": [
+				"WCAG21Tech:client-side-script/SCR39",
+				"WCAG21Tech:failures/F95"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.1.4 (Level A)",
+			"test": "WCAG21:character-key-shortcuts",
+			"testcases": [
+				"WCAG21Tech:general/G217",
+				"WCAG21Tech:failures/F99"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.5.1 (Level A)",
+			"test": "WCAG21:pointer-gestures",
+			"testcases": [
+				"WCAG21Tech:general/G215",
+				"WCAG21Tech:general/G216",
+				"WCAG21Tech:failures/F105"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.5.2 (Level A)",
+			"test": "WCAG21:pointer-cancellation",
+			"testcases": [
+				"WCAG21Tech:general/G210",
+				"WCAG21Tech:general/G212",
+				"WCAG21Tech:failures/F101"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.5.3 (Level A)",
+			"test": "WCAG21:label-in-name",
+			"testcases": [
+				"WCAG21Tech:general/G208",
+				"WCAG21Tech:general/G211",
+					"WCAG21Tech:general/G162",
+				"WCAG21Tech:failures/F96"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.5.4 (Level A)",
+			"test": "WCAG21:motion-actuation",
+			"testcases": [
+				"WCAG21Tech:general/G213",
+				"WCAG21Tech:failures/F106"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 4.1.3 (Level AA)",
+			"test": "WCAG21:status-messages",
+			"testcases": [
+				"WCAG21Tech:aria/ARIA22",
+				"WCAG21Tech:general/G199",
+				"WCAG21Tech:aria/ARIA19",
+				"WCAG21Tech:general/G83",
+				"WCAG21Tech:general/G84",
+				"WCAG21Tech:general/G85",
+				"WCAG21Tech:general/G177",
+				"WCAG21Tech:general/G194",
+				"WCAG21Tech:aria/ARIA23",
+				"WCAG21Tech:general/G193",
+					"WCAG21Tech:aria/ARIA18",
+					"WCAG21Tech:client-side-script/SCR14",
+				"WCAG21Tech:failures/F103"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 3.3.7 (Level A)",
+			"test": "WCAG22:accessible-authentication",
+			"testcases": [
+				"WCAG22Tech:general/G218"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.5.7 (Level AA)",
+			"test": "WCAG22:dragging-movements",
+			"testcases": [
+				"WCAG22Tech:general/G219",
+				"WCAG22Tech:failures/F108"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 3.2.6 (Level A)",
+			"test": "WCAG22:consistent-help",
+			"testcases": [
+				"WCAG22Tech:general/G220"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.4.13 (Level A)",
+			"test": "WCAG22:page-break-navigation",
+			"testcases": [
+				"WCAG22Tech:html/H99"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.4.11 (Level AA)",
+			"test": "WCAG22:focus-appearance-minimum",
+			"testcases": [
+				"WCAG22Tech:general/G195",
+				"WCAG22Tech:css/C40",
+				"WCAG22Tech:css/C41"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 3.2.7 (Level AA)",
+			"test": "WCAG22:visible-controls",
+			"testcases": [
+				"WCAG22Tech:general/G222"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 2.5.8 (Level AA)",
+			"test": "WCAG22:target-size-minimum",
+			"testcases": [
+				"WCAG22Tech:css/C42"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		},
+		{
+			"rdfs:label": "SC 3.3.8 (Level A)",
+			"test": "WCAG22:redundant-entry",
+			"testcases": [
+				"WCAG22Tech:general/G221"
+			],
+			"mode": "earl:manual",
+			"results": {
+				"outcome": "earl:untested"
+			},
+			"assertedBy": "_:noAssertor",
+			"subject": "_:subject",
+			"@type": "earl:Assertion"
+		}
+]
+
+}

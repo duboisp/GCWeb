@@ -7,7 +7,7 @@
  */
 .home .gcweb-menu {
 	color: #284162;
-	margin-left: 0px;
+	// margin-left: 0px;
 
 	button[aria-haspopup=true] {
 		background-color: #fff;
@@ -19,6 +19,10 @@
 			color: #fff;
 		}
 	}
+}
+
+.home #wb-bnr + .gcweb-menu {
+	margin-left: 0px;
 }
 
 /*

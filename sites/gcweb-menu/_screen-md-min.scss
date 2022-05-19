@@ -5,6 +5,8 @@
 
 .gcweb-menu {
 
+	margin-left: -15px;
+
 	/* SubSubMenu (MostRequested) keep it black
 	 *
 	 * Todo: check to use this CSS selector: [data-keep-expanded=md-min][role=menuitem][aria-haspopup=true]
@@ -17,6 +19,10 @@
 		text-decoration: none;
 	}
 
+}
+
+#wb-bnr + .gcweb-menu {
+	margin-left: 0px;
 }
 
 // Open by default in basic HTML mode into 3 column

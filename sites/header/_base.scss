@@ -10,12 +10,12 @@
 	/* Allow left component to take full width */
 	+ .container {
 		font-size: 20px;
-		padding-left: 0px;
-		padding-right: 0px;
+		//padding-left: 0px;
+		//padding-right: 0px;
 
 		/* Counter effect of container w/o padding-right for right-aligned component  */
 		.col-xs-5, .col-xs-12 {
-			right: 15px;
+			//right: 15px;
 		}
 	}
 }

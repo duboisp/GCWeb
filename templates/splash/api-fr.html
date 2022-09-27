@@ -1,0 +1,54 @@
+---
+{
+	"title": "Page de garde - Meta information",
+	"language": "fr",
+	"breadcrumbs": [
+		{ "title": "GCWeb home", "link": "https://wet-boew.github.io/themes-dist/GCWeb/index-en.html" }
+	],
+	"secondlevel": false,
+	"dateModified": "2022-09-28",
+	"share": "false"
+}
+---
+
+<dl class="horizontal">
+	<dt>Statut</dt>
+	<dd>Stable</dd>
+	<dt>Type</dt>
+	<dd>Gabarit de Canada.ca</dd>
+	<dt>Dernière revue</dt>
+	<dd>2022-09-28</dd>
+	<dt>Conforming to</dt>
+	<dd>Developed in conformance to the Campaign template in Content and IA spec 1.3</dd>
+	<dt>Specification</dt>
+	<dd>Aucune spécifications</dd>
+</dl>
+
+<h2>Exemples pratiques</h2>
+<ul>
+	<li><a href="splashpage-fr.html">Francais</a></li>
+	<li><a href="splashpage.html" hreflang="en">English</a></li>
+</ul>
+
+
+<h2>Instances disponibles</h2>
+<ul data-wb-json='{
+		"url": "index.json-ld#/pages/instances",
+		"source": "#list1",
+		"mapping": [
+			{ "selector": "a", "value": "/path" },
+			{ "selector": "a", "value": "/path", "attr": "href" },
+			{ "selector": ".splash", "value": "/institution", "placeholder": "[[inst]]" },
+			{ "selector": ".splash", "value": "/language", "placeholder": "[[lang]]" }
+		]
+	}'>
+	<template id="list1">
+		<li class="splash">[[inst]]</li>
+	</template>
+</ul>
+
+<h2>Page de garde - Version 1.1</h2>
+<p>Création et ajout de la version Française/Anglaise.</p>
+
+<h2>Page de garde - Version 1.0</h2>
+<p>Création de la version Anglaise/Française seulement.</p>

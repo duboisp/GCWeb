@@ -1,5 +1,5 @@
 ---
-layout: splashpage
+layout: splashpage-en
 title: Canada.ca
 lang: en
 description-en: The Government of Canada website is a single point of access to all programs, services, departments, ministries and organizations of the Government of Canada.

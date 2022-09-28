@@ -37,15 +37,15 @@
 
 <h2>Available instances</h2>
 <ul data-wb-json='{
-		"url": "index.json-ld#/pages/instances",
-		"source": "#list1",
+		"url": "index.json-ld#/instances",
 		"mapping": [
-			{ "selector": ".splash", "value": "/institution", "placeholder": "[[inst]]" },
-			{ "selector": ".splash", "value": "/language", "placeholder": "[[lang]]" }
+			{ "selector": "a", "value": "/name" },
+			{ "selector": "a", "value": "/path", "attr": "href" },
+			{ "selector": "span", "value": "/contact" }
 		]
 	}'>
-	<template id="list1">
-		<li class="splash">[[inst]]: [[lang]]</li>
+	<template>
+		<li><a href></a> (<span></span>)</li>
 	</template>
 </ul>
 

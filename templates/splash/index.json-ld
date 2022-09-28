@@ -42,5 +42,12 @@
 				"path": "api-fr.html"
 			}
 		]
-	}
+	},
+	"instances": [
+		{
+			"name": "Canada.ca",
+			"path": "https://www.canada.ca",
+			"contact": "Principal Pulisher Sevice desk (Service Canada)"
+		}
+	]
 }

@@ -1,0 +1,36 @@
+/*
+  WET-BOEW
+  @title: Footer small view and over (screen only)
+ */
+
+#wb-info {
+	.brand {
+		nav {
+			li {
+				display: inline-block;
+				margin-right: .5em;
+
+				[dir=rtl] & {
+					margin-left: .5em;
+					margin-right: 0;
+				}
+
+				&:not(:first-child):before {
+					content: "\2022";
+					margin-right: .7em;
+
+					[dir=rtl] & {
+						margin-left: .7em;
+						margin-right: 0;
+					}
+				}
+			}
+		}
+
+		/* START: To support footer <= v2.0 */
+		.row nav ul li {
+			margin-bottom: .7em;
+		}
+		/* END */
+	}
+}

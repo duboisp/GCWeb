@@ -1,0 +1,24 @@
+/*
+  WET-BOEW
+  @title: Footer extra-small view and under (screen only)
+ */
+
+#wb-info {
+	.brand {
+		nav {
+			ul {
+				li:not(:last-child) {
+					margin-bottom: .75em;
+				}
+			}
+
+			h3 + ul::after {
+				border-bottom: 1px solid #333;
+				content: "";
+				display: block;
+				margin-top: 1em;
+				width: 1.5em;
+			}
+		}
+	}
+}

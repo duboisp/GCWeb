@@ -3,15 +3,28 @@
   @title: Small view and under (screen only)
  */
 
+/* START: To support footer <= v2.0 */
 #wb-info {
-	.ftr-urlt-lnk {
-		ul {
-			column-count: 2;
-		}
+	.brand {
+		.row {
+			nav {
+				margin: .75em 0 3em;
 
-		li {
-			display: block;
-			margin-bottom: .2em;
+				ul {
+					column-count: 2;
+					padding-top: 0;
+				}
+
+				li {
+					display: block;
+
+					&:first-child::before {
+						content: "\2022";
+						margin-right: .75em;
+					}
+				}
+			}
 		}
 	}
 }
+/* END */

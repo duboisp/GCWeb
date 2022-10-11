@@ -4,25 +4,26 @@
  */
 
 #wb-info {
-	.ftr-urlt-lnk {
-		li {
-			display: inline-block;
-			float: left;
-			margin-right: $footer-about-li-horizontal-spacing;
+	.brand {
+		nav {
+			ul {
+				display: inline-block;
+			}
 
-			&:first-child:before {
-				content: none;
+			h3 + ul {
+				margin-bottom: 0;
+
+				&::after {
+					content: "|";
+					margin: 0 .75em 0 .4em;
+				}
 			}
 		}
-	}
-}
 
-[dir=rtl] {
-	#wb-info {
-		.ftr-urlt-lnk {
-			li {
-				float: right;
-			}
+		/* START: To support footer <= v2.0 */
+		.row nav ul li {
+			margin-bottom: 0;
 		}
+		/* END */
 	}
 }

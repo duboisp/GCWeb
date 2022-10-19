@@ -12,31 +12,334 @@
 }
 ---
 
+<div data-wb-jsonmanager='{
+		"url": "index.json-ld",
+		"name": "component",
+		"debug": false
+	}'></div>
+
+<!--
+<wb-jsonmanager name="github">
+	<wb-config name="url" value="https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Work%3A+Accessibility"></wb-config>
+	<wb-config name="wraproot">rootArray</wb-config>
+	<wb-config name="patches">
+		<wb-config type="patch" op="wb-count" path="/rootArray" set="/nbissues"></wb-config>
+		<wb-config type="patch" op="wb-last" path="/rootArray" set="/last"></wb-config>
+		<wb-config type="patch" op="wb-first" path="/rootArray" set="/first"></wb-config>
+		<wb-config type="patch" op="wb-toDateISO" path="/last/created_at" set="/oldest"></wb-config>
+		<wb-config type="patch" op="wb-toDateISO" path="/first/created_at" set="/recent"></wb-config>
+		<wb-config type="patch" op="add" path="/unhideme" value="hidden"></wb-config>
+	</wb-config>
+	< ! - -
+		There is a few way to put config,
+		1. As an attribute set on the custom component
+		2. Via the sub-component "wb-config" where it define a "name" and the value is:
+			2-a. Literal value:
+				2-a-i. Use the attribute "value" to set the default value for the named config.
+				2-a-ii. Use the textContent (no value attribute) to set the default value for the named config
+			2.b. Javascript object: All custom attribute to represent the config as an object
+			2.c. Javascript arrary composed by sub element "wb-config"
+		3. Via the sub-component "wb-config" where it define a "type"
+			- The type is a pattern which define what property must be declared and mapped as a JSO. If not defined a warning should be throw but all attribute should be taken.
+			- Unnamed one will be added (push) to its parent array without key
+
+		wb-config must be transparent and bindable 
+	- - >
+</wb-jsonmanager>
+-->
+
 <dl class="horizontal">
 	<dt>Status</dt>
-	<dd>Stable</dd>
+	<dd data-json-replace="#[component]/status"></dd>
 	<dt>Type</dt>
 	<dd>Canada.ca template</dd>
 	<dt>Last review</dt>
-	<dd>2022-10-05</dd>
+	<dd data-json-replace="#[component]/modified"></dd>
 
 	<dt>Specification</dt>
 	<dd>There is no specification yet</dd>
+
+	<dt>Version</dt>
+	<dd data-json-replace="#[component]/version"></dd>
+
+	<dt>Variant</dt>
+	<dd>
+		<ul data-wb-json='{
+		"url": "#[component]/versionVariant",
+		"mapping": [
+			{ "selector": "span[data-name]", "value": "/@id" },
+			{ "selector": "span[data-v]", "value": "/@value" }
+		]
+	}'>
+			<template>
+				<li><span data-name></span>: <span data-v></span></li>
+			</template>
+		</ul>
+	</dd>
+
+	<dt>Variant details</dt>
+	<dd>
+		<ul data-wb-json='{
+		"url": "#[component]/variants",
+		"mapping": [
+			{ "selector": "[data-name]", "value": "/@id" },
+			{ "selector": "[data-v]", "value": "/version" },
+			{ "selector": "[data-s]", "value": "/status" },
+			{ "selector": "[data-detect]", "value": "/detectableBy/en" },
+			{ "selector": "[data-layout]", "value": "/layout" },
+			{ "selector": "[data-style]", "value": "/style" },
+			{ "selector": "[data-semantic]", "value": "/semantic" },
+			{ "selector": "[data-interaction]", "value": "/interaction" },
+			{ "selector": "[data-configuration]", "value": "/configuration" },
+			{ "selector": "[data-static]", "value": "/static" },
+			{ "selector": "[data-schema]", "value": "/schema" },
+			{ "selector": "[data-dependencies]", "value": "/dependencies" },
+			{ "selector": "[data-context]", "value": "/context" }
+		]
+	}'>
+			<template>
+				<li><span data-name></span>: 
+					<dl>
+						<dt>Version</dt>
+						<dd data-v></dd>
+
+						<dt>Status</dt>
+						<dd data-s></dd>
+
+						<dt>Detectable by</dt>
+						<dd data-detect></dd>
+					</dl>
+					<details>
+						<summary>Measures</summary>
+						<dl class="dl-horizontal">
+							<dt>layout</dt>
+							<dd data-layout></dd>
+							<dt>style</dt>
+							<dd data-style></dd>
+							<dt>semantic</dt>
+							<dd data-semantic></dd>
+							<dt>interaction</dt>
+							<dd data-interaction></dd>
+							<dt>configuration</dt>
+							<dd data-configuration></dd>
+							<dt>static</dt>
+							<dd data-static></dd>
+							<dt>schema</dt>
+							<dd data-schema></dd>
+							<dt>dependencies</dt>
+							<dd data-dependencies></dd>
+							<dt>context</dt>
+							<dd data-context></dd>
+						</dl>
+					</details>
+			</template>
+		</ul>
+	</dd>
 </dl>
 
+
+<h2>Variant details</h2>
+<p>List of variants currently included in this component version <span data-json-replaceWith="#[component]/version"></span>.</p>
+
+<div data-wb-json='{
+	"url": "#[component]/variants",
+	"mapping": [
+		{ "selector": "[data-name]", "value": "/@id" },
+		{ "selector": "[data-v]", "value": "/version" },
+		{ "selector": "[data-s]", "value": "/status" },
+		{ "selector": "[data-detect]", "value": "/detectableBy/en" },
+		{ "selector": "[data-layout]", "value": "/layout" },
+		{ "selector": "[data-style]", "value": "/style" },
+		{ "selector": "[data-semantic]", "value": "/semantic" },
+		{ "selector": "[data-interaction]", "value": "/interaction" },
+		{ "selector": "[data-configuration]", "value": "/configuration" },
+		{ "selector": "[data-static]", "value": "/static" },
+		{ "selector": "[data-schema]", "value": "/schema" },
+		{ "selector": "[data-dependencies]", "value": "/dependencies" },
+		{ "selector": "[data-context]", "value": "/context" },
+		{ "selector": "[data-notes]", "value": "/notes/en" }
+	]
+}'>
+	<template>
+		<h3><code data-name></code></h3>
+			<dl class="dl-horizontal">
+				<dt>Version</dt>
+				<dd data-v></dd>
+
+				<dt>Status</dt>
+				<dd data-s></dd>
+
+				<dt>Detectable by</dt>
+				<dd data-detect></dd>
+			</dl>
+			<details>
+				<summary>Measures and history</summary>
+				<dl class="dl-horizontal">
+					<dt>layout</dt>
+					<dd data-layout></dd>
+					<dt>style</dt>
+					<dd data-style></dd>
+					<dt>semantic</dt>
+					<dd data-semantic></dd>
+					<dt>interaction</dt>
+					<dd data-interaction></dd>
+					<dt>configuration</dt>
+					<dd data-configuration></dd>
+					<dt>static</dt>
+					<dd data-static></dd>
+					<dt>schema</dt>
+					<dd data-schema></dd>
+					<dt>dependencies</dt>
+					<dd data-dependencies></dd>
+					<dt>context</dt>
+					<dd data-context></dd>
+					<dt>Notes</dt>
+					<dd data-notes></dd>
+				</dl>
+			</details>
+	</template>
+</div>
+
+
+
+<h2>Variant details (with version history built in)</h2>
+<p>List of variants currently included in this component version <span data-json-replaceWith="#[component]/version"></span>.</p>
+
+<div data-wb-json='{
+	"url": "#[component]/variantsTable",
+	"mapping": [
+		{ "selector": "[data-name]", "value": "/@id" },
+		{ "selector": "[data-v]", "value": "/version" },
+		{ "selector": "[data-s]", "value": "/status" },
+		{ "selector": "[data-detect]", "value": "/detectableBy/en" },
+		{ 
+			"selector": "[data-v-history]",
+			"value": "/history",
+			"mapping": [
+				{ "selector": "[data-version]", "value": "/@id" },
+				{ "selector": "[data-notes]", "value": "/notes/en" }
+			]
+		},
+		{ 
+			"selector": "tbody",
+			"value": "/history",
+			"source": "#variantVersionTableRow",
+			"tobeclone": "tr",
+			"queryall": "th,td",
+			"mapping": [
+				"/@id",
+				"/layout",
+				"/style",
+				"/semantic",
+				"/interaction",
+				"/configuration",
+				"/static",
+				"/schema",
+				"/dependencies",
+				"/context"
+			]
+		}
+	]
+}'>
+	<template>
+		<h3><code data-name></code></h3>
+			<dl class="dl-horizontal">
+				<dt>Latest version</dt>
+				<dd data-v></dd>
+
+				<dt>Status</dt>
+				<dd data-s></dd>
+
+				<dt>Detectable by</dt>
+				<dd data-detect></dd>
+			</dl>
+			<details>
+				<summary>Version history</summary>
+
+				<dl class="dl-horizontal brdr-bttm" data-v-history>
+					<template>
+						<dt data-version></dt>
+						<dd data-notes></dd>
+					</template>
+				</dl>
+
+				<!-- For the future: replace "table-responsive" by "gc-table" -->
+				<div class="table-responsive">
+					<table class="table table-bordered table-condensed">
+						<caption>Detailled measured element version</caption>
+						<thead>
+							<tr>
+								<th>Variant version</th>
+								<th>layout</th>
+								<th>style</th>
+								<th>semantic</th>
+								<th>interaction</th>
+								<th>configuration</th>
+								<th>static</th>
+								<th>schema</th>
+								<th>dependencies</th>
+								<th>context</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</details>
+	</template>
+	<template id="variantVersionTableRow">
+		<table>
+			<tr>
+				<th data-version>Variant version</th>
+				<td data-layout>layout</td>
+				<td data-style>style</td>
+				<td data-semantic>semantic</td>
+				<td data-interaction>interaction</td>
+				<td data-configuration>configuration</td>
+				<td data-static>static</td>
+				<td data-schema>schema</td>
+				<td data-dependencies>dependencies</td>
+				<td data-context>context</td>
+			</tr>
+		</table>
+	</template>
+</div>
+
+
+
+
+
+
 <h2>Working Examples</h2>
-<ul>
-	<li><a href="splashpage-en.html">Bilingual - English first, followed by French</a></li>
-	<li><a href="splashpage-fr.html" hreflang="fr">Bilingual - French first, followed by English</a></li>
-	<li><a href="splashpage-contextual-en.html">Contextual title - English first, followed by French</a></li>
-	<li><a href="splashpage-contextual-fr.html" hreflang="fr">Contextual title - French first, followed by English</a></li>
+<ul data-wb-json='{
+		"url": "#[component]/pages/examples",
+		"mapping": [
+			{ "selector": "a", "value": "/title" },
+			{ "selector": "a", "value": "/path", "attr": "href" },
+			{ "selector": "a", "value": "/language", "attr": "lang" }
+		]
+	}'>
+	<template>
+		<li><a href lang></a></li>
+	</template>
 </ul>
 
 <h2>Known instances</h2>
-<ul>
-	<li>Service Canada: <a href="https://www.canada.ca">Canada.ca</a> (Eng/Fre)</li>
-	<li>Principal publisher: <a href="https://wet-boew.github.io/GCWeb/index.html">GCWeb</a> (Eng/Fre)</li>
+<ul data-wb-json='{
+		"url": "#[component]/instances",
+		"mapping": [
+			{ "selector": "span", "value": "/department" },
+			{ "selector": "a", "value": "/title" },
+			{ "selector": "a", "value": "/path", "attr": "href" },
+			{ "selector": "a", "value": "/language", "attr": "lang" }
+		]
+	}'>
+	<template>
+		<li><span></span> - <a href lang></a></li>
+	</template>
 </ul>
+
+
+
 
 <h2>Version history</h2>
 <dl>

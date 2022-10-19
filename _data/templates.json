@@ -1016,15 +1016,88 @@
 		"en": "Splash page example",
 		"fr": "Exemple d'écran d'accueil"
 	},
-	"modified": "2020-10-27",
+	"modified": "2022-09-28",
 	"componentName": "splash",
 	"status": "stable",
+	"version": "2.1",
+	"gcwebCompatible": [
+		"2.1",
+		"2.0"
+	],
+	"versionVariant": {
+		"canada.ca": "2.0",
+		"contextualized": "1.0"
+	},
+	"variantDistinguable": [
+		{
+			"variants": [ "canada.ca", "contextualized" ],
+			"description": {
+				"en": "Bilingual site use contextualized variant versus canada.ca variant is exclusive to a single use on Canada.ca",
+				"fr": "Site bilingue utilise la variante 'contextualized' comparé au 'canada.ca' variant qui est excluive à une utilisation unique sur Canada.ca"
+			},
+			"forkedApi": [
+				"semantic",
+				"context"
+			]
+		}
+	],
+	"api": {
+		"canada.ca": {
+			"detectableBy": {
+				"en": "heading level 2 are screen reader visible only",
+				"fr": "L'entête de niveau 2 est lisible seulement par les lecteurs d'écran"
+			},
+			"layout": "",
+			"style": "",
+			"semantic": "",
+			"interaction": "",
+			"configuration": "",
+			"static": "",
+			"schema": "",
+			"dependencies": "",
+			"context": "",
+			"previous": "https://github.com/wet-boew/GCWeb/blob/v11.5.0/templates/splash/index.json-ld"
+		},
+		"contextualized": {
+			"detectableBy": {
+				"en": "heading level 2 are always visible",
+				"fr": "L'entête de niveau 2 est toujours visibile"
+			},
+			"layout": "",
+			"style": "",
+			"semantic": "",
+			"interaction": "",
+			"configuration": "",
+			"static": "",
+			"schema": "",
+			"dependencies": "",
+			"context": ""
+		}
+	},
+
 	"pages": {
 		"examples": [
 			{
 				"title": "Splash page example",
 				"language": "en",
-				"path": "splashpage.html"
+				"path": "splashpage-en.html"
+			},
+			{
+				"title": "Exemple d'écran d'accueil",
+				"language": "fr",
+				"path": "splashpage-fr.html"
+			}
+		],
+		"docs": [
+			{
+				"title": "Splash page",
+				"language": "en",
+				"path": "api-en.html"
+			},
+			{
+				"title": "Écran d'accueil",
+				"language": "fr",
+				"path": "api-fr.html"
 			}
 		]
 	}

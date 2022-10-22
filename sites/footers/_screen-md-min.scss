@@ -12,10 +12,19 @@
 
 			h3 + ul {
 				margin-bottom: 0;
+			}
 
-				&::after {
-					content: "|";
-					margin: 0 .75em 0 .4em;
+			h4 {
+
+				display: inline-block;
+				margin-top: 0;
+				margin-bottom: 0;
+
+				&::before {
+					border-left: solid 1px;
+					content: "";
+					font-size: 13px;
+					margin: 0 1em 0 .4em;
 				}
 			}
 		}

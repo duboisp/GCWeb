@@ -1,3 +1,66 @@
+
+Status of variant
+
+-> Deprecated (require migration) (Not documented -> Only documented by master Version tracker)
+	Optional: Variant name, Version number
+	MUST: Have at least one, variant name or version number
+	Version API:
+		* Trigger a MAJOR for the owner component when a version number is included,
+		* Trigger a PATCH for the owner component when a version number don't exist or when a "last verified date" exist.
+		* Trigger a PATCH for the product because the pattern still work, will trigger only a MAJOR when it is fully removed.
+
+-> Supported (stable)
+	* (Version number or/and a variant name) The combination must be always unique. Can one or the other or both as long they are always unique among others.
+	MUST: Version number
+	Optional: Variant name
+	Version API: Trigger a MINOR for the owner component
+
+-> Provisional (experimental)
+	* There is no version neither a variant name.
+	SHALL NOT: version number, last verified date
+	MUST: variant name, like "beta", "beta202211", etc.
+	Version API: Any change will always trigger a PATCH for the owner component. Documenting the change is optional considering the git commit already have that information.
+
+-> Computed (For information)
+	* (A variant name, like "enhanced", optional version number and MUST have last validated date [observedOn]).
+	MUST: variant name and Last verified date
+	Optional: version number
+	Version API: Any change will always trigger a PATCH for the owner component. Because such variant require no action by our target audience (Implementer and Author of GCWeb).
+
+
+To fully removal of deprecated: Required
+* Search on Canada.ca to detect if the pattern was used + Publication of when and what was that search result
+	If instance are found:
+		- Communicate with institution for coaching and ask if they need more time + rational
+		- Suggest a postponed date if the justification provided makes sense and supported by PP management
+	If no instance found:
+		- Proceed with the removal if other condition are met.
+* Mention the removal at the Monthly WET meeting 2 months in advance before to proceed with the formal removal. If more time needed, let us know how much and why.
+* Removal can't be completed before 1 year of the deprecated time, to allow people to migrate
+* Verify if the removal impact AA and give time to remedy
+	- Advise twice: First when the pattern is deprecated and Second, 2 months before the formal removal.
+
+
+Type of change tolerated of a deprecated feature
+* For heavily used feature, support the previous visual/pattern as is for a 12 months period minimum.
+* For moderate used (as defined for template) or when the feature has been deprecated for more than 12 months, Visual impact tolerated but must remain functional (at least the user task can be completed) and the information must remain accessible + readable.
+* For low use (With a justification) of a feature that has been deprecated or (as defined for template), Visual impact tolerated but must remain functional (at least the user task can be completed) and the information must remain accessible + readable.
+
+
+
+How to ensure, this component match his previous version.
+{
+	"component": "splash page",
+	"signature": "HASH of all the variant... + Previous hash"
+}
+
+
+Folder organisation
+
+variants/{{name}}-{{version number}}/files... (code sample, includes, templates, examples, documentation....)
+
+
+
 {
 	"@context": {
 		"@version": 1.1,
@@ -16,7 +79,241 @@
 	},
 	"modified": "2022-09-28",
 	"componentName": "splash",
+	"type": "template",
 	"status": "stable",
+	"version": "2.1",
+/*
+	"versionVariant": {
+		"canada.ca": "2.0",
+		"contextualized": "1.0"
+	},
+*/
+	"version-tree": {
+		"default_v1.0.0": "",
+		"default_v1.1.0": "default_v1.0.0",
+		"default_v2.0.0": "default_v1.1.0",
+		"canada.ca_v2.0.1": "default_v2.0.0",
+		"contextualized_v1.0.0": "default_v2.0.0",
+	},
+	"version-tree2": [
+		{
+			"variant": "default",
+			"version": "v1.0.0",
+			"previous": {
+				"variant": "",
+				"version": ""
+			}
+		},
+		{
+			"variant": "default",
+			"version": "v1.1.0",
+			"previous": {
+				"variant": "default",
+				"version": "v1.0.0"
+			}
+		}
+	],
+
+		"default_v1.0.0": "",
+		"default_v1.1.0": "default_v1.0.0",
+		"default_v2.0.0": "default_v1.1.0",
+		"canada.ca_v2.0.1": "default_v2.0.0",
+		"contextualized_v1.0.0": "default_v2.0.0",
+	},
+	"variants": {
+		"canada.ca": {
+			"version": "2.0",
+			"status": "stable",
+			"detectableBy": {
+				"en": "heading level 2 are screen reader visible only",
+				"fr": "L'entête de niveau 2 est lisible seulement par les lecteurs d'écran"
+			},
+			"layout": "2.0",
+			"style": "2.0",
+			"semantic": "2.0",
+			"interaction": "1.0",
+			"configuration": "1.0",
+			"static": "1.0",
+			"schema": "1.0",
+			"dependencies": "-",
+			"context": "1.0",
+			"notes": {
+				"en": "Uniquly used on Canada.ca",
+				"fr": "Seulement utilisé sur Canada.ca"
+			},
+			"previous": "https://github.com/wet-boew/GCWeb/blob/v11.5.0/templates/splash/index.json-ld"
+
+		},
+		"contextualized": {
+			"version": "1.0",
+			"status": "stable",
+			"detectableBy": {
+				"en": "heading level 2 are always visible",
+				"fr": "L'entête de niveau 2 est toujours visibile"
+			},
+			"layout": "1.0",
+			"style": "1.0",
+			"semantic": "1.0",
+			"interaction": "1.0",
+			"configuration": "1.0",
+			"static": "1.0",
+			"schema": "1.0",
+			"dependencies": "-",
+			"context": "1.0",
+			"notes": {
+				"en": "Used by bilingual sub-site",
+				"fr": "Utiliser pour les sous-sites bilingue"
+			}
+		}
+	},
+	"variantsTable": {
+		"canada.ca": {
+			"version": "2.0",
+			"status": "stable",
+			"detectableBy": {
+				"en": "heading level 2 are screen reader visible only",
+				"fr": "L'entête de niveau 2 est lisible seulement par les lecteurs d'écran"
+			},
+			"history": {
+				"v2.0": {
+					"layout": "2.0",
+					"style": "2.0",
+					"semantic": "2.0",
+					"interaction": "1.0",
+					"configuration": "1.0",
+					"static": "1.0",
+					"schema": "1.0",
+					"dependencies": "-",
+					"context": "1.0",
+					"notes": {
+						"en": "Uniquly used on Canada.ca",
+						"fr": "Seulement utilisé sur Canada.ca"
+					},
+					"previous": "https://github.com/wet-boew/GCWeb/blob/v11.5.0/templates/splash/index.json-ld"
+				},
+				"v1.0": {
+					"layout": "1.0",
+					"style": "1.0",
+					"semantic": "1.0",
+					"interaction": "1.0",
+					"configuration": "1.0",
+					"static": "1.0",
+					"schema": "1.0",
+					"dependencies": "-",
+					"context": "1.0",
+					"notes": {
+						"en": "",
+						"fr": ""
+					}
+				}
+			}
+		},
+		"contextualized": {
+			"version": "1.0",
+			"status": "stable",
+			"detectableBy": {
+				"en": "heading level 2 are always visible",
+				"fr": "L'entête de niveau 2 est toujours visibile"
+			},
+			"history": {
+				"v1.0": {
+					"layout": "1.0",
+					"style": "1.0",
+					"semantic": "1.0",
+					"interaction": "1.0",
+					"configuration": "1.0",
+					"static": "1.0",
+					"schema": "1.0",
+					"dependencies": "-",
+					"context": "1.0",
+					"notes": {
+						"en": "Used by bilingual sub-site",
+						"fr": "Utiliser pour les sous-sites bilingue"
+					}
+				}
+			}
+		}
+	},
+	"statusVariant": {
+		"canada.ca": "stable",
+		"contextualized": "stable"
+	},
+	"testVariant": {
+		"canada.ca": {
+			"file": "versions/canada.ca.html",
+			"container": "html",
+			"data": [
+				{
+					"name": "institution",
+					"lang": "en",
+					"pointer": "main section[lang=en] h2"
+				},
+				{
+					"name": "institution",
+					"lang": "fr",
+					"pointer": "main section[lang=fr] h2"
+				},
+				{
+					"name": "link",
+					"lang": "en",
+					"pointer": "main section[lang=en] a",
+					"attr": "href"
+				},
+				{
+					"name": "link",
+					"lang": "fr",
+					"pointer": "main section[lang=fr] a",
+					"attr": "href"
+				}
+			]
+		}
+	},
+	"variantDistinguable": [
+		{
+			"variants": [ "canada.ca", "contextualized" ],
+			"description": {
+				"en": "Bilingual site use contextualized variant versus canada.ca variant is exclusive to a single use on Canada.ca",
+				"fr": "Site bilingue utilise la variante 'contextualized' comparé au 'canada.ca' variant qui est excluive à une utilisation unique sur Canada.ca"
+			},
+			"forkedApi": [
+				"semantic",
+				"context"
+			]
+		}
+	],
+	"api": {
+		"canada.ca": {
+			"detectableBy": {
+				"en": "heading level 2 are screen reader visible only",
+				"fr": "L'entête de niveau 2 est lisible seulement par les lecteurs d'écran"
+			},
+			"layout": "",
+			"style": "",
+			"semantic": "",
+			"interaction": "",
+			"configuration": "",
+			"static": "",
+			"schema": "",
+			"dependencies": "",
+			"context": "",
+			"previous": "https://github.com/wet-boew/GCWeb/blob/v11.5.0/templates/splash/index.json-ld"
+		},
+		"contextualized": {
+			"detectableBy": {
+				"en": "heading level 2 are always visible",
+				"fr": "L'entête de niveau 2 est toujours visibile"
+			},
+			"layout": "",
+			"style": "",
+			"semantic": "",
+			"interaction": "",
+			"configuration": "",
+			"static": "",
+			"schema": "",
+			"dependencies": "",
+			"context": ""
+		}
+	},
 	"pages": {
 		"examples": [
 			{

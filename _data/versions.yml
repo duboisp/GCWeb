@@ -1,0 +1,41 @@
+# Grille de compatibilité des versions de composant GCWeb
+templates:
+  versioned:
+    splash: v2.1
+  variants:
+    splash:
+      canada.ca: v2.0
+      contextualized: v1.0
+  deprecated:
+    splash:
+      v2.0: 2023-10
+      v1.1: 2023-10
+      v1.0: 2023-10
+      variants:
+        default:
+          v2.0: 2023-10
+          v1.1: 2023-10
+          v1.0: 2023-10
+  removed:
+    splash:
+      default:
+        v0.1: gcweb-v13.0.2
+files:
+  versioned:
+    - "GCWeb/css/theme.min.css"
+    - "GCWeb/assets/favicon-mobile.png"
+    - "GCWeb/assets/favicon.png"
+    - "GCWeb/assets/landscapge.png"
+    - "GCWeb/assets/sig-blk-en.svg"
+    - "GCWeb/assets/sig-blk-fr.svg"
+    - "GCWeb/assets/wmms-blk.svg"
+    - "GCWeb/assets/sp-bg-2.jpg"
+
+  provisional:
+    - "GCWeb/assets/x-blue-line.png"
+    - "GCWeb/assets/wb-chtwzrd/default-avatar.png"
+
+  deprecated:
+    "GCWeb/assets/sig-blk-fr.png": 2023-11
+    "GCWeb/assets/sig-blk-en.png": 2023-11
+    "GCWeb/assets/wmms-blk.png": 2023-11

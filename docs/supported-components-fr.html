@@ -1,0 +1,191 @@
+---
+title: Compatibilité des versions de composant GCWeb
+altLangPage: supported-components-en.html
+dateModified: 2022-11-28
+description: Listes de tous les composants et variants de component stables, provisionel, désuet et retiré, ce tel que pour la dernière version de GCWeb.
+layout: default
+language: fr
+---
+
+<p>Listes de tous les composants et variants de component stables, provisionel, désuet et retiré, ce tel que pour la dernière version de GCWeb.</p>
+
+<!--
+
+#baseline:
+#  stable:
+#    {component}
+#	  version: Version number of the component based on its variants
+#	  title:
+#	    fr: French title of the component
+#		en: English title of the component
+#	  variants:
+#	    {version}: Version Number
+#		{variant}: Version Number
+#		{variant}-{version}: Version Number
+#  provisional:
+#    {component}
+#	  {variant} : Updated date
+#  deprecated:
+#    {component}
+#	  {variant}:
+#	    {version}: Removal date
+#		{Last updated date}: Removal date # For provisional feature
+#  informational:
+#    {component}
+#	  {variant}-{observed on}: Observed on date
+#  removed:
+#    {component}
+#	  {variant}:
+#	    {version}: Last known version where it was deprecated
+#		{Last updated date}: Last known version where it was deprecated or observed on # For provisional feature and informational
+
+
+baseline:
+  stable:
+    {component}
+	  version: Version number of the component based on its variants
+	  title:
+	    fr: French title of the component
+		en: English title of the component
+	  variants:
+	    {version}: Version Number
+		{variant}: Version Number
+		{variant}-{version}: Version Number
+  provisional:
+    {component}
+	  {variant} : Updated date
+  deprecated:
+    {component}
+	  {variant}:
+	    {version}: Removal date
+		{Last updated date}: Removal date # For provisional feature
+  informational:
+    {component}
+	  {variant}-{observed on}: Observed on date
+  removed:
+    {component}
+	  {variant}:
+	    {version}: Last known version where it was deprecated
+		{Last updated date}: Last known version where it was deprecated or observed on # For provisional feature and informational
+###
+# The name of a variant MUST to be always unique for a given {component} where it's name can be one of: {version}, {variant}, {variant}-{version} or {variant}-{observed on}
+###
+#components:
+#templates:
+#sites:
+#polyfills
+#devtools:
+-->
+
+
+<h2>Base de référence</h2>
+{% assign baseRef = site.data.versions.baseline %}
+{% if baseRef.size > 0 %}
+	{% include_relative partials/components-details.html componentType=baseRef %}
+{% else %}
+	<p>Il n'y a pas de version de gabarits de documenté présentement.</p>
+{% endif %}
+
+<h2>Composants</h2>
+{% assign composants = site.data.versions.components %}
+{% if composants .size > 0 %}
+	{% include_relative partials/components-details.html componentType=composants  %}
+{% else %}
+	<p>Il n'y a pas de version de gabarits de documenté présentement.</p>
+{% endif %}
+
+<h2>Gabarits</h2>
+
+{% assign gabarits = site.data.versions.templates %}
+{% if gabarits.size > 0 %}
+	{% include_relative partials/components-details.html componentType=gabarits %}
+{% else %}
+	<p>Il n'y a pas de version de gabarits de documenté présentement.</p>
+{% endif %}
+
+<h2>Fonctionnalités globales et de sites</h2>
+{% assign sitesGlobales = site.data.versions.sites %}
+{% if sitesGlobales.size > 0 %}
+	{% include_relative partials/components-details.html componentType=sitesGlobales %}
+{% else %}
+	<p>Il n'y a pas de version de gabarits de documenté présentement.</p>
+{% endif %}
+
+<h2>Plugiciel correctifs</h2>
+{% assign plugicielCorr = site.data.versions.polyfills %}
+{% if plugicielCorr.size > 0 %}
+	{% include_relative partials/components-details.html componentType=plugicielCorr %}
+{% else %}
+	<p>Il n'y a pas de version de gabarits de documenté présentement.</p>
+{% endif %}
+
+<h2>Outils de dévelopement</h2>
+{% assign outils = site.data.versions.devtools %}
+{% if outils.size > 0 %}
+	{% include_relative partials/components-details.html componentType=outils %}
+{% else %}
+	<p>Il n'y a pas de version de gabarits de documenté présentement.</p>
+{% endif %}
+
+<h2>Fichiers</h2>
+
+<p>La liste suivante est le chemin des fichiers compilé et surveillé selon l'API publique de version.</p>
+<ul>
+{% for fichiers in site.data.versions.files.stable %}
+	<li>{{ fichiers }}</li>
+{% endfor %}
+</ul>
+
+<section>
+	<details>
+		<summary><h3>Provisionnel</h3></summary>
+{% for fichiers in site.data.versions.files.provisional %}
+	{%- if forloop.first -%}
+		<p>La liste suivante sont des fichiers utilisés par des fonctionalités provisionnelles.</p>
+		<ul>
+	{%- endif -%}
+	<li>{{ fichiers }}</li>
+	{%- if forloop.last -%}
+		</ul>
+	{%- endif -%}
+{% else %}
+	<p>Il n'y a aucun fichier provisionnelle ou ils ne sont pas encore documenté</p>
+{% endfor %}
+	</details>
+</section>
+
+<section>
+	<details>
+		<summary><h3>Obsolète</h3></summary>
+{% for fichiers in site.data.versions.files.deprecated %}
+	{%- if forloop.first -%}
+		<p>La liste suivante sont des fichiers qui sera retiré à la date de retrait suggéré.</p>
+		<ul>
+	{%- endif -%}
+	<li><time>{{ fichiers.removalOn }}</time>: {{ fichiers.path }}</li>
+	{%- if forloop.last -%}
+		</ul>
+	{%- endif -%}
+{% else %}
+	<p>Il n'y a aucun fichier obselète.</p>
+{% endfor %}
+	</details>
+</section>
+
+<section>
+	<details>
+		<summary><h3>Supprimé</h3></summary>
+{% for fichiers in site.data.versions.files.removed %}
+	{%- if forloop.first -%}
+		<p>La liste suivante sont des fichiers qui ont été supprimé précédé de la dernière version connu de GCWeb avec le fichier.</p>
+		<ul>
+	{%- endif -%}
+	<li>{{ fichiers.lastKnownVersion }}: {{ fichiers.path }}</li>
+	{%- if forloop.last -%}
+		</ul>
+	{%- endif -%}
+{% else %}
+	<p>Il n'y a aucun fichier obselète.</p>
+{% endfor %}
+	</details>
+</section>

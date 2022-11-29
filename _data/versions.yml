@@ -1,0 +1,62 @@
+# Grille de compatibilité des versions de composant GCWeb
+
+baseline:
+components:
+templates:
+  stable:
+    - component: splash
+      version: v2.1
+      title:
+        fr: Page d'accueil
+        en: Splash page
+      variants:
+        - name: canada.ca
+          version: v2.0
+        - name: contextualized
+          version: v1.0
+  provisional:
+    - component: splash
+      updatedOn: 2021-22-33
+      variant: test123
+  informational:
+    - component: splash
+      variant: enhanced
+      observedOn: 2022-09-27
+  deprecated:
+    - component: splash
+      variant: v1.1
+      removalOn: 2023-10
+    - component: splash
+      variant: 1.0
+      removalOn: 2023-10
+  removed:
+    - component: splash
+      variant: v0.1
+      lastKnownVersion: gcweb-v13.0.2
+
+sites:
+polyfills:
+devtools:
+
+files:
+  stable:
+    - "GCWeb/css/theme.min.css"
+    - "GCWeb/assets/favicon-mobile.png"
+    - "GCWeb/assets/favicon.png"
+    - "GCWeb/assets/landscapge.png"
+    - "GCWeb/assets/sig-blk-en.svg"
+    - "GCWeb/assets/sig-blk-fr.svg"
+    - "GCWeb/assets/wmms-blk.svg"
+    - "GCWeb/assets/sp-bg-2.jpg"
+
+  provisional:
+    - "GCWeb/assets/x-blue-line.png"
+    - "GCWeb/assets/wb-chtwzrd/default-avatar.png"
+
+  deprecated:
+    - path: "GCWeb/assets/sig-blk-fr.png"
+      removalOn: 2023-11
+    - path: "GCWeb/assets/sig-blk-en.png"
+      removalOn: 2023-11
+    - path: "GCWeb/assets/wmms-blk.png"
+      removalOn: 2023-11

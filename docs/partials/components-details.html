@@ -1,0 +1,88 @@
+
+<p>La liste suivante est composée du nom technique du composant avec sa version, de son nom, suivi de ses variantes et la version associé à ceux-ci.</p>
+<ul class="lst-none">
+{% for componentInfo in include.componentType.stable %}
+	<li class="clearfix">
+		<p class="pull-left mrgn-tp-sm"><code>{{ componentInfo.component }}</code> <strong>{{ componentInfo.version }}</strong> - {{ componentInfo.title.fr }}</p>
+		<details class="pull-left mrgn-lft-md">
+			<summary>(détails des variantes)</summary>
+			<ul>
+			{% for variantes in componentInfo.variants %}
+				<li>{{ variantes.name }}: {{ variantes.version }}</li>
+			{% endfor %}
+			</ul>
+		</details>
+	</li>
+{% endfor %}
+</ul>
+
+<section>
+	<details>
+		<summary><h3>Provisionnel</h3></summary>
+{% for componentInfo in include.componentType.provisional %}
+	{%- if forloop.first -%}
+		<p>La liste suivante est composée du nom technique du composant avec son identifiant de variant suivi de la date de la dernière mise à jour.</p>
+		<ul class="lst-none">
+	{%- endif -%}
+	<li><code>{{ componentInfo.component }} - {{ componentInfo.variant }}</code>: <strong>{{ componentInfo.updatedOn }}</strong></li>
+	{%- if forloop.last -%}
+		</ul>
+	{%- endif -%}
+{% else %}
+	<p>Il n'y a aucune fontionnalité provisionnelle</p>
+{% endfor %}
+	</details>
+</section>
+
+<section>
+	<details>
+		<summary><h3>Informationel</h3></summary>
+{% for componentInfo in include.componentType.informational %}
+	{%- if forloop.first -%}
+		<p>La liste suivante est composée du nom technique du composant avec son identifiant de variant suivi de la date de la dernière observation inscrit.</p>
+		<ul class="lst-none">
+	{%- endif -%}
+	<li><code>{{ componentInfo.component }} - {{ componentInfo.variant }}</code>: <strong>{{ componentInfo.observedOn }}</strong></li>
+	{%- if forloop.last -%}
+		</ul>
+	{%- endif -%}
+{% else %}
+	<p>Il n'y a aucune fontionnalité provisionnelle</p>
+{% endfor %}
+	</details>
+</section>
+
+<section>
+	<details>
+		<summary><h3>Obsolète</h3></summary>
+{% for componentInfo in include.componentType.deprecated %}
+	{%- if forloop.first -%}
+		<p>La liste suivante est composée du nom technique du composant avec son identifiant de variant suivi de la date de retrait suggéré.</p>
+		<ul class="lst-none">
+	{%- endif -%}
+	<li><code>{{ componentInfo.component }} - {{ componentInfo.variant }}</code>: <strong>{{ componentInfo.removalOn }}</strong></li>
+	{%- if forloop.last -%}
+		</ul>
+	{%- endif -%}
+{% else %}
+	<p>Il n'y a aucune fontionnalité obselète</p>
+{% endfor %}
+	</details>
+</section>
+<section>
+	<details>
+		<summary><h3>Supprimé</h3></summary>
+{% for componentInfo in include.componentType.removed %}
+	{%- if forloop.first -%}
+		<p>La liste suivante est composée du nom technique du composant avec son identifiant de variant suivi de la dernière version connu de GCWeb avec cette fonctionalité.</p>
+		<ul class="lst-none">
+	{%- endif -%}
+	<li><code>{{ componentInfo.component }} - {{ componentInfo.variant }}</code>: <strong>{{ componentInfo.lastKnownVersion }}</strong></li>
+	{%- if forloop.last -%}
+		</ul>
+	{%- endif -%}
+{% else %}
+	<p>Il n'y a aucune fontionnalité provisionnelle</p>
+{% endfor %}
+	</details>
+</section>

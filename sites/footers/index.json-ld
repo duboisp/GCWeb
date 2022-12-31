@@ -17,6 +17,128 @@
 	"modified": "2022-01-12",
 	"componentName": "footers",
 	"status": "stable",
+	"version": "3.1.0",
+
+	"variants": {
+		"wayfinding": { // or "rev_4"
+			"revision": 4,
+
+// Describe what has been changed compared to "previous" revision
+// Inside it's the API measure with a short description of the changes
+
+			"breaking": {
+				"layout": "Remodel of site footer",
+				"semantic": "Restructure of the markup",
+			},
+			"additions": {
+				"style": "New set of styles",
+			},
+			"fixes": {
+				...
+			},
+
+
+// Ordered list that explain how to implement or how to migrate toward this revision
+			"instruction": [
+				"step 1 bla", // HTML
+				"step 2: blabla" // HTML
+			]
+
+
+// Describe how we can identify this revision compared to others and previous.
+			"detectableBy": "",
+
+
+// To generate code sample 
+			sample: [
+				{
+					name: "Name of the code sample",
+					include: "LocalPath/Toward/include",
+					config: { // Front matter
+
+					},
+					snapshoot: "LocalPath/Toward/snapshoot",
+					description: "Text describing this code sample"
+
+				},
+				{
+					name: "Name of the code sample"
+					snapshoot: "LocalPath/To/a/manual/code/snapshoot/css|js|html",
+					description: "Text describing this code sample"
+				}
+
+			],
+
+			// Artefact resources created because of this new revision
+			"artefact": {
+				"template",
+				"css",
+				"js",
+				"sample",
+				"test"
+			}
+
+
+			// API of the variant
+			"layout": "See example 1",
+			"style": "Mixed with all variant CSS",
+			"semantic": "See example 1",
+			"logic": "Not applicable",
+			"behaviour": "Not applicable",
+			"guidance": "URL to the DTO website",
+			"context": "Bottom of the HTML page, before the <scrip> tag resource, after the <main>",
+			"configuration": "none",
+			"static": [
+				"header"
+					"footerSite,
+					"goc",
+					"themeLinks",
+					"gocCorporate"
+				"partials"
+					"gocLinks" // HTML
+					"themeLinksLinks" // HTML
+					"corporateLinks" // HTML
+				"privacyText"
+				"privacyUrl",
+				"termsText",
+				"termsUrl",
+
+			],
+			"schema": [
+				"contextualFooterTitle"
+				"contextualFooterItems": {
+					"text",
+					"link"
+				}
+				"privacyUrl", // with default
+				"termsUrl" // with default
+			],
+			"dependencies": "none",
+			"files": "../assets/landscape.png",
+
+
+			"rdfs:comments": "Was identified as v4.0.0",
+			"previous": 3
+		},
+		"rev3": {
+			"revision": 3
+			"rdfs:comments": "Remodel from way finding project",
+			"previous": 2
+		},
+		"rev2": {
+			"revision": 2
+			"rdfs:comments": "Updated the columns for small devices",
+			"previous": 1
+		},
+		"rev1": {
+			"revision": 2
+			"rdfs:comments": "Based on the footer as per the 2019 visual update",
+			"previous": 1
+		}
+	}
+
+
+
 	"pages": {
 		"docs": [
 			{

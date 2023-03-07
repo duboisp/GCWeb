@@ -26,12 +26,13 @@ The contextual band is optional on all page types (standard, transactional, camp
 
 ## Reference implementation
 
-### Expected output code - Footer with no contextual band
-
+<figure>
+  <figcaption class="h3">Expected output code - Footer with no contextual band</figcaption>
 {%- include variable-core.liquid -%}
 {% highlight html %}
 	{%- include footers/footer.html -%}
 {% endhighlight %}
+</figure>
 
 ## GCWeb-Jekyll implementation
 

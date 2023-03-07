@@ -26,12 +26,13 @@ La bande contextuelle est facultative sur tous les types de page (régulière, t
 
 ## Implémentation de référence
 
-### Code final attendu - Pied de page sans la bande contextuelle
-
+<figure>
+  <figcaption class="h3">Code final attendu - Pied de page sans la bande contextuelle</figcaption>
 {%- include variable-core.liquid -%}
 {% highlight html %}
 	{%- include footers/footer.html -%}
 {% endhighlight %}
+</figure>
 
 ## Pour la thème GCWeb-Jekyll
 * En définissant la variable `noFooterContextual` à «&nbsp;true&nbsp;», la bande contextuelle sera masquée au chargement de la page.
@@ -42,4 +43,3 @@ La bande contextuelle est facultative sur tous les types de page (régulière, t
 Consultez le système de conception de Canada.ca pour savoir quels éléments de pied de page ou quelles implémentations adaptées utiliser en fonction du type de page que vous créez :
 
 * [Pied de page général - Système de conception Canada.ca](https://conception.canada.ca/configurations-conception-communes/pied-page.html)
-

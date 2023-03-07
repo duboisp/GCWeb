@@ -1,6 +1,8 @@
 ---
 altLangPage: no-footer-main-en.html
 breadcrumbs:
+  - title: GCWeb
+    link: https://wet-boew.github.io/GCWeb/index-fr.html
   - title: Pied de page
     link: sites/footers/footers-fr.html
 contextualFooter:
@@ -19,8 +21,8 @@ language: fr
 noFooterMain: true
 secondlevel: false
 share: true
-title: Bande principale et la bande sous pied de page sans les liens facultatifs
-titleH1: Afficher la bande principale et la bande sous pied de page sans les liens facultatifs
+title: Bande contextuelle et la bande sous pied de page sans les liens facultatifs
+titleH1: Afficher la bande contextuelle et la bande sous pied de page sans les liens facultatifs
 ---
 <div class="wb-prettify all-pre hide"></div>
 
@@ -34,11 +36,13 @@ Le pied de page général (à l'échelle du site) situé au bas de chaque page W
 Sur les pages **transactionnelles** et de **campagne**, la bande principale est facultative.
 
 ## Implémentation de référence
-### Code final attendu - Pied de page sans la bande principale
+<figure>
+  <figcaption class="h3">Code final attendu - Pied de page sans la bande principale</figcaption>
 {%- include variable-core.liquid -%}
 {% highlight html %}
 	{%- include footers/footer.html -%}
 {% endhighlight %}
+</figure>
 
 ## Pour la thème GCWeb-Jekyll
 En définissant les variables `noFooterMain` à «&nbsp;true&nbsp;», la bande principale sera masquée au chargement de la page.

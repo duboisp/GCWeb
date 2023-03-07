@@ -28,11 +28,13 @@ La bande contextuelle est facultative sur tous les types de page (régulière, t
 Sur les pages **transactionnelles** et de **campagne**, vous pouvez omettre les liens Médias sociaux, Applications mobiles et À propos de Canada.ca de la bande sous pied de page.
 
 ## Implémentation de référence
-### Code final attendu - Pied de page sans la bande contextuelle et sans les liens facultatifs dans la bande sous pied de page
+<figure>
+  <figcaption class="h3">Code final attendu - Pied de page sans la bande contextuelle et sans les liens facultatifs dans la bande sous pied de page</figcaption>
 {%- include variable-core.liquid -%}
 {% highlight html %}
 	{%- include footers/footer.html -%}
 {% endhighlight %}
+</figure>
 
 ## Pour la thème GCWeb-Jekyll
 En définissant les variables `noFooterContextual` et `noFooterCorporate` à «&nbsp;true&nbsp;», la bande contextuelle et les liens optionnels de la bande sous le pied de page seront masqués au chargement de la page.

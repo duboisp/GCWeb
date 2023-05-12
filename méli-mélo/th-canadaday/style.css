@@ -39,8 +39,8 @@ details.bg-canadaday * {
 }
 details.bg-canadaday summary {
     background-color: #A30D26;
+    color: #fff;
     border: 1px solid #A30D26;
-    color: #fff;    
 }
 details.bg-canadaday[open] > summary {
     border: none;
@@ -105,8 +105,10 @@ h1.gc-thickline.canadaday::after {
 .panel-canadaday-card img {
     border-radius: 18px 18px 0px 0px;
 }
-
 .panel-canadaday-card .panel-heading>:not(img) {
     padding-left: 15px;
     padding-right: 15px;
+}
+.panel-canadaday-card .panel-body {
+    padding-bottom: 0 !important;
 }

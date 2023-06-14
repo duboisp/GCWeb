@@ -124,7 +124,9 @@
 				"title": "Page de contenu - Modèle de session ouverte",
 				"language": "fr",
 				"path": "signedon-fr.html"
-			},
+			}
+		],
+		"community": [
 			{
 				"title": "Active user session",
 				"language": "en",

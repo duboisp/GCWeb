@@ -31,7 +31,8 @@
 			}
 		]
 	},
-	"version": "3.1.0",
+	"version": "4.0.0",
+	"a11yGuidance": [ "", "", "" ],
 	"variations": [
 		{
 			"name": {
@@ -48,51 +49,18 @@
 			},
 			"basedOn": "_:iteration_1",
 			"implementation": [
-				{
-					"name": {
-						"en": "Upgrade",
-						"fr": "Mise à jour"
-					},
-					"sample": {
-						"include": "",
-						"config": {
-							"front-matter": "config and value"
-						},
-						"snapshoot": "URL of the image"
-					},
-					"instruction": {
-						"en": "text... or HTML",
-						"fr": "text... or HTML"
-					}
-				},
-				{
-					"name": {
-						"en": "New with GCWeb",
-						"fr": "Nouveau avec GCWeb"
-					},
-					"sample": "Pre formated text...",
-					"instruction": {
-						"en": "text... or HTML",
-						"fr": "text... or HTML"
-					}
-				},
-				{
-					"name": {
-						"en": "Build yourself",
-						"fr": "Indépendante"
-					},
-					"sample": {
-						"@type": "rdf:HTML",
-						"@value": "<p>Hello world</p>"
-					},
-					"instruction": {
-						"en": "text... or HTML",
-						"fr": "text... or HTML"
-					}
-				}
+				// References to an implementations
+				"_:implement_1_upgrade",
+				"_:implement_1_new",
+				"_:implement_1_build"
+
+			],
+
+			"history": [
+				"yyyy-mm-dd - Descriptif",
+				"yyyy-mm-dd - Descriptif",
+				"yyyy-mm-dd - Descriptif"
 			]
-
-
 		},
 		{
 			"name": {
@@ -106,14 +74,75 @@
 			"basedOn": "_:iteration_1"
 		}
 	],
-	"changeSet": [
+
+	"implementation": [
+
+		{
+			"@id": "_:implement_1_upgrade",
+			"status": "active|deprecated|provisional"
+
+			"iterations": "_:iteration_1",
+			"name": {
+				"en": "Upgrade",
+				"fr": "Mise à jour"
+			},
+			"sample": {
+				"include": "",
+				"config": {
+					"front-matter": "config and value"
+				},
+				"snapshoot": "URL of the image"
+			},
+			"instruction": {
+				"en": "text... or HTML",
+				"fr": "text... or HTML"
+			}
+		},
+		{
+			"@id": "_:implement_1_new",
+			"status": "active|deprecated|provisional"
+
+			"iterations": "_:iteration_1",
+			"name": {
+				"en": "New with GCWeb",
+				"fr": "Nouveau avec GCWeb"
+			},
+			"sample": "Pre formated text...",
+			"instruction": {
+				"en": "text... or HTML",
+				"fr": "text... or HTML"
+			}
+		},
+
+		{
+			"@id": "_:implement_1_build",
+			"status": "active|deprecated|provisional"
+
+			"iterations": "_:iteration_1",
+			"name": {
+				"en": "Build yourself",
+				"fr": "Indépendante"
+			},
+			"sample": {
+				"@type": "rdf:HTML",
+				"@value": "<p>Hello world</p>"
+			},
+			"instruction": {
+				"en": "text... or HTML",
+				"fr": "text... or HTML"
+			}
+
+		}
+	],
+
+	"changeset": [
 		{
 			"@id": "_:cs_default",
 			"name": {
 				"en": "Version 4",
 				"fr": "Version 4"
 			},
-			"status": "stable|provisional|deprecated|expunge",
+			"status": "stable",
 			"iteration-pointer": "_:iteration_1",
 
 			"detectableBy": "Text on how to detect",
@@ -155,11 +184,45 @@
 			"files": "../assets/landscape.png",
 
 
+		},
+		{
+			"@id": "_:cs_v3",
+			"name": {
+				"en": "Version 3",
+				"fr": "Version 3"
+			},
+			"status": "deprecated",
+			"iteration-pointer": "_:iteration_1",
+
+			"detectableBy": "Text on how to detect"
+		},
+		{
+			"@id": "_:cs_v2",
+			"name": {
+				"en": "Version 2",
+				"fr": "Version 2"
+			},
+			"status": "deprecated",
+			"iteration-pointer": "_:iteration_1",
+
+			"detectableBy": "Text on how to detect"
+		},
+		{
+			"@id": "_:cs_v1",
+			"name": {
+				"en": "Version 1",
+				"fr": "Version 1"
+			},
+			"status": "deprecated",
+			"iteration-pointer": "_:iteration_1",
+
+			"detectableBy": "Text on how to detect"
 		}
 	],
 	"iteration": [
 		{
 			"@id": "_:iteration_1",
+			"changeset": "_:cs_default",
 			"detectableBy": "Text on how to detect after the changeSet has been detected",
 			"breaking": {
 				"api": "what has been breaking"
@@ -174,4 +237,5 @@
 			"predecessor": "_:iteration_1a"
 		}
 	]
+
 }

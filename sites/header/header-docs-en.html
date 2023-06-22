@@ -8,6 +8,494 @@
 	"share": "true"
 }
 ---
+
+<div class="wb-prettify all-pre hide"></div>
+
+<aside class="brdr-bttm">
+<h2>Meta information for this page</h2>
+<p>This document represents recommended changes to the GCweb header documentation page.</p>
+<h3>Metadata</h3>
+<ul>
+	<li>Title: Global header</li>
+	<li>Description:  How to implement the Canada.ca global header for GCWeb.</li>
+</ul>
+<h3>Technical stuff</h3>
+<ul>
+	<li>Mockup: https://test.canada.ca/experimental/laura/gcweb/</li>
+	<li>Page type: Principal publisher documentation</li>
+	<li>Breadcrumbs: ??</li>
+	<li>Canada.ca > GCWeb > Sites and global functionality</li>
+</ul>
+</aside>
+
+<hgroup>
+	<p>GCWeb (the Canada.ca theme in WET)</p>
+	<h1>Global header</h1>
+</hgroup>
+
+
+<details>
+<summary>Debug</summary>
+<div data-wb-jsonmanager='{
+	"url": "index.json-ld",
+	"name": "api",
+	"patches": [
+		{
+			"op": "patches", "path": "/variations", "patches": [
+				{ "op": "wb-swap", "path": "/implementation", "ref": "/implementation" },
+				{ "op": "wb-swap", "path": "/oldImplementation", "ref": "/implementation" }
+			]
+		}
+	],
+	"debug": true
+}'></div>
+</details>
+
+
+<p>version <span data-json-replace="#[api]/version">Unknown</span></p>
+
+<h2>On this page</h2>
+<ul>
+	<li><a href="#">Purpose</a></li>
+	<li><a href="#">Included components</a></li>
+	<li><a href="#">How to implement</a></li>
+	<li><a href="#">Evaluation and report</a></li>
+	<li><a href="#">API (Version 2.0)</a></li>
+	<li><a href="#">Template history</a></li>
+	<li><a href="#">API (Version 2.0)</a></li>
+</ul>
+
+
+<h2>Purpose</h2>
+<p>[AJAX from DTO]</p>
+<p>The global header is a container that displays components that make up the header.</p>
+
+
+<h2>Included components</h2>
+
+<div data-wb-json='{
+	"url": "#[api]",
+	"streamline": "true",
+	"mapping": [
+		{
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-yes]",
+					"test": "fn:isArray",
+					"value": "/dependencies",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+
+				},
+				{
+					"template": "[data-no]",
+					"test": "fn:isLiteral",
+					"value": "/dependencies",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				}
+			]
+		}
+	]
+}'>
+	<template data-no>
+		<p>There is <span>no</span> sub-dependencies</p>
+	</template>
+
+	<template data-yes>
+		<ul>
+			<template>
+				<li></li>
+			</template>
+		</ul>
+	</template>
+</div>
+
+
+
+<h2>Before you start</h2>
+<p>[AJAX from DTO]</p>
+
+<p>Components are used and configured for different page types. Consult the Canada.ca Design system guidance for using these components on Standard, Transactional, and Campaign pages. This includes detail on each of the components listed above.</p>
+<ul>
+	<li><a href="#">How to set up the global header (Design guidance)</a></li>
+</ul>
+
+
+
+<h2>Accessibility guidance</h2>
+
+<p>List of accessibility guidances to be followed to ensure component is used in respect of the accessibility guideline and EN 301 549 standard (including WCAG 2.1 Level AA).</p>
+
+<div data-wb-json='{
+	"url": "#[api]",
+	"streamline": "true",
+	"mapping": [
+		{
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-yes]",
+					"test": "fn:isArray",
+					"value": "/a11yGuidance",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+
+				},
+				{
+					"template": "[data-no]",
+					"test": "fn:isLiteral",
+					"value": "/a11yGuidance",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				}
+			]
+		}
+	]
+}'>
+	<template data-no>
+		<p>There is <span>no accessibility guidance</span> defined</p>
+	</template>
+
+	<template data-yes>
+		<ul>
+			<template>
+				<li></li>
+			</template>
+		</ul>
+	</template>
+</div>
+
+
+
+
+
+<h2>Variations</h2>
+
+<p>Here are some popular examples. This isn’t an exhaustive list of possible variations. Configure your page based on page type, user needs and design system guidance.</p>
+
+<p>TECHNICAL NOTE: When loading the page with the console, the tab interface work, if closed it don't work</p>
+
+<div data-wb-json='{
+	"url": "#[api]/variations",
+	"mapping": [
+		{ "selector": "[data-name]", "value": "/name/en" },
+		{ "selector": "[data-status]", "value": "/status" },
+		{ "selector": "[data-description]", "value": "/description/en" },
+		{ "selector": "[data-guidance]", "value": "/guidance/en", "attr": "href" },
+
+		{ "selector": "[data-implementation]", "value": "/implementation",
+			"mapping": [
+				{ "selector": "summary", "value": "/name/en" },
+				{ "selector": "[data-status]", "value": "/status" },
+				{ "selector": "[data-instruction]", "value": "/instruction/en" }
+			]
+		},
+
+		{ "selector": "[data-old-implementation]", "value": "/oldImplementation",
+			"mapping": [
+				{ "selector": "h5", "value": "/name/en" },
+				{ "selector": "[data-status]", "value": "/status" },
+				{ "selector": "[data-instruction]", "value": "/instruction/en" }
+			]
+		},
+
+
+		{ "selector": "[data-history]", "value": "/history",
+			"mapping": [
+				{ "selector": "li", "value": "/en" }
+			]
+		}
+
+	],
+	"trigger": true
+}'>
+
+	<template>
+		<h3 data-name>[[ Name of the variation ]]</h3>
+
+		<p>Status: <span data-status>(Latest | Need a review | Outdated)</span></p>
+
+		<p><span data-description>[[ Short description ]]</span> <a data-guidance href>Consult the design guidance for this variations.</a></p>
+
+		<p>TODO: Screen capture</p>
+		<p>TODO: Working example link</p>
+
+		<h4>Implementation</h4>
+
+		<div class="wb-tabs" data-implementation>
+			<template>
+				<div class="tabpanels">
+					<details>
+						<summary>Name of the implementation</summary>
+						<p>Status: <span data-status>(active | deprecated | provisional)</span></p>
+						<p data-instruction>Instructions text</p>
+						<p>Sample information (code / HTML / Ajax...)</p>
+					</details>
+				</div>
+			</template>
+		</div>
+
+		<h4>History notes</h4>
+		<ul data-history>
+			<template>
+				<li>[[ history ]]</li>
+			</template>
+		</ul>
+
+		<details data-old-implementation>
+			<summary>Deprecated implementation</summary>
+
+			<template>
+				<section>
+					<h5>Name of the implementation</h5>
+					<p>Status: <span data-status>(active | deprecated | provisional)</span></p>
+					<p data-instruction>Instructions text</p>
+					<p>Sample information (code / HTML / Ajax...)</p>
+				</section>
+			</template>
+		</details>
+	</template>
+
+</div>
+
+
+
+<h2>Evaluation and report</h2>
+
+<p>Accessibility report...</p>
+
+
+
+<h2>Technical documentation</h2>
+
+<h3>Change set</h3>
+
+<p>The description beside the public API item are defining the scope of how the public API item is applicable in the context of its "Change set". It should contains all the information about how we can measure a change when a subsequent iteration would be created. It can refer to an explicit example, or contains a code sample, or link to another documentation section where more details is provided. Optionally and when it provide more clarity, it can provide a description what is not in the versioning scope.</p>
+<p>Unless specified, the public API item scope are strictly limited to what is described here. Anything that are not identified, a setting or an include file, are out of scope.</p>
+
+<div data-wb-json='{
+	"url": "#[api]/changeset",
+	"mapping": [
+		{ "selector": "h4", "value": "/name/en" },
+		{ "selector": "[data-status]", "value": "/status" },
+		{ "selector": "[data-description]", "value": "/description/en" },
+		{ "selector": "[data-detectability]", "value": "/detectableBy" },
+		{ "selector": "[data-layout]", "value": "/layout" },
+		{ "selector": "[data-style]", "value": "/style" },
+		{ "selector": "[data-semantic]", "value": "/semantic" },
+		{ "selector": "[data-logic]", "value": "/logic" },
+		{ "selector": "[data-behaviour]", "value": "/behaviour" },
+		{ "selector": "[data-context]", "value": "/context" },
+		{ "selector": "[data-iteration]", "value": "/forIteration" }
+	]
+}'>
+
+<template>
+	<h4>[[ Change set name ]]</h4>
+	<dl class="dl-horizontal">
+		<dt>Status:</dt> <dd data-status>stable</dd>
+		<dt>Detectable by:</dt> <dd data-detectability>detectableBy</dd>
+		<dt>Layout:</dt>
+		<dd data-layout>Note</dd>
+		<dt>Style:</dt>
+		<dd data-style>Note</dd>
+		<dt>Semantic:</dt>
+		<dd data-semantic>Note</dd>
+		<dt>Logic:</dt>
+		<dd data-logic>Note</dd>
+		<dt>Accessibility guidance:</dt>
+		<dd data->
+			<ul>
+				<li></li>
+			</ul>
+		</dd>
+		<dt>Behaviour:</dt>
+		<dd data-behaviour>Note</dd>
+		<dt>Pattern recognition:</dt>
+		<dd data-recognition>Note</dd>
+		<dt>Context of use:</dt>
+		<dd data-context>Note</dd>
+		<dt>Configuration:</dt>
+		<dd data->
+			<ul>
+				<li></li>
+			</ul>
+		</dd>
+		<dt>Static value:</dt>
+		<dd data->
+			<ul>
+				<li></li>
+			</ul>
+		</dd>
+		<dt>Data schema:</dt>
+		<dd data->
+			<ul>
+				<li></li>
+			</ul>
+		</dd>
+		<dt>Dependencies:</dt>
+		<dd data->
+			<ul>
+				<li></li>
+			</ul>
+		</dd>
+		<dt>Files:</dt>
+		<dd data->
+			<ul>
+				<li></li>
+			</ul>
+		</dd>
+		<dt>For iteration ID</dt>
+		<dd data-iteration>_:iteration_xyz</dd>
+	</dl>
+</template>
+</div>
+
+
+<h3>Iteration</h3>
+
+
+<div data-wb-json='{
+	"url": "#[api]/iteration",
+	"mapping": [
+		{ "selector": "h4", "value": "/@id" },
+		{ "selector": "[data-detectability]", "value": "/detectableBy" },
+		{ "selector": "[data-predecessor]", "value": "/predecessor" },
+		{ "selector": "[data-successor]", "value": "/successor" }
+	]
+}'>
+
+<template>
+<h4>[[ Iteration id ]]</h4>
+<dl>
+	<dt>Detectable by:</dt> <dd data-detectability>detectableBy</dd>
+	<dt>Used in change set:</dt>
+	<dd>
+		<ul>
+			<li>List of change set</li>
+		</ul>
+	</dd>
+	<dt>Breaking changes</dt>
+	<dd>
+		<ul>
+			<li>Changes</li>
+		</ul>
+	</dd>
+	<dt>Additions</dt>
+	<dd>
+		<ul>
+			<li>Changes</li>
+		</ul>
+	</dd>
+	<dt>Fixes</dt>
+	<dd>
+		<ul>
+			<li>Changes</li>
+		</ul>
+	</dd>
+	<dt>Predecessor:</dt> <dd data-predecessor>Iteration ID</dd>
+	<dt>Successor:</dt> <dd data-successor>Iteration ID</dd>
+</dl>
+
+</template>
+</div>
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 <div class="wb-prettify all-pre hide"></div>
 
 <dl class="horizontal">

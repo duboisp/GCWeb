@@ -17,6 +17,7 @@
 	"modified": "2022-05-10",
 	"componentName": "header",
 	"status": "stable",
+	"version": "4.0.0",
 	"pages": {
 		"docs": [
 			{
@@ -30,5 +31,184 @@
 				"path": "header-docs-fr.html"
 			}
 		]
-	}
+	},
+	"dependencies": [
+		"Authentication (Sign in/Sign out buttons)",
+		"Breadcrumb trail",
+		"Government of Canada signature (always required)",
+		"Language toggle (always required)",
+		"Site search box",
+		"Skip link (always required)",
+		"Theme and topic menu"
+	],
+	"a11yGuidance": "no accessibility guidance",
+
+	"variations": [
+		{
+			"name": {
+				"en": "Standard",
+				"fr": "Régulier"
+			},
+			"status": "active",
+			"description": {
+				"en": "Short description",
+				"fr": "French short description"
+			},
+			"guidance": {
+				"en": "English URL to DTO website",
+				"fr": "French URL to DTO website"
+			},
+			"basedOn": "_:iteration_1",
+			"implementation": [
+				"_:implement_1_upgrade",
+				"_:implement_1_new",
+				"_:implement_1_build"
+
+			],
+
+			"oldImplementation": [
+				"_:implement_1_build"
+			],
+
+			"history": [
+				{ "en": "yyyy-mm-dd - Descriptif 1", "fr": "AAAA-MM-DD - Description 1" },
+				{ "en": "yyyy-mm-dd - Descriptif 2", "fr": "AAAA-MM-DD - Description 2" },
+				{ "en": "yyyy-mm-dd - Descriptif 3", "fr": "AAAA-MM-DD - Description 3" }
+			]
+		}
+	],
+	"implementation": {
+		"_:implement_1_upgrade": {
+			"@id": "_:implement_1_upgrade",
+			"status": "active",
+
+			"iterations": "_:iteration_1",
+			"name": {
+				"en": "Upgrade",
+				"fr": "Mise à jour"
+			},
+			"sample": {
+				"include": "",
+				"config": {
+					"front-matter": "config and value"
+				},
+				"snapshoot": "URL of the image"
+			},
+			"instruction": {
+				"en": "text... or HTML",
+				"fr": "text... or HTML"
+			}
+		},
+		"_:implement_1_new": {
+			"@id": "_:implement_1_new",
+			"status": "deprecated",
+
+			"iterations": "_:iteration_1",
+			"name": {
+				"en": "New",
+				"fr": "Nouveau"
+			},
+			"sample": {
+				"include": "",
+				"config": {
+					"front-matter": "config and value"
+				},
+				"snapshoot": "URL of the image"
+			},
+			"instruction": {
+				"en": "text... or HTML",
+				"fr": "text... or HTML"
+			}
+		},
+		"_:implement_1_build": {
+			"@id": "_:implement_1_build",
+			"status": "provisional",
+
+			"iterations": "_:iteration_1",
+			"name": {
+				"en": "Build",
+				"fr": "Construire"
+			},
+			"sample": {
+				"include": "",
+				"config": {
+					"front-matter": "config and value"
+				},
+				"snapshoot": "URL of the image"
+			},
+			"instruction": {
+				"en": "text... or HTML",
+				"fr": "text... or HTML"
+			}
+		}
+	},
+
+	"changeset": [
+		{
+			"@id": "_:cs_default",
+			"name": {
+				"en": "Version 4",
+				"fr": "Version 4"
+			},
+			"status": "stable",
+			"forIteration": "_:iteration_1",
+
+			"detectableBy": "Text on how to detect",
+
+			"layout": "See example 1",
+			"style": "Mixed with all variant CSS",
+			"semantic": "See example 1",
+			"logic": "Not applicable",
+			"behaviour": "Not applicable",
+			"recognition": "How the pattern can be recognized/measured/or be distinctive",
+			"context": "Bottom of the HTML page, before the <scrip> tag resource, after the <main>",
+			"configuration": "none",
+			"static": [
+				"header",
+					"footerSite",
+					"goc",
+					"themeLinks",
+					"gocCorporate",
+				"partials",
+					"gocLinks",
+					"themeLinksLinks",
+					"corporateLinks",
+				"privacyText",
+				"privacyUrl",
+				"termsText",
+				"termsUrl"
+
+			],
+			"schema": {
+				"contextualFooterTitle": "datatype",
+				"contextualFooterItems": {
+					"text": "datatype",
+					"link": "datatype"
+				},
+				"privacyUrl": "datatype",
+				"termsUrl": "datatype"
+			},
+			"dependencies": "none",
+			"files": "../assets/landscape.png"
+		}
+
+	],
+	"iteration": [
+		{
+			"@id": "_:iteration_1",
+			"changeset": "_:cs_default",
+			"detectableBy": "Text on how to detect after the changeSet has been detected",
+			"breaking": {
+				"api": "what has been breaking"
+			},
+			"additions": {
+				"api": "what has been added"
+			},
+			"fixes": {
+				"api": "what has been fixes"
+			},
+			"successor": "_:iteration_2",
+			"predecessor": "_:iteration_1a"
+		}
+	]
 }

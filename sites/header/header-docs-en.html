@@ -10,123 +10,495 @@
 ---
 <div class="wb-prettify all-pre hide"></div>
 
-<dl class="horizontal">
-	<dt>Status</dt>
-	<dd>Stable</dd>
-	<dt>Type</dt>
-	<dd>Canada.ca site functionality</dd>
-	<dt>Last review</dt>
-	<dd>2022-08-31</dd>
-</dl>
+<aside class="brdr-bttm">
+<h2>Meta information for this page</h2>
+<p>This document represents recommended changes to the GCweb header documentation page.</p>
+<h3>Metadata</h3>
+<ul>
+	<li>Title: Global header</li>
+	<li>Description:  How to implement the Canada.ca global header for GCWeb.</li>
+</ul>
+<h3>Technical stuff</h3>
+<ul>
+	<li>Mockup: https://test.canada.ca/experimental/laura/gcweb/</li>
+	<li>Page type: Principal publisher documentation</li>
+	<li>Breadcrumbs: ??</li>
+	<li>Canada.ca > GCWeb > Sites and global functionality</li>
+</ul>
+</aside>
+
+<hgroup>
+	<p>GCWeb (the Canada.ca theme in WET)</p>
+	<h1>Global header</h1>
+</hgroup>
+
+<p>version 4.0.0</p>
+
+<h2>[h2] On this page</h2>
+<ul>
+	<li><a href="#">Purpose</a></li>
+	<li><a href="#">Included components</a></li>
+	<li><a href="#">How to implement</a></li>
+	<li><a href="#">Evaluation and report</a></li>
+	<li><a href="#">API (Version 2.0)</a></li>
+	<li><a href="#">Template history</a></li>
+	<li><a href="#">API (Version 2.0)</a></li>
+</ul>
 
 <h2>Purpose</h2>
-<p>Displays the portion of the header section that's underneath the banner.</p>
-<p>Can contain the following components:</p>
+<p>[AJAX from DTO]</p>
+<p>The global header is a container that displays components that make up the header.</p>
+
+
+
+<h2>Included components</h2>
+<p>7 components (3 required and 4 optionals)</p>
 <ul>
-	<li>GCWeb Menu</li>
-	<li>Authentication</li>
+	<li>Authentication (Sign in/Sign out buttons)</li>
+	<li>Breadcrumb trail</li>
+	<li>Government of Canada signature (always required)</li>
+	<li>Language toggle (always required)</li>
+	<li>Site search box</li>
+	<li>Skip link (always required)</li>
+	<li>Theme and topic menu</li>
 </ul>
 
-<h2>Working example</h2>
+<h2>Before you start</h2>
+<p>[AJAX from DTO]</p>
+
+<p>Components are used and configured for different page types. Consult the Canada.ca Design system guidance for using these components on Standard, Transactional, and Campaign pages. This includes detail on each of the components listed above.</p>
 <ul>
-	<li><a href="../../templates/content-en.html">Content page including Header v4.0</a></li>
-	<li><a href="../authentication/contextual-signin-en.html">Content page including Header v4.0 and Authentication section</a></li>
+	<li><a href="#">How to set up the global header (Design guidance)</a></li>
 </ul>
 
-<h2>How to implement</h2>
+<h2>Accessibility guidance</h2>
 
-<p>This version requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
+<p>List of a11y guidances. If some are specific to a variations, let's note it beside</p>
 
-<p>Here is a code sample showing all the commonly included components where some may require some customization by your web content management system such as the breadcrumb component.</p>
 
-<pre><code>&lt;nav>
+<h2>Variations</h2>
+
+<p>Here are some popular examples. This isn’t an exhaustive list of possible variations. Configure your page based on page type, user needs and design system guidance.</p>
+
+<h3>Standards</h3>
+
+<p>Description + Guidance of this variations. &lt; - - IMPORT FROM DTO - - ></p>
+
+<p>Based on the iteration: <span data-iteration-name>Version 4</span>. (Latest | Need review | Outdated</p> 
+<div class="wb-tabs">
+	<div class="tabpanels">
+		<details>
+			<summary>Upgrade</summary>
+
+			<p>Upgrade instruction and code compare if needed</p>
+
+		</details>
+		<details>
+			<summary>Initial implementation</summary>
+
+			<p>Instruction to implement this variation for the first time</p>
+		</details>
+		<details>
+			<summary>Build yourself</summary>
+
+			<p>Instruction to implement this variation outside GCWeb scope</p>
+
+			CSS are located here...
+
+			JS logic....
+
+		</details>
+	</div>
+</div>
+
+
+<h3>With "sign in" button</h3>
+<h3>For transactional page</h3>
+
+
+
+
+<h2>Technical specification</h2>
+
+
+
+
+
+Create a dedicated page for each "Change set"
+
+
+
+
+---- Separate "variations" from "iterations" from "change set" ------
+<h2>Variations --Variants-- and iterations</h2>
+<p>A variants is a named alias of a pre-configured iteration.</p>
+
+<div class="alert alert-info">
+	<p>Note: This is a <strong>container</strong> component which indicate placement for some other components.</p>
+</div>
+
+<div class="row">
+	<div class="col-md-8">
+		<p>Variants:</p>
+		<ul>
+			<li>Standards (based on iteration "version 4")</li>
+			<li>With "sign in" button (based on iteration "version 4")</li>
+			<li>For transactional page (based on iteration "version 4")</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<p>Iterations:</p>
+		<ul>
+			<li>version 4</li>
+		</ul>
+		<p>Deprecated iteration:</p>
+		<ul>
+			<li>version 3</li>
+			<li>version 2</li>
+			<li>version 1</li>
+		</ul>
+	</div>
+</div>
+
+
+
+<h2>Examples</h2>
+
+<details>
+	<summary>Standard page</summary>
+	<p>Working example: See the header portion of the page to get an idea of how it looks. <a href="#">Standard page including Header v4.0</a></p>
+	<p>[IMAGE Screen Capture]</p>
+	<p>(The code sample bellow show he minimum component version or its version range)</p>
+
+	<div class="wb-tabs">
+		<div class="tabpanels">
+			<details>
+				<summary>Compacted markup</summary>
+				<pre><code>&lt;!-- Skip link [version 1.1] -->
+&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.1] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
+			</details>
+			<details>
+				<summary>Full example</summary>
+				<pre><code>&lt;nav>
+	&lt;ul id="wb-tphp">
+		&lt;li class="wb-slc">&lt;a class="wb-sl" href="#wb-cont">Skip to main content&lt;/a>&lt;/li>
+		&lt;li class="wb-slc visible-sm visible-md visible-lg">&lt;a class="wb-sl" href="#wb-info">Skip to About this site&lt;/a>&lt;/li>
+	&lt;/ul>
+&lt;/nav>
+&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.1] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
+			</details>
+
+		</div>
+	</div>
+
+	<p>Complete example</p>
+
+</details>
+
+<details>
+	<summary>With "Sign in" button</summary>
+
+<p>Note: The "Sign in" are a variant of the authentification component</p>
+
+	<div class="wb-tabs">
+		<div class="tabpanels">
+			<details>
+				<summary>Compacted markup</summary>
+<pre><code>&lt;!-- Skip link [version 1.1] -->
+&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.1] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+			&lt;div class="col-xs-6 col-xs-offset-6 col-md-offset-0 col-md-4">
+				&lt;!-- Optional Authentication Section [version 1.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
+			</details>
+			<details>
+				<summary>Full example</summary>
+			</details>
+		</div>
+	</div>
+</details>
+
+<details>
+	<summary>Transactional page (Mandatory element only)</summary>
+	<div class="wb-tabs">
+		<div class="tabpanels">
+			<details>
+				<summary>Compacted markup</summary>
+<pre><code>&lt;!-- Skip link [version 1.1] -->
+&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.1] -->
+			&lt;!-- Branding [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+&lt;/header></code></pre>
+			</details>
+			<details>
+				<summary>Full example</summary>
+			</details>
+</details>
+
+
+<h2>Implementation</h2>
+
+<p>Choose an iteration or variant:</p>
+<div class="wb-fieldflow">
+	<ul>
+		<li data-wb-fieldflow="iterations/version4.html">Version 4</li>
+	</ul>
+</div>
+
+<h3>How to implement</h3>
+<div class="wb-tabs">
+	<div class="tabpanels">
+		<details>
+			<summary>Upgrade</summary>
+
+			<h3>From version 1</h3>
+			<h3>From version 3</h3>
+
+		</details>
+		<details>
+			<summary>New with GCWeb</summary>
+		</details>
+		<details>
+			<summary>Build yourself</summary>
+			<ul>
+				<li>Grid systems or adapt to an equivalent code</li>
+				<li>Link to scss file</li>
+			</ul>
+		</details>
+	</div>
+</div>
+
+
+<h2>[h2] How to implement</h2>
+
+
+<h3>[h3] Visual examples</h3>
+<p>Here are some popular visual examples. This isn’t an exhaustive list of possible variations. Configure your page based on page type, user needs and design system guidance.</p>
+<p>In the following examples, see the header portion of the page to get an idea of how it looks:</p>
+<ul>
+	<li><a href="#">Standard page including Header v4.0</a></li>
+	<li><a href="#">Standard page including Header v4.0 and "Sign in" button</a></li>
+	<li><a href="#">Transactional page including Header v4.0</a></li>
+</ul>
+
+<h3>[h3] Implementation notes</h3>
+<p>Below is an HTML code sample showing all the commonly included components. Some of these may require customization in your web content management system.</p>
+<p>To use this code, you need to have the matching CSS . This is available in the compiled theme.min.css file included in the GCweb distribution package:</p>
+<ul>
+	<li><a href="#">theme.min.css</a></li>
+</ul>
+
+<details>
+	<summary>[Expando] What to do when updating from version 1.0 of the header</summary>
+	<p>Since version 2.0 of the header, the gcweb-menu component is implemented inside a <code>&lt;div class="container"></code>. To ensure the menu appears correctly, make sure it is wrapped in this container. Partial samples illustrating this change appear below.</p>
+
+	<figure>
+		<figcaption>Header version 2.0 and later</figcaption>
+		<pre><code>&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		...
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- gcweb-menu here -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	...
+&lt;/header></code></pre>
+	</figure>
+
+	<figure>
+		<figcaption>Header version 1.0</figcaption>
+		<pre><code>&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		...
+	&lt;/div>
+	&lt;!-- gcweb-menu here -->
+	...
+&lt;/header></code></pre>
+	</figure>
+</details>
+[end expando]
+
+<details>
+	<summary>[Expando] If you want to build the CSS yourself</summary>
+	<p>Alternately, you can build the CSS for the header from the SCSS files for each of the header components:</p>
+	<ul>
+		<li>Header container</li>
+		<li><a href="#">Header container code</a></li>
+		<li>Branding - Government of Canada signature</li>
+		<li><a href="#">Branding code</a></li>
+		<li>Language toggle</li>
+		<li><a href="#">Language toggle code</a></li>
+		<li>Site search box</li>
+		<li><a href="#">Site search box code</a></li>
+		<li>Theme and topic menu</li>
+		<li>Breadcrumb trail</li>
+		<li>Authentication (Sign in/Sign out buttons)</li>
+	</ul>
+</details>
+[end expando]
+
+
+<pre><code>
+&lt;nav>
 	&lt;ul id="wb-tphp">
 		&lt;li class="wb-slc">&lt;a class="wb-sl" href="#wb-cont">Skip to main content&lt;/a>&lt;/li>
 		&lt;li class="wb-slc visible-sm visible-md visible-lg">&lt;a class="wb-sl" href="#wb-info">Skip to About this site&lt;/a>&lt;/li>
 	&lt;/ul>
 &lt;/nav>
 
+
 &lt;header>
-&lt;div id="wb-bnr" class="container">&lt;div class="row">
-&lt;section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
-	&lt;h2 class="wb-inv">Language selection&lt;/h2>
-	&lt;ul class="list-inline mrgn-bttm-0">
-		&lt;li>&lt;a lang="fr" hreflang="fr" href="header-docs-fr.html">
-				&lt;span class="hidden-xs" translate="no">Français&lt;/span>
-				&lt;abbr title="Français" translate="no" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">fr&lt;/abbr>
-		&lt;/a>&lt;/li>
-	&lt;/ul>
-&lt;/section>
+	&lt;div id="wb-bnr" class="container">&lt;div class="row">
+		&lt;section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
+			&lt;h2 class="wb-inv">Language selection&lt;/h2>
+			&lt;ul class="list-inline mrgn-bttm-0">
+				&lt;li>&lt;a lang="fr" hreflang="fr" href="header-docs-fr.html">
+					&lt;span class="hidden-xs" translate="no">Français&lt;/span>
+					&lt;abbr title="Français" translate="no" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">fr&lt;/abbr>
+				&lt;/a>&lt;/li>
+			&lt;/ul>
+		&lt;/section>
 
-&lt;div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" typeof="GovernmentOrganization">
-	&lt;a href="https://www.canada.ca/en.html" property="url">
-		&lt;img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-en.svg" alt="Government of Canada" property="logo" />&lt;span class="wb-inv"> / &lt;span lang="fr">Gouvernement du Canada&lt;/span>&lt;/span>
-	&lt;/a>
-	&lt;meta property="name" content="Government of Canada">
-	&lt;meta property="areaServed" typeof="Country" content="Canada" />
-	&lt;link property="logo" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/wmms-blk.svg" />
-&lt;/div>
 
-&lt;section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
-	&lt;h2>Search&lt;/h2>
-	&lt;form action="https://www.canada.ca/en/sr/srb.html" name="cse-search-box" role="search">
-		&lt;div class="form-group wb-srch-qry">
-			&lt;label for="wb-srch-q" class="wb-inv">Search Canada.ca&lt;/label>
-			&lt;input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="Search Canada.ca" />
-			&lt;datalist id="wb-srch-q-ac">&lt;/datalist>
+		&lt;div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" typeof="GovernmentOrganization">
+			&lt;a href="https://www.canada.ca/en.html" property="url">
+				&lt;img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-en.svg" alt="Government of Canada" property="logo" />&lt;span class="wb-inv"> / &lt;span lang="fr">Gouvernement du Canada&lt;/span>&lt;/span>
+			&lt;/a>
+			&lt;meta property="name" content="Government of Canada">
+			&lt;meta property="areaServed" typeof="Country" content="Canada" />
+			&lt;link property="logo" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/wmms-blk.svg" />
 		&lt;/div>
-		&lt;div class="form-group submit">
-			&lt;button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub">&lt;span class="glyphicon-search glyphicon">&lt;/span>&lt;span class="wb-inv">Search&lt;/span>&lt;/button>
-		&lt;/div>
-	&lt;/form>
-&lt;/section>
 
-&lt;/div>&lt;/div>
-&lt;hr>
-&lt;div class="container">&lt;div class="row">&lt;div class="col-md-8">
 
-&lt;nav class="gcweb-menu" typeof="SiteNavigationElement">
-	&lt;h2 class="wb-inv">Menu&lt;/h2>
-	&lt;button type="button" aria-haspopup="true" aria-expanded="false">&lt;span class="wb-inv">Main &lt;/span>Menu &lt;span class="expicon glyphicon glyphicon-chevron-down">&lt;/span>&lt;/button>
-	&lt;ul role="menu" aria-orientation="vertical" data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html">&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/jobs.html">Jobs and the workplace&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration and citizenship&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://travel.gc.ca/">Travel and tourism&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/business.html">Business and industry&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/benefits.html">Benefits&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/health.html">Health&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/taxes.html">Taxes&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/environment.html">Environment and natural resources&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/defence.html">National security and defence&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/culture.html">Culture, history and sport&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/policing.html">Policing, justice and emergencies&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/transport.html">Transport and infrastructure&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and the world&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/finance.html">Money and finances&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/science.html">Science and innovation&lt;/a>&lt;/li>&lt;/ul>
-&lt;/nav>
+		&lt;section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
+			&lt;h2>Search&lt;/h2>
+			&lt;form action="https://www.canada.ca/en/sr/srb.html" name="cse-search-box" role="search">
+				&lt;div class="form-group wb-srch-qry">
+					&lt;label for="wb-srch-q" class="wb-inv">Search Canada.ca&lt;/label>
+					&lt;input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="Search Canada.ca" />
+					&lt;datalist id="wb-srch-q-ac">&lt;/datalist>
+				&lt;/div>
+				&lt;div class="form-group submit">
+					&lt;button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub">&lt;span class="glyphicon-search glyphicon">&lt;/span>&lt;span class="wb-inv">Search&lt;/span>&lt;/button>
+				&lt;/div>
+			&lt;/form>
+		&lt;/section>
 
-&lt;/div>&lt;/div>&lt;/div>
 
-&lt;nav id="wb-bc" property="breadcrumb">
-	&lt;h2>You are here:&lt;/h2>
-	&lt;div class="container">
-		&lt;ol class="breadcrumb" typeof="BreadcrumbList">
-			&lt;li property="itemListElement" typeof="ListItem">
+	&lt;/div>&lt;/div>
+	&lt;hr>
+	&lt;div class="container">&lt;div class="row">&lt;div class="col-md-8">
+
+
+		&lt;nav class="gcweb-menu" typeof="SiteNavigationElement">
+			&lt;h2 class="wb-inv">Menu&lt;/h2>
+			&lt;button type="button" aria-haspopup="true" aria-expanded="false">&lt;span class="wb-inv">Main &lt;/span>Menu &lt;span class="expicon glyphicon glyphicon-chevron-down">&lt;/span>&lt;/button>
+			&lt;ul role="menu" aria-orientation="vertical" data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html">&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/jobs.html">Jobs and the workplace&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration and citizenship&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://travel.gc.ca/">Travel and tourism&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/business.html">Business and industry&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/benefits.html">Benefits&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/health.html">Health&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/taxes.html">Taxes&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/environment.html">Environment and natural resources&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/defence.html">National security and defence&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/culture.html">Culture, history and sport&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/policing.html">Policing, justice and emergencies&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/transport.html">Transport and infrastructure&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and the world&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/finance.html">Money and finances&lt;/a>&lt;/li>
+				&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/science.html">Science and innovation&lt;/a>&lt;/li>
+			&lt;/ul>
+		&lt;/nav>
+
+
+	&lt;/div>&lt;/div>&lt;/div>
+
+
+	&lt;nav id="wb-bc" property="breadcrumb">
+		&lt;h2>You are here:&lt;/h2>
+		&lt;div class="container">
+			&lt;ol class="breadcrumb" typeof="BreadcrumbList">
+				&lt;li property="itemListElement" typeof="ListItem">
 				&lt;a property="item" typeof="WebPage" href="https://www.canada.ca/en.html">
-					&lt;span property="name">Canada.ca&lt;/span>
+				&lt;span property="name">Canada.ca&lt;/span>
 				&lt;/a>
 				&lt;meta property="position" content="1">
-			&lt;/li>
-		&lt;/ol>
-	&lt;/div>
-&lt;/nav>
+				&lt;/li>
+			&lt;/ol>
+		&lt;/div>
+	&lt;/nav>
+
 
 &lt;/header></code></pre>
 
 <h2>Evaluation and report</h2>
+
 <p>There is no evaluation and report available for this component.</p>
 
 <h2>API (Version 2.0)</h2>
+
+
 <table class="table table-bordered">
 	<tr>
 		<th>Component version</th>
@@ -144,306 +516,172 @@
 	</tr>
 </table>
 
-<details>
-	<summary>Deprecated version</summary>
-	<table class="table table-bordered">
-		<tr>
-			<th>Component version</th>
-			<th>CSS Class</th>
-			<th>Template</th>
-			<th>Visual rendering</th>
-			<th>Schema</th>
-		</tr>
-		<tr>
-			<th>Version 3.0.0</th>
-			<td>n.a.</td>
-			<td>Version 3.0</td>
-			<td>Version 1.0</td>
-			<td>n.a.</td>
-		</tr>
-		<tr>
-			<th>Version 2.0.0</th>
-			<td>n.a.</td>
-			<td>Version 2.0</td>
-			<td>Version 1.0</td>
-			<td>n.a.</td>
-		</tr>
-		<tr>
-			<th>Version 1.0</th>
-			<td>n.a.</td>
-			<td>Version 1.0</td>
-			<td>Version 1.0</td>
-			<td>n.a.</td>
-		</tr>
-	</table>
-</details>
+<table class="table table-bordered">
+	<caption>Deprecated versions</caption>
+	<tr>
+		<th>Component version</th>
+		<th>CSS Class</th>
+		<th>Template</th>
+		<th>Visual rendering</th>
+		<th>Schema</th>
+	</tr>
+	<tr>
+		<th>Version 3.0.0</th>
+		<td>n.a.</td>
+		<td>Version 3.0</td>
+		<td>Version 1.0</td>
+		<td>n.a.</td>
+	</tr>
+
+	<tr>
+		<th>Version 2.0.0</th>
+		<td>n.a.</td>
+		<td>Version 2.0</td>
+		<td>Version 1.0</td>
+		<td>n.a.</td>
+	</tr>
+
+	<tr>
+		<th>Version 1.0</th>
+		<td>n.a.</td>
+		<td>Version 1.0</td>
+		<td>Version 1.0</td>
+		<td>n.a.</td>
+	</tr>
+</table>
+
 
 <h2>Template</h2>
 
-<h3>Before and After</h3>
+<h3>[h3] Before and After</h3>
 
-<div class="row">
-	<div class="col-md-6">
-		<h4>Version 4.0</h4>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.1] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
+<h4>Version 4.0</h4>
+<p>No change</p>
 
-		<h5>Including authentication section (optional)</h5>
-		<p>The difference with version 3.0 is the value for <code>col-xs-5</code> and <code>col-xs-offset-7</code> have been adjusted to a "6" so the button text don't brake and stays on one line for every viewports from extra-extra-small to extra-large (xxs, xxs, sm, md, lg and xl).</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.1] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-		&lt;/div&gt;
-			&lt;div class=&quot;col-xs-<ins>6</ins> col-xs-offset-<ins>6</ins> col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-	<div class="col-md-6">
-		<h4>Version 3.0 (deprecated)</h4>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
+<pre><code>&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.1] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
 
-		<h5>Including authentication section (optional)</h5>
-		<p>The header version 3.0 including the authentication section is deprecated but still supported and requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-			&lt;div class=&quot;col-xs-<del>5</del> col-xs-offset-<del>7</del> col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-</div>
+<h4>[h4] Version 4.0, including optional authentication section (Sign in/Sign out buttons) -</h4>
+<p>There are 2  difference with version 3.0 is the value for <code>col-xs-5</code> and <code>col-xs-offset-7</code> have been adjusted to a "6" so the button text don't break and stays on one line for every viewport s from extra-extra-small to extra-large (xxs, xs, sm, md, lg and xl).</p>
+<pre><code>&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.1] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+			&lt;div class="col-xs-6 col-xs-offset-6 col-md-offset-0 col-md-4">
+				&lt;!-- Optional Authentication Section [version 1.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
+
+<h3>Version 3.0 (deprecated)</h3>
+<p>No change</p>
+<pre><code>&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.0] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
+<h4>[h4] Version 3.0 (deprecated), including optional authentication section (Sign in / Sign out buttons)</h4>
+<p>The difference with version 3.0 is the value for <code>col-xs-5</code> and <code>col-xs-offset-7</code> have been adjusted to a "6" so the button text don't break and stays on one line for every viewports from extra-extra-small to extra-large (xxs, xxs, sm, md, lg and xl).</p>
+<pre><code>&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.1] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+			&lt;div class="col-xs-6 col-xs-offset-6 col-md-offset-0 col-md-4">
+				&lt;!-- Optional Authentication Section [version 1.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
+
+<h4>[h3 or 4] Including Sign in /Sign out buttons (uthentication section) -optional</h4>
+<p>The header version 3.0 including the authentication section is deprecated but still supported and requires the implementation of the gcweb-menu version 2.0 where the <code>&lt;div class="container"></code> has been relocated in the header so outside the "gcweb-menu" component.</p>
+
+<pre><code>&lt;header>
+	&lt;div id="wb-bnr" class="container">
+		&lt;div class="row">
+			&lt;!-- Language toggle [version 1.0] -->
+			&lt;!-- Branding [version 1.0] -->
+			&lt;!-- Search [version 1.0] -->
+		&lt;/div>
+	&lt;/div>
+	&lt;hr>
+	&lt;div class="container">
+		&lt;div class="row">
+			&lt;div class="col-md-8">
+				&lt;!-- Site Menu [version 2.0] -->
+			&lt;/div>
+			&lt;div class="col-xs-5 col-xs-offset-7 col-md-offset-0 col-md-4">
+				&lt;!-- Optional Authentication Section [version 1.0] -->
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;!-- Breadcrumbs [version 1.0] -->
+&lt;/header></code></pre>
 
 <h3>Previous versions</h3>
-<details>
-	<summary>Version 3.0 vs Version 2.0</summary>
-	<div class="row">
-	<div class="col-md-6">
-		<h4>Version 3.0 (deprecated)</h4>
-		<p>The only difference with version 2.0 is that the column will remain at 8 whether there is an authentication section or not.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-<ins>8</ins>&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
+<ul>
+	<li>➤ Version 3.0 vs Version 2.0</li>
+	<li>➤ Version 2.0 vs Version 1.0</li>
+</ul>
+<h3>Working examples</h3>
+<ul>
+	<li>➤ Header Version 3.0</li>
+	<li>➤ Header Version 2.0</li>
+	<li>➤ Header Version 1.0</li>
+<ul>
 
-		<h5>Including authentication section (optional)</h5>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-		&lt;/div&gt;
-			&lt;div class=&quot;col-xs-5 col-xs-offset-7 col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-	<div class="col-md-6">
-		<h4>Version 2.0 (deprecated)</h4>
-		<p>The header version 2.0 is deprecated but still supported and requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-<del>12</del>&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-
-		<h5>Including authentication section (optional)</h5>
-		<p>No change.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-			&lt;div class=&quot;col-xs-<del>5</del> col-xs-offset-<del>7</del> col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-</div>
-</details>
-
-<details>
-	<summary>Version 2.0 vs Version 1.0</summary>
-	<div class="row">
-	<div class="col-md-6">
-		<h4>Version 2.0 (deprecated)</h4>
-		<p>This version requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
-
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	<ins>&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-12&quot;&gt;</ins>
-				&lt;!-- Site Menu [version <ins>2.0</ins>] --&gt;
-			<ins>&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;</ins>
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-
-		<h5>Including authentication section (optional)</h5>
-		<p>Addition of the authentication section.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	<ins>&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;</ins>
-				&lt;!-- Site Menu [version <ins>2.0</ins>] --&gt;
-			<ins>&lt;/div&gt;
-			&lt;div class=&quot;col-xs-5 col-xs-offset-7 col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;</ins>
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-	<div class="col-md-6">
-		<h4>Version 1.0 (deprecated)</h4>
-		<p>The header version 1.0 is deprecated but still supported.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Site Menu [Version <del>1.0</del>]
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-</div>
-</details>
 
 <h4>Working examples</h4>
 <details>

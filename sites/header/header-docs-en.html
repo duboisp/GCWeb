@@ -34,6 +34,7 @@
 </hgroup>
 
 
+
 <details>
 <summary>Debug</summary>
 <div data-wb-jsonmanager='{
@@ -42,15 +43,25 @@
 	"patches": [
 		{
 			"op": "patches", "path": "/variations", "patches": [
+				{ "op": "wb-swap", "path": "/revisedFor", "ref": "/iteration" },
 				{ "op": "wb-swap", "path": "/implementation", "ref": "/implementation" },
 				{ "op": "wb-swap", "path": "/oldImplementation", "ref": "/implementation" }
+			]
+		},
+		{
+			"op": "patches", "path": "/implementation", "patches": [
+				{ "op": "wb-swap", "path": "/iteration", "ref": "/iteration" }
+			]
+		},
+		{
+			"op": "patches", "path": "/changeset", "patches": [
+				{ "op": "wb-swap", "path": "/baseOnIteration", "ref": "/iteration" }
 			]
 		}
 	],
 	"debug": true
 }'></div>
 </details>
-
 
 <p>version <span data-json-replace="#[api]/version">Unknown</span></p>
 
@@ -183,37 +194,182 @@
 	</template>
 </div>
 
-
-
-
+<!--
+<p>Data ajax</p>
+<div>
+	<pre><code data-wb-ajax='{
+		"url": "samples/sample-1.html",
+		"type": "replace",
+		"encode": true
+	}'></code></pre>
+</div>-->
 
 <h2>Variations</h2>
 
 <p>Here are some popular examples. This isn’t an exhaustive list of possible variations. Configure your page based on page type, user needs and design system guidance.</p>
-
-<p>TECHNICAL NOTE: When loading the page with the console, the tab interface work, if closed it don't work</p>
 
 <div data-wb-json='{
 	"url": "#[api]/variations",
 	"mapping": [
 		{ "selector": "[data-name]", "value": "/name/en" },
 		{ "selector": "[data-status]", "value": "/status" },
-		{ "selector": "[data-description]", "value": "/description/en" },
+		{ "selector": "[data-description]", "value": "/description/en", "isHTML": true  },
 		{ "selector": "[data-guidance]", "value": "/guidance/en", "attr": "href" },
+		{ "selector": "[data-iteration]", "value": "/revisedFor/name/en" },
 
 		{ "selector": "[data-implementation]", "value": "/implementation",
 			"mapping": [
 				{ "selector": "summary", "value": "/name/en" },
 				{ "selector": "[data-status]", "value": "/status" },
-				{ "selector": "[data-instruction]", "value": "/instruction/en" }
+				{ "selector": "[data-introduction]", "value": "/introduction/en", "isHTML": true },
+
+				{
+					"template": "[data-example]",
+					"test": "fn:isArray",
+					"assess": "/example/en",
+					"mapping": [
+						{
+							"selector": "ul",
+							"value": "/example/en",
+							"mapping": [
+								{ "selector": "a", "value": "/href", "attr": "href" },
+								{ "selector": "a", "value": "/text" }
+							]
+						}
+					]
+				},
+
+				{
+					"template": "[data-notes]",
+					"test": "fn:isArray",
+					"assess": "/instruction/en",
+					"mapping": [
+						{
+							"selector": "ul",
+							"value": "/instruction/en",
+							"mapping": [
+								{ "selector": "li",	"value": "/", "isHTML": true }
+							]
+						}
+					]
+				},
+
+				{
+					"@type": "rdf:Alt",
+					"mapping": [
+						{
+							"test": "fn:guestType",
+							"value": "/sample",
+							"expect": "rdfs:Container",
+							"mapping": [
+								{
+									"template": "[data-source-code]",
+									"test": "fn:guestType",
+									"value": "/",
+									"expect": "source-code",
+									"mapping": [
+										{ "selector": "figcaption", "value": "/description" },
+										{ "selector": "code", "value": "/code", "isHTML": true, "encode": true }
+									]
+								}
+							]
+						},
+						{
+							"template": "[data-source-code]",
+							"test": "fn:guestType",
+							"value": "/sample",
+							"expect": "source-code",
+							"mapping": [
+								{ "selector": "figcaption", "value": "/description" },
+								{ "selector": "code", "value": "/code", "isHTML": true }
+							]
+						},
+						{
+							"template": "[data-code-compare]",
+							"test": "fn:guestType",
+							"value": "/sample",
+							"expect": "code-compare",
+							"mapping": [
+								{ "selector": "figcaption[data-rev]", "value": "/rev_title" },
+								{ "selector": "code[data-rev]", "value": "/rev_code", "isHTML": true },
+								{ "selector": "figcaption[data-from]", "value": "/from_title" },
+								{ "selector": "code[data-from]", "value": "/from_code", "isHTML": true }
+							]
+						}
+
+					]
+				},
+				{ "selector": "[data-iteration]", "value": "/iteration/name/en" },
+				{ "selector": "[data-detactable]", "value": "/iteration/detectableBy" }
 			]
 		},
 
-		{ "selector": "[data-old-implementation]", "value": "/oldImplementation",
+
+
+		{
+			"template": "[data-old-implementation]",
+			"test": "fn:isArray",
+			"assess": "/oldImplementation",
 			"mapping": [
-				{ "selector": "h5", "value": "/name/en" },
-				{ "selector": "[data-status]", "value": "/status" },
-				{ "selector": "[data-instruction]", "value": "/instruction/en" }
+				{
+					"selector": "details",
+					"value": "/oldImplementation",
+					"mapping": [
+						{ "selector": "h5", "value": "/name/en" },
+						{ "selector": "[data-status]", "value": "/status" },
+						{ "selector": "[data-introduction]", "value": "/introduction/en", "isHTML": true },
+
+						{
+							"template": "[data-example]",
+							"test": "fn:isArray",
+							"assess": "/example/en",
+							"mapping": [
+								{
+									"selector": "ul",
+									"value": "/example/en",
+									"mapping": [
+										{ "selector": "a", "value": "/href", "attr": "href" },
+										{ "selector": "a", "value": "/text" }
+									]
+								}
+							]
+						},
+
+						{
+							"template": "[data-notes]",
+							"test": "fn:isArray",
+							"assess": "/instruction/en",
+							"mapping": [
+								{
+									"selector": "ul",
+									"value": "/instruction/en",
+									"mapping": [
+										{ "selector": "li",	"value": "/", "isHTML": true }
+									]
+								}
+							]
+						},
+
+						{
+							"@type": "rdf:Alt",
+							"mapping": [
+								{
+									"template": "[data-source-code]",
+									"test": "fn:guestType",
+									"value": "/sample",
+									"expect": "source-code",
+									"mapping": [
+										{ "selector": "figcaption", "value": "/description" },
+										{ "selector": "code", "value": "/code", "isHTML": true }
+									]
+								}
+
+							]
+						},
+						{ "selector": "[data-iteration]", "value": "/iteration/name/en" },
+						{ "selector": "[data-detactable]", "value": "/iteration/detectableBy" }
+					]
+				}
 			]
 		},
 
@@ -229,14 +385,15 @@
 }'>
 
 	<template>
-		<h3 data-name>[[ Name of the variation ]]</h3>
+		<h3><span data-name>[[ Name of the variation ]]</span> <span class="label label-info">Status: <span data-status></span></span></h3>
 
-		<p>Status: <span data-status>(Latest | Need a review | Outdated)</span></p>
+		<p data-description>[[ Short description ]]</p>
+		<p>This variation documentation was revised to apply all the change up to the iteration <span data-iteration>(unknown)</span>. Consult the <a data-guidance href>design guidance about this variations</a>.</p>
 
-		<p><span data-description>[[ Short description ]]</span> <a data-guidance href>Consult the design guidance for this variations.</a></p>
-
+		<!--
 		<p>TODO: Screen capture</p>
 		<p>TODO: Working example link</p>
+		-->
 
 		<h4>Implementation</h4>
 
@@ -245,9 +402,56 @@
 				<div class="tabpanels">
 					<details>
 						<summary>Name of the implementation</summary>
-						<p>Status: <span data-status>(active | deprecated | provisional)</span></p>
-						<p data-instruction>Instructions text</p>
-						<p>Sample information (code / HTML / Ajax...)</p>
+						<p><span class="label label-info">Status: <span data-status>(active | deprecated | provisional)</span></span></p>
+						<p data-introduction>Introduction</p>
+
+						<template data-example>
+							<p>Working examples:</p>
+							<ul>
+								<template>
+									<li><a href></a></li>
+								</template>
+							</ul>
+						</template>
+						<template data-notes>
+							<p>Instructions and notes:</p>
+							<ul>
+								<template>
+									<li>Instructions or note text</li>
+								</template>
+							</ul>
+						</template>
+
+						<template data-source-code>
+							<figure>
+								<figcaption>Intro to source code</figcaption>
+								<pre class="wb-prettify prettyprint"><code></code></pre>
+							</figure>
+						</template>
+
+						<template data-code-compare>
+							<div class="row">
+								<div class="col-md-6">
+									<figure>
+										<figcaption data-rev>Intro to source code</figcaption>
+										<pre class="wb-prettify prettyprint"><code data-rev></code></pre>
+									</figure>
+								</div>
+								<div class="col-md-6">
+									<figure>
+										<figcaption data-from>Intro to source code</figcaption>
+										<pre class="wb-prettify prettyprint"><code data-from></code></pre>
+									</figure>
+								</div>
+							</div>
+						</template>
+						<details>
+							<summary>Technical notes</summary>
+							<dl class="dl-horizontal">
+								<dt>Detectable by:</dt><dd data-detactable></dd>
+								<dt>For iteration:</dt><dd data-iteration></dd>
+							</dl>
+						</details>
 					</details>
 				</div>
 			</template>
@@ -260,19 +464,49 @@
 			</template>
 		</ul>
 
-		<details data-old-implementation>
-			<summary>Deprecated implementation</summary>
+		<template data-old-implementation>
+			<details>
+				<summary>Deprecated implementation</summary>
 
-			<template>
-				<section>
-					<h5>Name of the implementation</h5>
-					<p>Status: <span data-status>(active | deprecated | provisional)</span></p>
-					<p data-instruction>Instructions text</p>
-					<p>Sample information (code / HTML / Ajax...)</p>
-				</section>
-			</template>
-		</details>
+				<template>
+					<section>
+						<h5>Name of the implementation</h5>
+						<p><span class="label label-default">Status: <span data-status>(active | deprecated | provisional)</span></span></p>
+						<dl class="dl-horizontal">
+							<dt>Detectable by:</dt><dd data-detactable></dd>
+							<dt>For iteration:</dt><dd data-iteration></dd>
+						</dl>
+						<p data-introduction>Introduction</p>
+						<template data-example>
+							<p>Working examples:</p>
+							<ul>
+								<template>
+									<li><a href></a></li>
+								</template>
+							</ul>
+						</template>
+						<template data-notes>
+							<p>Instructions and notes:</p>
+							<ul>
+								<template>
+									<li>Instructions or note text</li>
+								</template>
+							</ul>
+						</template>
+
+						<template data-source-code>
+							<figure>
+								<figcaption>Intro to source code</figcaption>
+								<pre><code class="wb-prettify prettyprint"></code></pre>
+							</figure>
+						</template>
+					</section>
+				</template>
+			</details>
+		</template>
+		<hr>
 	</template>
+
 
 </div>
 
@@ -280,9 +514,112 @@
 
 <h2>Evaluation and report</h2>
 
-<p>Accessibility report...</p>
+<!-- Accessibility assessment -->
+<div data-wb-json='{
+	"url": "#[api]",
+	"streamline": "true",
+	"mapping": [
+		{
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-yes]",
+					"test": "fn:isArray",
+					"value": "/pages/assessment",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "a", "value": "/path", "attr": "href" },
+								{ "selector": "a", "value": "/language", "attr": "hreflang" },
+								{ "selector": "a", "value": "/language", "attr": "lang" },
+								{ "selector": "a", "value": "/title" }
+							]
+						}
+					]
+				},
+				{
+					"template": "[data-no]",
+					"test": "fn:guestType",
+					"value": "/pages/assessment",
+					"expect": "undefined"
+				}
+			]
+		}
+	]
+}'>
+	<template data-no>
+		<p>There is no accessibility report</p>
+	</template>
+
+	<template data-comment>
+		<p></p>
+	</template>
+
+	<template data-yes>
+		<p>Accessibility assessment:</p>
+		<ul>
+			<template>
+				<li><a href hreflang lang></a></li>
+			</template>
+		</ul>
+	</template>
+</div>
 
 
+<!-- Accessibility conformance reports -->
+<div data-wb-json='{
+	"url": "#[api]",
+	"streamline": "true",
+	"mapping": [
+		{
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-yes]",
+					"test": "fn:isArray",
+					"value": "/pages/acr",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "a", "value": "/path", "attr": "href" },
+								{ "selector": "a", "value": "/language", "attr": "hreflang" },
+								{ "selector": "a", "value": "/language", "attr": "lang" },
+								{ "selector": "a", "value": "/title" }
+							]
+						}
+					]
+				},
+				{
+					"template": "[data-no]",
+					"test": "fn:guestType",
+					"value": "/pages/acr",
+					"expect": "undefined"
+				}
+			]
+		}
+	]
+}'>
+	<template data-no>
+		<p>There is no accessibility conformance report</p>
+	</template>
+
+	<template data-comment>
+		<p></p>
+	</template>
+
+	<template data-yes>
+		<p>Accessibility conformance report:</p>
+		<ul>
+			<template>
+				<li><a href hreflang lang></a></li>
+			</template>
+		</ul>
+	</template>
+</div>
 
 <h2>Technical documentation</h2>
 
@@ -298,27 +635,231 @@
 		{ "selector": "[data-status]", "value": "/status" },
 		{ "selector": "[data-description]", "value": "/description/en" },
 		{ "selector": "[data-detectability]", "value": "/detectableBy" },
-		{ "selector": "[data-layout]", "value": "/layout" },
-		{ "selector": "[data-style]", "value": "/style" },
-		{ "selector": "[data-semantic]", "value": "/semantic" },
+
 		{ "selector": "[data-logic]", "value": "/logic" },
 		{ "selector": "[data-behaviour]", "value": "/behaviour" },
 		{ "selector": "[data-context]", "value": "/context" },
-		{ "selector": "[data-iteration]", "value": "/forIteration" }
+		{ "selector": "[data-iteration]", "value": "/baseOnIteration/name/en" },
+
+		{
+			"about": "/layout",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-layout-none]",
+					"test": "fn:guestType",
+					"value": "/layout",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-layout-description]",
+					"test": "fn:guestType",
+					"value": "/layout",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-layout-list]",
+					"test": "fn:guestType",
+					"value": "/layout",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/style",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-style-none]",
+					"test": "fn:guestType",
+					"value": "/style",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-style-description]",
+					"test": "fn:guestType",
+					"value": "/style",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-style-list]",
+					"test": "fn:guestType",
+					"value": "/style",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/semantic",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-semantic-none]",
+					"test": "fn:guestType",
+					"value": "/semantic",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-semantic-description]",
+					"test": "fn:guestType",
+					"value": "/semantic",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-semantic-list]",
+					"test": "fn:guestType",
+					"value": "/semantic",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				},
+				{
+					"template": "[data-semantic-source-code]",
+					"test": "fn:guestType",
+					"value": "/semantic",
+					"expect": "source-code",
+					"mapping": [
+						{ "selector": "figcaption", "value": "/description" },
+						{ "selector": "code", "value": "/code", "isHTML": true, "encode": true, "shouldI": "Check if the value of /code is rdf:HTML?" }
+					]
+				}
+
+			]
+		}
 	]
 }'>
+
+
+
+<!--
+
+	- String describing how to measure the API aspect
+	- Array of string describing what is measured
+	- Complex object (Depending of the API aspect)
+		+ For layout: HTML structure
+		+ For static (data not modifiable or only modifiable during the implementation) but are translated: Key/Value object where the key is a phrase (When used by JS, only the key is versioned. When used in a HTML template, only the value (localized) is versioned.)
+		+ Configuration: Data structure where the key is the configuration key and the value describe the type, what it is and any other useful info.
+
+
+		{ "selector": "[data-style]", "value": "/style" },
+		{ "selector": "[data-semantic]", "value": "/semantic" },
+-->
 
 <template>
 	<h4>[[ Change set name ]]</h4>
 	<dl class="dl-horizontal">
 		<dt>Status:</dt> <dd data-status>stable</dd>
 		<dt>Detectable by:</dt> <dd data-detectability>detectableBy</dd>
-		<dt>Layout:</dt>
-		<dd data-layout>Note</dd>
-		<dt>Style:</dt>
-		<dd data-style>Note</dd>
-		<dt>Semantic:</dt>
-		<dd data-semantic>Note</dd>
+
+		<!-- Layout -->
+		<template data-layout-none>
+			<dt>Layout:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-layout-description>
+			<dt>Layout:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-layout-list>
+			<dt>Layout:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Style -->
+		<template data-style-none>
+			<dt>Style:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-style-description>
+			<dt>Style:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-style-list>
+			<dt>Style:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Semantic
+			TODO: Add a special template to insert HTML source code or to import it
+		-->
+		<template data-semantic-none>
+			<dt>Semantic:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-semantic-description>
+			<dt>Semantic:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-semantic-list>
+			<dt>Semantic:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+		<template data-semantic-source-code>
+			<dt>Semantic:</dt>
+			<dd>
+				<figure>
+					<figcaption>Intro to source code</figcaption>
+					<pre class="wb-prettify prettyprint"><code></code></pre>
+				</figure>
+			</dd>
+		</template>
+
 		<dt>Logic:</dt>
 		<dd data-logic>Note</dd>
 		<dt>Accessibility guidance:</dt>
@@ -363,58 +904,167 @@
 				<li></li>
 			</ul>
 		</dd>
-		<dt>For iteration ID</dt>
+		<dt>Based on iteration</dt>
 		<dd data-iteration>_:iteration_xyz</dd>
 	</dl>
 </template>
 </div>
 
 
-<h3>Iteration</h3>
+<h3>Iterations</h3>
 
 
-<div data-wb-json='{
+<div class="row wb-eqht-grd" data-wb-json='{
 	"url": "#[api]/iteration",
 	"mapping": [
-		{ "selector": "h4", "value": "/@id" },
+		{ "selector": "h4 [data-id]", "value": "/@id" },
+		{ "selector": "h4 [data-name]", "value": "/name/en" },
 		{ "selector": "[data-detectability]", "value": "/detectableBy" },
-		{ "selector": "[data-predecessor]", "value": "/predecessor" },
-		{ "selector": "[data-successor]", "value": "/successor" }
+
+		{
+			"template": "[data-predecessor]",
+			"test": "fn:guestType",
+			"expect": "xsd:string",
+			"assess": "/predecessor",
+			"mapping": [
+				{ "selector": "[data-predecessor]", "value": "/predecessor" }
+			]
+		},
+		{
+			"template": "[data-successor]",
+			"test": "fn:guestType",
+			"expect": "xsd:string",
+			"assess": "/successor",
+			"mapping": [
+				{ "selector": "[data-successor]", "value": "/successor" }
+			]
+		},
+
+		{
+			"template": "[data-breaking]",
+			"test": "fn:guestType",
+			"expect": "rdfs:Resource",
+			"assess": "/breaking",
+			"mapping": [
+				{
+					"selector": "ul",
+					"value": "/breaking",
+					"mapping": [
+						{ "selector": "[data-api]", "value": "/@id" },
+						{ "selector": "[data-changes]", "value": "/@value" }
+					]
+				}
+			]
+		},
+		{
+			"template": "[data-additions]",
+			"test": "fn:guestType",
+			"expect": "rdfs:Resource",
+			"assess": "/additions",
+			"mapping": [
+				{
+					"selector": "ul",
+					"value": "/additions",
+					"mapping": [
+						{ "selector": "[data-api]", "value": "/@id" },
+						{ "selector": "[data-changes]", "value": "/@value" }
+					]
+				}
+			]
+		},
+		{
+			"template": "[data-fixes]",
+			"test": "fn:guestType",
+			"expect": "rdfs:Resource",
+			"assess": "/fixes",
+			"mapping": [
+				{
+					"selector": "ul",
+					"value": "/fixes",
+					"mapping": [
+						{ "selector": "[data-api]", "value": "/@id" },
+						{ "selector": "[data-changes]", "value": "/@value" }
+					]
+				}
+			]
+		},
+
+		{
+			"template": "[data-example]",
+			"test": "fn:isArray",
+			"assess": "/example/en",
+			"mapping": [
+				{
+					"selector": "ul",
+					"value": "/example/en",
+					"mapping": [
+						{ "selector": "a", "value": "/href", "attr": "href" },
+						{ "selector": "a", "value": "/text" }
+					]
+				}
+			]
+		}
 	]
 }'>
 
 <template>
-<h4>[[ Iteration id ]]</h4>
-<dl>
+<div class="col-md-6">
+<div class="well hght-inhrt">
+<h4><span data-name></span> (id: <em data-id>[[ Iteration id ]]</em>)</h4>
+<dl class="dl-horizontal">
 	<dt>Detectable by:</dt> <dd data-detectability>detectableBy</dd>
-	<dt>Used in change set:</dt>
-	<dd>
-		<ul>
-			<li>List of change set</li>
-		</ul>
-	</dd>
-	<dt>Breaking changes</dt>
-	<dd>
-		<ul>
-			<li>Changes</li>
-		</ul>
-	</dd>
-	<dt>Additions</dt>
-	<dd>
-		<ul>
-			<li>Changes</li>
-		</ul>
-	</dd>
-	<dt>Fixes</dt>
-	<dd>
-		<ul>
-			<li>Changes</li>
-		</ul>
-	</dd>
-	<dt>Predecessor:</dt> <dd data-predecessor>Iteration ID</dd>
-	<dt>Successor:</dt> <dd data-successor>Iteration ID</dd>
-</dl>
+	<template data-successor>
+		<dt>Successor:</dt> <dd data-successor>Iteration ID</dd>
+	</template>
+	<template data-breaking>
+		<dt>Breaking changes</dt>
+		<dd>
+			<ul>
+				<template>
+					<li lang="en"><span data-api>API</span>: <span data-changes>Breaking change description</span></li>
+				</template>
+			</ul>
+		</dd>
+	</template>
 
+	<template data-additions>
+		<dt>Additions</dt>
+		<dd>
+			<ul>
+				<template>
+					<li lang="en"><span data-api>API</span>: <span data-changes>Addition description</span></li>
+				</template>
+			</ul>
+		</dd>
+	</template>
+
+	<template data-fixes>
+		<dt>Fixes</dt>
+		<dd>
+			<ul>
+				<template>
+					<li lang="en"><span data-api>API</span>: <span data-changes>Fix description</span></li>
+				</template>
+			</ul>
+		</dd>
+	</template>
+
+	<template data-predecessor>
+		<dt>Predecessor:</dt> <dd data-predecessor>Iteration ID</dd>
+	</template>
+	<template data-example>
+		<dt>Examples</dt>
+		<dd>
+			<ul data-example>
+				<template>
+					<li><a href></a></li>
+				</template>
+			</ul>
+		</dd>
+	</template>
+</dl>
+</div>
+</div>
 </template>
 </div>
 

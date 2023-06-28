@@ -635,10 +635,6 @@
 		{ "selector": "[data-status]", "value": "/status" },
 		{ "selector": "[data-description]", "value": "/description/en" },
 		{ "selector": "[data-detectability]", "value": "/detectableBy" },
-
-		{ "selector": "[data-logic]", "value": "/logic" },
-		{ "selector": "[data-behaviour]", "value": "/behaviour" },
-		{ "selector": "[data-context]", "value": "/context" },
 		{ "selector": "[data-iteration]", "value": "/baseOnIteration/name/en" },
 
 		{
@@ -763,7 +759,438 @@
 				}
 
 			]
+		},
+
+		{
+			"about": "/logic",
+			"dd14": "Function, callback and events",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-logic-none]",
+					"test": "fn:guestType",
+					"value": "/logic",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-logic-description]",
+					"test": "fn:guestType",
+					"value": "/logic",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-logic-list]",
+					"test": "fn:guestType",
+					"value": "/logic",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/recognition",
+			"dd14": "Pattern recognition",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-recognition-none]",
+					"test": "fn:guestType",
+					"value": "/recognition",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-recognition-description]",
+					"test": "fn:guestType",
+					"value": "/recognition",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-recognition-list]",
+					"test": "fn:guestType",
+					"value": "/recognition",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/behaviour",
+			"dd14": "Essential component behaviour",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-behaviour-none]",
+					"test": "fn:guestType",
+					"value": "/behaviour",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-behaviour-description]",
+					"test": "fn:guestType",
+					"value": "/behaviour",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-behaviour-list]",
+					"test": "fn:guestType",
+					"value": "/behaviour",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/accessibility",
+			"dd14": "Accessibility guidance",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-accessibility-none]",
+					"test": "fn:guestType",
+					"value": "/accessibility",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-accessibility-description]",
+					"test": "fn:guestType",
+					"value": "/accessibility",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-accessibility-list]",
+					"test": "fn:guestType",
+					"value": "/accessibility",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/guidance",
+			"dd14": "Guidance of use",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-guidance-none]",
+					"test": "fn:guestType",
+					"value": "/guidance",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-guidance-description]",
+					"test": "fn:guestType",
+					"value": "/guidance",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-guidance-list]",
+					"test": "fn:guestType",
+					"value": "/guidance",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/context",
+			"dd14": "Context of use",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-context-none]",
+					"test": "fn:guestType",
+					"value": "/context",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-context-description]",
+					"test": "fn:guestType",
+					"value": "/context",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-context-list]",
+					"test": "fn:guestType",
+					"value": "/context",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/configuration",
+			"dd14": "Configuration",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-configuration-none]",
+					"test": "fn:guestType",
+					"value": "/configuration",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-configuration-description]",
+					"test": "fn:guestType",
+					"value": "/configuration",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-configuration-list]",
+					"test": "fn:guestType",
+					"value": "/configuration",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/static",
+			"dd14": "Static value",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-static-none]",
+					"test": "fn:guestType",
+					"value": "/static",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-static-description]",
+					"test": "fn:guestType",
+					"value": "/static",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-static-list]",
+					"test": "fn:guestType",
+					"value": "/static",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/schema",
+			"dd14": "Schema (Dynamic data)",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-schema-none]",
+					"test": "fn:guestType",
+					"value": "/schema",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-schema-description]",
+					"test": "fn:guestType",
+					"value": "/schema",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-schema-list]",
+					"test": "fn:guestType",
+					"value": "/schema",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/dependency",
+			"dd14": "Essential dependencies",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-dependency-none]",
+					"test": "fn:guestType",
+					"value": "/dependency",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-dependency-description]",
+					"test": "fn:guestType",
+					"value": "/dependency",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-dependency-list]",
+					"test": "fn:guestType",
+					"value": "/dependency",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
+		},
+
+		{
+			"about": "/file",
+			"dd14": "Packaged essential file",
+			"@type": "rdf:Alt",
+			"mapping": [
+				{
+					"template": "[data-file-none]",
+					"test": "fn:guestType",
+					"value": "/file",
+					"expect": "undefined"
+				},
+				{
+					"template": "[data-file-description]",
+					"test": "fn:guestType",
+					"value": "/file",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "dd", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-file-list]",
+					"test": "fn:guestType",
+					"value": "/file",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{
+							"template": "template",
+							"value": "/",
+							"mapping": [
+								{ "selector": "li", "value": "/@value" }
+							]
+						}
+					]
+				}
+
+			]
 		}
+
+
 	]
 }'>
 
@@ -781,6 +1208,9 @@
 
 		{ "selector": "[data-style]", "value": "/style" },
 		{ "selector": "[data-semantic]", "value": "/semantic" },
+				{ "selector": "[data-logic]", "value": "/logic" },
+		{ "selector": "[data-behaviour]", "value": "/behaviour" },
+
 -->
 
 <template>
@@ -829,9 +1259,7 @@
 			</dd>
 		</template>
 
-		<!-- Semantic
-			TODO: Add a special template to insert HTML source code or to import it
-		-->
+		<!-- Semantic -->
 		<template data-semantic-none>
 			<dt>Semantic:</dt>
 			<dd>Not applicable or out of scope</dd>
@@ -860,50 +1288,226 @@
 			</dd>
 		</template>
 
-		<dt>Logic:</dt>
-		<dd data-logic>Note</dd>
-		<dt>Accessibility guidance:</dt>
-		<dd data->
-			<ul>
-				<li></li>
-			</ul>
-		</dd>
-		<dt>Behaviour:</dt>
-		<dd data-behaviour>Note</dd>
-		<dt>Pattern recognition:</dt>
-		<dd data-recognition>Note</dd>
-		<dt>Context of use:</dt>
-		<dd data-context>Note</dd>
-		<dt>Configuration:</dt>
-		<dd data->
-			<ul>
-				<li></li>
-			</ul>
-		</dd>
-		<dt>Static value:</dt>
-		<dd data->
-			<ul>
-				<li></li>
-			</ul>
-		</dd>
-		<dt>Data schema:</dt>
-		<dd data->
-			<ul>
-				<li></li>
-			</ul>
-		</dd>
-		<dt>Dependencies:</dt>
-		<dd data->
-			<ul>
-				<li></li>
-			</ul>
-		</dd>
-		<dt>Files:</dt>
-		<dd data->
-			<ul>
-				<li></li>
-			</ul>
-		</dd>
+		<!-- Logic -->
+		<template data-logic-none>
+			<dt>Logic:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-logic-description>
+			<dt>Logic:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-logic-list>
+			<dt>Logic:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Pattern recognition -->
+		<template data-recognition-none>
+			<dt>Pattern recognition:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-recognition-description>
+			<dt>Pattern recognition:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-recognition-list>
+			<dt>Pattern recognition:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Behaviour -->
+		<template data-behaviour-none>
+			<dt>Behaviour:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-behaviour-description>
+			<dt>Behaviour:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-behaviour-list>
+			<dt>Behaviour:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Accessibility guidance -->
+		<template data-accessibility-none>
+			<dt>Accessibility guidance:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-accessibility-description>
+			<dt>Accessibility guidance:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-accessibility-list>
+			<dt>Accessibility guidance:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Guidance of use -->
+		<template data-guidance-none>
+			<dt>Guidance of use:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-guidance-description>
+			<dt>Guidance of use:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-guidance-list>
+			<dt>Guidance of use:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Context of use -->
+		<template data-context-none>
+			<dt>Context of use:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-context-description>
+			<dt>Context of use:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-context-list>
+			<dt>Context of use:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Configuration -->
+		<template data-configuration-none>
+			<dt>Configuration:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-configuration-description>
+			<dt>Configuration:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-configuration-list>
+			<dt>Configuration:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Static value -->
+		<template data-static-none>
+			<dt>Static value:</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-static-description>
+			<dt>Static value:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-static-list>
+			<dt>Static value:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Schema (Dynamic data) -->
+		<template data-schema-none>
+			<dt>Schema <wbr>(Dynamic data):</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-schema-description>
+			<dt>Schema <wbr>(Dynamic data):</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-schema-list>
+			<dt>Schema <wbr>(Dynamic data):</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Essential dependencies -->
+		<template data-dependency-none>
+			<dt>Essential dependencies :</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-dependency-description>
+			<dt>Essential dependencies:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-dependency-list>
+			<dt>Essential dependencies:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
+		<!-- Packaged essential file -->
+		<template data-file-none>
+			<dt>Packaged <wbr>essential file :</dt>
+			<dd>Not applicable or out of scope</dd>
+		</template>
+		<template data-file-description>
+			<dt>Packaged <wbr>essential file:</dt>
+			<dd>[[ Description ]]</dd>
+		</template>
+		<template data-file-list>
+			<dt>Packaged <wbr>essential file:</dt>
+			<dd>
+				<ul>
+					<template>
+						<li>[[ Description ]]</li>
+					</template>
+				</ul>
+			</dd>
+		</template>
+
 		<dt>Based on iteration</dt>
 		<dd data-iteration>_:iteration_xyz</dd>
 	</dl>

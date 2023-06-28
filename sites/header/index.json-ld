@@ -317,42 +317,44 @@
 				"Cell - Authentication beside the top menu on its right side",
 				"Row - Breadcrumb under the top menu"
 			],
-			"style": "Mixed with all variant CSS",
-			"semantic": "See the HTML markup and logic in /includes/header.html",
+			"style": [
+				"May have some specific style, need to be researched and centralized",
+				"Bootstap 3 grid CSS: container, row, col-md-8, col-xs-6 col-xs-offset-6 col-md-offset-0 col-md-4 col-xs-12"
+			],
+			"semantic": {
+				"@type": "source-code",
+				"description": "Include with logic in liquid that support all variations",
+				"code": {
+					"@type": [ "@id", "rdf:HTML" ],
+					"@value": "includes/header.html"
+				}
+			},
 			"logic": "Not applicable",
 			"behaviour": "Not applicable",
-			"recognition": "How the pattern can be recognized/measured/or be distinctive",
-			"context": "Bottom of the HTML page, before the <scrip> tag resource, after the <main>",
-			"configuration": "none",
-			"static": {
-				"@type": "rdf:JSON",
-				"@value": [
-					"header",
-					"footerSite",
-					"goc",
-					"themeLinks",
-					"gocCorporate",
-					"partials",
-					"gocLinks",
-					"themeLinksLinks",
-					"corporateLinks",
-					"privacyText",
-					"privacyUrl",
-					"termsText",
-					"termsUrl"
-				]
-			},
-			"schema": {
-				"contextualFooterTitle": "datatype",
-				"contextualFooterItems": {
-					"text": "datatype",
-					"link": "datatype"
-				},
-				"privacyUrl": "datatype",
-				"termsUrl": "datatype"
-			},
-			"dependencies": "none",
-			"files": "../assets/landscape.png"
+			"recognition": "The layout (disposition) of the component and the brand logo must be at top left.",
+			"guidance": "Out of scope, please see DTO related guidance on the site header component.",
+			"context": "First set of children of the <body> element and before the <main> element",
+			"configuration":[ 
+				"Optional but highly recomended language toggle component",
+				"Optional site search component",
+				"Optional top menu component",
+				"Optional authentication component",
+				"Optional breadcrumbs component"
+			],
+			"static": "Not applicable, see each included component for more details",
+			"schema": "Not applicable, see each included component for more details",
+			"dependency": [
+				"Language toggle, minimum version 1.1",
+				"Branding, minimum version 1.0",
+				"Search, minimum version 1.0",
+				"Site menu, minimum version 2.0",
+				"Breadcrumb, minimum version 1.0",
+				"Authentication, minimum version 1.0"
+			],
+			"file": [
+				"../assets/sig-blk-en.svg",
+				"../assets/sig-blk-fr.svg"
+			]
 		}
 
 	],

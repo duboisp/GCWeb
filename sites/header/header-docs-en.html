@@ -1,16 +1,16 @@
 ---
 {
-	"title": "Header",
+	"title": "Global header",
 	"language": "en",
 	"altLangPage": "header-docs-fr.html",
-	"secondlevel": false,
-	"dateModified": "2022-11-01",
-	"share": "true"
+	"dateModified": "2023-06-27",
+	"share": "true",
+	"layout": "without-h1"
 }
 ---
 
 <div class="wb-prettify all-pre hide"></div>
-
+<!--
 <aside class="brdr-bttm">
 <h2>Meta information for this page</h2>
 <p>This document represents recommended changes to the GCweb header documentation page.</p>
@@ -27,16 +27,14 @@
 	<li>Canada.ca > GCWeb > Sites and global functionality</li>
 </ul>
 </aside>
-
+-->
 <hgroup>
 	<p>GCWeb (the Canada.ca theme in WET)</p>
 	<h1>Global header</h1>
 </hgroup>
 
+<p>(<a href="index.json-ld" rel="alternate" type="application/json">Consult this documentation in a data format noted in JSON</a>)</p>
 
-
-<details>
-<summary>Debug</summary>
 <div data-wb-jsonmanager='{
 	"url": "index.json-ld",
 	"name": "api",
@@ -58,10 +56,8 @@
 				{ "op": "wb-swap", "path": "/baseOnIteration", "ref": "/iteration" }
 			]
 		}
-	],
-	"debug": true
+	]
 }'></div>
-</details>
 
 <p>version <span data-json-replace="#[api]/version">Unknown</span></p>
 
@@ -78,7 +74,7 @@
 
 
 <h2>Purpose</h2>
-<p>[AJAX from DTO]</p>
+<p>[To be Ajaxed from DTO]</p>
 <p>The global header is a container that displays components that make up the header.</p>
 
 
@@ -134,7 +130,7 @@
 
 
 <h2>Before you start</h2>
-<p>[AJAX from DTO]</p>
+<p>[To be Ajaxed from DTO]</p>
 
 <p>Components are used and configured for different page types. Consult the Canada.ca Design system guidance for using these components on Standard, Transactional, and Campaign pages. This includes detail on each of the components listed above.</p>
 <ul>
@@ -216,6 +212,22 @@
 		{ "selector": "[data-description]", "value": "/description/en", "isHTML": true  },
 		{ "selector": "[data-guidance]", "value": "/guidance/en", "attr": "href" },
 		{ "selector": "[data-iteration]", "value": "/revisedFor/name/en" },
+
+		{
+			"template": "[data-variation-example]",
+			"test": "fn:isArray",
+			"assess": "/example/en",
+			"mapping": [
+				{
+					"selector": "ul",
+					"value": "/example/en",
+					"mapping": [
+						{ "selector": "a", "value": "/href", "attr": "href" },
+						{ "selector": "a", "value": "/text" }
+					]
+				}
+			]
+		},
 
 		{ "selector": "[data-implementation]", "value": "/implementation",
 			"mapping": [
@@ -394,6 +406,14 @@
 		<p>TODO: Screen capture</p>
 		<p>TODO: Working example link</p>
 		-->
+		<template data-variation-example>
+			<p>Here some examples that illustrate the following implementation:</p>
+			<ul>
+				<template>
+					<li><a href></a></li>
+				</template>
+			</ul>
+		</template>
 
 		<h4>Implementation</h4>
 
@@ -625,8 +645,10 @@
 
 <h3>Change set</h3>
 
+<!--
 <p>The description beside the public API item are defining the scope of how the public API item is applicable in the context of its "Change set". It should contains all the information about how we can measure a change when a subsequent iteration would be created. It can refer to an explicit example, or contains a code sample, or link to another documentation section where more details is provided. Optionally and when it provide more clarity, it can provide a description what is not in the versioning scope.</p>
-<p>Unless specified, the public API item scope are strictly limited to what is described here. Anything that are not identified, a setting or an include file, are out of scope.</p>
+-->
+<p>Unless specified, the public versioning API dimension are strictly limited to what is described here. Anything that are omitted or not identified are out of scope.</p>
 
 <div data-wb-json='{
 	"url": "#[api]/changeset",
@@ -1206,10 +1228,6 @@
 		+ Configuration: Data structure where the key is the configuration key and the value describe the type, what it is and any other useful info.
 
 
-		{ "selector": "[data-style]", "value": "/style" },
-		{ "selector": "[data-semantic]", "value": "/semantic" },
-				{ "selector": "[data-logic]", "value": "/logic" },
-		{ "selector": "[data-behaviour]", "value": "/behaviour" },
 
 -->
 
@@ -1310,15 +1328,15 @@
 
 		<!-- Pattern recognition -->
 		<template data-recognition-none>
-			<dt>Pattern recognition:</dt>
+			<dt>Pattern <span class="nowrap">recognition</span>:</dt>
 			<dd>Not applicable or out of scope</dd>
 		</template>
 		<template data-recognition-description>
-			<dt>Pattern recognition:</dt>
+			<dt>Pattern <span class="nowrap">recognition</span>:</dt>
 			<dd>[[ Description ]]</dd>
 		</template>
 		<template data-recognition-list>
-			<dt>Pattern recognition:</dt>
+			<dt>Pattern <span class="nowrap">recognition</span>:</dt>
 			<dd>
 				<ul>
 					<template>
@@ -1470,15 +1488,15 @@
 
 		<!-- Essential dependencies -->
 		<template data-dependency-none>
-			<dt>Essential dependencies :</dt>
+			<dt>Essential <span class="nowrap">dependencies:</span></dt>
 			<dd>Not applicable or out of scope</dd>
 		</template>
 		<template data-dependency-description>
-			<dt>Essential dependencies:</dt>
+			<dt>Essential <span class="nowrap">dependencies:</span></dt>
 			<dd>[[ Description ]]</dd>
 		</template>
 		<template data-dependency-list>
-			<dt>Essential dependencies:</dt>
+			<dt>Essential <span class="nowrap">dependencies:</span></dt>
 			<dd>
 				<ul>
 					<template>
@@ -1490,15 +1508,15 @@
 
 		<!-- Packaged essential file -->
 		<template data-file-none>
-			<dt>Packaged <wbr>essential file :</dt>
+			<dt>Packaged <span class="nowrap">essential</span> file:</dt>
 			<dd>Not applicable or out of scope</dd>
 		</template>
 		<template data-file-description>
-			<dt>Packaged <wbr>essential file:</dt>
+			<dt>Packaged <span class="nowrap">essential</span> file:</dt>
 			<dd>[[ Description ]]</dd>
 		</template>
 		<template data-file-list>
-			<dt>Packaged <wbr>essential file:</dt>
+			<dt>Packaged <span class="nowrap">essential</span> file:</dt>
 			<dd>
 				<ul>
 					<template>
@@ -1508,7 +1526,7 @@
 			</dd>
 		</template>
 
-		<dt>Based on iteration</dt>
+		<dt>Based on <span class="nowrap">iteration</span></dt>
 		<dd data-iteration>_:iteration_xyz</dd>
 	</dl>
 </template>
@@ -1524,6 +1542,7 @@
 		{ "selector": "h4 [data-id]", "value": "/@id" },
 		{ "selector": "h4 [data-name]", "value": "/name/en" },
 		{ "selector": "[data-detectability]", "value": "/detectableBy" },
+		{ "selector": "[data-date]", "value": "/date" },
 
 		{
 			"template": "[data-predecessor]",
@@ -1620,6 +1639,7 @@
 	<template data-successor>
 		<dt>Successor:</dt> <dd data-successor>Iteration ID</dd>
 	</template>
+	<dt>Created on:</dt> <dd data-date>Not specified</dd>
 	<template data-breaking>
 		<dt>Breaking changes</dt>
 		<dd>
@@ -1671,547 +1691,3 @@
 </div>
 </template>
 </div>
-
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-<div class="wb-prettify all-pre hide"></div>
-
-<dl class="horizontal">
-	<dt>Status</dt>
-	<dd>Stable</dd>
-	<dt>Type</dt>
-	<dd>Canada.ca site functionality</dd>
-	<dt>Last review</dt>
-	<dd>2022-08-31</dd>
-</dl>
-
-<h2>Purpose</h2>
-<p>Displays the portion of the header section that's underneath the banner.</p>
-<p>Can contain the following components:</p>
-<ul>
-	<li>GCWeb Menu</li>
-	<li>Authentication</li>
-</ul>
-
-<h2>Working example</h2>
-<ul>
-	<li><a href="../../templates/content-en.html">Content page including Header v4.0</a></li>
-	<li><a href="../authentication/contextual-signin-en.html">Content page including Header v4.0 and Authentication section</a></li>
-</ul>
-
-<h2>How to implement</h2>
-
-<p>This version requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
-
-<p>Here is a code sample showing all the commonly included components where some may require some customization by your web content management system such as the breadcrumb component.</p>
-
-<pre><code>&lt;nav>
-	&lt;ul id="wb-tphp">
-		&lt;li class="wb-slc">&lt;a class="wb-sl" href="#wb-cont">Skip to main content&lt;/a>&lt;/li>
-		&lt;li class="wb-slc visible-sm visible-md visible-lg">&lt;a class="wb-sl" href="#wb-info">Skip to About this site&lt;/a>&lt;/li>
-	&lt;/ul>
-&lt;/nav>
-
-&lt;header>
-&lt;div id="wb-bnr" class="container">&lt;div class="row">
-&lt;section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
-	&lt;h2 class="wb-inv">Language selection&lt;/h2>
-	&lt;ul class="list-inline mrgn-bttm-0">
-		&lt;li>&lt;a lang="fr" hreflang="fr" href="header-docs-fr.html">
-				&lt;span class="hidden-xs" translate="no">Français&lt;/span>
-				&lt;abbr title="Français" translate="no" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">fr&lt;/abbr>
-		&lt;/a>&lt;/li>
-	&lt;/ul>
-&lt;/section>
-
-&lt;div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" typeof="GovernmentOrganization">
-	&lt;a href="https://www.canada.ca/en.html" property="url">
-		&lt;img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-en.svg" alt="Government of Canada" property="logo" />&lt;span class="wb-inv"> / &lt;span lang="fr">Gouvernement du Canada&lt;/span>&lt;/span>
-	&lt;/a>
-	&lt;meta property="name" content="Government of Canada">
-	&lt;meta property="areaServed" typeof="Country" content="Canada" />
-	&lt;link property="logo" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/wmms-blk.svg" />
-&lt;/div>
-
-&lt;section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
-	&lt;h2>Search&lt;/h2>
-	&lt;form action="https://www.canada.ca/en/sr/srb.html" name="cse-search-box" role="search">
-		&lt;div class="form-group wb-srch-qry">
-			&lt;label for="wb-srch-q" class="wb-inv">Search Canada.ca&lt;/label>
-			&lt;input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="Search Canada.ca" />
-			&lt;datalist id="wb-srch-q-ac">&lt;/datalist>
-		&lt;/div>
-		&lt;div class="form-group submit">
-			&lt;button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub">&lt;span class="glyphicon-search glyphicon">&lt;/span>&lt;span class="wb-inv">Search&lt;/span>&lt;/button>
-		&lt;/div>
-	&lt;/form>
-&lt;/section>
-
-&lt;/div>&lt;/div>
-&lt;hr>
-&lt;div class="container">&lt;div class="row">&lt;div class="col-md-8">
-
-&lt;nav class="gcweb-menu" typeof="SiteNavigationElement">
-	&lt;h2 class="wb-inv">Menu&lt;/h2>
-	&lt;button type="button" aria-haspopup="true" aria-expanded="false">&lt;span class="wb-inv">Main &lt;/span>Menu &lt;span class="expicon glyphicon glyphicon-chevron-down">&lt;/span>&lt;/button>
-	&lt;ul role="menu" aria-orientation="vertical" data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html">&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/jobs.html">Jobs and the workplace&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration and citizenship&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://travel.gc.ca/">Travel and tourism&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/business.html">Business and industry&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/benefits.html">Benefits&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/health.html">Health&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/taxes.html">Taxes&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/environment.html">Environment and natural resources&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/defence.html">National security and defence&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/culture.html">Culture, history and sport&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/policing.html">Policing, justice and emergencies&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/transport.html">Transport and infrastructure&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and the world&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/finance.html">Money and finances&lt;/a>&lt;/li>
-		&lt;li role="presentation">&lt;a role="menuitem" href="https://www.canada.ca/en/services/science.html">Science and innovation&lt;/a>&lt;/li>&lt;/ul>
-&lt;/nav>
-
-&lt;/div>&lt;/div>&lt;/div>
-
-&lt;nav id="wb-bc" property="breadcrumb">
-	&lt;h2>You are here:&lt;/h2>
-	&lt;div class="container">
-		&lt;ol class="breadcrumb" typeof="BreadcrumbList">
-			&lt;li property="itemListElement" typeof="ListItem">
-				&lt;a property="item" typeof="WebPage" href="https://www.canada.ca/en.html">
-					&lt;span property="name">Canada.ca&lt;/span>
-				&lt;/a>
-				&lt;meta property="position" content="1">
-			&lt;/li>
-		&lt;/ol>
-	&lt;/div>
-&lt;/nav>
-
-&lt;/header></code></pre>
-
-<h2>Evaluation and report</h2>
-<p>There is no evaluation and report available for this component.</p>
-
-<h2>API (Version 2.0)</h2>
-<table class="table table-bordered">
-	<tr>
-		<th>Component version</th>
-		<th>CSS Class</th>
-		<th>Template</th>
-		<th>Visual rendering</th>
-		<th>Schema</th>
-	</tr>
-	<tr>
-		<th>Version 4.0.0</th>
-		<td>n.a.</td>
-		<td>Version 4.0</td>
-		<td>Version 1.0</td>
-		<td>n.a.</td>
-	</tr>
-</table>
-
-<details>
-	<summary>Deprecated version</summary>
-	<table class="table table-bordered">
-		<tr>
-			<th>Component version</th>
-			<th>CSS Class</th>
-			<th>Template</th>
-			<th>Visual rendering</th>
-			<th>Schema</th>
-		</tr>
-		<tr>
-			<th>Version 3.0.0</th>
-			<td>n.a.</td>
-			<td>Version 3.0</td>
-			<td>Version 1.0</td>
-			<td>n.a.</td>
-		</tr>
-		<tr>
-			<th>Version 2.0.0</th>
-			<td>n.a.</td>
-			<td>Version 2.0</td>
-			<td>Version 1.0</td>
-			<td>n.a.</td>
-		</tr>
-		<tr>
-			<th>Version 1.0</th>
-			<td>n.a.</td>
-			<td>Version 1.0</td>
-			<td>Version 1.0</td>
-			<td>n.a.</td>
-		</tr>
-	</table>
-</details>
-
-<h2>Template</h2>
-
-<h3>Before and After</h3>
-
-<div class="row">
-	<div class="col-md-6">
-		<h4>Version 4.0</h4>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.1] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-
-		<h5>Including authentication section (optional)</h5>
-		<p>The difference with version 3.0 is the value for <code>col-xs-5</code> and <code>col-xs-offset-7</code> have been adjusted to a "6" so the button text don't brake and stays on one line for every viewports from extra-extra-small to extra-large (xxs, xxs, sm, md, lg and xl).</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.1] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-		&lt;/div&gt;
-			&lt;div class=&quot;col-xs-<ins>6</ins> col-xs-offset-<ins>6</ins> col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-	<div class="col-md-6">
-		<h4>Version 3.0 (deprecated)</h4>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-
-		<h5>Including authentication section (optional)</h5>
-		<p>The header version 3.0 including the authentication section is deprecated but still supported and requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-			&lt;div class=&quot;col-xs-<del>5</del> col-xs-offset-<del>7</del> col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-</div>
-
-<h3>Previous versions</h3>
-<details>
-	<summary>Version 3.0 vs Version 2.0</summary>
-	<div class="row">
-	<div class="col-md-6">
-		<h4>Version 3.0 (deprecated)</h4>
-		<p>The only difference with version 2.0 is that the column will remain at 8 whether there is an authentication section or not.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-<ins>8</ins>&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-
-		<h5>Including authentication section (optional)</h5>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-		&lt;/div&gt;
-			&lt;div class=&quot;col-xs-5 col-xs-offset-7 col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-	<div class="col-md-6">
-		<h4>Version 2.0 (deprecated)</h4>
-		<p>The header version 2.0 is deprecated but still supported and requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
-		<p>No change</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-<del>12</del>&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-
-		<h5>Including authentication section (optional)</h5>
-		<p>No change.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;
-				&lt;!-- Site Menu [version 2.0] --&gt;
-			&lt;/div&gt;
-			&lt;div class=&quot;col-xs-<del>5</del> col-xs-offset-<del>7</del> col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-</div>
-</details>
-
-<details>
-	<summary>Version 2.0 vs Version 1.0</summary>
-	<div class="row">
-	<div class="col-md-6">
-		<h4>Version 2.0 (deprecated)</h4>
-		<p>This version requires the implementation of the <a href="../gcweb-menu/gcweb-menu-docs-en.html">gcweb-menu version 2.0</a> where the <code>&lt;div class="container"&gt;</code> has been relocated in the header so outside the "gcweb-menu" component.</p>
-
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	<ins>&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-12&quot;&gt;</ins>
-				&lt;!-- Site Menu [version <ins>2.0</ins>] --&gt;
-			<ins>&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;</ins>
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-
-		<h5>Including authentication section (optional)</h5>
-		<p>Addition of the authentication section.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	<ins>&lt;hr&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;div class=&quot;col-md-8&quot;&gt;</ins>
-				&lt;!-- Site Menu [version <ins>2.0</ins>] --&gt;
-			<ins>&lt;/div&gt;
-			&lt;div class=&quot;col-xs-5 col-xs-offset-7 col-md-offset-0 col-md-4&quot;&gt;
-				&lt;!-- Optional Authentication Section [version 1.0] --&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;</ins>
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-	<div class="col-md-6">
-		<h4>Version 1.0 (deprecated)</h4>
-		<p>The header version 1.0 is deprecated but still supported.</p>
-		<pre><code>&lt;header&gt;
-	&lt;div id=&quot;wb-bnr&quot; class=&quot;container&quot;&gt;
-		&lt;div class=&quot;row&quot;&gt;
-			&lt;!-- Language toggle [version 1.0] --&gt;
-			&lt;!-- Branding [version 1.0] --&gt;
-			&lt;!-- Search [version 1.0] --&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;!-- Site Menu [Version <del>1.0</del>]
-	&lt;!-- Breadcrumbs [version 1.0] --&gt;
-&lt;/header&gt;</code></pre>
-	</div>
-</div>
-</details>
-
-<h4>Working examples</h4>
-<details>
-	<summary>Header Version 3.0</summary>
-	<ul>
-		<li><a href="deprecated/header-v3.html">Content page including Header Version 3.0</a></li>
-		<li><a href="deprecated/header-auth-v3.html">Content page including Header Version 3.0 and the authentication section</a></li>
-		<li><a href="../../templates/home/deprecated/home-v3.html">Home page including Header Version 3.0</a></li>
-		<li><a href="../../templates/home/deprecated/home-auth-v3.html">Home page including Header Version 3.0 and the authentication section</a></li>
-	</ul>
-</details>
-
-<details>
-	<summary>Header Version 2.0</summary>
-	<ul>
-		<li><a href="deprecated/header-v2.html">Content page including Header Version 2.0</a></li>
-		<li><a href="deprecated/header-auth-v2.html">Content page including Header Version 2.0 including the authentication section</a></li>
-		<li><a href="../../templates/home/deprecated/home-v2.html">Home page including Version 2.0 and the authentication section</a></li>
-		<li><a href="../../templates/home/deprecated/home-auth-v2.html">Home page including Version 2.0  and the authentication section</a></li>
-	</ul>
-</details>
-
-<details>
-	<summary>Header Version 1.0</summary>
-	<ul>
-	<li><a href="deprecated/header-v1.html">Header Version 1.0</a></li>
-	<li><a href="../../templates/home/deprecated/home-v1.html">Home Header Version 1.0</a></li>
-	</ul>
-</details>

@@ -7,14 +7,14 @@
 		"modified": "dct:modified"
 	},
 	"title": {
-		"en": "Header",
+		"en": "Global header",
 		"fr": "Entête"
 	},
 	"description": {
 		"en": "Documentation on how to use the header.",
 		"fr": "Documentation sur l'utilisation de l'entête."
 	},
-	"modified": "2022-05-10",
+	"modified": "2023-06-27",
 	"componentName": "header",
 	"status": "stable",
 	"version": "4.0.0",
@@ -39,7 +39,6 @@
 		"Government of Canada signature (always required)",
 		"Language toggle (always required)",
 		"Site search box",
-		"Skip link (always required)",
 		"Theme and topic menu"
 	],
 	"a11yGuidance": "no accessibility guidance",
@@ -60,6 +59,14 @@
 				"fr": "French URL to DTO website"
 			},
 			"revisedFor": "_:iteration_4",
+			"example": {
+				"en": [
+					{ "href": "http://localhost:4000/templates/content-en.html", "text": "Content page including Header v4.0" }
+				],
+				"fr": [
+
+				]
+			},
 			"implementation": [
 				"_:implement_upgrade_v2_to_v3",
 				"_:implement_1_upgrade",
@@ -93,6 +100,14 @@
 				"fr": "https://conception.canada.ca/configurations-conception-communes/connexion-contextuel.html"
 			},
 			"revisedFor": "_:iteration_4",
+			"example": {
+				"en": [
+					{ "href": "http://localhost:4000/sites/authentication/contextual-signin-en.html", "text": "Content page including Header v4.0 and Authentication section" }
+				],
+				"fr": [
+
+				]
+			},
 			"implementation": [
 				"_:implement_auth_upgrade_v3_to_v4",
 				"_:implement_auth_upgrade"
@@ -319,7 +334,7 @@
 			],
 			"style": [
 				"May have some specific style, need to be researched and centralized",
-				"Bootstap 3 grid CSS: container, row, col-md-8, col-xs-6 col-xs-offset-6 col-md-offset-0 col-md-4 col-xs-12"
+				"Bootstrap 3 grid CSS: container, row, col-md-8, col-xs-6 col-xs-offset-6 col-md-offset-0 col-md-4 col-xs-12"
 			],
 			"semantic": {
 				"@type": "source-code",
@@ -333,9 +348,9 @@
 			"behaviour": "Not applicable",
 			"recognition": "The layout (disposition) of the component and the brand logo must be at top left.",
 			"guidance": "Out of scope, please see DTO related guidance on the site header component.",
-			"context": "First set of children of the <body> element and before the <main> element",
-			"configuration":[ 
-				"Optional but highly recomended language toggle component",
+			"context": "Immediate children of the <body> element immediately after the "skip link" component and before the <main> element",
+			"configuration":[
+				"Optional but highly recommended language toggle component",
 				"Optional site search component",
 				"Optional top menu component",
 				"Optional authentication component",

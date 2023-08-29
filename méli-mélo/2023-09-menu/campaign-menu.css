@@ -1,0 +1,120 @@
+
+
+/* .bg-winterlude {
+    background: #003c77!important;
+}*/
+
+/* Suggest this CSS selector */
+#wb-sm.campaign-menu {
+    background: #003c77;
+}
+
+#wb-sm {
+    background: #003c77;
+}
+/* remove table cell */
+#wb-sm .menu {
+    display: block;
+    /*   font-size: 20px; */
+}
+/* on hover */
+#wb-sm .menu > li a:focus, #wb-sm .menu > li a:hover, #wb-sm .menu > li a:focus, #wb-sm .menu > li a:active {
+    background: #ccc !important;
+    color: #333 !important;
+}
+/* focus within background*/
+#wb-sm .menu .active, #wb-sm .menu .selected, #wb-sm .menu .wb-navcurr {
+    background: #ccc !important;
+}
+/*submenu item*/
+#wb-sm .sm.open li a {
+    color: #333 !important;
+    background: #ccc !important;
+}
+/* hover on submenu item*/
+#wb-sm .sm.open li a:active, #wb-sm .sm.open li a:focus, #wb-sm .sm.open li a:hover, #wb-sm .sm.open li summary:active, #wb-sm .sm.open li summary:focus, #wb-sm .sm.open li summary:hover {
+    color: #fff !important;
+    background: #003c77 !important;
+}
+/* on lost focus*/
+#wb-sm .menu > li.active > a, #wb-sm .menu > li > a:hover {
+    background: #ccc;
+    color: #333;
+    text-shadow: None;
+}
+/*bottom bar color*/
+#wb-sm .sm.open {
+    border-bottom: 5px solid #003c77 !important;
+}
+/*GCWEB Menu*/
+/*default color*/
+.campaign-menu button[aria-haspopup=true] {
+    background-color: #003c77 !important;
+    border: 0px;
+    font-size: 20px;
+}
+/*button closed*/
+.campaign-menu button[aria-haspopup=true]:focus {
+    background-color: #003c77 !important;
+    border: 1px dotted #fff;
+    color: #fff;
+}
+.campaign-menu button[aria-haspopup=true][aria-expanded=true] + [role=menu] {
+    border-right: #eee solid 0px !important;
+}
+/*Menu opened*/
+.campaign-menu [role=menu] {
+    background-color: #003c77 !important;
+    color: #fff;
+}
+/*remove boder lines*/
+.campaign-menu [role=menuitem], .campaign-menu [role=menuitem]:visited {
+    border-bottom: 0px;
+}
+/*remove first child top line*/
+.campaign-menu [role=menu] > li:first-child {
+    border-top: #444 solid 0px;
+}
+/*remove left border line*/
+.campaign-menu [role=menu] > li {
+    border-left: #444 solid 0px;
+}
+/*remove the border line of last item*/
+.campaign-menu [role=menu] > li:last-child {
+    border-bottom: #444 solid 0px;
+}
+/*remove submenu first child bottom border*/
+.campaign-menu [role=menu] [role=menu] [role=menuitem], .campaign-menu [role=menu] [role=menu] li:first-child [role=menuitem] {
+    border-bottom: 0px;
+}
+/*second sublist background*/
+.campaign-menu [role=menu] [role=menu] {
+    background-color: #e1e1e1 !important;
+}
+/* submenu item text color*/
+.campaign-menu [role=menu] [role=menu] li [role=menuitem] {
+    color: #333;
+    padding-left: 65px;
+}
+.campaign-menu [aria-expanded=true]:not(button) + [role=menu] li {
+    margin-left: 0px;
+}
+.campaign-menu [aria-expanded=true]:not(button) + [role=menu] li:first-child [role=menuitem], .campaign-menu [aria-expanded=true]:not(button) + [role=menu] li:last-child [role=menuitem] {
+    padding-left: 65px;
+}
+/*first and last submenu item on hover change to blue*/
+.campaign-menu [role=menu] [role=menu] [role=menuitem]:focus, .campaign-menu [role=menu] [role=menu] [role=menuitem]:hover, .campaign-menu [role=menu] [role=menu] li:first-child [role=menuitem]:focus, .campaign-menu [role=menu] [role=menu] li:first-child [role=menuitem]:hover, .campaign-menu [role=menu] [role=menu] li:last-child [role=menuitem]:focus, .campaign-menu [role=menu] [role=menu] li:last-child [role=menuitem]:hover {
+    color: #fff !important;
+    background: #003c77 !important;
+    text-decoration: None;
+}
+.campaign-menu [role=menu] [role=menu] li [role=menuitem]:hover {
+    color: #fff;
+}
+/* remove the underline of sub menu item */
+.campaign-menu [role=menu] [role=menu] li [role=menuitem] {
+    text-decoration: None;
+}
+.campaign-menu [role=menu] [role=menu] li:first-child [role=menuitem] {
+    text-decoration: None;
+}

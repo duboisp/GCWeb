@@ -1,0 +1,40 @@
+---
+title: Campaign Menu
+dateModified: 2023-08-21
+lang: en
+css: campaign-menu.css
+script: campaign-menu.js
+layout: no-container
+---
+     <div class="container">
+        <h1>Main content</h1>
+        <p>Example of a new menu where is behave like the megamenu in desktop and like the GCWeb menu in table and mobile.</p>
+    </div>
+
+    <div class="container">
+        
+        
+        <!-- second level middle child item "over the years", has a different length of underline -->
+        <nav class="campaign-menu gcweb-menu bg-winterlude" typeof="SiteNavigationElement">
+            <h2 class="wb-inv">Menu</h2>
+            <button class="mrgn-tp-sm mrgn-bttm-sm" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Press the SPACEBAR to expand or the escape key to collapse this menu. Use the Up and Down arrow keys to choose a submenu item. Press the Enter or Right arrow key to expand it, or the Left arrow or Escape key to collapse it. Use the Up and Down arrow keys to choose an item on that level and the Enter key to access it.">Menu&nbsp;<span class="glyphicon glyphicon-th-list"></span></button>
+            <ul class="bg-winterlude" role="menu" aria-orientation="vertical" >
+                <li role="presentation"><a role="menuitem" href="#">Home</a></li>
+                <li role="presentation"><a role="menuitem" href="#">Calendar</a></li>
+                <li role="presentation"><a role="menuitem" aria-haspopup="true" aria-controls="menu-section1" aria-expanded="false" href="#">What's happening</a>
+                    <ul id="menu-section1" role="menu" aria-orientation="vertical">
+                        <li role="presentation"><a role="menuitem" href="#">Venues</a></li>
+                    </ul>
+                </li>
+                <li role="presentation"><a role="menuitem" href="#">Sculptures</a></li>
+                <li role="presentation"> <a role="menuitem" aria-haspopup="true" aria-controls="menu-section2" aria-expanded="false" href="#">About</a>
+                    <ul id="menu-section2" role="menu" aria-orientation="vertical">
+                        <li role="presentation" class="odd"><a role="menuitem" href="#">About Winterlude</a></li>
+                        <li role="presentation" class="even"><a role="menuitem" href="#">Over the years</a></li>
+                        <li role="presentation" class="odd"><a role="menuitem" href="#">Test</a></li>
+                        <li role="presentation" class="even"><a role="menuitem" href="#">Media</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>

@@ -7,12 +7,12 @@
 		"modified": "dct:modified"
 	},
 	"title": {
-		"en": "Glyphicons - Documentation and working examples",
-		"fr": "Glyphicons - Documentation et examples pratiques"
+		"en": "Glyphicons",
+		"fr": "Glyphicons"
 	},
 	"description": {
-		"en": "",
-		"fr": ""
+		"en": "Monochromatic icons and symbols, created with an emphasis to simplicity and easy orientation.",
+		"fr": "Icônes et symboles monochromes, créés en mettant l'accent sur la simplicité et la facilité d'orientation."
 	},
 	"modified": "2023-07-06",
 	"componentName": "glyphicons",
@@ -20,12 +20,12 @@
 	"pages": {
 		"examples": [
 			{
-				"title": "Glyphicons - Documentation and working examples",
+				"title": "Glyphicons",
 				"language": "en",
 				"path": "glyphicons-en.html"
 			},
 		{
-				"title": "Glyphicons - Documentation et examples pratiques",
+				"title": "Glyphicons",
 				"language": "fr",
 				"path": "glyphicons-fr.html"
 			}

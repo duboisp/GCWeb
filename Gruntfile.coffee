@@ -482,6 +482,54 @@ module.exports = (grunt) ->
 	)
 
 	@registerMultiTask(
+		"changeset"
+		"Compile the changeset based on iteration",
+		() ->
+			console.log( "hello" )
+			idxjson = grunt.file.readJSON( this.data.idxjson )
+
+			preCompIte = {};
+
+			# Make IterationPreCompile
+			idxjson.iteration.forEach( (itr) ->
+				preCompIte[ itr[ "@id"] ] = itr
+			)
+
+			# Build predecessor tree
+			currIteration = preCompIte[ '_:iteration_rap_5' ];
+
+			console.log( preCompIte )
+
+			console.log( "Start----" );
+			console.log( currIteration );
+
+			# Extend the result based on each iteration
+			while currIteration.predecessor
+				predecessor = currIteration.predecessor
+
+				## Overrite only new prop
+				## Add the additional
+				## Keep the breaking change, which overrite the previous
+				## Add the fixes
+				compiledIteration = Object.assign( {}, preCompIte[ predecessor ], currIteration )
+
+				## Except replace predecessor
+				compiledIteration.predecessor = preCompIte[ predecessor ].predecessor
+
+				currIteration = compiledIteration
+
+
+
+			console.log( "END----" );
+			console.log( currIteration );
+
+			# console.log( idxjson )
+			# console.log( preCompIte )
+
+			## TODO: Build a test cases
+	)
+
+	@registerMultiTask(
 		"check-wet-version"
 		"Ensure WET-BOEW's version is the same in package as in node_modules",
 		(src) ->
@@ -534,6 +582,10 @@ module.exports = (grunt) ->
 				templates: "_data/templates.json"
 				common: "_data/common.json"
 				reporting: "_data/reporting.json"
+
+		"changeset":
+			all:
+				idxjson: "sites/feedback/index.json-ld"
 
 		clean:
 			dist: [ "dist"]

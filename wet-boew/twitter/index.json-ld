@@ -7,8 +7,8 @@
 		"modified": "dct:modified"
 	},
 		"title": {
-		"en": "Twitter",
-		"fr": "Twitter"
+		"en": "X (Twitter)",
+		"fr": "X (Twitter)"
 	},
 	"description": {
 		"en": "Helps with implementing Twitter embedded timelines",

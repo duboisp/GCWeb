@@ -1,0 +1,1026 @@
+---
+{
+	"title": "Form validation",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Provides generic validation and error message handling for Web forms.",
+	"tag": "formvalid",
+	"parentdir": "formvalid",
+	"altLangPrefix": "formvalid",
+	"dateModified": "2025-02-26"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<ul>
+	<li><a href="formvalid-en.html">Form Validation</a></li>
+	<li><a href="formvalid-server-en.html">Merge Server-Client Errors</a></li>
+</ul>
+
+<hr />
+
+<section>
+	<h2>Purpose</h2>
+	<p>Provides generic validation and error message handling for Web forms.</p>
+</section>
+
+<section>
+	<h2>Examples using regular or specialized validation</h2>
+
+	<div class="wb-frmvld">
+		<form action="#" method="get" id="validation-example">
+			<fieldset>
+				<legend>Contact information</legend>
+				<div class="form-group">
+					<label for="title1" class="required"><span class="field-name">Title</span> <strong class="required">(required)</strong></label>
+					<select class="form-control" id="title1" name="title1" autocomplete="honorific-prefix" required="required">
+						<option label="Select a title"></option>
+						<option value="dr">Dr.</option>
+						<option value="esq">Esq.</option>
+						<option value="mr">Mr.</option>
+						<option value="ms">Ms.</option>
+					</select>
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="title1" class="required"&gt;&lt;span class="field-name"&gt;Title&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;select class="form-control" id="title1" name="title1" autocomplete="honorific-prefix" required="required"&gt;
+				&lt;option label="Select a title"&gt;&lt;/option&gt;
+				&lt;option value="dr"&gt;Dr.&lt;/option&gt;
+				&lt;option value="esq"&gt;Esq.&lt;/option&gt;
+				&lt;option value="mr"&gt;Mr.&lt;/option&gt;
+				&lt;option value="ms"&gt;Ms.&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="fname1" class="required"><span class="field-name">First name</span> <strong class="required">(required)</strong></label>
+					<input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="fname1" class="required"&gt;&lt;span class="field-name"&gt;First name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="lname1" class="required"><span class="field-name">Last name</span> <strong class="required">(required)</strong></label>
+					<input class="form-control" id="lname1" name="lname1" type="text" autocomplete="family-name" required="required" data-rule-minlength="2" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="lname1" class="required"&gt;&lt;span class="field-name"&gt;Last name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="lname1" name="lname1" type="text" autocomplete="family-name" required="required" data-rule-minlength="2" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="tel1" class="required"><span class="field-name">Telephone number (including area code)</span> <strong class="required">(required)</strong></label>
+					<input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="tel1" class="required"&gt;&lt;span class="field-name"&gt;Telephone number (including area code)&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="pcodeca1" class="required"><span class="field-name">Postal code (Canada)</span> <strong class="required">(required)</strong></label>
+					<input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="pcodeca1" class="required"&gt;&lt;span class="field-name"&gt;Postal code&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="email1"><span class="field-name">Email address</span> (yourname@domain.com)</label>
+					<input class="form-control" id="email1" name="email1" type="email" autocomplete="email" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="email1"&gt;&lt;span class="field-name"&gt;Email address&lt;/span&gt; (yourname@domain.com)&lt;/label&gt;
+			&lt;input class="form-control" id="email1" name="email1" type="email" autocomplete="email" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="url1"><span class="field-name">Website URL (https://www.url.com)</span></label>
+					<input class="form-control" id="url1" name="url1" type="url" autocomplete="url" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="url1"&gt;&lt;span class="field-name"&gt;Website URL (https://www.url.com)&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="url1" name="url1" type="url" autocomplete="url" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="file1" class="required"><span class="field-name">File</span> <strong class="required">(required)</strong></label>
+					<input id="file1" name="file1" type="file" required="required" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="file1" class="required"&gt;&lt;span class="field-name"&gt;File&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input id="file1" name="file1" type="file" required="required" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+			</fieldset>
+
+			<fieldset>
+				<legend>Other examples</legend>
+				<div class="form-group">
+					<label for="date1"><span class="field-name">Date</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+					<input class="form-control" id="date1" name="date1" type="date" data-rule-dateISO="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="date1"&gt;&lt;span class="field-name"&gt;Date&lt;/span&gt;&lt;span class="datepicker-format"&gt; (&lt;abbr title="Four digits year, dash, two digits month, dash, two digits day"&gt;YYYY-MM-DD&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="date1" name="date1" type="date" data-rule-dateISO="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="time1"><span class="field-name">Time</span> (hh:mm)</label>
+					<input class="form-control" id="time1" name="time1" type="time" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="time1"&gt;&lt;span class="field-name"&gt;Time&lt;/span&gt; (hh:mm)&lt;/label&gt;
+			&lt;input class="form-control" id="time1" name="time1" type="time" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="number1"><span class="field-name">Number</span> (between -1 and 1 by step 0.1)</label>
+					<input class="form-control" id="number1" name="number1" type="number" min="-1" max="1" step="0.1">
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+	...
+	&lt;div class="form-group"&gt;
+		&lt;label for="number1"&gt;&lt;span class="field-name"&gt;Number&lt;/span&gt; (between -a and 1 by step 0.1)&lt;/label&gt;
+		&lt;input class="form-control" id="number1" name="number1" type="number" min="-1" max="1" step="0.1" /&gt;
+	&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters)</label>
+					<input class="form-control" id="an1" name="an1" type="text" data-rule-alphanumeric="true" data-rule-minlength="4" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="an1"&gt;&lt;span class="field-name"&gt;Alphanumeric&lt;/span&gt; (at least 4 characters)&lt;/label&gt;
+			&lt;input class="form-control" id="an1" name="an1" type="text" data-rule-alphanumeric="true" data-rule-minlength="4" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="numeric1"><span class="field-name">Numeric</span> (digits only)</label>
+					<input class="form-control" id="numeric1" name="numeric1" type="number" data-rule-digits="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="numeric1"&gt;&lt;span class="field-name"&gt;Numeric&lt;/span&gt; (digits only)&lt;/label&gt;
+			&lt;input class="form-control" id="numeric1" name="numeric1" type="number" data-rule-digits="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="letters1"><span class="field-name">Letters only</span> (maximum of 5 characters)</label>
+					<input class="form-control" id="letters1" name="letters1" type="text" size="5" maxlength="5" data-rule-lettersonly="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="letters1"&gt;&lt;span class="field-name"&gt;Letters only&lt;/span&gt; (maximum of 5 characters)&lt;/label&gt;
+			&lt;input class="form-control" id="letters1" name="letters1" type="text" size="5" maxlength="5" data-rule-lettersonly="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="text1"><span class="field-name">Letters and punctuation only</span> (allowed punctuation: [. , ( ) "])</label>
+					<input class="form-control" id="text1" name="text1" type="text" data-rule-letterswithbasicpunc="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="text1"&gt;&lt;span class="field-name"&gt;Letters and punctuation only&lt;/span&gt; (allowed punctuation: [. , ( ) "])&lt;/label&gt;
+			&lt;input class="form-control" id="text1" name="text1" type="text" data-rule-letterswithbasicpunc="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="word1"><span class="field-name">Maximum of 10 words</span></label>
+					<input class="form-control" id="word1" name="word1" type="text" data-rule-maxWords="10" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word1"&gt;&lt;span class="field-name"&gt;Maximum of 10 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word1" name="word1" type="text" data-rule-maxWords="10" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="word2"><span class="field-name">Minimum of 2 words</span></label>
+					<input class="form-control" id="word2" name="word2" type="text" data-rule-minWords="2" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word2"&gt;&lt;span class="field-name"&gt;Minimum of 2 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word2" name="word2" type="text" data-rule-minWords="2" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="word3"><span class="field-name">Between 2 and 10 words</span></label>
+					<input class="form-control" id="word3" name="word3" type="text" data-rule-rangeWords="[2,10]" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word3"&gt;&lt;span class="field-name"&gt;Between 2 and 10 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word3" name="word3" type="text" data-rule-rangeWords="[2,10]" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="nowhitespace1"><span class="field-name">No white space</span></label>
+					<input class="form-control" id="nowhitespace1" name="nowhitespace1" type="text" data-rule-nowhitespace="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="nowhitespace1"&gt;&lt;span class="field-name"&gt;No white space&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="nowhitespace1" name="nowhitespace1" type="text" data-rule-nowhitespace="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters)</label>
+					<input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-rangelength="[5,10]" />
+					<label for="passwordconfirm"><span class="field-name">Confirm your password</span></label>
+					<input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-equalTo="#password1" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="password1"&gt;&lt;span class="field-name"&gt;Password&lt;/span&gt; (between 5 and 10 characters)&lt;/label&gt;
+			&lt;input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-rangelength="[5,10]" /&gt;
+			&lt;label for="passwordconfirm"&gt;&lt;span class="field-name"&gt;Confirm your password&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+			</fieldset>
+
+			<div class="form-group">
+				<div class="checkbox checkbox-standalone required">
+					<label for="agree1"><input id="agree1" name="agree1" type="checkbox" required> <span class="field-name">I agree</span> <strong class="required">(required)</strong></label>
+				</div>
+			</div>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+			&lt;div class="form-group"&gt;
+				&lt;div class="checkbox checkbox-standalone required"&gt;
+					&lt;label for="agree1"&gt;&lt;input id="agree1" name="agree1" type="checkbox" required&gt; &lt;span class="field-name"&gt;I agree&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;</code></pre>
+			</details>
+
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Favourite pets</span> <strong class="required">(required)</strong></legend>
+				<div class="checkbox">
+					<label for="animal1"><input type="checkbox" name="animal" value="1" id="animal1" data-rule-required="true" /> Dog</label>
+				</div>
+				<div class="checkbox">
+					<label for="animal2"><input type="checkbox" name="animal" value="2" id="animal2" /> Cat</label>
+				</div>
+				<div class="checkbox">
+					<label for="animal3"><input type="checkbox" name="animal" value="3" id="animal3" /> Fish</label>
+				</div>
+				<div class="checkbox">
+					<label for="animal4"><input type="checkbox" name="animal" value="4" id="animal4" /> Other</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Favourite pets&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal1"&gt;&lt;input type="checkbox" name="animal" value="1" id="animal1" data-rule-required="true" /&gt; Dog&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal2"&gt;&lt;input type="checkbox" name="animal" value="2" id="animal2" /&gt; Cat&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal3"&gt;&lt;input type="checkbox" name="animal" value="3" id="animal3" /&gt; Fish&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="animal4"&gt;&lt;input type="checkbox" name="animal" value="4" id="animal4" /&gt; Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Citizenship status</span> <strong class="required">(required)</strong></legend>
+				<div class="radio">
+					<label for="status1"><input type="radio" name="status" value="1" id="status1" data-rule-required="true" /> Canadian citizen</label>
+				</div>
+				<div class="radio">
+					<label for="status2"><input type="radio" name="status" value="2" id="status2" /> Permanent resident</label>
+				</div>
+				<div class="radio">
+					<label for="status3"><input type="radio" name="status" value="3" id="status3" /> Work permit</label>
+				</div>
+				<div class="radio">
+					<label for="status4"><input type="radio" name="status" value="4" id="status4" /> Other</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Citizenship status&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status1"&gt;&lt;input type="radio" name="status" value="1" id="status1" data-rule-required="true" /&gt; Canadian citizen&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status2"&gt;&lt;input type="radio" name="status" value="2" id="status2" /&gt; Permanent resident&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status3"&gt;&lt;input type="radio" name="status" value="3" id="status3" /&gt; Work permit&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="status4"&gt;&lt;input type="radio" name="status" value="4" id="status4" /&gt; Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<input type="submit" value="Submit" class="btn btn-primary" /> <input type="reset" value="Reset page to defaults" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
+		</form>
+	</div>
+</section>
+<hr>
+<section>
+	<h2>Examples using required fields without asterisks</h2>
+	<p>Required fields can be alternatively styled without asterisks by adding the <code>required-no-asterisk</code> class to one of their parent elements (such as <code>&lt;div class="wb-frmvld"&gt;</code> or <code>&lt;form&gt;</code>).</p>
+	<p>Whether or not asterisks are used, it is recommended that they be implemented consistently within the same form. Please don't mix and match different asterisk styles within the same form.</p>
+	<div class="wb-frmvld required-no-asterisk">
+		<form action="#" method="get" id="validation-example-4">
+			<div class="form-group">
+				<label for="nname1" class="required"><span class="field-name">Nickname</span> <strong class="required">(required)</strong></label>
+				<input class="form-control" id="nname1" name="nname1" type="text" autocomplete="nickname" required="required" />
+			</div>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				
+				<pre><code>&lt;div class="wb-frmvld required-no-asterisk"&gt;
+&lt;form action="#" method="get" id="validation-example-4"&gt;
+	...
+	&lt;div class="form-group"&gt;
+		&lt;label for="nname1" class="required"&gt;&lt;span class="field-name"&gt;Nickname&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+		&lt;input class="form-control" id="nname1" name="nname1" type="text" autocomplete="nickname" required="required" /&gt;
+	&lt;/div&gt;</code></pre>
+			</details>
+
+			<div class="form-group">
+				<label for="cname1" class="required"><span class="field-name">Country name</span> <strong class="required">(required)</strong></label>
+				<input class="form-control" id="cname1" name="cname1" type="text" autocomplete="country-name" required="required" />
+			</div>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				
+				<pre><code>&lt;div class="wb-frmvld required-no-asterisk"&gt;
+&lt;form action="#" method="get" id="validation-example-4"&gt;
+	...
+	&lt;div class="form-group"&gt;
+		&lt;label for="cname1" class="required"&gt;&lt;span class="field-name"&gt;Country name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+		&lt;input class="form-control" id="cname1" name="cname1" type="text" autocomplete="country-name" required="required" /&gt;
+	&lt;/div&gt;</code></pre>
+			</details>
+
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Favourite web browser</span> <strong class="required">(required)</strong></legend>
+				<div class="radio">
+					<label for="fbrowser1"><input type="radio" name="fbrowser" value="1" id="fbrowser1" data-rule-required="true" /> Chrome</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser2"><input type="radio" name="fbrowser" value="2" id="fbrowser2" /> Edge</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser3"><input type="radio" name="fbrowser" value="3" id="fbrowser3" /> Firefox</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser4"><input type="radio" name="fbrowser" value="4" id="fbrowser4" /> Safari</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser5"><input type="radio" name="fbrowser" value="5" id="fbrowser5" /> Other</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				
+				<pre><code>&lt;div class="wb-frmvld required-no-asterisk"&gt;
+	&lt;form action="#" method="get" id="validation-example-4"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Favourite web browser&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser1"&gt;&lt;input type="radio" name="fbrowser" value="1" id="fbrowser1" data-rule-required="true" /&gt; Chrome&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser2"&gt;&lt;input type="radio" name="fbrowser" value="2" id="fbrowser2" /&gt; Edge&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser3"&gt;&lt;input type="radio" name="fbrowser" value="3" id="fbrowser3" /&gt; Firefox&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser4"&gt;&lt;input type="radio" name="fbrowser" value="4" id="fbrowser4" /&gt; Safari&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser5"&gt;&lt;input type="radio" name="fbrowser" value="5" id="fbrowser5" /&gt; Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<input type="submit" value="Submit" class="btn btn-primary" /> <input type="reset" value="Reset page to defaults" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
+		</form>
+	</div>
+</section>
+<hr>
+<section>
+	<h2>Example using custom pattern validation</h2>
+	<p>If the <code>pattern</code> attribute is used alongside the <code>data-rule</code> attribute, the pattern validation will prevail; meaning that in the end you only get the generic validation error message that comes from the use of <code>pattern</code>. It is strongly recommended to use the <code>data-msg</code> attribute to customize the error message displayed by the pattern validation when the field is in error state.</p>
+	<div class="wb-frmvld">
+		<form action="#" method="get" id="validation-example-3">
+			<div class="form-group">
+				<label for="custom1" class="required"><span class="field-name">Application number (one letter followed by six digits)</span> <strong class="required">(required)</strong></label>
+				<input class="form-control" id="custom1" name="custom1" type="text" pattern="[A-Za-z][0-9]{6}" data-msg="Please enter a valid application number" required="required" />
+			</div>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+				&lt;form action="#" method="get" id="validation-example"&gt;
+					...
+					&lt;div class="form-group"&gt;
+						&lt;label for="custom1" class="required"&gt;&lt;span class="field-name"&gt;Application number (one letter followed by six digits)&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="custom1" name="custom1" type="text" pattern="[A-Za-z][0-9]{6}" required="required" /&gt;
+					&lt;/div&gt;</code></pre>
+			</details>
+
+			<input type="submit" value="Submit" class="btn btn-primary" /> <input type="reset" value="Reset page to defaults" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
+		</form>
+	</div>
+</section>
+<hr>
+<section>
+<!-- checkbox in list item -->
+	<h2>Various examples of stacked and horizontal forms</h2>
+	<div class="wb-frmvld">
+		<form action="#" method="get" id="validation-example-2">
+			<!-- checkbox in list item with implicit labels-->
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Stacked checkboxes in a <code>&lt;li&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
+				<ul class="form-group list-unstyled">
+					<li class="checkbox">
+						<label for="example1a"><input type="checkbox" name="example1" value="1" id="example1a" required="required" />Apple</label>
+					</li>
+					<li class="checkbox">
+						<label for="example1b"><input type="checkbox" name="example1" value="2" id="example1b" />Orange</label>
+					</li>
+					<li class="checkbox">
+						<label for="example1c"><input type="checkbox" name="example1" value="3" id="example1c" />Kiwi</label>
+					</li>
+					<li class="checkbox">
+						<label for="example1d"><input type="checkbox" name="example1" value="4" id="example1d" />Other</label>
+					</li>
+				</ul>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Stacked checkboxes in a &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;ul class="form-group list-unstyled"&gt;
+				&lt;li class="checkbox"&gt;
+					&lt;label for="example1a"&gt;&lt;input type="checkbox" name="example1" value="1" id="example1a" required="required" /&gt;Apple&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="checkbox"&gt;
+					&lt;label for="example1b"&gt;&lt;input type="checkbox" name="example1" value="2" id="example1b" /&gt;Orange&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="checkbox"&gt;
+					&lt;label for="example1c"&gt;&lt;input type="checkbox" name="example1" value="3" id="example1c" /&gt;Kiwi&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="checkbox"&gt;
+					&lt;label for="example1d"&gt;&lt;input type="checkbox" name="example1" value="4" id="example1d" /&gt;Other&lt;/label&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/fieldset&gt;</code></pre>
+				<div class="well well-sm"><strong>Note:</strong> The <code>for</code> attribute in the labels is optional for this pattern</div>
+			</details>
+
+			<!-- radio in a list with implicit labels -->
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Stacked radio buttons in a <code>&lt;li&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
+				<ul class="form-group list-unstyled">
+					<li class="radio">
+						<label for="example2a"><input type="radio" name="example2" value="1" id="example2a" required="required" />Apple</label>
+					</li>
+					<li class="radio">
+						<label for="example2b"><input type="radio" name="example2" value="2" id="example2b" />Orange</label>
+					</li>
+					<li class="radio">
+						<label for="example2c"><input type="radio" name="example2" value="3" id="example2c" />Kiwi</label>
+					</li>
+					<li class="radio">
+						<label for="example2d"><input type="radio" name="example2" value="4" id="example2d" />Other</label>
+					</li>
+				</ul>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Stacked radio buttons in a &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;ul class="form-group list-unstyled"&gt;
+				&lt;li class="radio"&gt;
+					&lt;label for="example2a"&gt;&lt;input type="radio" name="example2" value="1" id="example2a" required="required" /&gt;Apple&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="radio"&gt;
+					&lt;label for="example2b"&gt;&lt;input type="radio" name="example2" value="2" id="example2b" /&gt;Orange&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="radio"&gt;
+					&lt;label for="example2c"&gt;&lt;input type="radio" name="example2" value="3" id="example2c" /&gt;Kiwi&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="radio"&gt;
+					&lt;label for="example2d"&gt;&lt;input type="radio" name="example2" value="4" id="example2d" /&gt;Other&lt;/label&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/fieldset&gt;</code></pre>
+				<div class="well well-sm"><strong>Note:</strong> The <code>for</code> attribute in the labels is optional for this pattern</div>
+			</details>
+
+			<!-- checkbox in div pattern with implicit labels-->
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Stacked checkboxes in a <code>&lt;div&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
+				<div class="checkbox">
+					<label for="example3a"><input type="checkbox" name="example3" value="1" id="example3a" required="required" />Apple</label>
+				</div>
+				<div class="checkbox">
+					<label for="example3b"><input type="checkbox" name="example3" value="2" id="example3b" />Orange</label>
+				</div>
+				<div class="checkbox">
+					<label for="example3c"><input type="checkbox" name="example3" value="3" id="example3c" />Kiwi</label>
+				</div>
+				<div class="checkbox">
+					<label for="example3d"><input type="checkbox" name="example3" value="4" id="example3d" />Other</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Stacked checkboxes in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="example3a"&gt;&lt;input type="checkbox" name="example3" value="1" id="example3a" required="required" /&gt;Apple&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="example3b"&gt;&lt;input type="checkbox" name="example3" value="2" id="example3b" /&gt;Orange&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="example3c"&gt;&lt;input type="checkbox" name="example3" value="3" id="example3c" /&gt;Kiwi&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="checkbox"&gt;
+				&lt;label for="example3d"&gt;&lt;input type="checkbox" name="example3" value="4" id="example3d" /&gt;Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+				<div class="well well-sm"><strong>Note:</strong> The <code>for</code> attribute in the labels is optional for this pattern</div>
+			</details>
+
+			<!-- radio buttons in div pattern with implicit labels-->
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Stacked radio buttons in a <code>&lt;div&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
+				<div class="radio">
+					<label for="example4a"><input type="radio" name="example4" value="1" id="example4a" required="required" />Apple</label>
+				</div>
+				<div class="radio">
+					<label for="example4b"><input type="radio" name="example4" value="2" id="example4b" />Orange</label>
+				</div>
+				<div class="radio">
+					<label for="example4c"><input type="radio" name="example4" value="3" id="example4c" />Kiwi</label>
+				</div>
+				<div class="radio">
+					<label for="example4d"><input type="radio" name="example4" value="4" id="example4d" />Other</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Stacked radio buttons in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="example4a"&gt;&lt;input type="radio" name="example4" value="1" id="example4a" required="required" /&gt;Apple&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="example4b"&gt;&lt;input type="radio" name="example4" value="2" id="example4b" /&gt;Orange&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="example4c"&gt;&lt;input type="radio" name="example4" value="3" id="example4c" /&gt;Kiwi&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="example4d"&gt;&lt;input type="radio" name="example4" value="4" id="example4d" /&gt;Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+				<div class="well well-sm"><strong>Note:</strong> The <code>for</code> attribute in the labels is optional for this pattern</div>
+			</details>
+
+			<!-- checkbox in list item with explicit labels-->
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Horizontal checkboxes in a <code>&lt;li&gt;</code> pattern with explicit labels</span> <strong class="required">(required)</strong></legend>
+				<ul class="form-inline list-unstyled">
+					<li class="label-inline">
+						<input type="checkbox" name="example5" value="1" id="example5a" required="required" />
+						<label for="example5a">Apple</label>
+					</li>
+					<li class="label-inline">
+						<input type="checkbox" name="example5" value="2" id="example5b" />
+						<label for="example5b">Orange</label>
+					</li>
+					<li class="label-inline">
+						<input type="checkbox" name="example5" value="3" id="example5c" />
+						<label for="example5c">Kiwi</label>
+					</li>
+					<li class="label-inline">
+						<input type="checkbox" name="example5" value="4" id="example5d" />
+						<label for="example5d">Other</label>
+					</li>
+				</ul>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal checkboxes in a &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; pattern with explicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;ul class="form-inline list-unstyled"&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="checkbox" name="example5" value="1" id="example5a" required="required" /&gt;
+					&lt;label for="example5a"&gt;Apple&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="checkbox" name="example5" value="2" id="example5b" /&gt;
+					&lt;label for="example5b"&gt;Orange&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="checkbox" name="example5" value="3" id="example5c" /&gt;
+					&lt;label for="example5c"&gt;Kiwi&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="checkbox" name="example5" value="4" id="example5d" /&gt;
+					&lt;label for="example5d"&gt;Other&lt;/label&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<!-- radio buttons in list item with explicit labels-->
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Horizontal radio buttons in a <code>&lt;li&gt;</code> pattern with explicit labels</span> <strong class="required">(required)</strong></legend>
+				<ul class="form-inline list-unstyled">
+					<li class="label-inline">
+						<input type="radio" name="example6" value="1" id="example6a" required="required" />
+						<label for="example6a">Apple</label>
+					</li>
+					<li class="label-inline">
+						<input type="radio" name="example6" value="2" id="example6b" />
+						<label for="example6b">Orange</label>
+					</li>
+					<li class="label-inline">
+						<input type="radio" name="example6" value="3" id="example6c" />
+						<label for="example6c">Kiwi</label>
+					</li>
+					<li class="label-inline">
+						<input type="radio" name="example6" value="4" id="example6d" />
+						<label for="example6d">Other</label>
+					</li>
+				</ul>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal radio buttons in a &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; pattern with explicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;ul class="form-inline list-unstyled"&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="radio" name="example6" value="1" id="example6a" required="required" /&gt;
+					&lt;label for="example6a"&gt;Apple&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="radio" name="example6" value="2" id="example6b" /&gt;
+					&lt;label for="example6b"&gt;Orange&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="radio" name="example6" value="3" id="example6c" /&gt;
+					&lt;label for="example6c"&gt;Kiwi&lt;/label&gt;
+				&lt;/li&gt;
+				&lt;li class="label-inline"&gt;
+					&lt;input type="radio" name="example6" value="4" id="example6d" /&gt;
+					&lt;label for="example6d"&gt;Other&lt;/label&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<!-- Checkboxes inline with implicit labels-->
+			<fieldset class="form-inline chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Horizontal checkboxes in a <code>&lt;label&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
+				<label for="example7a" class="checkbox-inline"><input type="checkbox" name="example7" value="1" id="example7a" required="required" />Smartphone</label>
+				<label for="example7b" class="checkbox-inline"><input type="checkbox" name="example7" value="2" id="example7b" />Laptop</label>
+				<label for="example7c" class="checkbox-inline"><input type="checkbox" name="example7" value="3" id="example7c" />Voice assistant</label>
+				<label for="example7d" class="checkbox-inline"><input type="checkbox" name="example7" value="4" id="example7d" />Fusion reactor</label>
+			</fieldset>
+			<details class="mrgn-bttm-md mrgn-tp-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal checkboxes in a &lt;code&gt;&amp;lt;label&gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;label for="example7a" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="1" id="example7a" required="required" /&gt;Smartphone&lt;/label&gt;
+			&lt;label for="example7b" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="2" id="example7b" /&gt;Laptop&lt;/label&gt;
+			&lt;label for="example7c" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="3" id="example7c" /&gt;Voice assistant&lt;/label&gt;
+			&lt;label for="example7d" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="4" id="example7d" /&gt;Fusion reactor&lt;/label&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<!-- Radio buttons inline with implicit labels-->
+			<fieldset class="form-inline chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Horizontal radio buttons in a <code>&lt;label&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
+				<label for="example8a" class="radio-inline"><input type="radio" name="example8" value="1" id="example8a" required="required" />Smartphone</label>
+				<label for="example8b" class="radio-inline"><input type="radio" name="example8" value="2" id="example8b" />Laptop</label>
+				<label for="example8c" class="radio-inline"><input type="radio" name="example8" value="3" id="example8c" />Voice assistant</label>
+				<label for="example8d" class="radio-inline"><input type="radio" name="example8" value="4" id="example8d" />Fusion reactor</label>
+			</fieldset>
+			<details class="mrgn-bttm-md mrgn-tp-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal radio buttons in a &lt;code&gt;&amp;lt;label&gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;label for="example8a" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="1" id="example8a" required="required" /&gt;Smartphone&lt;/label&gt;
+			&lt;label for="example8b" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="2" id="example8b" /&gt;Laptop&lt;/label&gt;
+			&lt;label for="example8c" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="3" id="example8c" /&gt;Voice assistant&lt;/label&gt;
+			&lt;label for="example8d" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="4" id="example8d" /&gt;Fusion reactor&lt;/label&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<!-- checkboxes inline with explicit labels-->
+			<fieldset class="form-inline chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Horizontal checkboxes in a <code>&lt;div&gt;</code> pattern with explicit labels</span> <strong class="required">(required)</strong></legend>
+				<div class="label-inline">
+					<input type="checkbox" name="example9" value="1" id="example9a" required="required" />
+					<label for="example9a">Smartphone</label>
+				</div>
+				<div class="label-inline">
+					<input type="checkbox" name="example9" value="2" id="example9b" />
+					<label for="example9b">Laptop</label>
+				</div>
+				<div class="label-inline">
+					<input type="checkbox" name="example9" value="3" id="example9c" />
+					<label for="example9c">Voice assistant</label>
+				</div>
+				<div class="label-inline">
+					<input type="checkbox" name="example9" value="4" id="example9d" />
+					<label for="example9d">Fusion reactor</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md mrgn-tp-md">
+				<summary>View code </summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal checkboxes in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; pattern with explicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="checkbox" name="example9" value="1" id="example9a" required="required" /&gt;
+				&lt;label for="example9a"&gt;Smartphone&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="checkbox" name="example9" value="2" id="example9b" /&gt;
+				&lt;label for="example9b"&gt;Laptop&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="checkbox" name="example9" value="3" id="example9c" /&gt;
+				&lt;label for="example9c"&gt;Voice assistant&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="checkbox" name="example9" value="4" id="example9d" /&gt;
+				&lt;label for="example9d"&gt;Fusion reactor&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<!-- radio buttons inline with explicit labels-->
+			<fieldset class="form-inline chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Horizontal radio buttons in a <code>&lt;div&gt;</code> pattern with explicit labels</span> <strong class="required">(required)</strong></legend>
+				<div class="label-inline">
+					<input type="radio" name="example10" value="1" id="example10a" required="required" />
+					<label for="example10a">Smartphone</label>
+				</div>
+				<div class="label-inline">
+					<input type="radio" name="example10" value="2" id="example10b" />
+					<label for="example10b">Laptop</label>
+				</div>
+				<div class="label-inline">
+					<input type="radio" name="example10" value="3" id="example10c" />
+					<label for="example10c">Voice assistant</label>
+				</div>
+				<div class="label-inline">
+					<input type="radio" name="example10" value="4" id="example10d" />
+					<label for="example10d">Fusion reactor</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md mrgn-tp-md">
+				<summary>View code </summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal radio buttons in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; pattern with explicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="radio" name="example10" value="1" id="example10a" required="required" /&gt;
+				&lt;label for="example10a"&gt;Smartphone&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="radio" name="example10" value="2" id="example10b" /&gt;
+				&lt;label for="example10b"&gt;Laptop&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="radio" name="example10" value="3" id="example10c" /&gt;
+				&lt;label for="example10c"&gt;Voice assistant&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="label-inline"&gt;
+				&lt;input type="radio" name="example10" value="4" id="example10d" /&gt;
+				&lt;label for="example10d"&gt;Fusion reactor&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<input type="submit" value="Submit" class="btn btn-primary" /> <input type="reset" value="Reset page to defaults" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
+		</form>
+	</div>
+
+	<noscript>
+		<p>This form cannot be submitted without JavaScript. You may use one of the following methods:</p>
+		<ul>
+			<li>Method 1</li>
+			<li>Method 2</li>
+			<li>Method n</li>
+		</ul>
+	</noscript>
+</section>
+
+<section>
+	<h2>Edge test cases</h2>
+	<p>The following examples are only for testing purposes of some edge case configurations to ensure the plugin continues to work as expected.</p>
+	<h3><code>&lt;div></code> between the form and the form validation plugin</h3>
+	<p>When there is a wrapper <code>&lt;div></code> on the <code>&lt;form></code> element between the form and the validation plugin.</p>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="wb-frmvld">
+				<div id="app-root">
+					<form action="#" method="get" id="edge-test-1">
+						<div class="form-group">
+							<label for="edge-test-1-fruit" class="required"><span class="field-name">Choose a fruit:</span> <strong class="required">(required)</strong></label>
+							<select class="form-control" id="edge-test-1-fruit" name="fruit" required="required">
+								<option label="Select a fruit"></option>
+								<option value="Apple">Apple</option>
+								<option value="Orange">Orange</option>
+								<option value="Kiwi">Kiwi</option>
+							</select>
+						</div>
+						<button class="btn btn-default" type="submit">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<p>Source code</p>
+			<pre><code>&lt;div class="wb-frmvld">
+	&lt;div id="app-root">
+		&lt;form action="#" method="get" id="edge-test-1">
+			...
+		&lt;/form>
+	&lt;/div>
+&lt;/div></code></pre>
+		</div>
+	</div>
+</section>

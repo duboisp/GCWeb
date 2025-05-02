@@ -1,7 +1,7 @@
 # Artifacts
 node_modules/
 lib/
-dist/
+#dist/
 ?sprite*.*css
 sprite*.png
 
@@ -48,8 +48,8 @@ Gemfile.lock
 #_layouts/
 #_includes/
 
-méli-mélo-demos/
-_wetboew-demos/
+#méli-mélo-demos/
+#_wetboew-demos/
 ~jekyll-dist/
 
 .secrets

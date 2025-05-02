@@ -1,0 +1,19 @@
+{%- comment -%}
+
+++++++++++++++++++++++++++++++++++
++ Site settings
++
++ Global variable used across this theme
+++++++++++++++++++++++++++++++++++
+
+{%- endcomment -%}
+{%- assign setting-packageName = "GCWeb" -%}
+{%- capture setting-resourcesBasePathTheme -%}
+	https://wet-boew.github.io/themes-dist/GCWeb/{{ setting-packageName }}
+{%- endcapture -%}
+{%- assign setting-resourcesBasePathWetboew = "https://wet-boew.github.io/themes-dist/GCWeb/wet-boew" -%}
+{%- assign setting-siteBasePath = "https://wet-boew.github.io/GCWeb/" -%}
+{%- assign setting-demosBasePath = "https://wet-boew.github.io/gcweb-compiled-demos/" -%}
+
+{%- assign setting-resourcesBasePathTheme = "/GCWeb/dist/GCWeb" -%}{%- assign setting-resourcesBasePathWetboew = "/GCWeb/dist/wet-boew" -%}{%- assign setting-siteBasePath = "/GCWeb/" -%}{%- assign setting-demosBasePath = "/GCWeb/" -%}
+{%- assign setting-minifiedSuffix = "" -%}

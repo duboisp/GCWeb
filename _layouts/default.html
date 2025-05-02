@@ -1,0 +1,37 @@
+---
+layout: core
+---
+{%- include variable-core.liquid -%}
+{%- capture page-title -%}
+	{%- if page.titleH1 -%}
+		{{ page.titleH1 }}
+	{%- elsif page.title -%}
+		{{ page.title }}
+	{%- else -%}
+		Page untitled
+	{%- endif -%}
+{%- endcapture -%}
+
+{%- if page.secondarymenu -%}
+{%- comment -%} The pattern with the secondary menu is probably deprecated, but we do have pages published like this on Canada.ca {%- endcomment -%}
+<div class="container">
+	<div class="row">
+		<main property="mainContentOfPage" class="col-md-9 col-md-push-3" resource="#wb-main" typeof="WebPageElement">
+{%- else -%}
+
+		<main class="container" property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement">
+{%- endif -%}
+
+{% include main-page-title/main-page-title.html %}
+{{ content }}
+{% include page-details/footer.html %}
+</main>
+
+{%- if page.secondarymenu -%}
+		<nav class="wb-sec col-md-3  col-md-pull-9" typeof="SiteNavigationElement" id="wb-sec">
+			<h2 id="wb-sec-h" class="wb-inv">{{ i18nText-secondaryMenu }}</h2>
+			{% include secondary-menu/secondary-menu.html -%}
+		</nav>
+	</div>
+</div>
+{%- endif -%}

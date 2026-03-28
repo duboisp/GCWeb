@@ -1,0 +1,122 @@
+---
+layout: core
+js:
+---
+{%- include variable-core.liquid -%}
+{%- capture page-title -%}
+	{%- if page.titleH1 -%}
+		{{ page.titleH1 }}
+	{%- elsif page.title -%}
+		{{ page.title }}
+	{%- else -%}
+		Page untitled
+	{%- endif -%}
+{%- endcapture -%}
+<main property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement">
+<script>
+
+/* Logic here to avoid race condition */
+
+  // Todo: Only show the details which contain the display action if we are internal - Like we can poke "canada-preview" server
+  // Todo: Handle the options: Current session and fews days (ex. 3 days period and let's action it right away if enabled
+
+
+  function showHdnContent() {
+	let hdnContent = document.querySelector( "template#show-hdn-content" );
+    let tmpl;
+
+    let cloneHdnContent = document.importNode(hdnContent.content, true);
+
+    for (const child of cloneHdnContent.childNodes) {
+
+      // Take the first comment and get the real content
+      if ( child.nodeType === 8 ) {
+        tmpl = document.createElement('template');
+        tmpl.innerHTML = child.data.replaceAll( "< ! - -", "<!--" ).replaceAll( "- - >", "-->" );
+        break;
+      }
+    }
+
+    // Get the fragment
+    const fragment = tmpl.content,
+          parent = hdnContent.parentElement;
+
+    // Remove the warning content
+    parent.removeChild( hdnContent.previousElementSibling )
+
+    // Add this content to the page next to the template
+    parent.replaceChild(fragment, hdnContent );
+
+    // Return parent for post load action
+    return parent;
+  }
+</script>
+<div class="container">
+<section class="alert alert-warning">
+  <h2>Warning, this page is a demo and content were intentionally hidden</h2>
+  <p>This is a demo page for web author and developer working on Canada.ca website. If you landed here by mistake, you may want to go on our official web site at <a href="https://www.canada.ca/en.html">https://www.canada.ca/en.html</a>.</p>
+  <p><a class="btn btn-call-to-action" href="https://www.canada.ca/en.html">Visit Canada.ca</a></p>
+  <hr>
+  <details>
+    <summary>Let me view this demo for:</summary>
+    <div class="radio">
+      <label><input type="radio" name="viewoption" value="onetime" checked /> One time</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="viewoption" value="session" /> Current session</label>
+    </div>
+    <button class="btn btn-default" type="button">Show the content</button>
+    </details>
+</section>
+</container>
+<template id="show-hdn-content">
+<!--
+  {{ content | replace: "<!--", "< ! - -" | replace: "-->", "- - >" }}
+-->
+</template>
+<script>
+/* Trigger here to undo what preceding and to allow smooth start */
+
+let flag = sessionStorage.getItem("show-hdn-content");
+if ( flag && Number.isNaN(parseInt(flag)) {
+} else if ( flag ) {
+	showHdnContent()
+} else {
+	//fetch( "https://cdb-rdc-test.canada.ca" ).then( () => {
+	fetch( "https://www.canada.ca" ).then( () => {
+		setTimeout( function() {
+
+		  let hdnContentWarnBox = document.querySelector( "template#show-hdn-content" ).previousElementSibling;
+		  let warnBtn = hdnContentWarnBox.querySelector( "details button" );
+		  warnBtn.addEventListener('click', btnClick);
+
+			function btnClick() {
+				// Save for the whole session?
+				if( hdnContentWarnBox.querySelector( "[name=viewoption]:checked" ).value === "session" ) {
+					sessionStorage.setItem("show-hdn-content", Date.now());
+				}
+
+				let parent = showHdnContent();
+
+				// Set the focus
+				parent.focus();
+
+				// Initiate WET on the parent
+				$( parent )
+					.find( wb.allSelectors )
+					.addClass( "wb-init" )
+					.filter( ":not(.wb-init .wb-init)" )
+					.trigger( "timerpoke.wb" );
+
+			}
+
+		}, 3000);
+	} )
+	.catch( () => {
+		sessionStorage.setItem("show-hdn-content", "false");
+	});
+};
+</script>
+
+{% include page-details/footer.html %}
+</main>
